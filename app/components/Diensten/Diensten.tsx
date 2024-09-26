@@ -81,7 +81,7 @@ const ServicesSection = () => {
   return (
     <section className="py-12">
       {/* Top Navigation Links */}
-      <nav className="flex flex-col md:center md:flex-row justify-center md:space-x-48 space-y-4 md:space-y-0 mb-8 border-b pb-4">
+      <nav className="flex flex-col md:flex-row justify-center md:space-x-48 space-y-4 md:space-y-0 mb-8 border-b pb-4">
         <Link href="/car-wrapping" className="text-lg font-semibold text-gray-800 hover:text-black transition">
           Car Wrapping
         </Link>
@@ -107,7 +107,7 @@ const ServicesSection = () => {
           {newsData.map((news, index) => (
             <div
               key={index}
-              className="p-6"  // Adjusted padding for space between items
+              className="p-6"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
