@@ -1,0 +1,26 @@
+/* slick-custom.css */
+.slick-dots {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 30px;
+  }
+  
+  .slick-dots li {
+    margin: 4px 8px;
+  }
+  
+  .slick-dots li button {
+    width: 40px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 999px; /* Makes it a pill shape */
+    opacity: 0.5;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .slick-dots li.slick-active button {
+    background-color: #ff0000; /* Active dot color */
+    opacity: 1;
+  }
+  

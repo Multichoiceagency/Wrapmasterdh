@@ -11,7 +11,7 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['Plus Jakarta Sans"', 'sans-serif']
+  			sans: ['Barlow"', 'sans-serif']
   		},
 		  screens: {
 			'xs': '340px',

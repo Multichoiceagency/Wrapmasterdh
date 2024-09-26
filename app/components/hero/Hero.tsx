@@ -35,9 +35,9 @@ const HeroSection = () => {
               playsInline
               src="/video/wrapmasterdh.mp4" // Replace with your video file
             ></video>
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white">
-              <h1 className="text-4xl font-bold tracking-widest">WE CALL IT - VOLLKOMMEN.</h1>
-              <button className="mt-4 px-8 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
+            <div className="absolute bottom-10 xs:bottom-12 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
+              <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold tracking-widest">WE CALL IT - VOLLKOMMEN.</h1>
+              <button className="mt-4 px-6 py-2 xs:px-8 xs:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
                 BRABUS 930
               </button>
             </div>
@@ -50,9 +50,9 @@ const HeroSection = () => {
             className="w-full h-[90svh] bg-cover bg-center"
             style={{ backgroundImage: 'url(/images/range-rover-sport-nardo-grijs.jpg)' }} // Replace with your image file
           >
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white">
-              <h1 className="text-4xl font-bold tracking-widest">DISCOVER THE FUTURE</h1>
-              <button className="mt-4 px-8 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
+            <div className="absolute bottom-10 xs:bottom-12 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
+              <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold tracking-widest">DISCOVER THE FUTURE</h1>
+              <button className="mt-4 px-6 py-2 xs:px-8 xs:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
                 SEE MORE
               </button>
             </div>
@@ -65,9 +65,9 @@ const HeroSection = () => {
             className="w-full h-[90svh] bg-cover bg-center"
             style={{ backgroundImage: 'url(/images/lamborghini-urus-groen.jpg)' }} // Replace with your image file
           >
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white">
-              <h1 className="text-4xl font-bold tracking-widest">EXPERIENCE LUXURY</h1>
-              <button className="mt-4 px-8 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
+            <div className="absolute bottom-10 xs:bottom-12 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
+              <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold tracking-widest">EXPERIENCE LUXURY</h1>
+              <button className="mt-4 px-6 py-2 xs:px-8 xs:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
                 EXPLORE NOW
               </button>
             </div>

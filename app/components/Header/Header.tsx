@@ -31,28 +31,28 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full h-20 transition-all duration-300 z-50 flex justify-between items-center px-5 ${
+      className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 ${
         isScrolled ? 'bg-white/10 backdrop-blur-md shadow-md' : 'bg-transparent'
       }`}
     >
       {/* Hamburger Menu Button */}
       <button
-  className={`z-50 flex items-center text-2xl focus:outline-none ${
-    menuOpen ? 'text-black' : 'text-white'
-  }`}
-  onClick={toggleMenu}
-  aria-label="Toggle Menu"
->
-  <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
-</button>
+        className={`z-50 flex items-center text-2xl focus:outline-none ${
+          menuOpen ? 'text-black' : 'text-white'
+        }`}
+        onClick={toggleMenu}
+        aria-label="Toggle Menu"
+      >
+        <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+      </button>
 
       {/* Centered Logo */}
-      <div className="flex-grow flex justify-center ">
+      <div className="flex-grow flex justify-center">
         <Link href="/">
           <img
             src="/logo.png" // Replace with your logo path
             alt="Logo"
-            className="h-18"
+            className="h-10 xs:h-16 sm:h-14 md:h-16 lg:h-18 xl:h-20" // Responsive logo height
           />
         </Link>
       </div>
@@ -78,6 +78,13 @@ const Header = () => {
         }`}
       >
         <ul className="flex flex-col font-bold items-center justify-center h-full space-y-8 text-lg md:space-y-5 md:items-start md:p-5">
+          <Link href="/">
+            <img
+              src="/logos/handtekening-zwart.png" // Replace with your logo path
+              alt="Logo"
+              className="h-8"
+            />
+          </Link>
           <li>
             <Link href="/" onClick={() => setMenuOpen(false)}>
               HOME

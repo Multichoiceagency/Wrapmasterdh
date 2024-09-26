@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Barlow } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header/page";
+import Header from "./components/Header/Header";
 
 // Import Barlow font from Google Fonts
 const barlow = Barlow({
