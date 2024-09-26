@@ -81,20 +81,20 @@ const ServicesSection = () => {
   return (
     <section className="py-12">
       {/* Top Navigation Links */}
-      <nav className="flex flex-col md:flex-row justify-center md:space-x-48 space-y-4 md:space-y-0 mb-8 border-b pb-4">
-        <Link href="/car-wrapping" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Car Wrapping
-        </Link>
-        <Link href="/ppf" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Paint Protection Film (PPF)
-        </Link>
-        <Link href="/sterrenhemel" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Sterrenhemel
-        </Link>
-        <Link href="/window-tinting" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Window Tinting
-        </Link>
-      </nav>
+      <nav className="flex flex-col items-center justify-center md:flex-row md:space-x-48 space-y-4 md:space-y-0 mb-8 border-b pb-4">
+  <Link href="/car-wrapping" className="text-lg font-semibold text-gray-800 hover:text-black transition">
+    Car Wrapping
+  </Link>
+  <Link href="/ppf" className="text-lg font-semibold text-gray-800 hover:text-black transition">
+    Paint Protection Film (PPF)
+  </Link>
+  <Link href="/sterrenhemel" className="text-lg font-semibold text-gray-800 hover:text-black transition">
+    Sterrenhemel
+  </Link>
+  <Link href="/window-tinting" className="text-lg font-semibold text-gray-800 hover:text-black transition">
+    Window Tinting
+  </Link>
+</nav>
 
       {/* News & Events Section */}
       <div className="text-center mb-12">
