@@ -1,0 +1,23 @@
+/* custom-swiper.css */
+
+.swiper-pagination-bullet {
+    width: 40px; /* Adjust width to 10px for the pill shape */
+    height: 2px;
+    background-color: #bbb; /* Default gray color */
+    opacity: 0.5;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    border-radius: 999px; /* Full pill/round shape */
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #ff0000; /* Active red color */
+    opacity: 1;
+  }
+  
+  .swiper-pagination-custom {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+  
