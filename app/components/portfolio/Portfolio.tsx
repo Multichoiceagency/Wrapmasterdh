@@ -48,7 +48,7 @@ const OverflowSlider = () => {
   };
 
   return (
-    <section className="relative max-w-screen-xl mx-auto p-8">
+    <section className="w-full mx-auto p-8">
       <h2 className="text-3xl font-bold text-center mb-8">Brand New Supercars</h2>
 
       <div className="relative-mx-8">
@@ -62,7 +62,7 @@ const OverflowSlider = () => {
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto space-x-4 scrollbar-hide"
+          className="w-full space-x-4"
           style={{ scrollSnapType: 'x mandatory' }}
         >
           {portfolioItems.map((item, index) => (
