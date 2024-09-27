@@ -83,7 +83,7 @@ const Header = () => {
             <img
               src="/logos/handtekening-zwart.png" // Replace with your logo path
               alt="Logo"
-              className="h-8"
+              className="h-18"
             />
           </Link>
           <li className="w-full text-center md:text-left">

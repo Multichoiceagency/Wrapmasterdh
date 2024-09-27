@@ -46,7 +46,7 @@ const BentoGrid = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto p-6">
+    <section className="max-w-screen-xl mx-auto p-6">
       <h2 className="text-3xl font-bold text-center mb-8">Onze aanbevelingen</h2>
 
       {/* Bento Grid Layout */}
@@ -54,11 +54,16 @@ const BentoGrid = () => {
         {gridItems.map((item, index) => (
           <div
             key={index}
-            className={`relative bg-black text-white ${
+            className={`relative bg-black text-white overflow-hidden group ${
               item.large ? 'col-span-1 md:col-span-2 lg:col-span-2 row-span-2' : 'col-span-1'
             }`}
           >
-            <img src={item.image} alt={item.title} className="w-full h-full object-cover opacity-80 " />
+            {/* Image with hover animation */}
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-full object-cover opacity-80 transition-transform duration-500 ease-in-out transform group-hover:scale-105 group-hover:brightness-110"
+            />
             <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent ">
               <h3 className="text-lg font-semibold">{item.title}</h3>
               {item.description && <p className="text-sm mt-2">{item.description}</p>}
