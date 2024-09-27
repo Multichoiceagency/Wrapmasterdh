@@ -1,26 +1,30 @@
 /* slick-custom.css */
+
+/* Pagination container styles */
 .slick-dots {
-    display: flex !important;
-    justify-content: center;
-    margin-top: 16px;
-    gap: 30px;
-  }
-  
-  .slick-dots li {
-    margin: 4px 8px;
-  }
-  
-  .slick-dots li button {
-    width: 40px;
-    height: 10px;
-    background-color: #bbb;
-    border-radius: 999px; /* Makes it a pill shape */
-    opacity: 0.5;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .slick-dots li.slick-active button {
-    background-color: #ff0000; /* Active dot color */
-    opacity: 1;
-  }
-  
+  display: flex !important;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 30px; /* Space between dots */
+}
+
+/* Individual dot container */
+.slick-dots li {
+  margin: 4px 8px;
+}
+
+/* Default dot button style (pill-shaped) */
+.slick-dots li button {
+  width: 40px; /* Length of the pill */
+  height: 10px; /* Height of the pill */
+  background-color: #bbb; /* Default gray color */
+  border-radius: 999px; /* Makes the dot pill-shaped */
+  opacity: 0.5; /* Semi-transparent */
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Smooth transition for color and opacity */
+}
+
+/* Active dot style */
+.slick-dots li.slick-active button {
+  background-color: #ff0000; /* Active dot color - red */
+  opacity: 1; /* Full opacity when active */
+}

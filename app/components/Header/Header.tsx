@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faPhone } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
@@ -16,29 +16,30 @@ const Header = () => {
   };
 
   // Handle scroll for sticky header effect
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
-
-  // Add scroll event listener
-  if (typeof window !== 'undefined') {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
     window.addEventListener('scroll', handleScroll);
-  }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <header
       className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 ${
-        isScrolled ? 'bg-white/10 backdrop-blur-md shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
       {/* Hamburger Menu Button */}
       <button
         className={`z-50 flex items-center text-2xl focus:outline-none ${
-          menuOpen ? 'text-black' : 'text-white'
+          menuOpen || isScrolled ? 'text-black' : 'text-white'
         }`}
         onClick={toggleMenu}
         aria-label="Toggle Menu"
@@ -50,9 +51,9 @@ const Header = () => {
       <div className="flex-grow flex justify-center">
         <Link href="/">
           <img
-            src="/logo.png" // Replace with your logo path
+            src={isScrolled ? '/logos/logo-zwart.png' : '/logos/logo-wit.png'} // Replace with your logo paths
             alt="Logo"
-            className="h-10 xs:h-16 sm:h-14 md:h-16 lg:h-18 xl:h-20" // Responsive logo height
+            className="h-10 xs:h-24 pt-2 sm:h-14 md:h-16 lg:h-18 xl:h-36"
           />
         </Link>
       </div>
@@ -85,37 +86,37 @@ const Header = () => {
               className="h-8"
             />
           </Link>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/" onClick={() => setMenuOpen(false)}>
               HOME
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/cars" onClick={() => setMenuOpen(false)}>
               CARS
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/boats" onClick={() => setMenuOpen(false)}>
               BOATS
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/fashion" onClick={() => setMenuOpen(false)}>
               FASHION
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/collaborations" onClick={() => setMenuOpen(false)}>
               COLLABORATIONS
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/brand" onClick={() => setMenuOpen(false)}>
               BRAND
             </Link>
           </li>
-          <li>
+          <li className="w-full text-center md:text-left">
             <Link href="/contact" onClick={() => setMenuOpen(false)}>
               CONTACT
             </Link>
