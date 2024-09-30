@@ -53,14 +53,14 @@ const Header = () => {
           <img
             src={isScrolled ? '/logos/logo-zwart.png' : '/logos/logo-wit.png'} // Replace with your logo paths
             alt="Logo"
-            className="h-10 xs:h-24 pt-2 sm:h-14 md:h-16 lg:h-18 xl:h-36"
+            className="h-10 xs:h-24 pt-2 sm:h-14 md:h-16 lg:h-18 xl:h-24"
           />
         </Link>
       </div>
 
       {/* Phone icon for mobile */}
       <a
-        href="tel:+1234567890" // Replace with actual phone number
+        href="tel:0702250721" // Replace with actual phone number
         className={`text-xl block md:hidden ${menuOpen ? 'hidden' : 'block'}`}
         aria-label="Phone"
       >
@@ -69,7 +69,7 @@ const Header = () => {
 
       {/* Desktop Button */}
       <div className="hidden md:block">
-        <Button icon={<FontAwesomeIcon icon={faPhone} />}>Gratis offerte</Button>
+        <Button className='bg-red-700 hover:bg-slate-950 font-bold' icon={<FontAwesomeIcon icon={faPhone} />}>Gratis offerte</Button>
       </div>
 
       {/* Menu: Fullscreen on Mobile, Sidebar on Desktop (from the left) */}

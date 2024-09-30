@@ -1,15 +1,14 @@
-import { Section } from 'lucide-react'
 import React from 'react'
 import HeroSection from './components/hero/Hero'
 import Diensten from './components/Diensten/Diensten'
 import BentoGrid from './components/Bentogrid/BentoGrid'
 import CustomSection from './components/Customsection/CustomSection'
-import Portfolio from './components/portfolio/portfolio'
+import Portfolio from './components/portfolio/Portfolio'
 
 function Home() {
   return (
 
-        <section>
+        <section className='w-full'>
                     <HeroSection />
                     <Diensten />
                       <BentoGrid />
