@@ -98,3 +98,27 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* globals.css */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Animate the drawing of the SVG logo */
+.animate-draw path {
+  stroke: black;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 3s ease forwards;
+}
+/*footer*/
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+

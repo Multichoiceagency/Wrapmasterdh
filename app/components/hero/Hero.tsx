@@ -13,7 +13,7 @@ SwiperCore.use([Autoplay, Pagination]);
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full max-h-[100svh] xs:max-h-[85svh] sm:max-h-[80svh] md:max-h-[100svh] lg:max-h-[70svh]">
+    <div className="relative w-full max-h-[100svh] xs:max-h-[85svh] sm:max-h-[80svh] md:max-h-[100vh] lg:max-h-[100vh]">
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
@@ -26,7 +26,7 @@ const HeroSection = () => {
       >
         {/* Slide 1 - Video */}
         <SwiperSlide>
-          <div className="relative w-full h-[100svh] xs:h-[85svh] sm:h-[80svh] md:h-[75svh] lg:h-[70svh] bg-black">
+          <div className="relative w-full h-[100svh] xs:h-[85svh] sm:h-[80svh] md:h-[100vh] lg:h-[100vh] bg-black">
             <video
               className="w-full h-full object-cover"
               autoPlay
@@ -49,7 +49,7 @@ const HeroSection = () => {
         {/* Slide 2 - Image */}
         <SwiperSlide>
           <div
-            className="w-full h-[100svh] xs:h-[85svh] sm:h-[80svh] md:h-[75svh] lg:h-[70svh] bg-cover bg-center"
+            className="w-full h-[100svh] xs:h-[85svh] sm:h-[100svh] md:h-[100vh] lg:h-[100vh] bg-cover bg-center"
             style={{ backgroundImage: 'url(/images/range-rover-sport-nardo-grijs.jpg)' }}
           >
             <div className="absolute bottom-10 xs:bottom-12 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
@@ -66,7 +66,7 @@ const HeroSection = () => {
         {/* Slide 3 - Image */}
         <SwiperSlide>
           <div
-            className="w-full h-[100svh] xs:h-[85svh] sm:h-[80svh] md:h-[75svh] lg:h-[70svh] bg-cover bg-center"
+            className="w-full h-[100svh] xs:h-[85svh] sm:h-[80svh] md:h-[100vh] lg:h-[100vh] bg-cover bg-center"
             style={{ backgroundImage: 'url(/images/lamborghini-urus-groen.jpg)' }}
           >
             <div className="absolute bottom-10 xs:bottom-12 md:bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">

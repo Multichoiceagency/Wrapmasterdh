@@ -2,12 +2,13 @@ import { Metadata } from "next";
 import { Barlow } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
+import ClientLoaderWrapper from "@/components/ClientLoaderWrapper"; // Client-side wrapper for loader
+import Footer from "./components/Footer/Footer";
 
-// Import Barlow font from Google Fonts
 const barlow = Barlow({
-  weight: ["400", "700"],  // You can specify other weights if needed
-  subsets: ["latin"],      // Specify the subsets you want
-  variable: "--font-barlow", // Define a CSS variable for easier use
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-barlow",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${barlow.variable} antialiased`}>
-        <Header />
-        {children}
+        <ClientLoaderWrapper>
+          <Header />
+          {children}
+          <Footer />
+        </ClientLoaderWrapper>
       </body>
     </html>
   );

@@ -41,15 +41,17 @@ const CustomSection = () => {
           playsInline
           src="/video/carwrapping.mp4" // Replace with your video path
         />
-        <div className="absolute bottom-6 left-6">
-          <h3 className="text-3xl font-bold">WRAPMASTER INDIVIDUALIZATION PROGRAM</h3>
-          <Link href="/discover-more">
-            <button className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold hover:bg-red-700 transition">
-              Discover More
-            </button>
-          </Link>
+          <div className="absolute inset-x-0 bottom-6 flex justify-center">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold">WRAPMASTER INDIVIDUALIZATION PROGRAM</h3>
+              <Link href="/discover-more">
+                <button className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold hover:bg-red-700 transition">
+                  Discover More
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
     </section>
   );
 };
