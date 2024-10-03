@@ -1,8 +1,9 @@
 // components/ClientLoaderWrapper.tsx
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Loader from './Loader'; // Import the Loader component
+import Loader from './Loader';
 
 const ClientLoaderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -12,16 +13,12 @@ const ClientLoaderWrapper: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false); // Hide the loader after 2 seconds
     }, 2000);
 
-    return () => clearTimeout(timeout); // Cleanup on unmount
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
     <>
-      {loading ? (
-        <Loader /> // Show loader while loading
-      ) : (
-        <>{children}</> // Show actual content after loading
-      )}
+      {loading ? <Loader /> : <>{children}</>}
     </>
   );
 };

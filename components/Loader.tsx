@@ -1,38 +1,20 @@
-import React, { useEffect, useRef } from 'react';
-import { ReactSVG } from 'react-svg';
+// components/Loader.tsx
 
-const Loader = () => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
+import React from 'react';
+import Image from 'next/image';
+import loaderGif from '@/public/images/loader.gif'; // Adjust the path as needed
 
-  useEffect(() => {
-    if (svgRef.current) {
-      const paths = svgRef.current.querySelectorAll('path') as NodeListOf<SVGPathElement>;
-      paths.forEach((path: SVGPathElement, index: number) => {
-        const length = path.getTotalLength();
-        path.style.strokeDasharray = `${length}`;
-        path.style.strokeDashoffset = `${length}`;
-        path.style.animation = `drawSignature 2s ${index * 0.5}s forwards ease-in-out`;
-      });
-    }
-  }, []);
-
+const Loader: React.FC = () => {
   return (
-    <div className="flex justify-center items-center w-screen h-screen fixed top-0 left-0 bg-white z-50">
-      <ReactSVG
-        src="/logos/Wrapmaster-handtekening-zwart-ai.svg" // Adjust the path to your SVG file
+    <div className="flex justify-center items-center w-screen h-screen fixed inset-0 bg-background z-50">
+      <Image
+        src={loaderGif}
+        alt="Loading animation"
+        width={200} // Set desired width
+        height={200} // Set desired height
+        objectFit="contain"
+        priority // Ensure the loader image loads quickly
       />
-      <style jsx>{`
-        @keyframes drawSignature {
-          to {
-            stroke-dashoffset: 1;
-          }
-        }
-        svg path {
-          fill: none;
-          stroke: black;
-          stroke-width: 2;
-        }
-      `}</style>
     </div>
   );
 };
