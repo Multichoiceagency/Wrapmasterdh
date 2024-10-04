@@ -69,7 +69,7 @@ const Header = () => {
 
       {/* Desktop Button */}
       <div className="hidden md:block">
-        <Button className='bg-red-700 hover:bg-slate-950 font-bold' icon={<FontAwesomeIcon icon={faPhone} />}>Gratis offerte</Button>
+        <Button className='bg-red-700 hover:bg-slate-950 font-medium' icon={<FontAwesomeIcon icon={faPhone} />}>Gratis offerte</Button>
       </div>
 
       {/* Menu: Fullscreen on Mobile, Sidebar on Desktop (from the left) */}

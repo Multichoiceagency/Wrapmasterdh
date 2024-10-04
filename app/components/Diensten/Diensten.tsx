@@ -2,19 +2,17 @@
 
 import Link from 'next/link';
 import Slider from 'react-slick';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import '@/app/components/Diensten/slick-custom.css'; // Import your custom CSS
 
-const OnzeDiensten = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
+const OnzeDiensten = () => {
   // Custom Next Arrow
   const NextArrow = ({ onClick }: { onClick?: () => void }) => {
     return (
       <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-3xl bg-white rounded-full shadow-lg p-2 z-10"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-7xl  rounded-full p-8 z-10"
         onClick={onClick}
       >
         <FontAwesomeIcon icon={faChevronRight} />
@@ -26,7 +24,7 @@ const OnzeDiensten = () => {
   const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
     return (
       <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-3xl bg-white rounded-full shadow-lg p-2 z-10"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white font text-7xl rounded-full p-8 z-10"
         onClick={onClick}
       >
         <FontAwesomeIcon icon={faChevronLeft} />
@@ -39,15 +37,15 @@ const OnzeDiensten = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: 3, // Show one large slide at a time
+    slidesToScroll: 2,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1400,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
         },
       },
       {
@@ -74,12 +72,6 @@ const OnzeDiensten = () => {
           slidesToShow: 1,
         },
       },
-      {
-        breakpoint: 340,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
     ],
   };
 
@@ -87,128 +79,80 @@ const OnzeDiensten = () => {
     {
       image: '/images/carwrapping.jpg',
       title: 'Carwrapping',
-      description:
-        'Carwrapping is simpelweg het inpakken van jouw voertuig met een speciaal gekleurde folie. Bij Wrapmaster bieden wij een groot scala aan folie in diverse kleuren aan.',
+      slogan: 'Transform your car with stunning wraps.',
       link: '/car-wrapping',
     },
     {
       image: '/images/lampen-tinten.png',
       title: 'Koplampen Tinten',
-      description:
-        'Wrapmaster biedt transparante, matte, satijnen en hoogglanzende folie om je verlichting een eigen draai te geven.',
+      slogan: 'Illuminate with style.',
       link: '/koplampen-tinten',
     },
     {
       image: '/images/chrome-delete.jpg',
       title: 'Chrome Delete',
-      description:
-        'Wij van Wrapmaster kunnen een volledige chrome delete uitvoeren en alle chrome delen in- en rondom je auto naar elk gewenste kleur veranderen.',
+      slogan: 'Sleek and sophisticated—Chrome no more!',
       link: '/chrome-delete',
     },
     {
       image: '/images/reclamebelettering.png',
       title: 'Reclamebelettering',
-      description:
-        'Autobelettering is een voordelige en aantrekkelijke manier om uw bedrijf goed te presenteren met een opvallend design.',
+      slogan: 'Get noticed with custom vehicle lettering.',
       link: '/reclamebelettering',
     },
     {
       image: '/images/poetsen-glascoating.jpeg',
       title: 'Poetsen & Glascoating',
-      description:
-        'Een coating beschermt uw auto en maakt deze gemakkelijker te onderhouden, voor optimale bescherming en verzorging.',
+      slogan: 'Shine and protect like never before.',
       link: '/poetsen-glascoating',
     },
     {
       image: '/images/velgen-remklauwen-spuiten.png',
       title: 'Velgen & Remklauwen',
-      description:
-        'Wij kunnen je velgen en remklauwen in iedere gewenste kleur spuiten, coaten of wrappen.',
+      slogan: 'Make your wheels stand out.',
       link: '/velgen-remklauwen',
     },
     {
       image: '/images/gordelkleur-vervangen.jpg',
       title: 'Autogordels Vervangen',
-      description:
-        'Wrapmaster is de autogordel specialist van Nederland. Voor beschadigde gordels of om je autogordel te vervangen.',
+      slogan: 'Safety meets style.',
       link: '/autogordels-vervangen',
     },
     {
       image: '/images/scooter-motorwrapping.png',
       title: 'Scooter & Motorwrap',
-      description:
-        'Bij Wrapmaster heb je ook de mogelijkheid om je scooter of motor te wrappen voor een unieke uitstraling.',
+      slogan: 'Wrap your ride for the ultimate look.',
       link: '/scooter-motorwrap',
     },
   ];
 
   return (
     <section className="py-12">
-      {/* Top Navigation Links */}
-      <nav className="flex flex-col items-center justify-center md:flex-row md:space-x-48 space-y-4 md:space-y-0 mb-8 border-b pb-4">
-        <Link href="/car-wrapping" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Carwrapping
-        </Link>
-        <Link href="/ppf" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Koplampen Tinten
-        </Link>
-        <Link href="/chrome-delete" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Chrome Delete
-        </Link>
-        <Link href="/reclamebelettering" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Reclamebelettering
-        </Link>
-        <Link href="/velgen-remklauwen" className="text-lg font-semibold text-gray-800 hover:text-black transition">
-          Velgen & Remklauwen
-        </Link>
-      </nav>
-
-      {/* Our Services Section */}
+      {/* Title Section */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-800">Onze Diensten</h2>
+        <h2 className="text-3xl font-bold text-gray-800">EXCLUSIVE ACCESSORIES FOR YOUR VEHICLE</h2>
+        <p className="text-lg text-gray-600 mt-2">AVAILABLE NOW</p>
       </div>
 
-      {/* Draggable Slider */}
-      <div className="relative max-w-[1400px] mx-auto">
+      {/* Large Image Slider */}
+      <div className="relative w-full mx-auto">
         <Slider {...settings}>
           {servicesData.map((service, index) => (
-            <div
-              key={index}
-              className="p-6"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="relative bg-white shadow-md">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-64 object-cover mb-4"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="text-sm text-gray-500 mt-2">{service.description}</p>
+            <div key={index} className="p-4">
+              <Link href={service.link}>
+                <div className="relative flex flex-col items-center">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-[1388px] h-[488px] object-cover mb-4"
+                  />
+                  <h3 className="text-lg font-semibold text-gray-800">{service.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{service.slogan}</p>
                 </div>
-
-                {/* Hover Info Icon with Link */}
-                {hoveredIndex === index && (
-                  <Link href={service.link} className="absolute inset-0 flex justify-center items-center bg-black/50">
-                    <FontAwesomeIcon icon={faInfoCircle} className="text-white text-4xl" />
-                  </Link>
-                )}
-              </div>
+              </Link>
             </div>
           ))}
         </Slider>
-      </div>
-
-      {/* Discover More Button */}
-      <div className="text-center mt-8">
-        <Link
-          href="/discover-more"
-          className="px-6 py-3 bg-black text-white text-lg font-semibold hover:bg-gray-700 transition"
-        >
-          Ontdek Meer
-        </Link>
       </div>
     </section>
   );

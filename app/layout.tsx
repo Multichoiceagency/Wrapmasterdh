@@ -6,7 +6,7 @@ import ClientLoaderWrapper from "@/components/ClientLoaderWrapper"; // Client-si
 import Footer from "./components/Footer/Footer";
 
 const barlow = Barlow({
-  weight: ["400", "700"],
+  weight: ['400', '600', '500', '700',], // Add weights you want to use
   subsets: ["latin"],
   variable: "--font-barlow",
 });
@@ -24,11 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${barlow.variable} antialiased`}>
-        <ClientLoaderWrapper>
           <Header />
           {children}
           <Footer />
-        </ClientLoaderWrapper>
       </body>
     </html>
   );

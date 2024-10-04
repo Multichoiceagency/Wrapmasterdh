@@ -6,49 +6,54 @@ import { useState, useEffect } from 'react'
 const diensten = [
   {
     title: 'Carwrapping',
-    description: 'Simpelweg het inpakken van jouw voertuig met een speciaal gekleurde folie.',
+    description: 'Verander je voertuig volledig met een hoogwaardige car wrap die niet alleen stijlvol is, maar ook bescherming biedt tegen schade. Ontdek de talloze kleuren en afwerkingen, en geef je auto een unieke, persoonlijke look.',
     image: '/images/carwrapping.jpg'
   },
   {
-    title: 'Koplampen Tinten',
-    description: 'Geef je eigen draai aan de verlichting van je voertuig.',
-    image: '/images/koplampen-tinten.jpg'
+    title: 'Detail Wrapping',
+    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
+    image: '/images/detailwrapping.png'
   },
   {
     title: 'Chrome Delete',
-    description: 'Verander alle chrome delen naar elk gewenste kleur.',
+    description: 'Geen fan van chromen accenten? Met een chrome delete veranderen wij alle chromen onderdelen van je auto naar een matte of glanzende afwerking in de kleur van jouw keuze. Perfect voor een gestroomlijnde look.',
     image: '/images/chrome-delete.jpg'
   },
   {
     title: 'Reclamebelettering',
-    description: 'Voordelige en aantrekkelijke manier om uw bedrijf te presenteren.',
-    image: '/images/reclamebelettering.jpg'
+    description: 'Verhoog de zichtbaarheid van je bedrijf met professionele autobelettering. Creëer een mobiele advertentie voor je merk en trek overal de aandacht met opvallende reclame op je bedrijfswagen.',
+    image: '/images/reclamebelettering.png'
   }
 ]
 
 const additionalServices = [
   {
     title: 'Poetsen & Glascoating',
-    description: 'Bescherm uw auto met een coating voor makkelijker onderhoud.',
-    image: '/images/poetsen-glascoating.jpg'
+    description: 'Bescherm je auto met een duurzame glascoating die zorgt voor een diepe glans en eenvoudige reiniging. Onze poets- en coatingdiensten zorgen ervoor dat je auto er altijd als nieuw uitziet, terwijl hij beschermd is tegen de elementen.',
+    image: '/images/poetsen-glascoating.jpeg'
   },
   {
     title: 'Velgen & Remklauwen',
-    description: 'Spuiten, coaten of wrappen van velgen en remklauwen.',
-    image: '/images/velgen-remklauwen.jpg'
-  }
+    description: 'Laat je velgen en remklauwen opvallen met een nieuwe, op maat gemaakte afwerking. Of je nu kiest voor spuiten, coaten of wrappen, wij zorgen ervoor dat elk detail perfect aansluit bij de look van je auto.',
+    image: '/images/velgen-remklauwen-spuiten.png'
+  },
+  {
+    title: 'Koplampen Tinten',
+    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
+    image: '/images/lampen-tinten.png'
+  },
 ]
 
 const specializedServices = [
   {
     title: 'Autogordels',
-    description: 'De autogordel specialist van Nederland.',
-    image: '/images/autogordels.jpg'
+    description: 'Wrapmaster is dé specialist in het vervangen en aanpassen van autogordels. Of je nu beschadigde gordels wilt vervangen of je auto een sportieve look wilt geven met gordels in een nieuwe kleur, wij regelen het voor je.',
+    image: '/images/gordelkleur-vervangen.jpg'
   },
   {
     title: 'Scooter & Motorwrap',
-    description: 'Geef je scooter of motor een unieke draai.',
-    image: '/images/scooter-motorwrap.jpg'
+    description: 'Geef je scooter of motor een opvallende nieuwe look met een professionele wrap. Kies uit verschillende kleuren en afwerkingen om jouw tweewieler volledig te personaliseren.',
+    image: '/images/scooter-motorwrapping.png'
   }
 ]
 
@@ -101,7 +106,7 @@ export default function Diensten() {
         >
           <h1 className="text-6xl font-bold text-white mb-4">Onze services.</h1>
           <p className="text-xl text-white mb-8">
-            Bij Wrapmaster gaan we heel ver om voor eersteklas services voor uw auto te zorgen.
+            Bij Wrapmaster zorgen wij voor eersteklas car wrapping en nevendiensten die je voertuig naar een hoger niveau tillen.
           </p>
           <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-600 transition w-max">
             Ontdek meer
@@ -189,8 +194,7 @@ export default function Diensten() {
             <div className="md:w-1/2 p-8">
               <h2 className="text-3xl font-bold mb-4">Zakelijke en wagenparkoplossingen.</h2>
               <p className="text-gray-600 mb-4">
-                Profiteer van wagenparkoplossingen en zakelijke diensten van Wrapmaster. 
-                Wij bieden op maat gemaakte oplossingen voor uw bedrijfsvoertuigen.
+                Profiteer van onze gespecialiseerde wagenparkoplossingen en zakelijke diensten. Wij bieden op maat gemaakte oplossingen voor uw bedrijfsvoertuigen, zodat u uw vloot optimaal kunt beheren.
               </p>
               <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
                 Meer weten

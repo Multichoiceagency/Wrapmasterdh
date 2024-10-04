@@ -11,8 +11,8 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['Barlow"', 'sans-serif']
-  		},
+			sans: ['Barlow', 'Poppins', 'sans-serif'], // Add fallbacks like Arial or system fonts
+		},
 		  screens: {
 			'xs': '340px',
 			'sm': '576px',

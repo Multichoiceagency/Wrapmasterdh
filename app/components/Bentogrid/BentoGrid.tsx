@@ -1,44 +1,51 @@
 'use client';
 
 import Link from 'next/link';
+import { Button } from '@/components/ui/button'; // Import the Button component
 
 const BentoGrid = () => {
   const gridItems = [
     {
       image: '/images/carwrapping.jpg',
-      title: 'Reserveer nu de EQA of EQB Limited Edition vanaf € 45.891',
-      description: 'Beperkt beschikbaar (ESP-subsidie: € 2.500/gr)',
-      buttons: ['Meer weten', 'Ontdek de voorraad'],
+      title: 'Carwrapping',
+      description:
+        'Geef je voertuig een nieuwe look met gekleurde folie, zonder de originele kleur permanent te veranderen.',
+      buttons: ['Meer weten', 'Offerte aanvragen'],
       link: '#',
       large: true, // For larger grid item
     },
     {
       image: '/images/velgenbescherming.jpg',
-      title: 'Mobiliteitsoplossingen voor uw nieuwe Mercedes.',
-      description: 'Financiële diensten.',
+      title: 'Koplampen Tinten',
+      description:
+        'Geef je verlichting een eigen twist met transparante, matte, satijnen of hoogglanzende folie.',
       buttons: ['Meer weten'],
       link: '#',
       large: false,
     },
     {
       image: '/images/sterrenhemel.png',
-      title: 'Ontdek de aantrekkelijke Sport Editions.',
-      description: 'Krachtige uitstraling en rijk uitgerust.',
+      title: 'Chrome Delete',
+      description:
+        'Verwijder chrome onderdelen van je voertuig en geef het een frisse, unieke look met wrapping.',
       buttons: ['Meer weten'],
       link: '#',
       large: false,
     },
     {
       image: '/images/gordelkleur-vervangen.jpg',
-      title: 'Ontdek de aantrekkelijke Star Editions met complete standaarduitrusting.',
+      title: 'Reclamebelettering',
+      description:
+        'Presenteer je bedrijf professioneel met opvallende reclamebelettering op voertuigen.',
       buttons: ['Meer weten'],
       link: '#',
       large: false,
     },
     {
       image: '/images/lampen-tinten.png',
-      title: 'Kies uw ideale upgrade en geniet nog meer van uw Mercedes-Benz.',
-      description: 'Digitale extra’s: geniet nog meer van uw auto.',
+      title: 'Poetsen & Glascoating',
+      description:
+        'Bescherm je auto met een coating en maak deze makkelijker te onderhouden voor optimale bescherming.',
       buttons: ['Meer weten'],
       link: '#',
       large: false,
@@ -64,15 +71,13 @@ const BentoGrid = () => {
               alt={item.title}
               className="w-full h-full object-cover opacity-80 transition-transform duration-500 ease-in-out transform group-hover:scale-105 group-hover:brightness-110"
             />
-            <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent ">
-              <h3 className="text-lg font-semibold">{item.title}</h3>
+            <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-red-700 to-transparent transform transition-transform duration-500 ease-in-out">
+              <h3 className="text-1xl font-semibold">{item.title}</h3>
               {item.description && <p className="text-sm mt-2">{item.description}</p>}
-              <div className="mt-4">
+              <div className="mt-4 flex space-x-2">
                 {item.buttons.map((buttonText, buttonIndex) => (
-                  <Link href={item.link} key={buttonIndex}>
-                    <button className="px-4 py-2 mr-2 bg-red-600 text-white rounded hover:bg-black transition">
-                      {buttonText}
-                    </button>
+                  <Link href={item.link} key={buttonIndex} passHref>
+                    <Button variant="secondary">{buttonText}</Button>
                   </Link>
                 ))}
               </div>
