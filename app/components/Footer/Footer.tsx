@@ -24,7 +24,7 @@ export default function Footer() {
         {/* Column 2: Services */}
         <div className="flex flex-col space-y-2 items-left">
           <h3 className="text-1xl font-bold">Diensten</h3>
-          <Link href="/carwrapping">Carwrapping</Link>
+          <Link href="/auto-wrappen">Auto Wrappen</Link>
           <Link href="/detailwrapping">Detailwrapping</Link>
           <Link href="/detail-wrapping-gklasse">Detail Wrapping G-Klasse</Link>
           <Link href="/chrome-delete">Chrome Delete</Link>

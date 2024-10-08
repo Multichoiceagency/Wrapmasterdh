@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import HeroSection from '@/app/components/hero/Hero'; // Importeer de hero section component
