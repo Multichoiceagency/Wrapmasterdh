@@ -89,7 +89,7 @@ export default function Diensten() {
           }}
         >
           <Image 
-            src="/images/brabus900-rocket-r.jpg" 
+            src="/images/hero-background.jpg" 
             alt="Wrapmaster services"
             layout="fill"
             objectFit="cover"
@@ -104,8 +104,8 @@ export default function Diensten() {
             transition: 'transform 0.5s ease-out',
           }}
         >
-          <h1 className="text-6xl font-bold text-white mb-4">Onze services.</h1>
-          <p className="text-xl text-white mb-8">
+          <h1 className="text-6xl font-bold text-white mb-4 items-center">Onze diensten.</h1>
+          <p className="text-xl text-white mb-8 justify-items-center">
             Bij Wrapmaster zorgen wij voor eersteklas car wrapping en nevendiensten die je voertuig naar een hoger niveau tillen.
           </p>
           <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-600 transition w-max">
@@ -186,23 +186,6 @@ export default function Diensten() {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="mb-16">
-          <div className="flex flex-col md:flex-row items-center bg-gray-100 rounded-lg overflow-hidden">
-            <div className="md:w-1/2 p-8">
-              <h2 className="text-3xl font-bold mb-4">Zakelijke en wagenparkoplossingen.</h2>
-              <p className="text-gray-600 mb-4">
-                Profiteer van onze gespecialiseerde wagenparkoplossingen en zakelijke diensten. Wij bieden op maat gemaakte oplossingen voor uw bedrijfsvoertuigen, zodat u uw vloot optimaal kunt beheren.
-              </p>
-              <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                Meer weten
-              </button>
-            </div>
-            <div className="md:w-1/2">
-              <Image src="/images/zakelijke-oplossingen.jpg" alt="Zakelijke oplossingen" width={600} height={400} className="w-full h-64 object-cover" />
-            </div>
           </div>
         </section>
       </div>

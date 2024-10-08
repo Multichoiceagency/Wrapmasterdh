@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${barlow.variable} antialiased`}>
+    <html lang="nl">
+      <body className={`${barlow.variable} font-sans`}>
           <Header />
           {children}
           <Footer />

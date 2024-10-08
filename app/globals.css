@@ -5,7 +5,7 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 body {
-  font-family: var(--font-barlow), sans-serif;
+  font-family: var(--font-barlow);
   margin: 0;
   line-height: normal;
   -webkit-font-smoothing: antialiased; /* Ensures better font rendering on WebKit browsers */
@@ -120,6 +120,10 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+}
+.accordion-trigger:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

@@ -4,6 +4,8 @@ import Diensten from './components/Diensten/Diensten'
 import CustomSection from './components/Customsection/CustomSection'
 import Portfolio from './components/portfolio/Portfolio'
 import ServicesSection from './components/ServicesSection'
+import GoogleReviewsWidget from '@/components/GoogleReviewsWidget'
+import LogoSlider from '@/components/LogoSlider'
 
 function Home() {
   return (
@@ -14,6 +16,8 @@ function Home() {
                     <Diensten />
                       <CustomSection />
                       <Portfolio />
+                      <GoogleReviewsWidget />
+                      <LogoSlider />
         </section>
   )
 }

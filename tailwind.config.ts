@@ -1,24 +1,81 @@
-module.exports = {
-    darkMode: ['class'],
-    content: [
+// tailwind.config.ts
+
+import type { Config } from 'tailwindcss';
+import animatePlugin from 'tailwindcss-animate';
+
+export default {
+  darkMode: ['class'],
+  content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
   	extend: {
-  		fontFamily: {
-			sans: ['Barlow', 'Poppins', 'sans-serif'], // Add fallbacks like Arial or system fonts
-		},
-		  screens: {
-			'xs': '340px',
-			'sm': '576px',
-			'md': '768px',
-			'lg': '992px',
-			'xl': '1200px',
-			'2xl': '1400px',
+		fontFamily: {
+			sans: ['var(--font-barlow)'],
 		  },
+  		keyframes: {
+  			fadeInUp: {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'translateY(20px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			fadeIn: {
+  				'0%': {
+  					opacity: '0'
+  				},
+  				'100%': {
+  					opacity: '1'
+  				}
+  			},
+  			fadeInLeft: {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'translateX(-20px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			fadeInUp: 'fadeInUp 0.8s ease-out forwards',
+  			fadeIn: 'fadeIn 0.8s ease-out forwards',
+  			fadeInLeft: 'fadeInLeft 0.8s ease-out forwards',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		},
+  		screens: {
+  			xs: '340px',
+  			sm: '576px',
+  			md: '768px',
+  			lg: '992px',
+  			xl: '1200px',
+  			'2xl': '1400px'
+  		},
   		fontSize: {
   			h1: ['2.5rem', { lineHeight: '3.75rem' }],
   			h2: ['2rem', { lineHeight: '3.125rem' }],
@@ -86,6 +143,5 @@ module.exports = {
   		}
   	}
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [animatePlugin],
+} satisfies Config;

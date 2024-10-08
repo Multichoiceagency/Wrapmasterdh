@@ -25,20 +25,20 @@ export default function Footer() {
         <div className="flex flex-col space-y-2 items-left">
           <h3 className="text-1xl font-bold">Diensten</h3>
           <Link href="/auto-wrappen">Auto Wrappen</Link>
-          <Link href="/detailwrapping">Detailwrapping</Link>
-          <Link href="/detail-wrapping-gklasse">Detail Wrapping G-Klasse</Link>
+          <Link href="/detail-wrappen">Detail Wrappen</Link>
           <Link href="/chrome-delete">Chrome Delete</Link>
-          <Link href="/scooter-motorwrapping">Scooter/motorwrapping</Link>
+          <Link href="/scooter-wrappen">Scooter Wrappen</Link>
           <Link href="/motor-wrappen">Motor Wrappen</Link>
           <Link href="/reclame-belettering">Reclame Belettering</Link>
-          <Link href="/lampen-tinten">Lampentinten (Koplampen Tinten)</Link>
+          <Link href="/koplampen-tinten">Koplampen Tinten</Link>
           <Link href="/velgen-remklauwen-spuiten">Velgen & Remklauwen Spuiten</Link>
           <Link href="/remklauwen-kleur-veranderen">Remklauwen Kleur Veranderen</Link>
           <Link href="/wrapfolie-verwijderen">Wrapfolie Verwijderen</Link>
-          <Link href="/autogordel-vervangen">Gordelkleur Vervangen</Link>
+          <Link href="/gordelkleur-vervangen">Gordelkleur Vervangen</Link>
           <Link href="/poetsen-glascoating">Poetsen & Glascoating</Link>
           <Link href="/velgenbescherming">Velgenbescherming</Link>
           <Link href="/sterrenhemel">Sterrenhemel</Link>
+          <Link href="/veelgestelde-vragen">Veelgestelde vragen</Link>
         </div>
 
         {/* Column 3: Opening Times */}

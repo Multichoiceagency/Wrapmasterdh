@@ -8,42 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const OnzeDiensten = () => {
-  // Custom Next Arrow
-  const NextArrow = ({ onClick }: { onClick?: () => void }) => {
-    return (
-      <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-7xl  rounded-full p-8 z-10"
-        onClick={onClick}
-      >
-        <FontAwesomeIcon icon={faChevronRight} />
-      </button>
-    );
-  };
-
-  // Custom Prev Arrow
-  const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
-    return (
-      <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white font text-7xl rounded-full p-8 z-10"
-        onClick={onClick}
-      >
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </button>
-    );
-  };
-
   // Slick slider settings
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3, // Show one large slide at a time
     slidesToScroll: 2,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1400,
+        breakpoint: 1440,
         settings: {
           slidesToShow: 4,
         },
@@ -129,13 +103,23 @@ const OnzeDiensten = () => {
   return (
     <section className="py-12">
       {/* Title Section */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-800">EXCLUSIVE ACCESSORIES FOR YOUR VEHICLE</h2>
-        <p className="text-lg text-gray-600 mt-2">AVAILABLE NOW</p>
+      <div className="container mx-auto  px-4 py-16">
+      <div className="text-center mb-12 "> 
+        <h2 className="text-3xl font-bold w-18 text-gray-800 ">BEKIJK ONZE DIENSTEN</h2>
+        <div className="flex items-center justify-center space-x-2 mt-4">
+          <div className="relative">
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <div className="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+          </div>
+          <p className="text-lg text-green-600 font-bold">
+            WIJ ZIJN BESCHIKBAAR VOOR NIEUWE PROJECTEN !
+          </p>
+        </div>
       </div>
+    </div>
 
       {/* Large Image Slider */}
-      <div className="relative w-full mx-auto">
+      <div className="container w-full mx-auto">
         <Slider {...settings}>
           {servicesData.map((service, index) => (
             <div key={index} className="p-4">
@@ -146,8 +130,8 @@ const OnzeDiensten = () => {
                     alt={service.title}
                     className="w-[1388px] h-[488px] object-cover mb-4"
                   />
-                  <h3 className="text-lg font-semibold text-gray-800">{service.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{service.slogan}</p>
+                  <h3 className="text-lg font-semibold text-center text-gray-800">{service.title}</h3>
+                  <p className="text-sm text-center text-gray-600 mt-1">{service.slogan}</p>
                 </div>
               </Link>
             </div>
