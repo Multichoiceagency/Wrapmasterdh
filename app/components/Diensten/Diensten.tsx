@@ -13,7 +13,7 @@ const OnzeDiensten = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Show one large slide at a time
+    slidesToShow: 3,
     slidesToScroll: 2,
     responsive: [
       {
@@ -51,7 +51,7 @@ const OnzeDiensten = () => {
 
   const servicesData = [
     {
-      image: '/images/carwrapping.jpg',
+      video: '/video/kia-ev6-carwrapping.mp4',
       title: 'Carwrapping',
       slogan: 'Transform your car with stunning wraps.',
       link: '/car-wrapping',
@@ -103,20 +103,18 @@ const OnzeDiensten = () => {
   return (
     <section className="py-12">
       {/* Title Section */}
-      <div className="container mx-auto  px-4 py-16">
-      <div className="text-center mb-12 "> 
-        <h2 className="text-3xl font-bold w-18 text-gray-800 ">BEKIJK ONZE DIENSTEN</h2>
-        <div className="flex items-center justify-center space-x-2 mt-4">
-          <div className="relative">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <div className="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold w-18 text-gray-800">BEKIJK ONZE DIENSTEN</h2>
+          <div className="flex items-center justify-center space-x-2 mt-4">
+            <div className="relative">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
+            </div>
+            <p className="text-lg text-green-600 font-bold">WIJ ZIJN BESCHIKBAAR VOOR NIEUWE PROJECTEN !</p>
           </div>
-          <p className="text-lg text-green-600 font-bold">
-            WIJ ZIJN BESCHIKBAAR VOOR NIEUWE PROJECTEN !
-          </p>
         </div>
       </div>
-    </div>
 
       {/* Large Image Slider */}
       <div className="container w-full mx-auto">
@@ -125,11 +123,21 @@ const OnzeDiensten = () => {
             <div key={index} className="p-4">
               <Link href={service.link}>
                 <div className="relative flex flex-col items-center">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-[1388px] h-[488px] object-cover mb-4"
-                  />
+                  {service.video ? (
+                    <video
+                      src={service.video}
+                      autoPlay
+                      loop
+                      muted
+                      className="w-[1388px] h-[488px] object-cover mb-4"
+                    />
+                  ) : (
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-[1388px] h-[488px] object-cover mb-4"
+                    />
+                  )}
                   <h3 className="text-lg font-semibold text-center text-gray-800">{service.title}</h3>
                   <p className="text-sm text-center text-gray-600 mt-1">{service.slogan}</p>
                 </div>
