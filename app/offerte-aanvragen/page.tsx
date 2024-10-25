@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import Image from 'next/image';
 import { useState } from 'react';
 import { Checkbox } from "@/components/ui/checkbox"
-import { format } from 'date-fns'; // Import for date formatting
 
 export default function OfferteAanvragen() {
   const [formData, setFormData] = useState({
@@ -23,23 +23,22 @@ export default function OfferteAanvragen() {
     vestiging: 'Amsterdam',
     datum: '', // Datum as a string (format as 'yyyy-mm-dd')
     privacyCheck: false,
-    uploadedFiles: null, // For file upload
+    uploadedFiles: null as File | null, // Corrected type for file upload
   });
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-  
+
     // Check if the input type is checkbox or radio
     if (type === 'checkbox' || type === 'radio') {
       setFormData({
         ...formData,
-        [name]: (e.target as HTMLInputElement).checked,  // Access checked only for checkboxes and radio buttons
+        [name]: (e.target as HTMLInputElement).checked, // Access checked only for checkboxes and radio buttons
       });
     } else {
       setFormData({
         ...formData,
-        [name]: value,  // Use value for all other types of input (text, email, etc.)
+        [name]: value, // Use value for all other types of input (text, email, etc.)
       });
     }
   };

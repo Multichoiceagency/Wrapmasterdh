@@ -1,6 +1,6 @@
 "use client";
 
-import { brandsDark } from "@/data/brands";
+import { brandsDark } from "@/app/data/brands";
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
