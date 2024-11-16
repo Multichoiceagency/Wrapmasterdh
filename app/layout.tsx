@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { Barlow } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
-import ClientLoaderWrapper from "@/components/ClientLoaderWrapper"; // Client-side wrapper for loader
 import Footer from "./components/Footer/Footer";
 
 const barlow = Barlow({
