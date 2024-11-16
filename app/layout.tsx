@@ -4,10 +4,11 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
+// Load the Barlow font from Google Fonts
 const barlow = Barlow({
-  weight: ['400', '600', '500', '700',], // Add weights you want to use
+  weight: ["400", "500", "600", "700"], // Specify weights you want to use
   subsets: ["latin"],
-  variable: "--font-barlow",
+  variable: "--font-barlow", // CSS variable for the font
 });
 
 export const metadata: Metadata = {
@@ -21,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" suppressHydrationWarning>
       <body className={`${barlow.variable} font-sans`}>
-          <Header />
-          {children}
-          <Footer />
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

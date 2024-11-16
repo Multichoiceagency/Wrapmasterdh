@@ -47,9 +47,9 @@ const Portfolio: React.FC = () => {
     freeScroll: false,
     percentPosition: false,
     imagesLoaded: true, // Ensure images are loaded before calculations
-    autoPlay: 3000, // Set to 3000ms for auto-play
+    autoPlay: 2000, // Set to 3000ms for auto-play
     pauseAutoPlayOnHover: true,
-    draggable: true,
+    draggable: false,
   };
 
   return (
