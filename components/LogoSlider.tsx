@@ -12,7 +12,6 @@ export default function LogoSlider() {
     { src: '/images/logo-1.png', alt: 'Xpel Logo', width: 200, height: 100 },
     { src: '/images/dhl-logo.jpg', alt: 'DHL Logo', width: 200, height: 100 },
     { src: '/images/seventy_six-blackbananas.png', alt: 'Wrapmaster Logo', width: 200, height: 100 },
-    // Voeg hier meer logo's toe
   ];
 
   return (

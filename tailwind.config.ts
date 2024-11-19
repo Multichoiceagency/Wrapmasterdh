@@ -88,11 +88,11 @@ export default {
   		fontWeight: {
   			h1: '700',
   			h2: '600',
-  			h3: '500',
+  			h3: '700',
   			h4: '500',
-  			h5: '500',
-  			h6: '400',
-  			body: '400'
+  			h5: '400',
+  			h6: '300',
+  			body: '500'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

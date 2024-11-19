@@ -1,29 +1,26 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import '@/app/components/hero/custom.swiper.css'; // Custom CSS for pagination styling
 
-// Initialize modules
-SwiperCore.use([Autoplay, Pagination]);
-
 const HeroSection = () => {
   return (
     <div className="relative w-full h-[90vh]"> {/* Adjusted height to 90vh */}
       <Swiper
+        modules={[Autoplay, Pagination]} // Register modules here
         spaceBetween={0}
         slidesPerView={1}
         loop={true}
         pagination={{
           clickable: true,
-          el: '.swiper-pagination-custom',
+          el: '.swiper-pagination-custom', // Custom pagination element
         }}
         autoplay={{
-          delay: 10000, // Default 10 seconds for slides
+          delay: 30000, // Default 30 seconds for slides
           disableOnInteraction: true,
         }}
       >
@@ -36,7 +33,7 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              src="/video/wrapmasterdh.mp4" // Ensure this video path is correct
+              src="/video/audi-rsq8-full-colour-wrap.mp4" // Ensure this video path is correct
             ></video>
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
               <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
@@ -50,17 +47,23 @@ const HeroSection = () => {
         </SwiperSlide>
 
         {/* Slide 2 - Image */}
+
         <SwiperSlide>
-          <div
-            className="relative w-full h-[90vh] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/range-rover-sport-nardo-grijs.jpg)' }} // Double-check this path
-          >
+          <div className="relative w-full h-[90vh] bg-black"> {/* Full height */}
+            <video
+              className="w-full h-[90vh] object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              src="/video/kia-ev6-carwrapping.mp4" // Ensure this video path is correct
+            ></video>
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-1xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
-                DISCOVER THE FUTURE
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
+                WE CALL IT - VOLLKOMMEN.
               </h1>
               <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
-                SEE MORE
+                BRABUS 930
               </button>
             </div>
           </div>
@@ -82,10 +85,10 @@ const HeroSection = () => {
             </div>
           </div>
         </SwiperSlide>
-
-        {/* Pagination */}
-        <div className="swiper-pagination swiper-pagination-custom"></div>
       </Swiper>
+
+      {/* Custom Pagination */}
+      <div className="swiper-pagination swiper-pagination-custom"></div>
     </div>
   );
 };

@@ -91,7 +91,7 @@ export default function KoplampenTintenDiensten() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
+                src="/lampen-tinten/lampen-tinten.jpg"
                 alt="Voorbeeld van Koplampen Tinten"
                 width={800}
                 height={600}
@@ -144,7 +144,7 @@ export default function KoplampenTintenDiensten() {
             </div>
             <div className="order-1 lg:order-2">
               <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
+                src="/lampen-tinten/koplampen-tinten.jpg"
                 alt="Voorbeeld van Koplampen Tinten"
                 width={800}
                 height={600}
@@ -158,8 +158,8 @@ export default function KoplampenTintenDiensten() {
       {/* Wat kost Koplampen Tinten? */}
       <section id="kosten-koplampen-tinten" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Wat kost koplampen tinten?</h2>
-          <p className="text-lg mb-6 text-gray-700 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-center justify-center">Wat kost koplampen tinten?</h2>
+          <p className="container px-64 text-lg mb-6 text-gray-700 text-center ">
             De kosten van koplampen tinten zijn afhankelijk van het type folie, de complexiteit van de installatie en het aantal koplampen dat getint moet worden.
           </p>
           <ul className="list-disc list-inside text-lg mb-6 text-gray-700 max-w-2xl mx-auto">
@@ -181,7 +181,16 @@ export default function KoplampenTintenDiensten() {
           <p className="text-lg text-gray-700 text-center">
             Neem contact met ons op voor een op maat gemaakte offerte.
           </p>
-        </div>
+          <div className="order-1 lg:order-2">
+              <Image
+                src="/lampen-tinten/lamp-tinten.jpg"
+                alt="lampen tinten bij Wrapmaster in Den Haag"
+                width={800}
+                height={600}
+                className="rounded-lg shadow-lg animate-fadeInUp"
+              />
+            </div>
+          </div>
       </section>
 
       {/* Garanties */}
