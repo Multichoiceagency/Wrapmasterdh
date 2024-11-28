@@ -1,22 +1,52 @@
-/* custom-swiper.css */
-
-.swiper-pagination-bullet {
-  width: 40px; /* Adjust width to 10px for the pill shape */
-  height: 8px;
-  background-color: #ff0000; /* Default gray color */
-  opacity: 0.5;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-  border-radius: 999px; /* Full pill/round shape */
+/* Custom Dots */
+.slick-dots.custom-dots {
+  bottom: -25px; /* Adjust the position of the dots */
+}
+.slick-dots.custom-dots li button:before {
+  font-size: 10px;
+  color: gray; /* Default color */
+}
+.slick-dots.custom-dots li.slick-active button:before {
+  color: black; /* Active dot color */
 }
 
-.swiper-pagination-bullet-active {
-  background-color: #ff0000; /* Active red color */
-  opacity: 1;
-}
-
-.swiper-pagination-custom {
-  display: flex;
-  gap: 8px;
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  width: 50px; /* Outer circle size */
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0); /* Semi-transparent white background */
+  border-radius: 50%; /* Circular button */
+  display: flex !important;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0); /* Subtle shadow for better visibility */
+  cursor: pointer;
+  border: none; /* Remove default border */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
 }
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 50px; /* Adjust arrow size */
+  color: black; /* Black arrow */
+  font-family: 'slick'; /* Ensure it uses Slick's default icon font */
+  line-height: 1;
+  opacity: 1; /* Ensure the arrow is visible */
+}
+
+.slick-prev {
+  left: -60px; /* Position to the left */
+}
+
+.slick-next {
+  right: -60px; /* Position to the right */
+}
+

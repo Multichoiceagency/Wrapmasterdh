@@ -1,90 +1,110 @@
-'use client';
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import '@/app/components/hero/custom.swiper.css'; // Custom CSS for pagination styling
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import { useEffect, useState } from "react";
 
-// Initialize modules
-SwiperCore.use([Autoplay, Pagination]);
+// Define the data structure
+interface HeroSlide {
+  id: number;
+  video_file: string; // URL for the video
+  featured_image: string; // URL for the featured image
+  hero_title: string; // Title of the slide
+  button_text: string; // Button text
+  button_link: string; // Button link
+}
 
 const HeroSection = () => {
+  const [slides, setSlides] = useState<HeroSlide[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHeroSlides = async () => {
+      try {
+        const response = await fetch(
+          "https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/hero_slider?_embed"
+        );
+        const data = await response.json();
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const formattedSlides: HeroSlide[] = data.map((slide: any) => {
+          const featuredImage = slide._embedded?.["wp:featuredmedia"]?.[0]?.source_url || ""; // Get featured image URL
+          return {
+            id: slide.id,
+            video_file: slide.acf?.video_file || "", // Use ACF video field if available
+            featured_image: featuredImage, // Use featured image as fallback
+            hero_title: slide.acf?.hero_title || "Default Title",
+            button_text: slide.acf?.button_text || "Learn More",
+            button_link: slide.acf?.button_link || "#",
+          };
+        });
+
+        setSlides(formattedSlides);
+      } catch (error) {
+        console.error("Failed to fetch hero slides:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHeroSlides();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-black">
+        <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative w-full h-[90vh]"> {/* Adjusted height to 90vh */}
+    <div className="relative w-full h-[93vh]">
       <Swiper
+        modules={[Autoplay, Pagination]}
         spaceBetween={0}
         slidesPerView={1}
         loop={true}
         pagination={{
           clickable: true,
-          el: '.swiper-pagination-custom',
         }}
         autoplay={{
-          delay: 30000, // Default 10 seconds for slides
+          delay: 30000,
           disableOnInteraction: true,
         }}
       >
-        {/* Slide 1 - Video */}
-        <SwiperSlide>
-          <div className="relative w-full h-[90vh] bg-black"> {/* Full height */}
-            <video
-              className="w-full h-[90vh] object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              src="https://res.cloudinary.com/dkdltgrov/video/upload/v1732802787/AUDI_RSQ8_CORRECTIE_trv9wc.mp4" // Ensure this video path is correct
-            ></video>
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest text-[#E30413]">
-                SPECIALISTEN IN CARWRAPPING
-              </h1>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
-                BEKIJK ONZE DIENSTEN
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            {slide.video_file ? (
+              // If video_file exists, display the video
+              <video
+                className="w-full h-[93vh] object-cover"
+                autoPlay
+                loop
+                muted
+                src={slide.video_file}
+              ></video>
+            ) : (
+              // If no video_file, fallback to featured image
+              <div
+                className="w-full h-[93vh] bg-cover bg-center"
+                style={{ backgroundImage: `url(${slide.featured_image})` }}
+              ></div>
+            )}
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white">
+              <h1 className="text-4xl font-bold">{slide.hero_title}</h1>
+              <button
+                onClick={() => (window.location.href = slide.button_link)}
+                className="mt-4 px-6 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black"
+              >
+                {slide.button_text}
               </button>
             </div>
-          </div>
-        </SwiperSlide>
-
-        {/* Slide 2 - Image */}
-        <SwiperSlide>
-          <div
-            className="relative w-full h-[90vh] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/range-rover-sport-nardo-grijs.jpg)' }} // Double-check this path
-          >
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-1xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
-                DISCOVER THE FUTURE
-              </h1>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
-                SEE MORE
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        {/* Slide 3 - Image */}
-        <SwiperSlide>
-          <div
-            className="relative w-full h-[90vh] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/lamborghini-urus-groen.jpg)' }} // Double-check this path
-          >
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
-                EXPERIENCE LUXURY
-              </h1>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
-                EXPLORE NOW
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        {/* Pagination */}
-        <div className="swiper-pagination swiper-pagination-custom"></div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
