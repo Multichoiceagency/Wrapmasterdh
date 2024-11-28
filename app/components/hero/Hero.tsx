@@ -23,7 +23,7 @@ const HeroSection = () => {
           el: '.swiper-pagination-custom',
         }}
         autoplay={{
-          delay: 10000, // Default 10 seconds for slides
+          delay: 30000, // Default 10 seconds for slides
           disableOnInteraction: true,
         }}
       >
@@ -36,14 +36,14 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              src="/video/wrapmasterdh.mp4" // Ensure this video path is correct
+              src="https://res.cloudinary.com/dkdltgrov/video/upload/v1732802787/AUDI_RSQ8_CORRECTIE_trv9wc.mp4" // Ensure this video path is correct
             ></video>
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
-                WE CALL IT - VOLLKOMMEN.
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest text-[#E30413]">
+                SPECIALISTEN IN CARWRAPPING
               </h1>
               <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
-                BRABUS 930
+                BEKIJK ONZE DIENSTEN
               </button>
             </div>
           </div>
