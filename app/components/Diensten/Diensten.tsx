@@ -31,6 +31,7 @@ const OnzeDiensten = () => {
         const data = await response.json();
 
         const formattedDiensten: Dienst[] = data
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((dienst: any) => ({
             id: dienst.id,
             title: dienst.title.rendered,
