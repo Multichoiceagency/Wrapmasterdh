@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Link from 'next/link';
@@ -13,6 +15,8 @@ interface CustomSlide {
   slug: string;
   link: string;
   youtube_video_url?: string;
+  video_titel?: string;
+  video_beschrijving?: string;
 }
 
 const CustomSection = () => {
@@ -45,7 +49,9 @@ const CustomSection = () => {
             foto: fotoUrl,
             link: slide.acf?.link || '#',
             slug: slide.slug,
-            youtube_video_url: slide.acf?.youtube_video_url || '', // YouTube URL from ACF
+            youtube_video_url: slide.acf?.youtube_video_url || '',
+            video_titel: slide.acf?.video_titel || 'Default Video Title',
+            video_beschrijving: slide.acf?.video_beschrijving || 'Default Video Description',
           };
         });
 
@@ -59,6 +65,23 @@ const CustomSection = () => {
 
     fetchCustomSlides();
   }, []);
+
+  // Function to extract YouTube video ID
+  const getYouTubeVideoId = (url: string) => {
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.hostname === 'youtu.be') {
+        // Handle shortened URLs like https://youtu.be/VIDEO_ID
+        return parsedUrl.pathname.substring(1);
+      } else if (parsedUrl.hostname === 'www.youtube.com' || parsedUrl.hostname === 'youtube.com') {
+        // Handle full YouTube URLs like https://www.youtube.com/watch?v=VIDEO_ID
+        return parsedUrl.searchParams.get('v');
+      }
+    } catch (error) {
+      console.error('Invalid YouTube URL:', url);
+    }
+    return null;
+  };
 
   if (isLoading) {
     return (
@@ -99,31 +122,36 @@ const CustomSection = () => {
       </div>
 
       {/* Dynamic YouTube Video Section */}
-      {customSlides.map((slide) =>
-        slide.youtube_video_url ? (
-          <div key={slide.id} className="relative mt-16 bg-gray-900 text-white">
-            <div className="w-full h-0 aspect-w-16 aspect-h-9 relative">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${new URL(slide.youtube_video_url).searchParams.get('v')}`}
-                title={slide.titel}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+      {customSlides.map((slide) => {
+        if (slide.youtube_video_url) {
+          const videoId = getYouTubeVideoId(slide.youtube_video_url);
+          return videoId ? (
+            <div key={slide.id} className="relative w-full h-[60vh] md:h-[80vh]">
+              <div className="w-full h-full relative">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&mute=1`}
+                  title={slide.video_titel}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
+                  allowFullScreen
+                ></iframe>
+                {/* Overlay text on video */}
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-30 p-4">
+                  <h3 className="text-4xl font-bold uppercase text-white">{slide.video_titel}</h3>
+                  <p className="text-xl font-light mt-4 text-white">{slide.video_beschrijving}</p>
+                  <Link href={slide.link}>
+                    <button className="mt-6 px-8 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition">
+                      Discover Now
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center text-white p-4 bg-black bg-opacity-50 rounded-md">
-              <h3 className="text-3xl font-bold uppercase">{slide.titel}</h3>
-              <p className="text-xl font-light">{slide.subtitel}</p>
-              <Link href={slide.link}>
-                <button className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold hover:bg-red-700 transition">
-                  Discover More
-                </button>
-              </Link>
-            </div>
-          </div>
-        ) : null
-      )}
+          ) : null;
+        }
+        return null;
+      })}
     </section>
   );
 };

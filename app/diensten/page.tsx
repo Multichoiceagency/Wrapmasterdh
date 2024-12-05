@@ -1,194 +1,196 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
 
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const diensten = [
-  {
-    title: 'Carwrapping',
-    description: 'Verander je voertuig volledig met een hoogwaardige car wrap die niet alleen stijlvol is, maar ook bescherming biedt tegen schade. Ontdek de talloze kleuren en afwerkingen, en geef je auto een unieke, persoonlijke look.',
-    image: '/images/carwrapping.jpg'
-  },
-  {
-    title: 'Detail Wrapping',
-    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
-    image: '/images/detailwrapping.png'
-  },
-  {
-    title: 'Chrome Delete',
-    description: 'Geen fan van chromen accenten? Met een chrome delete veranderen wij alle chromen onderdelen van je auto naar een matte of glanzende afwerking in de kleur van jouw keuze. Perfect voor een gestroomlijnde look.',
-    image: '/images/chrome-delete.jpg'
-  },
-  {
-    title: 'Reclamebelettering',
-    description: 'Verhoog de zichtbaarheid van je bedrijf met professionele autobelettering. Creëer een mobiele advertentie voor je merk en trek overal de aandacht met opvallende reclame op je bedrijfswagen.',
-    image: '/images/reclamebelettering.png'
-  }
-]
-
-const additionalServices = [
-  {
-    title: 'Poetsen & Glascoating',
-    description: 'Bescherm je auto met een duurzame glascoating die zorgt voor een diepe glans en eenvoudige reiniging. Onze poets- en coatingdiensten zorgen ervoor dat je auto er altijd als nieuw uitziet, terwijl hij beschermd is tegen de elementen.',
-    image: '/images/poetsen-glascoating.jpeg'
-  },
-  {
-    title: 'Velgen & Remklauwen',
-    description: 'Laat je velgen en remklauwen opvallen met een nieuwe, op maat gemaakte afwerking. Of je nu kiest voor spuiten, coaten of wrappen, wij zorgen ervoor dat elk detail perfect aansluit bij de look van je auto.',
-    image: '/images/velgen-remklauwen-spuiten.png'
-  },
-  {
-    title: 'Koplampen Tinten',
-    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
-    image: '/images/lampen-tinten.png'
-  },
-]
-
-const specializedServices = [
-  {
-    title: 'Autogordels',
-    description: 'Wrapmaster is dé specialist in het vervangen en aanpassen van autogordels. Of je nu beschadigde gordels wilt vervangen of je auto een sportieve look wilt geven met gordels in een nieuwe kleur, wij regelen het voor je.',
-    image: '/images/gordelkleur-vervangen.jpg'
-  },
-  {
-    title: 'Scooter & Motorwrap',
-    description: 'Geef je scooter of motor een opvallende nieuwe look met een professionele wrap. Kies uit verschillende kleuren en afwerkingen om jouw tweewieler volledig te personaliseren.',
-    image: '/images/scooter-motorwrapping.png'
-  }
-]
-
-function useParallax() {
-  const [offset, setOffset] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  return offset
+// Define the data structure for Hero and Dienst fields
+interface HeroSlide {
+  id: number;
+  title: string;
+  subtitle: string;
+  button_text: string;
+  button_link: string;
+  background_image: string;
 }
 
-export default function Diensten() {
-  const [currentAdditionalService, setCurrentAdditionalService] = useState(0)
-  const scrollY = useParallax()
+interface DienstCard {
+  id: number;
+  titel: string;
+  subtitel: string;
+  afbeelding: string;
+  link: string;
+}
+
+const DienstenPage = () => {
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+  const [dienstCards, setDienstCards] = useState<DienstCard[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHeroSlides = async () => {
+      try {
+        const response = await fetch(
+          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/hero-slide?_embed'
+        );
+        const data = await response.json();
+
+        // Format data for hero section
+        const formattedHeroSlides: HeroSlide[] = data.map((slide: any) => {
+          let backgroundImageUrl = slide.acf?.background_image || '';
+          if (backgroundImageUrl.includes('drive.google.com')) {
+            const fileId = backgroundImageUrl.split('/d/')[1]?.split('/')[0];
+            if (fileId) {
+              backgroundImageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+            }
+          }
+
+          return {
+            id: slide.id,
+            title: slide.title.rendered || 'Default Title', // Gebruik hier de standaard WordPress post titel
+            subtitle: slide.acf?.subtitle || 'Default Subtitle',
+            button_text: slide.acf?.button_text || 'Discover Now',
+            button_link: slide.acf?.button_link || '#',
+            background_image: backgroundImageUrl,
+          };
+        });
+
+        setHeroSlides(formattedHeroSlides);
+      } catch (error) {
+        console.error('Failed to fetch hero slides:', error);
+      }
+    };
+
+    const fetchDienstCards = async () => {
+      try {
+        const response = await fetch(
+          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/diensten-pagina?_embed'
+        );
+        const data = await response.json();
+
+        // Format data for dienst cards
+        const formattedDienstCards: DienstCard[] = data.map((dienst: any) => {
+          let afbeeldingUrl = dienst.acf?.background_image || '';
+          if (afbeeldingUrl.includes('drive.google.com')) {
+            const fileId = afbeeldingUrl.split('/d/')[1]?.split('/')[0];
+            if (fileId) {
+              afbeeldingUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+            }
+          }
+
+          return {
+            id: dienst.id,
+            titel: dienst.title.rendered || 'Default Title', // Gebruik hier de standaard WordPress post titel
+            subtitel: dienst.acf?.subtitle || 'Default Subtitle',
+            afbeelding: afbeeldingUrl,
+            link: dienst.link || '#',
+          };
+        });
+
+        setDienstCards(formattedDienstCards);
+      } catch (error) {
+        console.error('Failed to fetch dienst cards:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHeroSlides();
+    fetchDienstCards();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-black">
+        <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
-    <main>
-      {/* Hero Section with Parallax */}
-      <section className="relative h-screen overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
-        >
-          <Image 
-            src="/images/hero-background.jpg" 
-            alt="Wrapmaster services"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-        </div>
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
-        <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8"
-          style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
-        >
-          <h1 className="text-6xl font-bold text-white mb-4 items-center">Onze diensten.</h1>
-          <p className="text-xl text-white mb-8 justify-items-center">
-            Bij Wrapmaster zorgen wij voor eersteklas car wrapping en nevendiensten die je voertuig naar een hoger niveau tillen.
-          </p>
-          <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-600 transition w-max">
-            Ontdek meer
-          </button>
-        </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <span className="text-white text-sm">Scrollen</span>
-          <svg className="w-6 h-6 text-white mx-auto mt-2 animate-bounce" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+    <>
+      {/* Hero Section */}
+      <section className="w-full h-screen relative">
+        {heroSlides.map((slide) => (
+          <div key={slide.id} className="relative w-full h-full">
+            <Image
+              src={slide.background_image}
+              alt={slide.title}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              className="object-cover"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black bg-opacity-20 p-4">
+              <h1 className="text-6xl font-bold uppercase tracking-wide">{slide.title}</h1>
+              <p className="text-2xl font-light mt-4">{slide.subtitle}</p>
+              <Link href={slide.button_link}>
+                <button className="mt-6 px-8 py-3 bg-white text-black font-semibold hover:bg-gray-100 transition">
+                  {slide.button_text}
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Diensten Cards Section */}
+      <section className="max-w-7xl mx-auto mt-20">
+        <h2 className="text-5xl font-bold text-center uppercase mb-16">Onze Diensten</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {dienstCards.map((dienst) => (
+            <div key={dienst.id} className="group relative overflow-hidden bg-white rounded-md shadow-md">
+              <Link href={dienst.link}>
+                <div className="relative w-full h-64">
+                  <Image
+                    src={dienst.afbeelding}
+                    alt={dienst.titel}
+                    layout="fill"
+                    objectFit="cover"
+                    className="group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-2xl font-bold uppercase group-hover:text-red-600 transition-colors">
+                    {dienst.titel}
+                  </h3>
+                  <p className="text-gray-500">{dienst.subtitel}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4">
-        <section className="mb-16 pt-16">
-          <h2 className="text-4xl font-bold mb-8">Onze diensten</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {diensten.map((service, index) => (
-              <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                <Image src={service.image} alt={service.title} width={400} height={300} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                    Meer weten
-                  </button>
-                </div>
-              </div>
-            ))}
+      {/* Static Information Section */}
+      <section className="max-w-7xl mx-auto my-32 text-center">
+        <h2 className="text-4xl font-bold mb-8">Visual Elegance Absolute Individuality</h2>
+        <p className="text-lg text-gray-700 mb-12">
+          Creating a unique blend of visual excellence and flawless technology, our supercars offer a perfect driving experience.
+          We pride ourselves on our craftsmanship, performance, and dedication to offering a high-end product. Discover our range of supercars and experience luxury like never before.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="relative w-full h-64">
+            <Image
+              src="/images/car-performance.jpg"
+              alt="Confident Performance"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
           </div>
-        </section>
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="text-3xl font-semibold mb-4">Confident Performance</h3>
+            <p className="text-lg text-gray-600">
+              The combination of power, performance, and precision engineering defines every model we create. Our cars are designed to offer the ultimate driving experience for those who demand the best.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Aanvullende Diensten</h2>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-              <Image 
-                src={additionalServices[currentAdditionalService].image} 
-                alt={additionalServices[currentAdditionalService].title} 
-                width={600} 
-                height={400} 
-                className="w-full h-64 object-cover rounded-lg"
-              />
-            </div>
-            <div className="md:w-1/2">
-              <h3 className="text-2xl font-semibold mb-4">{additionalServices[currentAdditionalService].title}</h3>
-              <p className="text-gray-600 mb-4">{additionalServices[currentAdditionalService].description}</p>
-              <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                Meer weten
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-center mt-4">
-            {additionalServices.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full mx-1 ${index === currentAdditionalService ? 'bg-red-500' : 'bg-gray-300'}`}
-                onClick={() => setCurrentAdditionalService(index)}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Specialistische Diensten</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {specializedServices.map((service, index) => (
-              <div key={index} className="flex bg-white shadow-lg rounded-lg overflow-hidden">
-                <Image src={service.image} alt={service.title} width={200} height={200} className="w-1/3 object-cover" />
-                <div className="w-2/3 p-4">
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                    Meer weten
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
-  )
-}
+export default DienstenPage;
