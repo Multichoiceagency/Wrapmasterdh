@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { useEffect, useState } from "react";
+import "./custom.swiper.css"; // Voeg hier je aangepaste CSS toe
 
 // Define the data structure
 interface HeroSlide {

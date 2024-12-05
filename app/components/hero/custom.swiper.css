@@ -1,23 +1,16 @@
-/* custom-swiper.css */
-
+/* Algemene stijl voor bullets */
 .swiper-pagination-bullet {
-    width: 40px; /* Adjust width to 10px for the pill shape */
-    height: 2px;
-    background-color: #bbb; /* Default gray color */
-    opacity: 0.5;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-    border-radius: 999px; /* Full pill/round shape */
-  }
-  
-  .swiper-pagination-bullet-active {
-    background-color: #ff0000; /* Active red color */
-    opacity: 1;
-  }
-  
-  .swiper-pagination-custom {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  width: 30px; /* Breedte van de pill */
+  height: 8px; /* Hoogte van de pill */
+  background-color: rgba(255, 255, 255, 0.5); /* Kleur van de pill */
+  border-radius: 20px; /* Ronding om het een pill-vorm te geven */
+  transition: all 0.3s ease; /* Zachte overgang voor effecten */
+  margin: 40px 20px; /* Grotere afstand tussen bullets */
+}
+
+/* Stijl voor actieve bullet */
+.swiper-pagination-bullet-active {
+  width: 50px; /* Grotere actieve pill */
+  background-color: rgba(255, 0, 0, 0.9); /* Rood voor de actieve bullet */
+  border-radius: 20px; /* Zorg dat het nog steeds een pill blijft */
+}
