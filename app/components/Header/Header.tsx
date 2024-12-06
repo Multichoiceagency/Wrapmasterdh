@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faFileAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faTiktok, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Link from 'next/link';
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
         <FontAwesomeIcon icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)} />
       </button>
 
-      <div className="flex-grow flex justify-center">
+      <div className="flex-grow flex justify-center items-center relative">
         <Link href="/">
           <Image
             src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
@@ -137,6 +137,10 @@ const Header: React.FC = () => {
               pt-2`}
           />
         </Link>
+        <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+          <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
+          <span className="absolute top-0 right-0 -mt-1 -mr-1 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
+        </div>
       </div>
 
       <div className="hidden md:block">
@@ -197,4 +201,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

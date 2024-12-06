@@ -14,6 +14,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'drive.google.com',
         pathname: '/uc', // Allow Google Drive direct image URLs
+        
       },
       {
         protocol: 'https',

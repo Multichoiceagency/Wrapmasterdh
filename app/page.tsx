@@ -9,6 +9,7 @@ import DynamicSection from '@/components/DynamicSection'
 import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
 import PrintFolie from '@/components/PrintFolie'
+import InstagramSection from '@/components/InstagramSection'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <CustomSection />
       <OnzeDiensten />
       <PrintFolie  />
+      <InstagramSection />
       <LogoSlider />
     </div>
   )
