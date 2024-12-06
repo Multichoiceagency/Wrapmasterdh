@@ -109,7 +109,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 ${
+      className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 sm:pr-16 ${
         isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
         <FontAwesomeIcon icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)} />
       </button>
 
-      <div className="flex-grow flex justify-center items-center relative">
+      <div className="flex-grow flex justify-center items-center relative sm:mr-8">
         <Link href="/">
           <Image
             src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
               pt-2`}
           />
         </Link>
-        <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+        <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 flex items-center pr-4">
           <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
           <span className="absolute top-0 right-0 -mt-1 -mr-1 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
         </div>
@@ -201,3 +201,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
