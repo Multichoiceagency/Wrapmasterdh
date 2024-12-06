@@ -8,6 +8,7 @@ import Afbeelding from '@/components/Afbeelding'
 import DynamicSection from '@/components/DynamicSection'
 import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
+import PrintFolie from '@/components/PrintFolie'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <ProductSlider />
       <CustomSection />
       <OnzeDiensten />
+      <PrintFolie  />
       <LogoSlider />
     </div>
   )

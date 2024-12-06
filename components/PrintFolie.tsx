@@ -12,7 +12,7 @@ interface Banner {
   button_link?: string;
 }
 
-function Afbeelding() {
+function PrintFolie() {
   const [banner, setBanner] = useState<Banner | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +20,7 @@ function Afbeelding() {
     const fetchBanner = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/banner?_embed'
+          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/printfolie?_embed'
         );
         const data = await response.json();
 
@@ -82,5 +82,5 @@ function Afbeelding() {
   );
 }
 
-export default Afbeelding;
+export default PrintFolie;
 
