@@ -2,13 +2,47 @@
 
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faTiktok, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Link from 'next/link';
-import Button from '../Button';
+import Image from 'next/image';
+
+interface MenuItem {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  acf: {
+    menu_link: string;
+    menu_order: number;
+  };
+}
+
+interface SocialMediaItem {
+  id: number;
+  acf: {
+    instagram?: string;
+    tiktok?: string;
+    whatsapp?: string;
+  };
+}
+
+interface HeaderData {
+  menuItems: MenuItem[];
+  socialMedia: SocialMediaItem;
+}
+
+const decodeHtmlEntities = (text: string): string => {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+};
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [headerData, setHeaderData] = useState<HeaderData | null>(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -26,16 +60,52 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  const menuItems = [
-    { href: "/diensten", text: "DIENSTEN" },
-    { href: "/auto-wrappen", text: "AUTO WRAPPEN" },
-    { href: "/auto-wrappen", text: "PPF" },
-    { href: "/auto-wrappen", text: "3D MODELLEN" },
-    { href: "/boats", text: "PORTFOLIO" },
-    { href: "/bekende-nederlanders", text: "BEKENDE BN'ERS" },
-    { href: "/over-ons", text: "OVER ONS" },
-    { href: "/contact", text: "CONTACT" },
-  ];
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const menuItemsRes = await fetch('https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/menu_items');
+        const menuItems = await menuItemsRes.json();
+
+        const socialMediaRes = await fetch('https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/social-media');
+        const socialMedia = await socialMediaRes.json();
+
+        setHeaderData({
+          menuItems,
+          socialMedia: socialMedia[0] // Assuming there's only one social media item
+        });
+      } catch (error) {
+        console.error('Error fetching header data:', error);
+      }
+    };
+
+    fetchHeaderData();
+  }, []);
+
+  if (!headerData) {
+    return null; // Or a loading spinner
+  }
+
+  const renderSocialIcons = (isScrolled: boolean) => {
+    const iconMap: { [key: string]: IconProp } = {
+      instagram: faInstagram,
+      tiktok: faTiktok,
+      whatsapp: faWhatsapp,
+    };
+
+    return (
+      <div className="flex justify-center space-x-4">
+        {Object.entries(headerData.socialMedia.acf).map(([key, value]) => {
+          const icon = iconMap[key as keyof typeof iconMap];
+          if (!icon || !value) return null;
+          return (
+            <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
+              <FontAwesomeIcon icon={icon} className={`text-2xl ${isScrolled ? 'text-black' : 'text-white'}`} />
+            </a>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <header
@@ -50,86 +120,79 @@ const Header: React.FC = () => {
         onClick={toggleMenu}
         aria-label={menuOpen ? "Close Menu" : "Open Menu"}
       >
-        <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+        <FontAwesomeIcon icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)} />
       </button>
 
       <div className="flex-grow flex justify-center">
         <Link href="/">
-          <img
+          <Image
             src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
             alt="wrapmaster logo"
+            width={200}
+            height={150}
             className={`transition-all duration-300
               ${isScrolled 
                 ? 'h-6 w-auto xs:h-12 sm:h-10 md:h-12 lg:h-14 xl:h-16' 
                 : 'h-8 w-auto xs:h-16 sm:h-14 md:h-16 lg:h-18 xl:h-20'}
               pt-2`}
-            width={200}
-            height={150}
           />
         </Link>
       </div>
 
-      <a
-        href="tel:0702250721"
-        className={`text-xl block md:hidden ${
-          menuOpen ? 'hidden' : 'block'
-        } ${
-          isScrolled ? 'text-black' : 'text-white'
-        }`}
-        aria-label="Phone"
-      >
-        <FontAwesomeIcon icon={faPhone} />
-      </a>
-
       <div className="hidden md:block">
-        <Link href="/offerte-aanvragen">
-          <Button className='bg-red-700 hover:bg-slate-950 font-medium' icon={<FontAwesomeIcon icon={faPhone} />}>
-            Gratis offerte
-          </Button>
-        </Link>
+        {renderSocialIcons(isScrolled)}
       </div>
 
       <nav
-        className={`fixed inset-0 bg-white z-40 transition-all duration-300 ease-in-out transform 
+        className={`fixed inset-0 bg-white z-[100] transition-all duration-300 ease-in-out transform 
           ${menuOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-full opacity-0 invisible'} 
           md:w-[300px] md:left-0 md:h-screen ${menuOpen ? 'md:translate-x-0' : 'md:-translate-x-full'}`}
       >
-        <ul className="flex flex-col font-bold items-center justify-center h-full space-y-8 text-lg md:space-y-5 md:items-start md:p-5">
-          <Link href="/">
-            <img
-              src="/logos/logo-zwart.png"
-              alt="Logo"
-              className='justify-items-right lg:w-32 md:w-38 xs:w-16'
-              width={200}
-              height={150}
-            />
-          </Link>
-          {menuItems.map((item, index) => (
-            <li 
-              key={index} 
-              className={`w-full text-center md:text-left px-10 transform transition-all duration-300 ease-in-out ${
-                menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-              style={{ transitionDelay: `${menuOpen ? index * 50 : 0}ms` }}
-            >
-              <Link href={item.href} onClick={() => setMenuOpen(false)}>
-                {item.text}
-              </Link>
-            </li>
-          ))}
-          <li className={`w-full text-center md:text-left transform transition-all duration-300 ease-in-out ${
-            menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`} style={{ transitionDelay: `${menuOpen ? menuItems.length * 50 : 0}ms` }}>
-            <Link href="/offerte-aanvragen" onClick={() => setMenuOpen(false)}>
-              <Button className='bg-red-700 hover:bg-slate-950 font-bold' icon={<FontAwesomeIcon icon={faPhone} />}>
-                OFFERTE AANVRAGEN
-              </Button>
+        <div className="flex flex-col h-full">
+          <div className="flex justify-between items-center p-4">
+            <Link href="/">
+              <Image
+                src="/logos/logo-zwart.png"
+                alt="Logo"
+                width={200}
+                height={150}
+                className='w-32'
+              />
             </Link>
-          </li>
-        </ul>
+            <button
+              className="text-2xl focus:outline-none"
+              onClick={toggleMenu}
+              aria-label="Close Menu"
+            >
+              <FontAwesomeIcon icon={faTimes as IconProp} />
+            </button>
+          </div>
+          <ul className="flex-grow overflow-y-auto">
+            {headerData.menuItems
+              .sort((a, b) => a.acf.menu_order - b.acf.menu_order)
+              .map((item) => (
+                <li 
+                  key={item.id} 
+                  className="py-2 px-4"
+                >
+                  <Link href={item.acf.menu_link || '/'} onClick={() => setMenuOpen(false)} className="block w-full text-lg font-bold">
+                    {decodeHtmlEntities(item.title.rendered)}
+                  </Link>
+                </li>
+              ))}
+          </ul>
+          <div className="p-4 border-t border-gray-200">
+            {renderSocialIcons(true)}
+            <Link href="/offerte-aanvragen" className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700">
+              <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
+              Offerte Aanvragen
+            </Link>
+          </div>
+        </div>
       </nav>
     </header>
   );
 };
 
 export default Header;
+
