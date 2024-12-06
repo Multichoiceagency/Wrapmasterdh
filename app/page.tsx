@@ -8,23 +8,20 @@ import Afbeelding from '@/components/Afbeelding'
 import DynamicSection from '@/components/DynamicSection'
 import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
-//onze diensten slider moet ergens 
 
-function Home() {
+export default function Home() {
   return (
-
-        <section className='w-full'>
-                    <HeroSection />
-                    <ServicesSection />
-                    <NewsEvents />
-                    <Afbeelding />
-                    <DynamicSection />
-                    <ProductSlider />
-                    <CustomSection />
-                    <OnzeDiensten />
-                    <LogoSlider />
-        </section>
+    <div className="w-full">
+      <HeroSection />
+      <ServicesSection />
+      <NewsEvents />
+      <Afbeelding />
+      <DynamicSection />
+      <ProductSlider />
+      <CustomSection />
+      <OnzeDiensten />
+      <LogoSlider />
+    </div>
   )
 }
 
-export default Home
