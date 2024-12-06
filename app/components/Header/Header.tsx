@@ -182,7 +182,9 @@ const Header: React.FC = () => {
               ))}
           </ul>
           <div className="p-4 border-t border-gray-200">
-            {renderSocialIcons(true)}
+            <div className="md:hidden">
+              {renderSocialIcons(true)}
+            </div>
             <Link href="/offerte-aanvragen" className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700">
               <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
               Offerte Aanvragen
