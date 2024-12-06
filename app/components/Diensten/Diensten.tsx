@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -25,7 +23,7 @@ const OnzeDiensten: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const isGoogleDriveLink = (url: string) => url.includes('drive.google.com');
-  const isCloudinaryLink = (url: string) => url.includes('cloudinary.com');
+  //const isCloudinaryLink = (url: string) => url.includes('cloudinary.com');
   const isVideoLink = (url: string) => url.match(/\.(mp4|webm|ogg)$/i);
 
   const getGoogleDriveDirectLink = (url: string) => {
@@ -36,6 +34,7 @@ const OnzeDiensten: React.FC = () => {
   useEffect(() => {
     const fetchDiensten = async () => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let allDiensten: any[] = [];
         let page = 1;
         let hasMorePages = true;
@@ -55,6 +54,7 @@ const OnzeDiensten: React.FC = () => {
         }
 
         const formattedDiensten: Dienst[] = allDiensten
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((dienst: any) => ({
             id: dienst.id,
             title: dienst.title.rendered,
@@ -139,7 +139,6 @@ const OnzeDiensten: React.FC = () => {
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-800">BEKIJK ONZE DIENSTEN</h2>
       </div>
 
       <div className="carousel-container overflow-hidden">
