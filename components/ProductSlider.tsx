@@ -2,11 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import Flickity from 'flickity';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
-
-import 'flickity/css/flickity.css';
 
 interface Product {
   id: number;
@@ -17,6 +14,21 @@ interface Product {
     subtitle: string;
   };
   featured_image: string;
+}
+
+interface WPProduct {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  acf: {
+    subtitle: string;
+  };
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{
+      source_url: string;
+    }>;
+  };
 }
 
 const ProductSlider: React.FC = () => {
@@ -31,10 +43,9 @@ const ProductSlider: React.FC = () => {
         const response = await fetch(
           "https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/producten_wrapmaster?_embed"
         );
-        const data = await response.json();
+        const data: WPProduct[] = await response.json();
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const formattedProducts = data.map((product: any) => ({
+        const formattedProducts: Product[] = data.map((product) => ({
           id: product.id,
           title: product.title,
           acf: product.acf,
@@ -53,22 +64,32 @@ const ProductSlider: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading && products.length > 0 && carouselRef.current && !flickityRef.current) {
-      const flickityOptions = {
-        cellAlign: 'left',
-        contain: true,
-        wrapAround: true,
-        pageDots: false,
-        prevNextButtons: true,
-        freeScroll: false,
-        percentPosition: false,
-        imagesLoaded: true,
-        autoPlay: 3000,
-        pauseAutoPlayOnHover: true,
-        draggable: true,
-      };
+    let Flickity: typeof import('flickity');
+    if (typeof window !== 'undefined') {
+      import('flickity').then((flickityModule) => {
+        Flickity = flickityModule.default;
+        initializeFlickity();
+      });
+    }
 
-      flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
+    function initializeFlickity() {
+      if (!isLoading && products.length > 0 && carouselRef.current && !flickityRef.current && Flickity) {
+        const flickityOptions: Flickity.Options = {
+          cellAlign: 'left',
+          contain: true,
+          wrapAround: true,
+          pageDots: false,
+          prevNextButtons: true,
+          freeScroll: false,
+          percentPosition: false,
+          imagesLoaded: true,
+          autoPlay: 3000,
+          pauseAutoPlayOnHover: true,
+          draggable: true,
+        };
+
+        flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
+      }
     }
 
     return () => {

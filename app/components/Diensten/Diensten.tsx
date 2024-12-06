@@ -2,11 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import Flickity from 'flickity';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
-
-import 'flickity/css/flickity.css';
 
 interface Dienst {
   id: number;
@@ -16,17 +13,28 @@ interface Dienst {
   order_number: number;
 }
 
+interface WPDienst {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  acf?: {
+    link_url?: string;
+    subtitle?: string;
+    order_number?: number;
+  };
+}
+
 const OnzeDiensten: React.FC = () => {
   const [diensten, setDiensten] = useState<Dienst[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const flickityRef = useRef<Flickity | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const isGoogleDriveLink = (url: string) => url.includes('drive.google.com');
-  //const isCloudinaryLink = (url: string) => url.includes('cloudinary.com');
-  const isVideoLink = (url: string) => url.match(/\.(mp4|webm|ogg)$/i);
+  const isGoogleDriveLink = (url: string): boolean => url.includes('drive.google.com');
+  const isVideoLink = (url: string): boolean => Boolean(url.match(/\.(mp4|webm|ogg)$/i));
 
-  const getGoogleDriveDirectLink = (url: string) => {
+  const getGoogleDriveDirectLink = (url: string): string => {
     const fileId = url.match(/[-\w]{25,}/);
     return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : url;
   };
@@ -34,8 +42,7 @@ const OnzeDiensten: React.FC = () => {
   useEffect(() => {
     const fetchDiensten = async () => {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let allDiensten: any[] = [];
+        let allDiensten: WPDienst[] = [];
         let page = 1;
         let hasMorePages = true;
 
@@ -43,7 +50,7 @@ const OnzeDiensten: React.FC = () => {
           const response = await fetch(
             `https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/onze_diensten?_embed&per_page=100&page=${page}`
           );
-          const data = await response.json();
+          const data: WPDienst[] = await response.json();
 
           if (data.length > 0) {
             allDiensten = [...allDiensten, ...data];
@@ -54,15 +61,14 @@ const OnzeDiensten: React.FC = () => {
         }
 
         const formattedDiensten: Dienst[] = allDiensten
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .map((dienst: any) => ({
+          .map((dienst) => ({
             id: dienst.id,
             title: dienst.title.rendered,
             link_url: dienst.acf?.link_url || '',
             subtitle: dienst.acf?.subtitle || '',
             order_number: dienst.acf?.order_number || 0,
           }))
-          .sort((a: Dienst, b: Dienst) => a.order_number - b.order_number);
+          .sort((a, b) => a.order_number - b.order_number);
 
         setDiensten(formattedDiensten);
         setIsLoading(false);
@@ -77,55 +83,65 @@ const OnzeDiensten: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading && diensten.length > 0 && carouselRef.current) {
-      if (flickityRef.current) {
-        flickityRef.current.destroy();
-      }
-
-      const flickityOptions = {
-        cellAlign: 'left',
-        contain: true,
-        wrapAround: true,
-        pageDots: false,
-        prevNextButtons: true,
-        freeScroll: false,
-        percentPosition: false,
-        imagesLoaded: true,
-        autoPlay: 3000,
-        pauseAutoPlayOnHover: true,
-        draggable: true,
-        adaptiveHeight: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-            }
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2,
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-            }
-          }
-        ]
-      };
-
-      flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
+    let Flickity: typeof import('flickity');
+    if (typeof window !== 'undefined') {
+      import('flickity').then((flickityModule) => {
+        Flickity = flickityModule.default;
+        initializeFlickity();
+      });
     }
 
-    return () => {
-      if (flickityRef.current) {
-        flickityRef.current.destroy();
-        flickityRef.current = null;
+    function initializeFlickity() {
+      if (!isLoading && diensten.length > 0 && carouselRef.current && !flickityRef.current && Flickity) {
+        const flickityOptions: Flickity.Options = {
+          cellAlign: 'left',
+          contain: true,
+          wrapAround: true,
+          pageDots: false,
+          prevNextButtons: true,
+          freeScroll: false,
+          percentPosition: false,
+          imagesLoaded: true,
+          autoPlay: 3000,
+          pauseAutoPlayOnHover: true,
+          draggable: true,
+          adaptiveHeight: true,
+        };
+
+        flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
+
+        // After initializing Flickity, set up responsive breakpoints
+        if (flickityRef.current) {
+          const updateCellsPerRow = () => {
+            if (window.innerWidth >= 1024) {
+              flickityRef.current?.select(0);
+              flickityRef.current?.resize();
+              flickityRef.current?.reposition();
+            } else if (window.innerWidth >= 768) {
+              flickityRef.current?.select(0);
+              flickityRef.current?.resize();
+              flickityRef.current?.reposition();
+            } else {
+              flickityRef.current?.select(0);
+              flickityRef.current?.resize();
+              flickityRef.current?.reposition();
+            }
+          };
+
+          updateCellsPerRow();
+          window.addEventListener('resize', updateCellsPerRow);
+
+          return () => {
+            window.removeEventListener('resize', updateCellsPerRow);
+            if (flickityRef.current) {
+              flickityRef.current.destroy();
+              flickityRef.current = null;
+            }
+          };
+        }
       }
-    };
+    }
+
   }, [isLoading, diensten]);
 
   if (isLoading) {
@@ -138,9 +154,6 @@ const OnzeDiensten: React.FC = () => {
 
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
-      <div className="text-center mb-12">
-      </div>
-
       <div className="carousel-container overflow-hidden">
         <div ref={carouselRef} className="carousel">
           {diensten.map((dienst) => (
