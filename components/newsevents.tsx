@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface NewsCard {
@@ -25,6 +26,7 @@ const NewsEvents: React.FC = () => {
         );
         const data = await response.json();
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedPosts = data.map((post: any) => {
           const featuredImage =
             post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg";
@@ -79,11 +81,14 @@ const NewsEvents: React.FC = () => {
                     className="w-full h-[300px] object-cover"
                   ></video>
                 ) : (
-                  <img
-                    src={post.featured_image}
-                    alt={post.title}
-                    className="w-full h-[300px] object-cover"
-                  />
+                  <div className="relative w-full h-[300px]">
+                    <Image
+                      src={post.featured_image}
+                      alt={post.title}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
                 )}
                 <div className="p-4 bg-white">
                   <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
@@ -112,3 +117,4 @@ const NewsEvents: React.FC = () => {
 };
 
 export default NewsEvents;
+
