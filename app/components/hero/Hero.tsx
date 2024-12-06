@@ -63,7 +63,7 @@ const HeroSection = () => {
   }
 
   return (
-    <div className="relative w-full h-[93vh]">
+    <div className="relative w-full h-[85vh] md:h-[93vh]">
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={0}
@@ -82,7 +82,7 @@ const HeroSection = () => {
             {slide.video_file ? (
               // If video_file exists, display the video
               <video
-                className="w-full h-[93vh] object-cover"
+                className="w-full h-[85vh] md:h-[93vh] object-cover"
                 autoPlay
                 loop
                 muted
@@ -91,7 +91,7 @@ const HeroSection = () => {
             ) : (
               // If no video_file, fallback to featured image
               <div
-                className="w-full h-[93vh] bg-cover bg-center"
+                className="w-full h-[85vh] md:h-[93vh] bg-cover bg-center"
                 style={{ backgroundImage: `url(${slide.featured_image})` }}
               ></div>
             )}
@@ -112,3 +112,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
