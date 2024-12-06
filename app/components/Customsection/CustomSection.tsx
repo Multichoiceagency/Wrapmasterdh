@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-// Define the data structure for ACF fields
 interface CustomSlide {
   id: number;
   titel: string;
@@ -14,7 +12,7 @@ interface CustomSlide {
   foto: string;
   slug: string;
   link: string;
-  youtube_video_url?: string;
+  youtube_video_url: string;
   video_titel?: string;
   video_beschrijving?: string;
 }
@@ -31,25 +29,25 @@ const CustomSection = () => {
         );
         const data = await response.json();
 
-        // Format data for images and video sections
         const formattedSlides: CustomSlide[] = data.map((slide: any) => {
-          // Convert Google Drive link to a direct link
-          let fotoUrl = slide.acf?.foto || '';
-          if (fotoUrl.includes('drive.google.com')) {
-            const fileId = fotoUrl.split('/d/')[1]?.split('/')[0];
-            if (fileId) {
-              fotoUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+          const convertToDirectLink = (url: string) => {
+            if (url.includes('drive.google.com')) {
+              const fileId = url.split('/d/')[1]?.split('/')[0];
+              if (fileId) {
+                return `https://drive.google.com/uc?export=view&id=${fileId}`;
+              }
             }
-          }
+            return url;
+          };
 
           return {
             id: slide.id,
             titel: slide.acf?.titel || 'Default Title',
             subtitel: slide.acf?.subtitel || 'Default Subtitle',
-            foto: fotoUrl,
+            foto: convertToDirectLink(slide.acf?.foto || ''),
             link: slide.acf?.link || '#',
             slug: slide.slug,
-            youtube_video_url: slide.acf?.youtube_video_url || '',
+            youtube_video_url: convertToDirectLink(slide.acf?.youtube_video_url || ''),
             video_titel: slide.acf?.video_titel || 'Default Video Title',
             video_beschrijving: slide.acf?.video_beschrijving || 'Default Video Description',
           };
@@ -66,40 +64,23 @@ const CustomSection = () => {
     fetchCustomSlides();
   }, []);
 
-  // Function to extract YouTube video ID
-  const getYouTubeVideoId = (url: string) => {
-    try {
-      const parsedUrl = new URL(url);
-      if (parsedUrl.hostname === 'youtu.be') {
-        // Handle shortened URLs like https://youtu.be/VIDEO_ID
-        return parsedUrl.pathname.substring(1);
-      } else if (parsedUrl.hostname === 'www.youtube.com' || parsedUrl.hostname === 'youtube.com') {
-        // Handle full YouTube URLs like https://www.youtube.com/watch?v=VIDEO_ID
-        return parsedUrl.searchParams.get('v');
-      }
-    } catch (error) {
-      console.error('Invalid YouTube URL:', url);
-    }
-    return null;
-  };
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen bg-black">
-        <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+        <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <section className="max-w-full mx-auto mt-44">
+    <section className="max-w-full mx-auto mt-16 md:mt-44">
       <div className="relative w-full">
         {/* Dynamic Image Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 relative">
           {customSlides.map((slide) => (
-            <div key={slide.id} className="relative w-full h-screen">
+            <div key={slide.id} className="relative w-full h-[50vh] md:h-screen">
               <Link href={slide.link}>
-                <div>
+                <div className="relative h-full">
                   <Image
                     src={slide.foto}
                     alt={slide.titel}
@@ -107,9 +88,9 @@ const CustomSection = () => {
                     objectFit="cover"
                     className="object-cover"
                   />
-                  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center text-white">
-                    <h3 className="text-4xl font-extrabold tracking-widest uppercase">{slide.titel}</h3>
-                    <p className="text-2xl font-light tracking-wider">{slide.subtitel}</p>
+                  <div className="absolute inset-0 flex flex-col justify-end md:justify-bottom items-start text-left text-white p-6 md:p-12 bg-black bg-opacity-30">
+                    <h3 className="text-xl md:text-xl font-extrabold tracking-widest uppercase">{slide.titel}</h3>
+                    <p className="text-lg md:text-2xl font-light tracking-wider mt-2">{slide.subtitel}</p>
                   </div>
                 </div>
               </Link>
@@ -117,38 +98,36 @@ const CustomSection = () => {
           ))}
         </div>
 
-        {/* Rode verticale lijn tussen de kolommen */}
-        <div className="hidden md:block absolute inset-y-0 left-1/2 w-[4px] bg-black transform -translate-x-1/2"></div>
+        {/* Vertical line between columns */}
+        <div className="hidden md:block absolute inset-y-0 left-1/2 w-[2px] md:w-[4px] bg-black transform -translate-x-1/2"></div>
       </div>
 
-      {/* Dynamic YouTube Video Section */}
+      {/* Dynamic Google Drive Image Section (using youtube_video_url) */}
       {customSlides.map((slide) => {
         if (slide.youtube_video_url) {
-          const videoId = getYouTubeVideoId(slide.youtube_video_url);
-          return videoId ? (
-            <div key={slide.id} className="relative w-full h-[60vh] md:h-[80vh]">
+          return (
+            <div key={slide.id} className="relative w-full h-[50vh] md:h-[80vh]">
               <div className="w-full h-full relative">
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&mute=1`}
-                  title={slide.video_titel}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay"
-                  allowFullScreen
-                ></iframe>
-                {/* Overlay text on video */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-30 p-4">
-                  <h3 className="text-4xl font-bold uppercase text-white">{slide.video_titel}</h3>
-                  <p className="text-xl font-light mt-4 text-white">{slide.video_beschrijving}</p>
+                <Image
+                  src={slide.youtube_video_url}
+                  alt={slide.video_titel || ''}
+                  layout="fill"
+                  objectFit="cover"
+                  className="object-cover"
+                />
+                {/* Overlay text on image */}
+                <div className="absolute inset-0 flex flex-col justify-start items-start text-left bg-black bg-opacity-30 p-6 md:p-12">
+                  <h3 className="text-3xl md:text-xl font-bold uppercase text-white">{slide.video_titel}</h3>
+                  <p className="text-base md:text-l font-light mt-2 md:mt-4 text-white max-w-md">{slide.video_beschrijving}</p>
                   <Link href={slide.link}>
-                    <button className="mt-6 px-8 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition">
-                      Discover Now
+                    <button className="mt-4 md:mt-6 px-4 py-2 md:py-3 === text-white text-sm md:text-base font-semibold hover:bg-gray-800 transition">
+                      Bekijk Portfolio
                     </button>
                   </Link>
                 </div>
               </div>
             </div>
-          ) : null;
+          );
         }
         return null;
       })}
@@ -157,3 +136,4 @@ const CustomSection = () => {
 };
 
 export default CustomSection;
+

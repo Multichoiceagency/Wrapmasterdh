@@ -15,8 +15,19 @@ const nextConfig = {
         hostname: 'drive.google.com',
         pathname: '/uc', // Allow Google Drive direct image URLs
       },
+      {
+        protocol: 'https',
+        hostname: 'asset.cloudinary.com',
+        pathname: '/**', // Allow all Cloudinary assets
+      },
+      {
+        protocol: 'https',
+        hostname: 'wrapmasterdh-production.up.railway.app',
+        pathname: '/**',
+      },
     ],
   },
 };
 
 export default nextConfig;
+

@@ -1,53 +1,74 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
+import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
+import Flickity from 'flickity';
+import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import '@/app/components/Diensten/slick-custom.css'; // Import custom styles
-import { useEffect, useState } from 'react';
 
-// Define the structure for each service
+import 'flickity/css/flickity.css';
+
 interface Dienst {
   id: number;
   title: string;
-  video_file: string; // URL for video
-  featured_image: string; // URL for featured image
-  subtitle: string; // Subtitle of the service
-  link_url: string; // Link for the service
-  order_number: number; // Sorting order
+  link_url: string;
+  subtitle: string;
+  order_number: number;
 }
 
-const OnzeDiensten = () => {
+const OnzeDiensten: React.FC = () => {
   const [diensten, setDiensten] = useState<Dienst[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const flickityRef = useRef<Flickity | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const isGoogleDriveLink = (url: string) => url.includes('drive.google.com');
+  const isCloudinaryLink = (url: string) => url.includes('cloudinary.com');
+  const isVideoLink = (url: string) => url.match(/\.(mp4|webm|ogg)$/i);
+
+  const getGoogleDriveDirectLink = (url: string) => {
+    const fileId = url.match(/[-\w]{25,}/);
+    return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : url;
+  };
 
   useEffect(() => {
     const fetchDiensten = async () => {
       try {
-        const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/onze_diensten?_embed'
-        );
-        const data = await response.json();
+        let allDiensten: any[] = [];
+        let page = 1;
+        let hasMorePages = true;
 
-        const formattedDiensten: Dienst[] = data
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        while (hasMorePages) {
+          const response = await fetch(
+            `https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/onze_diensten?_embed&per_page=100&page=${page}`
+          );
+          const data = await response.json();
+
+          if (data.length > 0) {
+            allDiensten = [...allDiensten, ...data];
+            page++;
+          } else {
+            hasMorePages = false;
+          }
+        }
+
+        const formattedDiensten: Dienst[] = allDiensten
           .map((dienst: any) => ({
             id: dienst.id,
             title: dienst.title.rendered,
-            video_file: dienst.acf?.video_file || '',
-            featured_image:
-              dienst._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+            link_url: dienst.acf?.link_url || '',
             subtitle: dienst.acf?.subtitle || '',
-            link_url: dienst.acf?.link_url || '#',
             order_number: dienst.acf?.order_number || 0,
           }))
           .sort((a: Dienst, b: Dienst) => a.order_number - b.order_number);
 
         setDiensten(formattedDiensten);
+        setIsLoading(false);
+        console.log(`Total posts loaded: ${formattedDiensten.length}`);
       } catch (error) {
         console.error('Failed to fetch diensten:', error);
-      } finally {
         setIsLoading(false);
       }
     };
@@ -55,89 +76,117 @@ const OnzeDiensten = () => {
     fetchDiensten();
   }, []);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true, // Enable navigation arrows
-    dotsClass: 'slick-dots custom-dots', // Custom dots class
-    responsive: [
-      { breakpoint: 1440, settings: { slidesToShow: 4 } },
-      { breakpoint: 1200, settings: { slidesToShow: 3 } },
-      { breakpoint: 992, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 1 } },
-      { breakpoint: 576, settings: { slidesToShow: 1 } },
-    ],
-  };
+  useEffect(() => {
+    if (!isLoading && diensten.length > 0 && carouselRef.current) {
+      if (flickityRef.current) {
+        flickityRef.current.destroy();
+      }
+
+      const flickityOptions = {
+        cellAlign: 'left',
+        contain: true,
+        wrapAround: true,
+        pageDots: false,
+        prevNextButtons: true,
+        freeScroll: false,
+        percentPosition: false,
+        imagesLoaded: true,
+        autoPlay: 3000,
+        pauseAutoPlayOnHover: true,
+        draggable: true,
+        adaptiveHeight: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+            }
+          }
+        ]
+      };
+
+      flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
+    }
+
+    return () => {
+      if (flickityRef.current) {
+        flickityRef.current.destroy();
+        flickityRef.current = null;
+      }
+    };
+  }, [isLoading, diensten]);
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <div className="spinner"></div>
-        <style jsx>{`
-          .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-top-color: #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-          }
-          @keyframes spin {
-            to {
-              transform: rotate(360deg);
-            }
-          }
-        `}</style>
+      <div className="flex items-center justify-center h-[400px] bg-white">
+        <div className="w-16 h-16 border-4 border-t-transparent border-black rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">BEKIJK ONZE DIENSTEN</h2>
-        </div>
+    <section className="py-12 h-100 overflow-hidden bg-white">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-gray-800">BEKIJK ONZE DIENSTEN</h2>
       </div>
 
-      <div className="container w-full mx-auto">
-        <Slider {...settings}>
+      <div className="carousel-container overflow-hidden">
+        <div ref={carouselRef} className="carousel">
           {diensten.map((dienst) => (
-            <div key={dienst.id} className="p-4">
+            <div
+              key={dienst.id}
+              className="carousel-cell w-full sm:w-1/2 lg:w-1/3 px-2"
+            >
               <Link href={dienst.link_url}>
-                <div className="relative flex flex-col items-center">
-                  {dienst.video_file ? (
-                    <video
-                      src={dienst.video_file}
-                      autoPlay
-                      loop
-                      muted
-                      className="w-full h-[488px] object-cover mb-4"
-                    />
-                  ) : (
-                    <img
-                      src={dienst.featured_image}
-                      alt={dienst.title}
-                      className="w-full h-[488px] object-cover mb-4"
-                    />
-                  )}
-                  <h3 className="text-lg font-semibold text-center text-gray-800">
-                    {dienst.title}
-                  </h3>
-                  <p className="text-sm text-center text-gray-600 mt-1">
-                    {dienst.subtitle}
-                  </p>
-                </div>
+                <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
+                  <div className="relative h-96 w-full">
+                    {isVideoLink(dienst.link_url) ? (
+                      <video
+                        src={isGoogleDriveLink(dienst.link_url) ? getGoogleDriveDirectLink(dienst.link_url) : dienst.link_url}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src={isGoogleDriveLink(dienst.link_url) ? getGoogleDriveDirectLink(dienst.link_url) : dienst.link_url}
+                        alt={dienst.title}
+                        fill
+                        priority
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    )}
+                  </div>
+                  <CardContent className="flex flex-col justify-end flex-grow">
+                    <div>
+                      <h3 className="text-l mt-5 font-semibold">{dienst.title}</h3>
+                      <p className="text-sm text-gray-500">{dienst.subtitle}</p>
+                    </div>
+                  </CardContent>
+                </Card>
               </Link>
             </div>
           ))}
-        </Slider>
+        </div>
       </div>
     </section>
   );
 };
 
 export default OnzeDiensten;
+

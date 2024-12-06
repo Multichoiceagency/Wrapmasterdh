@@ -106,10 +106,10 @@ const NewsEvents: React.FC = () => {
       </div>
       <div className="flex justify-center mt-12">
         <Link
-          href="/news"
+          href="/blog"
           className="px-6 py-3 bg-black text-white font-bold rounded hover:bg-gray-800 transition"
         >
-          Discover More
+          Bekijk alle nieuws
         </Link>
       </div>
     </section>
