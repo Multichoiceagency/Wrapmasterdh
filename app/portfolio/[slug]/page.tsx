@@ -17,15 +17,14 @@ export default async function PortfolioPage({ params }: { params: { slug: string
   return (
     <div>
       <PortfolioHero
-        mediaType={portfolioItem.acf.hero_media_type}
-        mediaUrl={portfolioItem.acf.hero_media_type === 'video' ? portfolioItem.acf.hero_video : portfolioItem.acf.hero_image}
-        title={portfolioItem.acf.hero_title}
-        buttonText={portfolioItem.acf.hero_button_text}
-        buttonLink={portfolioItem.acf.hero_button_link}
+        title={portfolioItem.title.rendered}
+        description={portfolioItem.acf?.description || ''}
+        backgroundImage={portfolioItem.acf?.background_image || ''}
       />
       <PortfolioContent
-        videos={portfolioItem.acf.portfolio_videos}
-        images={portfolioItem.acf.portfolio_images}
+        content={portfolioItem.content.rendered}
+        gallery={portfolioItem.acf?.gallery || []}
+        videos={portfolioItem.acf?.videos || []}
       />
     </div>
   )

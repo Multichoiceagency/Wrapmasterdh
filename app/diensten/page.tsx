@@ -1,6 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -21,8 +18,8 @@ interface DienstCard {
   titel: string;
   subtitel: string;
   afbeelding: string;
-  dienst_link: string;
-  sort_order: number; // Nummer veld toegevoegd
+  slug: string;
+  sort_order: number;
 }
 
 const DienstenPage = () => {
@@ -80,7 +77,6 @@ const DienstenPage = () => {
               }
             }
 
-            // Controleer en converteer sort_order naar een getal
             const sortOrder = dienst.acf?.sort_order ? parseInt(dienst.acf.sort_order, 10) : 0;
 
             return {
@@ -88,11 +84,11 @@ const DienstenPage = () => {
               titel: dienst.title.rendered || 'Default Title',
               subtitel: dienst.acf?.subtitle || 'Default Subtitle',
               afbeelding: afbeeldingUrl,
-              dienst_link: dienst.acf?.dienst_link || '#',
-              sort_order: sortOrder, // Sorteerwaarde als getal
+              slug: dienst.slug || '',
+              sort_order: sortOrder,
             };
           })
-          .sort((a: { sort_order: number; }, b: { sort_order: number; }) => a.sort_order - b.sort_order); // Sorteer op nummer veld
+          .sort((a, b) => a.sort_order - b.sort_order);
 
         setDienstCards(formattedDienstCards);
       } catch (error) {
@@ -146,7 +142,7 @@ const DienstenPage = () => {
         <h2 className="text-5xl font-bold text-center uppercase mb-16">Onze Diensten</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {dienstCards.map((dienst) => (
-            <Link key={dienst.id} href={dienst.dienst_link}>
+            <Link key={dienst.id} href={`/diensten/${dienst.slug}`}>
               <div className="group relative overflow-hidden rounded-md shadow-md cursor-pointer">
                 <div className="relative w-full h-64">
                   <Image
@@ -173,3 +169,4 @@ const DienstenPage = () => {
 };
 
 export default DienstenPage;
+

@@ -1,12 +1,12 @@
 import Image from 'next/image'
 
-interface PortfolioHeroProps {
+interface DienstHeroProps {
   title: string
   description: string
   backgroundImage: string
 }
 
-export default function PortfolioHero({ title, description, backgroundImage }: PortfolioHeroProps) {
+export default function DienstHero({ title, description, backgroundImage }: DienstHeroProps) {
   return (
     <div className="relative w-full h-[60vh] min-h-[400px]">
       <Image
