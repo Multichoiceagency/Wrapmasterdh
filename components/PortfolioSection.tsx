@@ -101,6 +101,7 @@ export default function PortfolioSection({
       {/* Image Grid */}
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <h1>Ons Portfolio</h1>
           {images.slice(0, 3).map((image, index) => (
             <div key={index} className="aspect-[4/3] relative overflow-hidden rounded-lg">
               <Image

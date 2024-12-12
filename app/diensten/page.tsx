@@ -6,12 +6,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
 
-// Define the data structure for Hero and Dienst fields
 interface HeroSlide {
   id: number;
   title: string;
@@ -26,7 +21,8 @@ interface DienstCard {
   titel: string;
   subtitel: string;
   afbeelding: string;
-  link: string;
+  dienst_link: string;
+  sort_order: number; // Nummer veld toegevoegd
 }
 
 const DienstenPage = () => {
@@ -42,7 +38,6 @@ const DienstenPage = () => {
         );
         const data = await response.json();
 
-        // Format data for hero section
         const formattedHeroSlides: HeroSlide[] = data.map((slide: any) => {
           let backgroundImageUrl = slide.acf?.background_image || '';
           if (backgroundImageUrl.includes('drive.google.com')) {
@@ -71,28 +66,33 @@ const DienstenPage = () => {
     const fetchDienstCards = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/diensten-pagina?_embed'
+          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/diensten-pagina?_embed&per_page=100'
         );
         const data = await response.json();
 
-        // Format data for dienst cards
-        const formattedDienstCards: DienstCard[] = data.map((dienst: any) => {
-          let afbeeldingUrl = dienst.acf?.background_image || '';
-          if (afbeeldingUrl.includes('drive.google.com')) {
-            const fileId = afbeeldingUrl.split('/d/')[1]?.split('/')[0];
-            if (fileId) {
-              afbeeldingUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+        const formattedDienstCards: DienstCard[] = data
+          .map((dienst: any) => {
+            let afbeeldingUrl = dienst.acf?.background_image || '';
+            if (afbeeldingUrl.includes('drive.google.com')) {
+              const fileId = afbeeldingUrl.split('/d/')[1]?.split('/')[0];
+              if (fileId) {
+                afbeeldingUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+              }
             }
-          }
 
-          return {
-            id: dienst.id,
-            titel: dienst.title.rendered || 'Default Title',
-            subtitel: dienst.acf?.subtitle || 'Default Subtitle',
-            afbeelding: afbeeldingUrl,
-            link: dienst.link || '#',
-          };
-        });
+            // Controleer en converteer sort_order naar een getal
+            const sortOrder = dienst.acf?.sort_order ? parseInt(dienst.acf.sort_order, 10) : 0;
+
+            return {
+              id: dienst.id,
+              titel: dienst.title.rendered || 'Default Title',
+              subtitel: dienst.acf?.subtitle || 'Default Subtitle',
+              afbeelding: afbeeldingUrl,
+              dienst_link: dienst.acf?.dienst_link || '#',
+              sort_order: sortOrder, // Sorteerwaarde als getal
+            };
+          })
+          .sort((a: { sort_order: number; }, b: { sort_order: number; }) => a.sort_order - b.sort_order); // Sorteer op nummer veld
 
         setDienstCards(formattedDienstCards);
       } catch (error) {
@@ -146,8 +146,8 @@ const DienstenPage = () => {
         <h2 className="text-5xl font-bold text-center uppercase mb-16">Onze Diensten</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {dienstCards.map((dienst) => (
-            <div key={dienst.id} className="group relative overflow-hidden rounded-md shadow-md">
-              <Link href={dienst.link}>
+            <Link key={dienst.id} href={dienst.dienst_link}>
+              <div className="group relative overflow-hidden rounded-md shadow-md cursor-pointer">
                 <div className="relative w-full h-64">
                   <Image
                     src={dienst.afbeelding}
@@ -163,88 +163,10 @@ const DienstenPage = () => {
                   </h3>
                   <p className="text-gray-500 mt-2">{dienst.subtitel}</p>
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
-      </section>
-
-      {/* Static Information Section */}
-      <section className="max-w-7xl mx-auto my-32 text-center">
-        <h2 className="text-4xl font-bold mb-8">Visuele Elegantie Absolute Individualiteit</h2>
-        <p className="text-lg text-gray-700 mb-12">
-          Door een unieke mix van visuele perfectie en feilloze technologie te creëren, bieden onze supercars een perfecte rijervaring.
-          We zijn trots op ons vakmanschap, onze prestaties en onze toewijding aan het aanbieden van een hoogwaardig product. Ontdek ons assortiment supercars en ervaar luxe zoals nooit tevoren.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          <div className="relative w-full h-64">
-            <Image
-              src="https://drive.google.com/uc?export=view&id=1SjDwLPEefjNntCIPgUmKebTp0zLjLP_k"
-              alt="Zelfverzekerde Prestaties"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-md"
-            />
-          </div>
-          <div className="flex flex-col justify-center">
-            <h3 className="text-3xl font-semibold mb-4">Zelfverzekerde Prestaties</h3>
-            <p className="text-lg text-gray-600">
-              De combinatie van kracht, prestaties en precisie-engineering definieert elk model dat we creëren. Onze auto's zijn ontworpen om de ultieme rijervaring te bieden voor diegenen die het beste eisen.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Big Slider Section */}
-      <section className="max-w-full my-16 relative">
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          spaceBetween={0}
-          slidesPerView={1}
-          loop
-          className="w-full"
-        >
-          {/* Example Slide 1 */}
-          <SwiperSlide>
-            <div className="relative w-full h-[780px]">
-              <Image
-                src="https://drive.google.com/uc?export=view&id=1npnKfMxRa5YQyDkZHbsR79U-MqEZVv8A"
-                alt="Slider Image 1"
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                className="w-full h-full"
-              />
-            </div>
-          </SwiperSlide>
-          {/* Example Slide 2 - Overlapping Slide */}
-          <SwiperSlide>
-            <div className="relative w-full h-[780px] -mt-[300px] z-10"> {/* Adjust negative margin for overlap */}
-              <Image
-                src="https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
-                alt="Slider Image 2"
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                className="w-full h-full shadow-xl"
-              />
-            </div>
-          </SwiperSlide>
-          {/* Example Slide 3 */}
-          <SwiperSlide>
-            <div className="relative w-full h-[780px]">
-              <Image
-                src="https://drive.google.com/uc?export=view&id=1ijLLUyzfP5HsNVUztMb-KtUoEp9FWTk8"
-                alt="Slider Image 3"
-                layout="fill"
-                objectFit="contain"
-                quality={100}
-                className="w-full h-full"
-              />
-            </div>
-          </SwiperSlide>
-        </Swiper>
       </section>
     </>
   );

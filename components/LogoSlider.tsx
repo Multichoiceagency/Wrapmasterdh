@@ -1,8 +1,9 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 export default function LogoSlider() {
@@ -12,27 +13,59 @@ export default function LogoSlider() {
     { src: '/images/logo-1.png', alt: 'Xpel Logo', width: 200, height: 100 },
     { src: '/images/dhl-logo.jpg', alt: 'DHL Logo', width: 200, height: 100 },
     { src: '/images/seventy_six-blackbananas.png', alt: 'Wrapmaster Logo', width: 200, height: 100 },
-    // Voeg hier meer logo's toe
   ];
 
   return (
-    <div className="justify-center py-10">
+    <div className="py-10 px-4 md:px-0">
       <h2 className="text-center text-3xl font-bold mb-6">Onze Partners</h2>
       
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={4}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 2500, disableOnInteraction: true }}
-        className="mySwiper"
-      >
-        {logos.map((logo, index) => (
-          <SwiperSlide key={index} className="container justify-center items-center py-10">
-            <img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} className="object-fit" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="max-w-6xl mx-auto">
+        <Swiper
+          modules={[ Navigation, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={2}
+          navigation
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          breakpoints={{
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            1280: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
+          className="mySwiper"
+        >
+          {logos.map((logo, index) => (
+            <SwiperSlide key={index} className="flex justify-center items-center pt-6">
+              <div className="relative w-48 h-24 md:w-40 md:h-20">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  layout="fill"
+                  objectFit="contain"
+                  className="max-w-full h-auto"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }
+
