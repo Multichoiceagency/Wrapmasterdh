@@ -1,52 +1,25 @@
-import Image from 'next/image'
-
 interface PortfolioContentProps {
-  content: string
-  gallery: string[]
-  videos: string[]
+  content: string;
+  clientName: string;
+  projectDate: string;
 }
 
-export default function PortfolioContent({ content, gallery, videos }: PortfolioContentProps) {
+export default function PortfolioContent({ content, clientName, projectDate }: PortfolioContentProps) {
   return (
     <div className="container mx-auto px-4 py-16">
-      <div className="prose max-w-none mb-16" dangerouslySetInnerHTML={{ __html: content }} />
-      
-      {videos.length > 0 && (
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Videos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videos.map((video, index) => (
-              <div key={index} className="aspect-w-16 aspect-h-9">
-                <video
-                  src={video}
-                  controls
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-            ))}
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="md:col-span-2">
+          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
         </div>
-      )}
-      
-      {gallery.length > 0 && (
         <div>
-          <h2 className="text-3xl font-bold mb-8">Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {gallery.map((image, index) => (
-              <div key={index} className="relative aspect-square">
-                <Image 
-                  src={image} 
-                  alt={`Gallery image ${index + 1}`} 
-                  layout="fill" 
-                  objectFit="cover" 
-                  className="rounded-lg"
-                />
-              </div>
-            ))}
-          </div>
+          <h3 className="text-2xl font-bold mb-4">Project Details</h3>
+          <ul className="space-y-2">
+            <li><strong>Client:</strong> {clientName}</li>
+            <li><strong>Date:</strong> {projectDate}</li>
+          </ul>
         </div>
-      )}
+      </div>
     </div>
-  )
+  );
 }
 

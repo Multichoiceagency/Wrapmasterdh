@@ -32,6 +32,7 @@
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
     "react-flickity-component": "^4.0.7",
+    "react-photoswipe-gallery": "^3.0.2",
     "react-slick": "^0.30.2",
     "react-social-media-embed": "^2.5.17",
     "react-svg": "^16.1.34",

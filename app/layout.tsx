@@ -3,6 +3,7 @@ import { Barlow } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import 'photoswipe/dist/photoswipe.css';
 
 const barlow = Barlow({
   weight: ['400', '600', '500', '700',], // Add weights you want to use
