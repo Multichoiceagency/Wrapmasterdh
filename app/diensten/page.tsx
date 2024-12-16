@@ -90,7 +90,7 @@ const DienstenPage = () => {
               sort_order: sortOrder,
             };
           })
-          .sort((a, b) => a.sort_order - b.sort_order);
+          .sort((a: { sort_order: number; }, b: { sort_order: number; }) => a.sort_order - b.sort_order);
 
         setDienstCards(formattedDienstCards);
       } catch (error) {
