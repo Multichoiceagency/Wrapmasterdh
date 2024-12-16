@@ -35,6 +35,7 @@ const DienstenPage = () => {
         );
         const data = await response.json();
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedHeroSlides: HeroSlide[] = data.map((slide: any) => {
           let backgroundImageUrl = slide.acf?.background_image || '';
           if (backgroundImageUrl.includes('drive.google.com')) {
@@ -68,6 +69,7 @@ const DienstenPage = () => {
         const data = await response.json();
 
         const formattedDienstCards: DienstCard[] = data
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((dienst: any) => {
             let afbeeldingUrl = dienst.acf?.background_image || '';
             if (afbeeldingUrl.includes('drive.google.com')) {

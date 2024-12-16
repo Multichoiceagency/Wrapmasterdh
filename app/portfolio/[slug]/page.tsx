@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import PortfolioHero from '@/components/PortfolioHero';
 import PortfolioContent from '@/components/PortfolioContent';
 import RelatedProjects from '@/components/RelatedProjects';
-import ProjectGallery from '@/components/Projectgallery';
+import ProjectGallery from '@/components/ProjectGallery';
 
 async function getPortfolioItem(slug: string) {
   const res = await fetch(`https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);

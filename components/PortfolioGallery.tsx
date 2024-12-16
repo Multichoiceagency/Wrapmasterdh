@@ -34,13 +34,13 @@ export default function PortfolioGallery({ mediaGallery }: PortfolioGalleryProps
                 width={1024}
                 height={768}
               >
-                {({ ref, open }) => (
+                {({ ref, open }: { ref: React.Ref<any>; open: (e: React.MouseEvent) => void }) => (
                   <div
-                    onClick={() => {
+                    onClick={(e: React.MouseEvent) => {
                       if (item.type === 'video') {
                         setSelectedVideo(item.url);
                       } else {
-                        open();
+                        open(e);
                       }
                     }}
                     className="cursor-pointer block relative aspect-w-4 aspect-h-3"
@@ -49,13 +49,16 @@ export default function PortfolioGallery({ mediaGallery }: PortfolioGalleryProps
                       <Image
                         ref={ref as any}
                         src={item.url}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={item.title || `Gallery image ${index + 1}`}
-                        className="transition-transform duration-300 hover:scale-110"
+                        className="object-cover transition-transform duration-300 hover:scale-110"
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black">
+                      <div className="absolute inset-0 flex items-center justify-center bg-black" aria-label="Play video">
                         <svg className="w-16 h-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -81,6 +84,7 @@ export default function PortfolioGallery({ mediaGallery }: PortfolioGalleryProps
               controls
               autoPlay
               className="w-full h-full"
+              onError={(e) => console.error("Error playing video:", e)}
             />
             <button
               onClick={() => setSelectedVideo(null)}
