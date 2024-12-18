@@ -14,3 +14,28 @@
   background-color: rgba(255, 0, 0, 0.9); /* Rood voor de actieve bullet */
   border-radius: 20px; /* Zorg dat het nog steeds een pill blijft */
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Swiper fade effect override */
+.swiper-fade .swiper-slide {
+  transition-property: opacity;
+}
+
+.swiper-fade .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0 !important;
+}
+

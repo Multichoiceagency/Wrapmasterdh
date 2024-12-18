@@ -154,7 +154,10 @@ const OnzeDiensten: React.FC = () => {
 
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
-      <div className="carousel-container overflow-hidden">
+      <div className="carousel-container justify-center overflow-hidden">
+      <h2 className="text-3xl font-bold text-center mb-8">
+          Onze Diensten
+        </h2>
         <div ref={carouselRef} className="carousel">
           {diensten.map((dienst) => (
             <div

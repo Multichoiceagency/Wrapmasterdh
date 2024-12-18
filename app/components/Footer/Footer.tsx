@@ -8,25 +8,25 @@ export default function Footer() {
   const navigationGroups = [
     {
       items: [
-        { title: "WIE WIJ ZIJN", href: "/wie-wij-zijn", isHeading: true },
-        { title: "VIND EEN DEALER", href: "/vind-een-dealer", isHeading: true },
-        { title: "COLOFON", href: "/colofon", isHeading: true },
+        { title: "OVER ONS", href: "/wie-wij-zijn", isHeading: true },
+        { title: "DIENSTEN", href: "/vind-een-dealer", isHeading: true },
+        { title: "PORTFOLIO", href: "/colofon", isHeading: true },
       ],
       socialIcon: <Instagram className="h-5 w-5" />,
       socialLink: "#instagram"
     },
     {
       items: [
-        { title: "GESCHIEDENIS", href: "/geschiedenis", isHeading: true },
-        { title: "HERROEPING & CLAIM", href: "/herroeping-claim", isHeading: true },
-        { title: "VOORWAARDEN", href: "/voorwaarden", isHeading: true },
+        { title: "SAMENWERKING", href: "/geschiedenis", isHeading: true },
+        { title: "6X6 Rental", href: "/herroeping-claim", isHeading: true },
+        { title: "Ons team", href: "/voorwaarden", isHeading: true },
       ],
       socialIcon: <TikTok className="h-5 w-5" />,
-      socialLink: "#tiktok"
+      socialLink: "https://www.tiktok.com/@wrapmasterdh"
     },
     {
       items: [
-        { title: "TUNING SHOP", href: "/tuning-shop", isHeading: true },
+        { title: "ALGEMENE VOORWAARDEN", href: "/tuning-shop", isHeading: true },
         { title: "MODE SHOP", href: "/mode-shop", isHeading: true },
         { title: "PRIVACYBELEID", href: "/privacybeleid", isHeading: true },
       ],
@@ -45,11 +45,10 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-white w-full py-24">
-      {/* Desktop Footer */}
-      <div className="container mx-auto px-6 md:px-0 py-24 md:py-16">
+    <footer className="bg-white w-full">
+      <div className="container mx-auto px-6 md:px-0 py-12">
         {/* Desktop Navigation */}
-        <div className="hidden md:grid grid-cols-4 gap-8 text-center">
+        <div className="hidden md:grid grid-cols-4 gap-8 text-center mb-8">
           {navigationGroups.map((group, groupIndex) => (
             <div key={groupIndex} className="space-y-4 flex flex-col items-center">
               {group.items.map((item, itemIndex) => (
@@ -74,8 +73,8 @@ export default function Footer() {
         </div>
 
         {/* Mobile Footer with 2-column grid */}
-        <div className="md:hidden px-4 w-full">
-          <div className="grid grid-cols-2 gap-x- gap-y-2">
+        <div className="md:hidden px-4 w-full mb-8">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
             {navigationGroups.flatMap(group => 
               group.items.map((item, itemIndex) => (
                 <Link
@@ -101,23 +100,10 @@ export default function Footer() {
             ))}
           </div>
         </div>
-
-        {/* Contact Information */}
-        <div className="mt-0 px-10 md:px-0 text-left md:text-center text-gray-600">
-          <p>Westvlietweg 72-L</p>
-          <p>2495 AA, Den Haag</p>
-          <Link href="tel:+31638718893" className="hover:text-gray-900">
-            +31 6 38718893
-          </Link>
-          <br />
-          <Link href="mailto:info@wrapmasterdh.nl" className="hover:text-gray-900">
-            info@wrapmasterdh.nl
-          </Link>
-        </div>
       </div>
 
       {/* Copyright Section */}
-      <div className="w-full text-center py-4 mt-10 text-sm text-white bg-black">
+      <div className="w-full text-center py-4 text-sm text-white bg-black">
         Website gerealiseerd door{' '}
         <Link 
           href="https://multichoiceagency.nl/" 

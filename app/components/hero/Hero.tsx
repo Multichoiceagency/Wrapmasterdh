@@ -1,11 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import type { Swiper as SwiperType } from 'swiper';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import "swiper/css/effect-fade";
 import { useEffect, useState, useRef, useCallback } from "react";
 import "./custom.swiper.css";
 
@@ -100,7 +101,7 @@ const HeroSection = () => {
   return (
     <div className="relative w-full h-[85vh] md:h-[93vh]">
       <Swiper
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination, EffectFade]}
         spaceBetween={0}
         slidesPerView={1}
         loop={true}
@@ -111,6 +112,7 @@ const HeroSection = () => {
           delay: 30000,
           disableOnInteraction: true,
         }}
+        effect="fade"
         onSlideChange={handleSlideChange}
       >
         {slides.map((slide, index) => (
@@ -140,10 +142,12 @@ const HeroSection = () => {
               </div>
             )}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 px-4">{slide.hero_title}</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 px-4 animate-fade-in">
+                {slide.hero_title}
+              </h1>
               <a
                 href={slide.button_link}
-                className="mt-4 px-6 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition duration-300"
+                className="mt-4 px-6 py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition duration-300 animate-fade-in"
               >
                 {slide.button_text}
               </a>

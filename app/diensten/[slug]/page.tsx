@@ -111,4 +111,3 @@ export default async function DienstPage({ params }: { params: { slug: string } 
     </div>
   );
 }
-

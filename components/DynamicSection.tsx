@@ -7,7 +7,7 @@ import Link from 'next/link';
 interface SectionData {
   id: number;
   title: string;
-  description: string; // Content/description of the post
+  description: string;
   featured_image: string;
   button_text: string;
   button_link: string;
@@ -29,11 +29,11 @@ const DynamicSection = () => {
           const section = {
             id: data[0].id,
             title: data[0].title.rendered,
-            description: data[0].content.rendered || '', // Fetch description from `content.rendered`
+            description: data[0].content.rendered || '',
             featured_image:
               data[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg',
-            button_text: data[0]?.acf?.button_text || 'Learn More', // Ensure this matches your API structure
-            button_link: data[0]?.acf?.button_link || '#', // Ensure this matches your API structure
+            button_text: data[0]?.acf?.button_text || 'Learn More',
+            button_link: data[0]?.acf?.button_link || '#',
           };
           setSectionData(section);
         }
@@ -60,28 +60,30 @@ const DynamicSection = () => {
   }
 
   return (
-    <section className="flex flex-wrap md:flex-nowrap items-center justify-between px-8 py-16 bg-white">
-      <div className="w-full md:w-1/2 mb-6 md:mb-0">
-        {/* Image fetched dynamically */}
-        <Image
-          src={sectionData.featured_image}
-          alt={sectionData.title}
-          width={800}
-          height={500}
-          className="rounded-lg object-cover"
-        />
-      </div>
-      <div className="w-full md:w-1/2 pl-0 md:pl-12">
-        <h2 className="text-3xl font-bold mb-4">{sectionData.title}</h2>
-        <div
-          className="text-lg text-gray-600 mb-6"
-          dangerouslySetInnerHTML={{ __html: sectionData.description }} // Render HTML content
-        ></div>
-        <Link href={sectionData.button_link}>
-          <button className="px-6 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition">
-            {sectionData.button_text}
-          </button>
-        </Link>
+    <section className="container mx-auto px-4 py-16">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between md:space-x-12">
+        <div className="w-full md:w-1/2 mb-8 md:mb-0">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src={sectionData.featured_image}
+              alt={sectionData.title}
+              fill
+              className="rounded-lg object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-full md:w-1/2">
+          <h2 className="text-3xl font-bold mb-4">{sectionData.title}</h2>
+          <div
+            className="prose prose-lg text-gray-600 mb-6"
+            dangerouslySetInnerHTML={{ __html: sectionData.description }}
+          />
+          <Link href={sectionData.button_link}>
+            <button className="px-6 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition">
+              {sectionData.button_text}
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

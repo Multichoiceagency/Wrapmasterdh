@@ -149,7 +149,7 @@ const Header: React.FC = () => {
 
       <nav
         className={`fixed inset-0 bg-white z-[100] transition-all duration-300 ease-in-out transform 
-          ${menuOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-full opacity-0 invisible'} 
+          ${menuOpen ? 'opacity-100 visible' : '-translate-y-full opacity-0 invisible'} 
           md:w-[300px] md:left-0 md:h-screen ${menuOpen ? 'md:translate-x-0' : 'md:-translate-x-full'}`}
       >
         <div className="flex flex-col h-full">
@@ -179,7 +179,7 @@ const Header: React.FC = () => {
                   key={item.id} 
                   className="py-2 px-4"
                 >
-                  <Link href={item.acf.menu_link || '/'} onClick={() => setMenuOpen(false)} className="block w-full text-lg font-bold">
+                  <Link href={item.acf.menu_link || '/'} onClick={() => setMenuOpen(false)} className="block w-full justify text-lg font-bold">
                     {decodeHtmlEntities(item.title.rendered)}
                   </Link>
                 </li>

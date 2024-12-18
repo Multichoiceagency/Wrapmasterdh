@@ -7,4 +7,3 @@ export function TikTok(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
-

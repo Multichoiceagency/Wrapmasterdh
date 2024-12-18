@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import 'photoswipe/dist/photoswipe.css';
+import CookieBanner from "@/components/CookieBanner";
 
 const barlow = Barlow({
   weight: ['400', '600', '500', '700',], // Add weights you want to use
@@ -12,8 +13,14 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Wrapmaster Website",
-  description: "High-quality car wrapping and PPF services in Den Haag",
+  title: "Wrapmaster - Specialisten in Car wrapping",
+  description: "Hoogwaardige car wrapping en PPF diensten in Den Haag",
+  openGraph: {
+    title: "Wrapmaster - Specialisten in Car Wrapping",
+    description: "Transformeer uw voertuig met onze hoogwaardige car wrapping diensten in Den Haag. Kies voor stijl, bescherming en perfectie.",
+    locale: 'nl_NL',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +33,7 @@ export default function RootLayout({
       <body className={`${barlow.variable} font-sans`}>
           <Header />
           {children}
+          <CookieBanner />
           <Footer />
       </body>
     </html>

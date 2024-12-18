@@ -78,7 +78,7 @@ const ProductSlider: React.FC = () => {
           cellAlign: 'left',
           contain: true,
           wrapAround: true,
-          pageDots: false,
+          pageDots: true,
           prevNextButtons: true,
           freeScroll: false,
           percentPosition: false,
@@ -103,7 +103,7 @@ const ProductSlider: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-[400px] bg-white">
-        <div className="w-16 h-16 border-4 border-t-transparent border-black rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-t-transparent  rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -111,8 +111,8 @@ const ProductSlider: React.FC = () => {
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
       <div className="text-center mb-12 ml-12">
-        <h2 className="text-3xl font-bold text-gray-800">EXCLUSIVE ACCESSORIES FOR YOUR VEHICLE</h2>
-        <p className="text-xl text-gray-600 mt-2">AVAILABLE NOW</p>
+        <h2 className="text-3xl font-bold text-gray-800">ASSESCOIRES VOOR JOUW VOERTUIG</h2>
+        <p className="text-xl text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
       </div>
 
       <div className="carousel-container overflow-hidden">
@@ -131,7 +131,7 @@ const ProductSlider: React.FC = () => {
                       fill
                       priority
                       style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 33vw"
                     />
                   </div>
                   <CardContent className="flex flex-col justify-end flex-grow">
@@ -151,4 +151,3 @@ const ProductSlider: React.FC = () => {
 };
 
 export default ProductSlider;
-
