@@ -22,7 +22,6 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "cookies-next": "^5.0.2",
     "date-fns": "^3.6.0",
     "flickity": "^2.3.0",
     "lucide-react": "^0.446.0",
