@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import 'photoswipe/dist/photoswipe.css';
-import CookieBanner from "@/components/CookieBanner";
 
 const barlow = Barlow({
   weight: ['400', '600', '500', '700',], // Add weights you want to use
@@ -33,7 +32,6 @@ export default function RootLayout({
       <body className={`${barlow.variable} font-sans`}>
           <Header />
           {children}
-          <CookieBanner />
           <Footer />
       </body>
     </html>
