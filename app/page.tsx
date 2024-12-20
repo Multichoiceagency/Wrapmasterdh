@@ -10,6 +10,7 @@ import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
 import PrintFolie from '@/components/PrintFolie'
 import InstagramSection from '@/components/InstagramSection'
+import Portfolio from './components/portfolio/Portfolio'
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <PrintFolie  />
       <InstagramSection />
       <LogoSlider />
+      <Portfolio />
     </div>
   )
 }

@@ -25,7 +25,7 @@ const CustomSection = () => {
     const fetchCustomSlides = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/afbeelding?_embed'
+          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/afbeelding?_embed'
         );
         const data = await response.json();
 

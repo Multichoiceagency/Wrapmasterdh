@@ -25,7 +25,7 @@ const ServicesSection: React.FC = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/services_section?_embed"
+          "https://www.website.wrapmasterdh.nl/wp-json/wp/v2/services_section?_embed"
         );
         const data: ServiceData[] = await response.json();
         if (data.length > 0) {

@@ -1,19 +1,21 @@
 /* Algemene stijl voor bullets */
-.swiper-pagination-bullet {
+.hero-swiper .swiper-pagination-bullet {
   width: 30px; /* Breedte van de pill */
   height: 8px; /* Hoogte van de pill */
   background-color: rgba(255, 255, 255, 0.5); /* Kleur van de pill */
   border-radius: 20px; /* Ronding om het een pill-vorm te geven */
   transition: all 0.3s ease; /* Zachte overgang voor effecten */
-  margin: 40px 20px; /* Grotere afstand tussen bullets */
+  margin: 0 10px; /* Grotere afstand tussen bullets, aangepast voor betere spacing */
+  opacity: 1; /* Zorg ervoor dat de bullets altijd zichtbaar zijn */
 }
 
 /* Stijl voor actieve bullet */
-.swiper-pagination-bullet-active {
+.hero-swiper .swiper-pagination-bullet-active {
   width: 50px; /* Grotere actieve pill */
   background-color: rgba(255, 0, 0, 0.9); /* Rood voor de actieve bullet */
   border-radius: 20px; /* Zorg dat het nog steeds een pill blijft */
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -31,11 +33,31 @@
 }
 
 /* Swiper fade effect override */
-.swiper-fade .swiper-slide {
+.hero-swiper.swiper-fade .swiper-slide {
   transition-property: opacity;
 }
 
-.swiper-fade .swiper-slide:not(.swiper-slide-active) {
+.hero-swiper.swiper-fade .swiper-slide:not(.swiper-slide-active) {
   opacity: 0 !important;
+}
+
+/* Aanpassing voor de pagination container */
+.hero-swiper .swiper-pagination {
+  bottom: 40px !important; /* Verplaats de pagination naar beneden */
+  z-index: 20; /* Zorg ervoor dat de pagination boven andere elementen komt */
+}
+
+/* Zorg ervoor dat de slides de volledige hoogte innemen */
+.hero-swiper .swiper-slide {
+  height: 100% !important;
+}
+
+/* Voeg cursor styles toe voor betere UX */
+.hero-swiper .swiper-slide {
+  cursor: grab;
+}
+
+.hero-swiper .swiper-slide:active {
+  cursor: grabbing;
 }
 

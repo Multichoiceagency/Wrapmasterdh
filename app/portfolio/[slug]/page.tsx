@@ -5,7 +5,7 @@ import RelatedProjects from '@/components/RelatedProjects';
 import ProjectGallery from '@/components/ProjectGallery';
 
 async function getPortfolioItem(slug: string) {
-  const res = await fetch(`https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
+  const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
   if (!res.ok) {
     notFound();
   }

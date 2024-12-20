@@ -41,7 +41,7 @@ const ProductSlider: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/producten_wrapmaster?_embed"
+          "https://www.website.wrapmasterdh.nl/wp-json/wp/v2/producten_wrapmaster?_embed"
         );
         const data: WPProduct[] = await response.json();
 

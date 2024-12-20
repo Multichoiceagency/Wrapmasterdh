@@ -1,19 +1,62 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+interface Logo {
+  id: number;
+  title: string;
+  logo_image: string;
+}
+
+const getGoogleDriveImageUrl = (url: string) => {
+  if (url.includes('drive.google.com')) {
+    const fileId = url.match(/[-\w]{25,}/);
+    return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : url;
+  }
+  return url;
+};
+
 export default function LogoSlider() {
-  const logos = [
-    { src: '/images/wittebrug.jpg', alt: '3M Logo', width: 200, height: 100 },
-    { src: '/images/motorhuis-opel.jpeg', alt: 'Motorhuis opel Dennison Logo', width: 200, height: 100 },
-    { src: '/images/logo-1.png', alt: 'Xpel Logo', width: 200, height: 100 },
-    { src: '/images/dhl-logo.jpg', alt: 'DHL Logo', width: 200, height: 100 },
-    { src: '/images/seventy_six-blackbananas.png', alt: 'Wrapmaster Logo', width: 200, height: 100 },
-  ];
+  const [logos, setLogos] = useState<Logo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLogos = async () => {
+      try {
+        const response = await fetch('https://www.website.wrapmasterdh.nl/wp-json/wp/v2/logo?per_page=100');
+        if (!response.ok) {
+          throw new Error('Failed to fetch logos');
+        }
+        const data = await response.json();
+        const formattedLogos: Logo[] = data.map((item: any) => ({
+          id: item.id,
+          title: item.title.rendered,
+          logo_image: getGoogleDriveImageUrl(item.acf?.logo_image || ''),
+        }));
+        setLogos(formattedLogos);
+      } catch (error) {
+        console.error('Error fetching logos:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLogos();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-40">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-10 px-4 md:px-0">
@@ -21,7 +64,7 @@ export default function LogoSlider() {
       
       <div className="max-w-6xl mx-auto">
         <Swiper
-          modules={[ Navigation, Autoplay]}
+          modules={[Navigation, Autoplay]}
           spaceBetween={20}
           slidesPerView={2}
           navigation
@@ -36,11 +79,11 @@ export default function LogoSlider() {
               spaceBetween: 20,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 30,
             },
             1024: {
-              slidesPerView: 2,
+              slidesPerView: 4,
               spaceBetween: 40,
             },
             1280: {
@@ -50,12 +93,12 @@ export default function LogoSlider() {
           }}
           className="mySwiper"
         >
-          {logos.map((logo, index) => (
-            <SwiperSlide key={index} className="flex justify-center items-center pt-6">
+          {logos.map((logo) => (
+            <SwiperSlide key={logo.id} className="flex justify-center items-center pt-6">
               <div className="relative w-48 h-24 md:w-40 md:h-20">
                 <Image
-                  src={logo.src}
-                  alt={logo.alt}
+                  src={logo.logo_image}
+                  alt={logo.title}
                   layout="fill"
                   objectFit="contain"
                   className="max-w-full h-auto"

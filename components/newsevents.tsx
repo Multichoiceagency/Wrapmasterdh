@@ -22,7 +22,7 @@ const NewsEvents: React.FC = () => {
     const fetchNewsPosts = async () => {
       try {
         const response = await fetch(
-          "https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/nieuws?_embed"
+          "https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed"
         );
         const data = await response.json();
 

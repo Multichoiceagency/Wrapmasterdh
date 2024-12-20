@@ -63,10 +63,10 @@ const Header: React.FC = () => {
   useEffect(() => {
     const fetchHeaderData = async () => {
       try {
-        const menuItemsRes = await fetch('https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/menu_items');
+        const menuItemsRes = await fetch('https://www.website.wrapmasterdh.nl/wp-json/wp/v2/menu_items');
         const menuItems = await menuItemsRes.json();
 
-        const socialMediaRes = await fetch('https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/social-media');
+        const socialMediaRes = await fetch('https://www.website.wrapmasterdh.nl/wp-json/wp/v2/social-media');
         const socialMedia = await socialMediaRes.json();
 
         setHeaderData({
@@ -126,7 +126,7 @@ const Header: React.FC = () => {
       <div className="flex-grow flex justify-center items-center relative sm:mr-8">
         <Link href="/">
           <Image
-            src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
+            src={isScrolled ? 'https://drive.google.com/uc?export=view&id=1etzIdB5hN6BqJluoXwuWa93tm8wx2uBb' : 'https://drive.google.com/uc?export=view&id=1O8eIS4tSNvYqFC6PxEdJiZgixFS1avfQ'}
             alt="wrapmaster logo"
             width={200}
             height={150}
@@ -156,8 +156,8 @@ const Header: React.FC = () => {
           <div className="flex justify-between items-center p-4">
             <Link href="/">
               <Image
-                src="/logos/logo-zwart.png"
-                alt="Logo"
+                src="https://drive.google.com/uc?export=view&id=1lZO0iGKbpw3pDBj22dQQd4ZyXbLYz1_D"
+                alt="Logo zwart"
                 width={200}
                 height={150}
                 className='w-32'
@@ -201,4 +201,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

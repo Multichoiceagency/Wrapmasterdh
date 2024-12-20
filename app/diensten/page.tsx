@@ -31,7 +31,7 @@ const DienstenPage = () => {
     const fetchHeroSlides = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/hero-slide?_embed'
+          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/hero-slide?_embed'
         );
         const data = await response.json();
 
@@ -64,7 +64,7 @@ const DienstenPage = () => {
     const fetchDienstCards = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/diensten-pagina?_embed&per_page=100'
+          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/diensten-pagina?_embed&per_page=100'
         );
         const data = await response.json();
 

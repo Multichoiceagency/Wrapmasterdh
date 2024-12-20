@@ -20,7 +20,7 @@ function PrintFolie() {
     const fetchBanner = async () => {
       try {
         const response = await fetch(
-          'https://docker-image-production-fb86.up.railway.app/wp-json/wp/v2/printfolie?_embed'
+          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/printfolie?_embed'
         );
         const data = await response.json();
 

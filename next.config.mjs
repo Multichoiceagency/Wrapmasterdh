@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'docker-image-production-fb86.up.railway.app',
+        hostname: 'www.website.wrapmasterdh.nl',
         pathname: '/**', // Allow all paths under this hostname
       },
       {
