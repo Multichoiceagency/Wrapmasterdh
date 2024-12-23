@@ -1,11 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+/* Voeg hier de DIN-fonts toe */
+@font-face {
+  font-family: 'DIN';
+  src: url('/fonts/DIN.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN';
+  src: url('/fonts/DIN-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN';
+  src: url('/fonts/DIN-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN';
+  src: url('/fonts/DIN-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Pas de standaard body font aan naar DIN */
 body {
-  font-family: var(--font-barlow);
+  font-family: 'DIN', sans-serif;
   margin: 0;
   line-height: normal;
   -webkit-font-smoothing: antialiased; /* Ensures better font rendering on WebKit browsers */
@@ -74,6 +105,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+
 .swiper-button-prev,
 .swiper-button-next {
   font-size: 24px;
@@ -99,14 +131,14 @@ body {
     @layer bg-background;
   }
 }
-/* globals.css */
+
+/* Animate the drawing of the SVG logo */
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* Animate the drawing of the SVG logo */
 .animate-draw path {
   stroke: black;
   stroke-width: 2;
@@ -115,12 +147,13 @@ body {
   stroke-dashoffset: 1000;
   animation: draw 3s ease forwards;
 }
-/*footer*/
+
 .parallax-bg {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
 }
+
 .accordion-trigger:hover {
   cursor: pointer;
   text-decoration: underline;

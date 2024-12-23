@@ -1,15 +1,8 @@
 import { Metadata } from "next";
-import { Barlow } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import 'photoswipe/dist/photoswipe.css';
-
-const barlow = Barlow({
-  weight: ['400', '600', '500', '700',], // Add weights you want to use
-  subsets: ["latin"],
-  variable: "--font-barlow",
-});
+import "photoswipe/dist/photoswipe.css";
 
 export const metadata: Metadata = {
   title: "Wrapmaster - Specialisten in Car wrapping",
@@ -17,8 +10,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wrapmaster - Specialisten in Car Wrapping",
     description: "Transformeer uw voertuig met onze hoogwaardige car wrapping diensten in Den Haag. Kies voor stijl, bescherming en perfectie.",
-    locale: 'nl_NL',
-    type: 'website',
+    locale: "nl_NL",
+    type: "website",
   },
 };
 
@@ -29,10 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      <body className={`${barlow.variable} font-sans`}>
-          <Header />
-          {children}
-          <Footer />
+      {/* Voeg de font-DIN class toe via Tailwind */}
+      <body className="font-DIN">
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
