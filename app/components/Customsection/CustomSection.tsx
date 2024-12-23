@@ -88,9 +88,9 @@ const CustomSection = () => {
                     objectFit="cover"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 flex flex-col justify-end md:justify-bottom items-start text-left text-white p-6 md:p-12 bg-black bg-opacity-30">
-                    <h3 className="text-xl md:text-xl font-extrabold tracking-widest uppercase">{slide.titel}</h3>
-                    <p className="text-lg md:text-2xl font-light tracking-wider mt-2">{slide.subtitel}</p>
+                  <div className="absolute inset-0 flex flex-col justify-end md:justify-bottom items-center text-left text-white p-6 md:p-12 bg-black bg-opacity-30">
+                    <h3 className="text-xl md:text-xl font-medium tracking-widest uppercase">{slide.titel}</h3>
+                    <p className="text-lg md:text-l font-light tracking-wider mt-2">{slide.subtitel}</p>
                   </div>
                 </div>
               </Link>

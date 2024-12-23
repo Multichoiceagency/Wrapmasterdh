@@ -71,7 +71,7 @@ const Header: React.FC = () => {
 
         setHeaderData({
           menuItems,
-          socialMedia: socialMedia[0] // Assuming there's only one social media item
+          socialMedia: socialMedia[0]
         });
       } catch (error) {
         console.error('Error fetching header data:', error);
@@ -82,7 +82,7 @@ const Header: React.FC = () => {
   }, []);
 
   if (!headerData) {
-    return null; // Or a loading spinner
+    return null;
   }
 
   const renderSocialIcons = (isScrolled: boolean) => {
@@ -109,23 +109,24 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 sm:pr-16 ${
+      className={`fixed top-0 w-full transition-all duration-300 z-50 flex items-center ${
         isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
-              <button
-                className={`z-50 flex items-center justify-center w-12 h-12 rounded-md focus:outline-none transition-all duration-300 ease-in-out ${
-                  menuOpen || isScrolled ? 'text-black' : 'text-white'
-                }`}
-                onClick={toggleMenu}
-                aria-label={menuOpen ? "Close Menu" : "Open Menu"}
-              >
-                <FontAwesomeIcon
-                  icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)}
-                  className="text-2xl hover:text-red-600 transition-all duration-300"
-                />
-              </button>
-      <div className="flex-grow flex justify-center items-center relative sm:mr-8">
+      <button
+        className={`px-3 py-4 flex items-center justify-center focus:outline-none transition-all duration-300 ease-in-out ${
+          menuOpen || isScrolled ? 'text-black' : 'text-white'
+        }`}
+        onClick={toggleMenu}
+        aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+      >
+        <FontAwesomeIcon
+          icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)}
+          className="text-2xl hover:text-red-600 transition-all duration-300"
+        />
+      </button>
+
+      <div className="flex-grow flex justify-center items-center">
         <Link href="/">
           <Image
             src={isScrolled ? 'https://drive.google.com/uc?export=view&id=1etzIdB5hN6BqJluoXwuWa93tm8wx2uBb' : 'https://drive.google.com/uc?export=view&id=1O8eIS4tSNvYqFC6PxEdJiZgixFS1avfQ'}
@@ -139,14 +140,16 @@ const Header: React.FC = () => {
               pt-2`}
           />
         </Link>
-        <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 flex items-center pr-4">
-      <Link href="tel:0702250721" className="flex items-center space-x-2">
-        <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
-        <span className="absolute top-0 right-0 -mt-1 -mr-1 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
-      </Link>
-    </div>
-    </div>
-      <div className="hidden md:block">
+      </div>
+
+      <div className="md:hidden px-3 py-4">
+        <Link href="tel:0702250721" className="flex items-center">
+          <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
+          <span className="absolute top-4 right-3 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
+        </Link>
+      </div>
+
+      <div className="hidden md:block px-4">
         {renderSocialIcons(isScrolled)}
       </div>
 
@@ -204,3 +207,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+

@@ -21,30 +21,36 @@ async function getDienstItem(slug: string) {
 export default async function DienstPage({ params }: { params: { slug: string } }) {
   const dienstItem = await getDienstItem(params.slug)
 
-  const heroSlides = [1, 2, 3, 4, 5].map(num => ({
-    imageUrl: getMediaUrl(dienstItem.acf[`hero_afbeelding_${num}`] || ''),
-    alt: dienstItem.title.rendered,
-  })).filter(slide => slide.imageUrl);
+  const createSlides = (prefix: string, count: number) => {
+    return Array.from({ length: count }, (_, i) => {
+      const key = `${prefix}_${i + 1}`;
+      const url = getMediaUrl(dienstItem.acf[key]);
+      return {
+        imageUrl: url,
+        alt: dienstItem.title.rendered,
+      };
+    }).filter(slide => slide.imageUrl);
+  };
 
-  const detailSlides = [1, 2, 3, 4, 5].map(num => ({
-    imageUrl: getMediaUrl(dienstItem.acf[`detail_gallerij_afbeelding_${num}`] || ''),
-    alt: dienstItem.title.rendered,
-  })).filter(slide => slide.imageUrl);
+  const heroSlides = createSlides('hero_afbeelding', 5);
+  const detailSlides = createSlides('detail_gallerij_afbeelding', 5);
+  const fullWidthSlides = createSlides('volledige_breedte_afbeelding', 3);
+  const engineSlides = createSlides('motor_gallerij_afbeelding', 3);
+  const detailGallerySlides = createSlides('detail_gallerij_2_afbeelding', 3);
 
-  const fullWidthSlides = [1, 2, 3].map(num => ({
-    imageUrl: getMediaUrl(dienstItem.acf[`volledige_breedte_afbeelding_${num}`] || ''),
-    alt: dienstItem.title.rendered,
-  })).filter(slide => slide.imageUrl);
+  const features = [
+    {
+      title: dienstItem.acf?.kenmerk_1_titel || '',
+      description: dienstItem.acf?.kenmerk_1_beschrijving || '',
+      icon: getMediaUrl(dienstItem.acf?.kenmerk_1_icoon),
+    },
+    // Add more features if needed
+  ].filter(feature => feature.title && feature.description);
 
-  const engineSlides = [1, 2, 3].map(num => ({
-    imageUrl: getMediaUrl(dienstItem.acf[`motor_gallerij_afbeelding_${num}`] || ''),
-    alt: dienstItem.title.rendered,
-  })).filter(slide => slide.imageUrl);
-
-  const detailGallerySlides = [1, 2, 3].map(num => ({
-    imageUrl: getMediaUrl(dienstItem.acf[`detail_gallerij_2_afbeelding_${num}`] || ''),
-    alt: dienstItem.title.rendered,
-  })).filter(slide => slide.imageUrl);
+  const gallery = [
+    getMediaUrl(dienstItem.acf?.gallerij_afbeelding_1),
+    // Add more gallery images if needed
+  ].filter(Boolean);
 
   return (
     <div>
@@ -99,15 +105,10 @@ export default async function DienstPage({ params }: { params: { slug: string } 
       />
       <DienstContent
         content={dienstItem.content.rendered}
-        features={[
-          {
-            title: dienstItem.acf?.kenmerk_1_titel || '',
-            description: dienstItem.acf?.kenmerk_1_beschrijving || '',
-            icon: getMediaUrl(dienstItem.acf?.kenmerk_1_icoon || ''),
-          },
-        ]}
-        gallery={[getMediaUrl(dienstItem.acf?.gallerij_afbeelding_1 || '')].filter(Boolean)}
+        features={features}
+        gallery={gallery}
       />
     </div>
   );
 }
+
