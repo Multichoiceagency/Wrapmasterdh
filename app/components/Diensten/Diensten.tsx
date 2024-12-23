@@ -89,6 +89,10 @@ const OnzeDiensten: React.FC = () => {
 
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
+        <div className="text-left mb-12 ml-12">
+        <h2 className="text-2xl font-medium text-gray-800">ONZE DIENSTEN</h2>
+        <p className="text-l text-gray-600 mt-2">Gespecialiseerd in carwrapping</p>
+      </div>
       <div className="carousel-container overflow-hidden">
         <Flickity
           className={'carousel'}
@@ -103,6 +107,7 @@ const OnzeDiensten: React.FC = () => {
               key={dienst.id}
               className="carousel-cell w-full sm:w-1/2 lg:w-1/3 px-2"
             >
+              
               <Link href={`/diensten/${dienst.slug}`}>
                 <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
                   <div className="relative h-96 w-full">

@@ -110,9 +110,9 @@ const ProductSlider: React.FC = () => {
 
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
-      <div className="text-center mb-12 ml-12">
-        <h2 className="text-3xl font-bold text-gray-800">ASSESCOIRES VOOR JOUW VOERTUIG</h2>
-        <p className="text-xl text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
+      <div className="text-left mb-12 ml-12">
+        <h2 className="text-2xl font-medium text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
+        <p className="text-l text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
       </div>
 
       <div className="carousel-container overflow-hidden">

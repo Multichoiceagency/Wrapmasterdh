@@ -20,9 +20,9 @@ export default function Home() {
       <NewsEvents />
       <Afbeelding />
       <DynamicSection />
-      <ProductSlider />
-      <CustomSection />
       <OnzeDiensten />
+      <CustomSection />
+      <ProductSlider />
       <PrintFolie  />
       <InstagramSection />
       <LogoSlider />

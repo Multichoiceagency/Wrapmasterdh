@@ -113,16 +113,18 @@ const Header: React.FC = () => {
         isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
-      <button
-        className={`z-50 flex items-center text-2xl focus:outline-none transition-all duration-300 ease-in-out ${
-          menuOpen || isScrolled ? 'text-black' : 'text-white'
-        }`}
-        onClick={toggleMenu}
-        aria-label={menuOpen ? "Close Menu" : "Open Menu"}
-      >
-        <FontAwesomeIcon icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)} />
-      </button>
-
+              <button
+                className={`z-50 flex items-center justify-center w-12 h-12 rounded-md focus:outline-none transition-all duration-300 ease-in-out ${
+                  menuOpen || isScrolled ? 'text-black' : 'text-white'
+                }`}
+                onClick={toggleMenu}
+                aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+              >
+                <FontAwesomeIcon
+                  icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)}
+                  className="text-2xl hover:text-red-600 transition-all duration-300"
+                />
+              </button>
       <div className="flex-grow flex justify-center items-center relative sm:mr-8">
         <Link href="/">
           <Image
