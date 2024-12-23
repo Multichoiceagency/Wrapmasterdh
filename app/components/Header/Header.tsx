@@ -138,11 +138,12 @@ const Header: React.FC = () => {
           />
         </Link>
         <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 flex items-center pr-4">
-          <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
-          <span className="absolute top-0 right-0 -mt-1 -mr-1 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
-        </div>
-      </div>
-
+      <Link href="tel:0702250721" className="flex items-center space-x-2">
+        <FontAwesomeIcon icon={faPhone as IconProp} className="text-red-600 text-2xl" />
+        <span className="absolute top-0 right-0 -mt-1 -mr-1 h-3 w-3 rounded-full bg-green-500 animate-pulse"></span>
+      </Link>
+    </div>
+    </div>
       <div className="hidden md:block">
         {renderSocialIcons(isScrolled)}
       </div>

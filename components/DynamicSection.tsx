@@ -73,13 +73,13 @@ const DynamicSection = () => {
           </div>
         </div>
         <div className="w-full md:w-1/2">
-          <h2 className="text-3xl font-bold mb-4">{sectionData.title}</h2>
+          <h2 className="text-3xl mb-4">{sectionData.title}</h2>
           <div
             className="prose prose-lg text-gray-600 mb-6"
             dangerouslySetInnerHTML={{ __html: sectionData.description }}
           />
           <Link href={sectionData.button_link}>
-            <button className="px-6 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition">
+            <button className="px-6 py-3 bg-black text-white font-bold hover:bg-red-700 rounded-md transition">
               {sectionData.button_text}
             </button>
           </Link>
