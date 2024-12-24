@@ -39,7 +39,7 @@ const customSlides: CustomSlide[] = [
     id: 3,
     titel: "FERRARI SF90",
     subtitel: "GEWRAPT IN ROSSO MARS, ORGINEEL FERRARI KLEUR",
-    foto: "/enes-website/memo/IMG_5341.MOV",
+    foto: "/video/brabus-g800-video.mp4",
     slug: "youtube",
     link: "https://www.youtube.com/channel/UCeYPrQZxZXLLtGXVQqLEqZA",
     isVideo: true,

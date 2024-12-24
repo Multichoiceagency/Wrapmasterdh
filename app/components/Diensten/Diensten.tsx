@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
-import Flickity from 'react-flickity-component';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface Dienst {
   id: number;
@@ -34,66 +35,145 @@ const diensten: Dienst[] = [
   { id: 1, titel: "Folie Verwijderen", subtitel: "Professionele folieverwijdering", afbeelding: "/enes-website/wrapfolie/GLA_4446-scaled.jpg", slug: "folie-verwijderen" },
 ];
 
-const flickityOptions = {
-  cellAlign: 'left',
-  contain: true,
-  wrapAround: true,
-  pageDots: false,
-  prevNextButtons: true,
-  freeScroll: false,
-  percentPosition: false,
-  imagesLoaded: true,
-  autoPlay: 3000,
-  pauseAutoPlayOnHover: true,
-  draggable: true,
-  adaptiveHeight: true,
-};
-
 const OnzeDiensten: React.FC = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true, 
+      align: 'start',
+      slidesToScroll: 1,
+    }, 
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    setNextBtnEnabled(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
+
+  const handleImageLoad = useCallback(() => {
+    setImagesLoaded((prev) => {
+      const newCount = prev + 1;
+      if (newCount >= 3 && !isLoaded) {
+        setIsLoaded(true);
+      }
+      return newCount;
+    });
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (emblaApi && isLoaded) {
+      emblaApi.reInit();
+    }
+  }, [emblaApi, isLoaded]);
+
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
       <div className="text-left mb-12 ml-12">
         <h2 className="text-2xl font-medium text-gray-800">ONZE DIENSTEN</h2>
         <p className="text-l text-gray-600 mt-2">Gespecialiseerd in carwrapping</p>
       </div>
-      <div className="carousel-container overflow-hidden">
-        <Flickity
-          className={'carousel focus-visible:outline-none'}
-          elementType={'div'}
-          options={flickityOptions}
-          disableImagesLoaded={false}
-          reloadOnUpdate
-          static
-        >
-          {diensten.map((dienst) => (
-            <div
-              key={dienst.id}
-              className="carousel-cell w-full sm:w-1/2 lg:w-1/3 px-2"
-            >
-              <Link href={`/diensten/${dienst.slug}`}>
-                <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
-                  <div className="relative h-96 w-full">
-                    <Image
-                      src={dienst.afbeelding}
-                      alt={dienst.titel}
-                      fill
-                      priority
-                      style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
-                  <CardContent className="flex flex-col justify-end flex-grow">
-                    <div>
-                      <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
-                      <p className="text-sm text-gray-500">{dienst.subtitel}</p>
+      <div className="carousel-container overflow-hidden relative">
+        <div className="embla" ref={emblaRef}>
+          <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            {diensten.map((dienst) => (
+              <div
+                key={dienst.id}
+                className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
+              >
+                <Link href={`/diensten/${dienst.slug}`}>
+                  <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
+                    <div className="relative h-[500px] w-full">
+                      <Image
+                        src={dienst.afbeelding}
+                        alt={dienst.titel}
+                        fill
+                        priority
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onLoad={handleImageLoad}
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          ))}
-        </Flickity>
+                    <CardContent className="flex flex-col justify-end flex-grow">
+                      <div>
+                        <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
+                        <p className="text-sm text-gray-500">{dienst.subtitel}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+        <button
+          className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+          onClick={scrollPrev}
+          disabled={!prevBtnEnabled}
+        >
+          &#8592;
+        </button>
+        <button
+          className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+          onClick={scrollNext}
+          disabled={!nextBtnEnabled}
+        >
+          &#8594;
+        </button>
       </div>
+      <style jsx global>{`
+        .embla {
+          overflow: hidden;
+        }
+        .embla__container {
+          display: flex;
+        }
+        .embla__slide {
+          flex: 0 0 100%;
+          min-width: 0;
+        }
+        @media (min-width: 640px) {
+          .embla__slide {
+            flex: 0 0 50%;
+          }
+        }
+        @media (min-width: 1024px) {
+          .embla__slide {
+            flex: 0 0 33.33%;
+          }
+        }
+        .carousel-container {
+          min-height: 650px;
+        }
+        .embla__prev,
+        .embla__next {
+          opacity: 0.7;
+          transition: opacity 0.3s;
+        }
+        .embla__prev:hover,
+        .embla__next:hover {
+          opacity: 1;
+        }
+        .embla__prev:disabled,
+        .embla__next:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+      `}</style>
     </section>
   );
 };

@@ -27,7 +27,7 @@ function HeroSection() {
         }`}
       >
         <Image
-          src="/enes-website/memo-map/china/1-25.jpg"
+          src="/enes-website/auto-wrappen/g-wagon/brabus-nardo-grey-motorkap.jpg"
           alt="Full-screen banner"
           fill
           style={{

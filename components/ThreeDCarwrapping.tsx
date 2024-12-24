@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
 import Head from 'next/head';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface ThreeDCarwrapping {
   id: number;
@@ -21,45 +23,31 @@ const carWrapDesigns: ThreeDCarwrapping[] = [
   { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_5.png", slug: "kleurverloop" },
   { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_6.png", slug: "carbon-fiber" },
   { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_7.png", slug: "holografisch" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png", slug: "kleurverloop" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png", slug: "carbon-fiber" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png", slug: "holografisch" },
+  { id: 7, titel: "Kleurverloop Wrap 2", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png", slug: "kleurverloop-2" },
+  { id: 8, titel: "Carbon Fiber Wrap 2", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png", slug: "carbon-fiber-2" },
+  { id: 9, titel: "Holografische Wrap 2", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png", slug: "holografisch-2" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+
+  const handleImageLoad = useCallback(() => {
+    setImagesLoaded((prev) => {
+      const newCount = prev + 1;
+      if (newCount >= 3 && !isLoaded) {
+        setIsLoaded(true);
+      }
+      return newCount;
+    });
+  }, [isLoaded]);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let flickityInstance: any = null;
-
-    const initFlickity = async () => {
-      if (typeof window !== 'undefined' && carouselRef.current) {
-        const Flickity = (await import('flickity')).default;
-        flickityInstance = new Flickity(carouselRef.current, {
-          cellAlign: 'left',
-          contain: true,
-          wrapAround: true,
-          pageDots: true,
-          prevNextButtons: true,
-          freeScroll: false,
-          percentPosition: false,
-          imagesLoaded: true,
-          autoPlay: 3000,
-          pauseAutoPlayOnHover: true,
-          draggable: true,
-        });
-      }
-    };
-
-    initFlickity();
-
-    return () => {
-      if (flickityInstance && typeof flickityInstance.destroy === 'function') {
-        flickityInstance.destroy();
-      }
-    };
-  }, []);
+    if (emblaApi && isLoaded) {
+      emblaApi.reInit();
+    }
+  }, [emblaApi, isLoaded]);
 
   return (
     <>
@@ -76,34 +64,37 @@ const ThreeDCarwrapping: React.FC = () => {
         </div>
 
         <div className="carousel-container overflow-hidden">
-          <div ref={carouselRef} className="carousel">
-            {carWrapDesigns.map((design) => (
-              <div
-                key={design.id}
-                className="carousel-cell mr-2 w-full sm:w-1/2 lg:w-1/3"
-              >
-                <Link href={`/3d-carwrapping/${design.slug}`}>
-                  <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
-                    <div className="relative h-96 w-full">
-                      <Image
-                        src={design.afbeelding}
-                        alt={design.titel}
-                        fill
-                        priority
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </div>
-                    <CardContent className="flex flex-col justify-end flex-grow">
-                      <div>
-                        <h2 className="text-l mt-5 font-semibold">{design.titel}</h2>
-                        <p className="text-sm text-gray-500">{design.subtitel}</p>
+          <div className="embla" ref={emblaRef}>
+            <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+              {carWrapDesigns.map((design) => (
+                <div
+                  key={design.id}
+                  className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
+                >
+                  <Link href={`/3d-carwrapping/${design.slug}`}>
+                    <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
+                      <div className="relative h-[500px] w-full">
+                        <Image
+                          src={design.afbeelding}
+                          alt={design.titel}
+                          fill
+                          priority
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          onLoad={handleImageLoad}
+                        />
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            ))}
+                      <CardContent className="flex flex-col justify-end flex-grow">
+                        <div>
+                          <h2 className="text-l mt-5 font-semibold">{design.titel}</h2>
+                          <p className="text-sm text-gray-500">{design.subtitel}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -151,6 +142,32 @@ const ThreeDCarwrapping: React.FC = () => {
           "https://www.instagram.com/wrapmaster"
         ]
       })} } />
+
+      <style jsx global>{`
+        .embla {
+          overflow: hidden;
+        }
+        .embla__container {
+          display: flex;
+        }
+        .embla__slide {
+          flex: 0 0 100%;
+          min-width: 0;
+        }
+        @media (min-width: 640px) {
+          .embla__slide {
+            flex: 0 0 50%;
+          }
+        }
+        @media (min-width: 1024px) {
+          .embla__slide {
+            flex: 0 0 33.33%;
+          }
+        }
+        .carousel-container {
+          min-height: 650px;
+        }
+      `}</style>
     </>
   );
 };

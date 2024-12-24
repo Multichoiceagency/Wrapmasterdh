@@ -28,8 +28,8 @@ export default function Home() {
       <PrintFolie  />
       <ThreeDCarwrapping />
       <NewCustomSection />
-      <BoatSection />
       <BoatenSlider />
+      <BoatSection />
       <LogoSlider />
     </div>
   )
