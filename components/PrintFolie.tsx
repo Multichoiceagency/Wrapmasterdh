@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface Banner {
   id: number;
@@ -12,61 +12,43 @@ interface Banner {
   button_link?: string;
 }
 
+const banner: Banner = {
+  id: 1,
+  title: "Professionele Print Folie",
+  featured_image: "/enes-website/memo-map/design/Changer_12.png",
+  button_text: "Ontdek Meer",
+  button_link: "/diensten/print-folie"
+};
+
 function PrintFolie() {
-  const [banner, setBanner] = useState<Banner | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const fetchBanner = async () => {
-      try {
-        const response = await fetch(
-          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/printfolie?_embed'
-        );
-        const data = await response.json();
-
-        if (data.length > 0) {
-          const bannerData: Banner = {
-            id: data[0].id,
-            title: data[0].title.rendered,
-            featured_image: data[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg',
-            button_text: data[0]?.button_text,
-            button_link: data[0]?.button_link,
-          };
-
-          setBanner(bannerData);
-        }
-      } catch (error) {
-        console.error('Failed to fetch banner data:', error);
-      } finally {
-        setIsLoading(false);
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const scrollPosition = window.scrollY;
+        sectionRef.current.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
     };
 
-    fetchBanner();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-64 bg-gray-900">
-        <div className="w-12 h-12 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (!banner) {
-    return <p className="text-center text-white py-8">No banner found.</p>;
-  }
-
   return (
-    <section className="relative bg-gray-900 text-white h-64 md:h-96 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative text-white h-screen md:h-screen overflow-hidden"
+    >
       <Image
         src={banner.featured_image}
         alt={banner.title}
-        layout="fill"
-        objectFit="cover"
+        fill
         priority
+        sizes="100vw"
+        style={{ objectFit: 'cover', transform: 'scale(1.5)', width: '100%', height: '100%', zIndex: -1 }}
       />
-      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-end justify-center pb-8">
         <div className="text-center px-4">
           <h3 className="text-2xl md:text-4xl font-bold mb-4">{banner.title}</h3>
           {banner.button_text && banner.button_link && (
@@ -83,4 +65,3 @@ function PrintFolie() {
 }
 
 export default PrintFolie;
-
