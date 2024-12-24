@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
 import Head from 'next/head';
 
-interface ThreeDCarwrapping {
+interface BoatDesign {
   id: number;
   titel: string;
   subtitel: string;
@@ -14,16 +14,16 @@ interface ThreeDCarwrapping {
   slug: string;
 }
 
-const carWrapDesigns: ThreeDCarwrapping[] = [
-  { id: 1, titel: "Matte Zwart Wrap", subtitel: "Elegante en stijlvolle finish", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_3.png", slug: "matte-zwart" },
-  { id: 2, titel: "Glanzend Chroom Wrap", subtitel: "Opvallende en luxueuze uitstraling", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_4.png", slug: "glanzend-chroom" },
-  { id: 3, titel: "Camouflage Wrap", subtitel: "Uniek en avontuurlijk design", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_5.png", slug: "camouflage" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_7.png", slug: "kleurverloop" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_8.png", slug: "carbon-fiber" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_9.png", slug: "holografisch" },
+const boatDesigns: BoatDesign[] = [
+  { id: 1, titel: "Luxe Jacht Ontwerp", subtitel: "Elegantie op het water", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_3.png", slug: "luxe-jacht" },
+  { id: 2, titel: "Speedboot Styling", subtitel: "Snelheid en stijl gecombineerd", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_4.png", slug: "speedboot" },
+  { id: 3, titel: "Zeilboot Innovatie", subtitel: "Moderne zeilprestaties", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_5.png", slug: "zeilboot" },
+  { id: 4, titel: "Catamaran Concept", subtitel: "Ruimte en stabiliteit", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_7.png", slug: "catamaran" },
+  { id: 5, titel: "Vissersboot Upgrade", subtitel: "Functionaliteit meets comfort", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_8.png", slug: "vissersboot" },
+  { id: 6, titel: "Woonboot Renovatie", subtitel: "Drijvend woongenot", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_9.png", slug: "woonboot" },
 ];
 
-const ThreeDCarwrapping: React.FC = () => {
+const BoatenSlider: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,25 +61,25 @@ const ThreeDCarwrapping: React.FC = () => {
   return (
     <>
       <Head>
-        <title>3D Carwrapping - WrapMaster | Specialist in Auto Customization</title>
-        <meta name="description" content="Ontdek onze uitgebreide reeks van professionele 3D carwrapping ontwerpen, waaronder matte, glanzende, en unieke wraps. WrapMaster is uw specialist voor alle auto customization behoeften." />
-        <meta name="keywords" content="3D carwrapping, auto wrap, matte wrap, glanzende wrap, camouflage wrap, kleurverloop wrap, carbon fiber wrap, holografische wrap" />
-        <link rel="canonical" href="https://www.wrapmaster.nl/3d-carwrapping" />
+        <title>Bootontwerpen - BoatMaster | Specialist in Bootdesign en Customization</title>
+        <meta name="description" content="Ontdek onze uitgebreide reeks van professionele bootontwerpen, waaronder luxe jachten, speedboten, zeilboten en meer. BoatMaster is uw specialist voor alle boot customization behoeften." />
+        <meta name="keywords" content="bootontwerp, jachtdesign, speedboot styling, zeilboot innovatie, catamaran concept, vissersboot upgrade, woonboot renovatie" />
+        <link rel="canonical" href="https://www.boatmaster.nl/ontwerpen" />
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
         <div className="text-left mb-12 ml-12">
-          <h1 className="text-2xl font-medium text-gray-800">3D CARWRAPPING ONTWERPEN</h1>
-          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in 3D carwrapping en auto customization</p>
+          <h1 className="text-2xl font-medium text-gray-800">ONZE BOOTONTWERPEN</h1>
+          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in bootdesign en customization</p>
         </div>
 
         <div className="carousel-container overflow-hidden">
           <div ref={carouselRef} className="carousel">
-            {carWrapDesigns.map((design) => (
+            {boatDesigns.map((design) => (
               <div
                 key={design.id}
                 className="carousel-cell mr-2 w-full sm:w-1/2 lg:w-1/3"
               >
-                <Link href={`/3d-carwrapping/${design.slug}`}>
+                <Link href={`/ontwerpen/${design.slug}`}>
                   <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
                     <div className="relative h-96 w-full">
                       <Image
@@ -107,13 +107,13 @@ const ThreeDCarwrapping: React.FC = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "WrapMaster",
-        "description": "Specialist in 3D carwrapping en auto customization",
-        "url": "https://www.wrapmaster.nl",
+        "name": "BoatMaster",
+        "description": "Specialist in bootdesign en customization",
+        "url": "https://www.boatmaster.nl",
         "telephone": "+31XXXXXXXXX",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Autostraat 123",
+          "streetAddress": "Havenstraat 123",
           "addressLocality": "Amsterdam",
           "postalCode": "1234 AB",
           "addressCountry": "NL"
@@ -144,13 +144,13 @@ const ThreeDCarwrapping: React.FC = () => {
           }
         ],
         "sameAs": [
-          "https://www.facebook.com/wrapmaster",
-          "https://www.instagram.com/wrapmaster"
+          "https://www.facebook.com/boatmaster",
+          "https://www.instagram.com/boatmaster"
         ]
       })} } />
     </>
   );
 };
 
-export default ThreeDCarwrapping;
+export default BoatenSlider;
 

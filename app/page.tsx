@@ -9,8 +9,9 @@ import DynamicSection from '@/components/DynamicSection'
 import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
 import PrintFolie from '@/components/PrintFolie'
-import InstagramSection from '@/components/InstagramSection'
-import ThreeDCarWrapping from '@/components/ThreeDCarwrapping'
+import BoatenSlider from '@/components/BoatenSlider'
+import NewCustomSection from '@/components/NewCustomSection'
+import ThreeDCarwrapping from '@/components/ThreeDCarwrapping'
 
 export default function Home() {
   return (
@@ -24,8 +25,9 @@ export default function Home() {
       <CustomSection />
       <ProductSlider />
       <PrintFolie  />
-      <ThreeDCarWrapping />
-      <InstagramSection />
+      <ThreeDCarwrapping />
+      <NewCustomSection />
+      <BoatenSlider />
       <LogoSlider />
     </div>
   )
