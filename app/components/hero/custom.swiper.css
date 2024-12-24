@@ -1,19 +1,19 @@
-/* Algemene stijl voor bullets */
+/* General style for bullets */
 .hero-swiper .swiper-pagination-bullet {
-  width: 30px; /* Breedte van de pill */
-  height: 8px; /* Hoogte van de pill */
-  background-color: rgba(255, 255, 255, 0.5); /* Kleur van de pill */
-  border-radius: 20px; /* Ronding om het een pill-vorm te geven */
-  transition: all 0.3s ease; /* Zachte overgang voor effecten */
-  margin: 0 10px; /* Grotere afstand tussen bullets, aangepast voor betere spacing */
-  opacity: 1; /* Zorg ervoor dat de bullets altijd zichtbaar zijn */
+  width: 30px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+  opacity: 1;
 }
 
-/* Stijl voor actieve bullet */
+/* Style for active bullet */
 .hero-swiper .swiper-pagination-bullet-active {
-  width: 50px; /* Grotere actieve pill */
-  background-color: rgba(255, 0, 0, 0.9); /* Rood voor de actieve bullet */
-  border-radius: 20px; /* Zorg dat het nog steeds een pill blijft */
+  width: 50px;
+  background-color: rgba(255, 0, 0, 0.9);
+  border-radius: 20px;
 }
 
 @keyframes fadeIn {
@@ -41,23 +41,42 @@
   opacity: 0 !important;
 }
 
-/* Aanpassing voor de pagination container */
+/* Adjustment for the pagination container */
 .hero-swiper .swiper-pagination {
-  bottom: 40px !important; /* Verplaats de pagination naar beneden */
-  z-index: 20; /* Zorg ervoor dat de pagination boven andere elementen komt */
+  bottom: 10px !important;
+  z-index: 20;
 }
 
-/* Zorg ervoor dat de slides de volledige hoogte innemen */
+/* Ensure slides take full height */
 .hero-swiper .swiper-slide {
   height: 100% !important;
 }
 
-/* Voeg cursor styles toe voor betere UX */
+/* Add cursor styles for better UX */
 .hero-swiper .swiper-slide {
   cursor: grab;
 }
 
 .hero-swiper .swiper-slide:active {
   cursor: grabbing;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .hero-swiper .swiper-pagination {
+    bottom: 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-swiper .swiper-pagination {
+    bottom: 20px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-swiper .swiper-pagination {
+    bottom: 25px !important;
+  }
 }
 

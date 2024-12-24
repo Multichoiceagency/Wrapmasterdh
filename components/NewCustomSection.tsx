@@ -39,7 +39,7 @@ const customSlides: CustomSlide[] = [
     id: 3,
     titel: "YOUTUBE",
     subtitel: "BEKIJK ONZE VIDEOS",
-    foto: "/images/custom-section/porsche-911-gt3-rs.mp4",
+    foto: "/enes-website/wallpaper/Maasvlakte-100.jpg",
     slug: "youtube",
     link: "https://www.youtube.com/channel/UCeYPrQZxZXLLtGXVQqLEqZA",
     isVideo: true,

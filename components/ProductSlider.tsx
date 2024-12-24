@@ -1,80 +1,97 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
 
 interface Product {
   id: number;
-  title: {
-    rendered: string;
-  };
-  acf: {
-    subtitle: string;
-  };
+  title: string;
+  subtitle: string;
   featured_image: string;
 }
 
-interface WPProduct {
-  id: number;
-  title: {
-    rendered: string;
-  };
-  acf: {
-    subtitle: string;
-  };
-  _embedded?: {
-    "wp:featuredmedia"?: Array<{
-      source_url: string;
-    }>;
-  };
-}
+const products: Product[] = [
+  {
+    id: 1,
+    title: "Velgen",
+    subtitle: "Stijlvolle velgen voor uw auto",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png"
+  },
+  {
+    id: 2,
+    title: "Remklauwen",
+    subtitle: "Hoogwaardige remklauwen voor betere prestaties",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg"
+  },
+  {
+    id: 3,
+    title: "Uitlaten",
+    subtitle: "Sportuitlaten voor een krachtig geluid",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg"
+  },
+  {
+    id: 4,
+    title: "Bodykits",
+    subtitle: "Custom bodykits voor een unieke look",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg"
+  },
+  {
+    id: 5,
+    title: "Interieur Accessoires",
+    subtitle: "Luxe accessoires voor uw interieur",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_2.png"
+  },
+  {
+    id: 6,
+    title: "Verlichting",
+    subtitle: "LED-verlichting voor extra stijl en veiligheid",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-3-Lamborghini-Urus-Mk1-16126_1.jpg"
+  },
+  {
+    id: 7,
+    title: "Carwrapping",
+    subtitle: "Transformeer uw auto met premium wraps",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg"
+  },
+  {
+    id: 8,
+    title: "PPF (Paint Protection Film)",
+    subtitle: "Bescherm uw lak tegen steenslag en krassen",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg"
+  },
+  {
+    id: 9,
+    title: "Chrome Delete",
+    subtitle: "Vervang chroom accenten voor een moderne look",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_19.jpg"
+  },
+  {
+    id: 10,
+    title: "Ramentinten",
+    subtitle: "Privacy en UV-bescherming voor uw auto",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Splitters-Lamborghini-Urus-Mk1-21178_7.jpg"
+  },
+  {
+    id: 11,
+    title: "Alloygator",
+    subtitle: "Velgbescherming op maat",
+    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Street-Pro-Rear-Side-Splitters-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18949_3.jpg"
+  },
+];
 
 const ProductSlider: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const flickityRef = useRef<Flickity | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          "https://www.website.wrapmasterdh.nl/wp-json/wp/v2/producten_wrapmaster?_embed"
-        );
-        const data: WPProduct[] = await response.json();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let flickityInstance: any = null;
 
-        const formattedProducts: Product[] = data.map((product) => ({
-          id: product.id,
-          title: product.title,
-          acf: product.acf,
-          featured_image: product._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg",
-        }));
-
-        setProducts(formattedProducts);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    let Flickity: typeof import('flickity');
-    if (typeof window !== 'undefined') {
-      import('flickity').then((flickityModule) => {
-        Flickity = flickityModule.default;
-        initializeFlickity();
-      });
-    }
-
-    function initializeFlickity() {
-      if (!isLoading && products.length > 0 && carouselRef.current && !flickityRef.current && Flickity) {
-        const flickityOptions: Flickity.Options = {
+    const initFlickity = async () => {
+      if (typeof window !== 'undefined' && carouselRef.current) {
+        const Flickity = (await import('flickity')).default;
+        flickityInstance = new Flickity(carouselRef.current, {
           cellAlign: 'left',
           contain: true,
           wrapAround: true,
@@ -86,27 +103,18 @@ const ProductSlider: React.FC = () => {
           autoPlay: 3000,
           pauseAutoPlayOnHover: true,
           draggable: true,
-        };
-
-        flickityRef.current = new Flickity(carouselRef.current, flickityOptions);
-      }
-    }
-
-    return () => {
-      if (flickityRef.current) {
-        flickityRef.current.destroy();
-        flickityRef.current = null;
+        });
       }
     };
-  }, [isLoading, products]);
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[400px] bg-white">
-        <div className="w-16 h-16 border-4 border-t-transparent  rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+    initFlickity();
+
+    return () => {
+      if (flickityInstance && typeof flickityInstance.destroy === 'function') {
+        flickityInstance.destroy();
+      }
+    };
+  }, []);
 
   return (
     <section className="py-12 h-100 overflow-hidden bg-white">
@@ -127,17 +135,17 @@ const ProductSlider: React.FC = () => {
                   <div className="relative h-96 w-full">
                     <Image
                       src={product.featured_image}
-                      alt={product.title.rendered}
+                      alt={product.title}
                       fill
                       priority
                       style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                   <CardContent className="flex flex-col justify-end flex-grow">
                     <div>
-                      <h3 className="text-l mt-5 font-semibold">{product.title.rendered}</h3>
-                      <p className="text-sm text-gray-500">{product.acf.subtitle}</p>
+                      <h3 className="text-l mt-5 font-semibold">{product.title}</h3>
+                      <p className="text-sm text-gray-500">{product.subtitle}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -151,3 +159,4 @@ const ProductSlider: React.FC = () => {
 };
 
 export default ProductSlider;
+

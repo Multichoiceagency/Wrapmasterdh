@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import "photoswipe/dist/photoswipe.css";
 
 export const metadata: Metadata = {
@@ -22,12 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      {/* Voeg de font-DIN class toe via Tailwind */}
       <body className="font-DIN">
         <Header />
         {children}
         <Footer />
+        <WhatsAppFloatingIcon phoneNumber="31638718893" />
       </body>
     </html>  
   );
 }
+

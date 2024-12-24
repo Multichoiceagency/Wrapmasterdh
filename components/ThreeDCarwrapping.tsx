@@ -24,12 +24,6 @@ const carWrapDesigns: ThreeDCarwrapping[] = [
   { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png", slug: "kleurverloop" },
   { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png", slug: "carbon-fiber" },
   { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png", slug: "holografisch" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_13.png", slug: "kleurverloop" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_14.png", slug: "carbon-fiber" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_15.png", slug: "holografisch" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_13.png", slug: "kleurverloop" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_14.png", slug: "carbon-fiber" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_15.png", slug: "holografisch" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {

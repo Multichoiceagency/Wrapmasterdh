@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 
-interface Banner {
+interface BoatSection {
   id: number;
   title: string;
   featured_image: string;
@@ -12,15 +12,15 @@ interface Banner {
   button_link?: string;
 }
 
-const banner: Banner = {
+const banner: BoatSection = {
   id: 1,
   title: "Professionele Print Folie",
-  featured_image: "/enes-website/memo-map/design/Changer_12.png",
+  featured_image: "/enes-website/memo-map/design/3dchanger/Changer_17.png",
   button_text: "Ontdek Meer",
   button_link: "/diensten/print-folie"
 };
 
-function PrintFolie() {
+function BoatSection() {
   return (
     <section className="relative text-white h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen overflow-hidden">
       <Image
@@ -28,7 +28,7 @@ function PrintFolie() {
         alt={banner.title}
         fill
         priority
-        sizes="100vw"
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
       />
       <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-end items-center pb-8 px-4">
@@ -45,5 +45,5 @@ function PrintFolie() {
   );
 }
 
-export default PrintFolie;
+export default BoatSection;
 
