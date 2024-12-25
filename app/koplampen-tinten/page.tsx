@@ -21,7 +21,7 @@ export default function KoplampenTintenDiensten() {
       {/* Logo Section */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Wij gebruiken</h2>
+          <h2 className="text-3xl font mb-8">Wij gebruiken</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8 items-center">
             {/* 3M Logo */}
             <div className="flex justify-center">
@@ -60,25 +60,25 @@ export default function KoplampenTintenDiensten() {
       {/* Overzicht van Koplampen Tinten */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8">Waarom kiezen voor Koplampen Tinten?</h2>
+          <h2 className="text-3xl font mb-8">Waarom kiezen voor Koplampen Tinten?</h2>
           <p className="text-lg mb-6 text-gray-700">
             Koplampen tinten is een stijlvolle manier om de uitstraling van uw auto te verbeteren. Het biedt een sportieve, unieke look en beschermt tegelijkertijd uw koplampen tegen kleine beschadigingen en UV-straling. 
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <p className="text-4xl font-bold text-red-600">500+</p>
+              <p className="text-4xl font text-red-600">500+</p>
               <p className="text-lg">Koplampen Getint</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">10+</p>
+              <p className="text-4xl font text-red-600">10+</p>
               <p className="text-lg">Jaren Ervaring</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">100%</p>
+              <p className="text-4xl font text-red-600">100%</p>
               <p className="text-lg">Tevreden Klanten</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">Premium</p>
+              <p className="text-4xl font text-red-600">Premium</p>
               <p className="text-lg">Materialen & Service</p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function KoplampenTintenDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">
+              <h2 className="text-3xl font mb-8 text-left">
                 Koplampen Tinten: Wat is het precies?
               </h2>
               <p className="text-lg mb-4 text-gray-700">
@@ -114,7 +114,7 @@ export default function KoplampenTintenDiensten() {
               <p className="text-lg font-semibold">
                 Geef uw koplampen een opvallende en stijlvolle look die bij uw voertuig past.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -127,18 +127,18 @@ export default function KoplampenTintenDiensten() {
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="flex flex-col justify-center order-2 lg:order-1">
-              <h2 className="text-3xl font-bold mb-8 text-left">Hoe lang duurt het koplampen tinten?</h2>
+              <h2 className="text-3xl font mb-8 text-left">Hoe lang duurt het koplampen tinten?</h2>
               <p className="text-lg mb-4 text-gray-700">
                 Het tinten van koplampen is een snel proces dat doorgaans binnen een paar uur voltooid kan worden. Afhankelijk van het gewenste tintniveau en de complexiteit kan dit tot 1 dag duren.
               </p>
-              <h4 className="text-2xl font-bold mb-4">Standaard Koplamp Tinten</h4>
+              <h4 className="text-2xl font mb-4">Standaard Koplamp Tinten</h4>
               <p className="text-lg mb-6 text-gray-700">
                 Een standaard koplamp tint kan meestal binnen een paar uur worden afgerond. Meer complexe tinten of speciale afwerkingen kunnen iets langer duren.
               </p>
               <p className="text-lg font-semibold">
                 Het tinten van uw koplampen is een eenvoudige en snelle manier om uw auto een sportieve en verfijnde uitstraling te geven.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -158,7 +158,7 @@ export default function KoplampenTintenDiensten() {
       {/* Wat kost Koplampen Tinten? */}
       <section id="kosten-koplampen-tinten" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Wat kost koplampen tinten?</h2>
+          <h2 className="text-3xl font mb-8 text-center">Wat kost koplampen tinten?</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             De kosten van koplampen tinten zijn afhankelijk van het type folie, de complexiteit van de installatie en het aantal koplampen dat getint moet worden.
           </p>
@@ -174,7 +174,7 @@ export default function KoplampenTintenDiensten() {
             </li>
           </ul>
           <div className="text-center">
-            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
               OFFERTE AANVRAGEN
             </button>
           </div>
@@ -187,7 +187,7 @@ export default function KoplampenTintenDiensten() {
       {/* Garanties */}
       <section id="garanties" className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Onze Garanties</h2>
+          <h2 className="text-3xl font mb-8 text-center">Onze Garanties</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             Bij Wrapmaster bieden we uitgebreide garanties en kwaliteitsservices voor uw koplamp tinten.
           </p>
@@ -211,7 +211,7 @@ export default function KoplampenTintenDiensten() {
       {/* Voordelen van Koplampen Tinten */}
       <section id="voordelen" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">De Voordelen van Koplampen Tinten</h2>
+          <h2 className="text-3xl font mb-8 text-center">De Voordelen van Koplampen Tinten</h2>
           <div className="flex flex-col items-center gap-8">
             <ul className="list-none text-lg mb-6 text-gray-700 text-center">
               <li>
@@ -258,7 +258,7 @@ export default function KoplampenTintenDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">Onderhoudstips voor Getinte Koplampen</h2>
+              <h2 className="text-3xl font mb-8 text-left">Onderhoudstips voor Getinte Koplampen</h2>
               <ol className="list-decimal list-inside text-lg mb-6 text-gray-700">
                 <li>
                   <strong>Regelmatig Reinigen:</strong> Reinig uw koplampen regelmatig om stof en vuil te verwijderen, wat de levensduur van de tintfolie verlengt.
@@ -281,7 +281,7 @@ export default function KoplampenTintenDiensten() {
       {/* Call to Action */}
       <section className="bg-red-600 py-16 text-white text-center animate-fadeInUp">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Klaar om uw koplampen te transformeren?</h2>
+          <h2 className="text-4xl font mb-6">Klaar om uw koplampen te transformeren?</h2>
           <p className="text-lg mb-8">
             Vraag vandaag nog een offerte aan en ontdek wat Wrapmaster voor u kan betekenen met koplamp tinten services.
           </p>

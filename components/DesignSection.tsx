@@ -10,7 +10,7 @@ interface DesignSectionProps {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light mb-2">
             {title}
-            <span className="font-bold"> {subtitle}</span>
+            <span className="font"> {subtitle}</span>
           </h2>
           <div className="space-y-6 mt-8">
             {description.map((paragraph, index) => (

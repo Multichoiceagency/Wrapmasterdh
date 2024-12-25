@@ -32,7 +32,7 @@ export default function PortfolioHero({
         />
       )}
       <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
-        <h1 className="text-4xl font-bold">{title}</h1>
+        <h1 className="text-4xl font">{title}</h1>
         <p className="mt-4">{description}</p>
       </div>
     </div>

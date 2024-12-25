@@ -60,7 +60,7 @@ export default function LogoSlider() {
 
   return (
     <div className="py-10 px-4 md:px-0">
-      <h2 className="text-center text-3xl font-bold mb-6">Onze Partners</h2>
+      <h2 className="text-center text-3xl font-light text-gray-800 font mb-6">Onze Partners</h2>
       
       <div className="max-w-6xl mx-auto">
         <Swiper

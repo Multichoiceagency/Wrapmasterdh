@@ -21,7 +21,7 @@ export default function VelgenbeschermingDiensten() {
       {/* Logo Section */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Wij gebruiken</h2>
+          <h2 className="text-3xl font mb-8">Wij gebruiken</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8 items-center">
             {/* 3M Logo */}
             <div className="flex justify-center">
@@ -60,25 +60,25 @@ export default function VelgenbeschermingDiensten() {
       {/* Overzicht van Velgenbescherming */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8">Waarom kiezen voor Velgenbescherming?</h2>
+          <h2 className="text-3xl font mb-8">Waarom kiezen voor Velgenbescherming?</h2>
           <p className="text-lg mb-6 text-gray-700">
             Velgenbescherming biedt uw velgen bescherming tegen schade door bijvoorbeeld stoepranden, steentjes en andere invloeden van buitenaf. Het verlengt de levensduur van uw velgen en behoudt hun oorspronkelijke uitstraling, terwijl uw auto er tegelijkertijd stijlvol uitziet.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <p className="text-4xl font-bold text-red-600">1000+</p>
+              <p className="text-4xl font text-red-600">1000+</p>
               <p className="text-lg">Velgen Beschermd</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">10+</p>
+              <p className="text-4xl font text-red-600">10+</p>
               <p className="text-lg">Jaren Ervaring</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">100%</p>
+              <p className="text-4xl font text-red-600">100%</p>
               <p className="text-lg">Tevreden Klanten</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">Premium</p>
+              <p className="text-4xl font text-red-600">Premium</p>
               <p className="text-lg">Materialen & Service</p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function VelgenbeschermingDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">
+              <h2 className="text-3xl font mb-8 text-left">
                 Velgenbescherming: Wat is het precies?
               </h2>
               <p className="text-lg mb-4 text-gray-700">
@@ -114,7 +114,7 @@ export default function VelgenbeschermingDiensten() {
               <p className="text-lg font-semibold">
                 Houd uw velgen in perfecte staat met professionele velgenbescherming.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -127,18 +127,18 @@ export default function VelgenbeschermingDiensten() {
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="flex flex-col justify-center order-2 lg:order-1">
-              <h2 className="text-3xl font-bold mb-8 text-left">Hoe lang duurt het om velgenbescherming aan te brengen?</h2>
+              <h2 className="text-3xl font mb-8 text-left">Hoe lang duurt het om velgenbescherming aan te brengen?</h2>
               <p className="text-lg mb-4 text-gray-700">
                 Het aanbrengen van velgenbescherming is een snel proces dat meestal binnen enkele uren voltooid kan worden, afhankelijk van het type bescherming en het aantal velgen. 
               </p>
-              <h4 className="text-2xl font-bold mb-4">Standaard Velgenbescherming</h4>
+              <h4 className="text-2xl font mb-4">Standaard Velgenbescherming</h4>
               <p className="text-lg mb-6 text-gray-700">
                 Een standaard installatie van transparante folie kan meestal binnen een halve dag worden uitgevoerd, terwijl meer complexe opties zoals gekleurde folies iets langer kunnen duren.
               </p>
               <p className="text-lg font-semibold">
                 Velgenbescherming is een snelle en effectieve manier om uw velgen te beschermen en er tegelijk stijlvol uit te laten zien.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -158,7 +158,7 @@ export default function VelgenbeschermingDiensten() {
       {/* Wat kost Velgenbescherming? */}
       <section id="kosten-velgenbescherming" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Wat kost velgenbescherming?</h2>
+          <h2 className="text-3xl font mb-8 text-center">Wat kost velgenbescherming?</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             De kosten van velgenbescherming hangen af van het type bescherming (folie of coating), de afwerking en het aantal velgen. 
           </p>
@@ -174,7 +174,7 @@ export default function VelgenbeschermingDiensten() {
             </li>
           </ul>
           <div className="text-center">
-            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
               OFFERTE AANVRAGEN
             </button>
           </div>
@@ -187,7 +187,7 @@ export default function VelgenbeschermingDiensten() {
       {/* Garanties */}
       <section id="garanties" className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Onze Garanties</h2>
+          <h2 className="text-3xl font mb-8 text-center">Onze Garanties</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             Bij Wrapmaster bieden we uitgebreide garanties en kwaliteitsservices voor uw velgenbescherming.
           </p>
@@ -211,7 +211,7 @@ export default function VelgenbeschermingDiensten() {
       {/* Voordelen van Velgenbescherming */}
       <section id="voordelen" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">De Voordelen van Velgenbescherming</h2>
+          <h2 className="text-3xl font mb-8 text-center">De Voordelen van Velgenbescherming</h2>
           <div className="flex flex-col items-center gap-8">
             <ul className="list-none text-lg mb-6 text-gray-700 text-center">
               <li>
@@ -255,7 +255,7 @@ export default function VelgenbeschermingDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">Onderhoudstips voor Velgenbescherming</h2>
+              <h2 className="text-3xl font mb-8 text-left">Onderhoudstips voor Velgenbescherming</h2>
               <ol className="list-decimal list-inside text-lg mb-6 text-gray-700">
                 <li>
                   <strong>Regelmatig Reinigen:</strong> Houd uw velgen schoon door ze regelmatig af te spoelen met water en een zachte doek om remstof en vuil te verwijderen.
@@ -278,7 +278,7 @@ export default function VelgenbeschermingDiensten() {
       {/* Call to Action */}
       <section className="bg-red-600 py-16 text-white text-center animate-fadeInUp">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Klaar om uw velgen te beschermen?</h2>
+          <h2 className="text-4xl font mb-6">Klaar om uw velgen te beschermen?</h2>
           <p className="text-lg mb-8">
             Vraag vandaag nog een offerte aan en ontdek wat Wrapmaster voor u kan betekenen met velgenbescherming.
           </p>

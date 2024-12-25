@@ -22,15 +22,15 @@ const diensten: Dienst[] = [
   { id: 14, titel: "Chrome Delete", subtitel: "Moderne look zonder chroom", afbeelding: "/enes-website/chrome-delete/chrome-delete.jpg", slug: "chrome-delete" },
   { id: 13, titel: "Detailing", subtitel: "Professionele autodetailing", afbeelding: "/enes-website/detailing/Brabus 800 (9 of 20).jpg", slug: "detailing" },
   { id: 12, titel: "Sterrenhemel", subtitel: "Luxueuze interieurverlichting", afbeelding: "/enes-website/ambient-light/Project- Ram-7.jpg", slug: "sterrenhemel" },
-  { id: 11, titel: "Gordel", subtitel: "Veiligheid met stijl", afbeelding: "/enes-website/gordelkleur/IMG_1750.JPG", slug: "gordel" },
+  { id: 11, titel: "Gordel", subtitel: "Veiligheid met stijl", afbeelding: "/enes-website/gordelkleur/IMG_1750.JPG", slug: "gordelkleur-veranderen" },
   { id: 10, titel: "Lampentinten", subtitel: "Stijlvolle lampaanpassingen", afbeelding: "/enes-website/lampen-tinten/lampentinten.jpg", slug: "lampentinten" },
   { id: 9, titel: "Ramentinten", subtitel: "Privacy en UV-bescherming", afbeelding: "/enes-website/ramentint/RSQ3-ramentint1.jpg", slug: "ramentinten" },
-  { id: 8, titel: "Reclame/Design", subtitel: "Opvallende voertuigreclame", afbeelding: "/enes-website/reclame/_GLA5951.jpg", slug: "reclame-design" },
+  { id: 8, titel: "Reclame/Design", subtitel: "Opvallende voertuigreclame", afbeelding: "/enes-website/reclame/_GLA5951.jpg", slug: "reclame-en-design" },
   { id: 7, titel: "Remklauwen", subtitel: "Customization van remklauwen", afbeelding: "/enes-website/remklauwen/Brabus 800 (5 of 7).jpg", slug: "remklauwen" },
   { id: 6, titel: "Velgen Poedercoaten", subtitel: "Duurzame velgafwerking", afbeelding: "/enes-website/velgen/WM-21.jpg", slug: "velgen-poedercoaten" },
   { id: 5, titel: "Alloygater", subtitel: "Velgbescherming op maat", afbeelding: "/enes-website/alloygator/AG-15-e1539160696939-300x300.jpg", slug: "alloygater" },
   { id: 4, titel: "Scooter/Motor Wrap", subtitel: "Stijlvolle wraps voor tweewielers", afbeelding: "/enes-website/memo/IMG_2501.JPG", slug: "scooter-motor-wrap" },
-  { id: 3, titel: "Security Alarm", subtitel: "Geavanceerde beveiligingssystemen", afbeelding: "/enes-website/memo-map/510x1000x0_proefdruk-alarm-stickers-0.jpg", slug: "security-alarm" },
+  { id: 3, titel: "Security Alarm", subtitel: "Geavanceerde beveiligingssystemen", afbeelding: "/enes-website/memo-map/510x1000x0_proefdruk-alarm-stickers-0.jpg", slug: "alarmbeveiliging-auto" },
   { id: 2, titel: "Bodykit", subtitel: "Custom bodykit installatie", afbeelding: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg", slug: "bodykit" },
   { id: 1, titel: "Folie Verwijderen", subtitel: "Professionele folieverwijdering", afbeelding: "/enes-website/wrapfolie/GLA_4446-scaled.jpg", slug: "folie-verwijderen" },
 ];
@@ -47,6 +47,7 @@ const OnzeDiensten: React.FC = () => {
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
@@ -82,10 +83,10 @@ const OnzeDiensten: React.FC = () => {
   }, [emblaApi, isLoaded]);
 
   return (
-    <section className="py-12 h-100 overflow-hidden bg-white">
+    <section className=" h-100 overflow-hidden bg-white">
       <div className="text-left mb-12 ml-12">
-        <h2 className="text-2xl font-medium text-gray-800">ONZE DIENSTEN</h2>
-        <p className="text-l text-gray-600 mt-2">Gespecialiseerd in carwrapping</p>
+        <h2 className="text-3xl font-light text-gray-800">ONZE DIENSTEN</h2>
+        <p className="text-l text-gray-600 mt-2">Bekijk onze diensten</p>
       </div>
       <div className="carousel-container overflow-hidden relative">
         <div className="embla" ref={emblaRef}>
@@ -110,7 +111,7 @@ const OnzeDiensten: React.FC = () => {
                     </div>
                     <CardContent className="flex flex-col justify-end flex-grow">
                       <div>
-                        <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
+                        <h3 className="text-xl mt-5 font-medium">{dienst.titel}</h3>
                         <p className="text-sm text-gray-500">{dienst.subtitel}</p>
                       </div>
                     </CardContent>
@@ -121,14 +122,14 @@ const OnzeDiensten: React.FC = () => {
           </div>
         </div>
         <button
-          className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+          className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 py-2 px-4 rounded-full z-10"
           onClick={scrollPrev}
           disabled={!prevBtnEnabled}
         >
           &#8592;
         </button>
         <button
-          className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+          className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 py-2 px-4 rounded-full z-10"
           onClick={scrollNext}
           disabled={!nextBtnEnabled}
         >

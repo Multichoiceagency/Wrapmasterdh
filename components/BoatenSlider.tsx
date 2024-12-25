@@ -37,6 +37,7 @@ const BoatenSlider: React.FC = () => {
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
@@ -81,7 +82,7 @@ const BoatenSlider: React.FC = () => {
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
         <div className="text-left mb-12 ml-12">
-          <h1 className="text-2xl font-medium text-gray-800">ONZE BOOTONTWERPEN</h1>
+          <h1 className="text-3xl font-light text-gray-800">ONZE BOOTONTWERPEN</h1>
           <p className="text-l text-gray-600 mt-2">Gespecialiseerd in bootdesign en customization</p>
         </div>
 
@@ -119,14 +120,14 @@ const BoatenSlider: React.FC = () => {
             </div>
           </div>
           <button
-            className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+            className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font py-2 px-4 rounded-full z-10"
             onClick={scrollPrev}
             disabled={!prevBtnEnabled}
           >
             &#8592;
           </button>
           <button
-            className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font-bold py-2 px-4 rounded-full z-10"
+            className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font py-2 px-4 rounded-full z-10"
             onClick={scrollNext}
             disabled={!nextBtnEnabled}
           >

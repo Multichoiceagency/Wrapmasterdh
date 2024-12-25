@@ -16,7 +16,7 @@ import BoatSection from '@/components/BoatSection'
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <HeroSection />
       <ServicesSection />
       <NewsEvents />

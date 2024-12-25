@@ -12,7 +12,7 @@ export default function PortfolioContent({ content, clientName, projectDate }: P
           <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
         </div>
         <div>
-          <h3 className="text-2xl font-bold mb-4">Project Details</h3>
+          <h3 className="text-2xl font mb-4">Project Details</h3>
           <ul className="space-y-2">
             <li><strong>Client:</strong> {clientName}</li>
             <li><strong>Date:</strong> {projectDate}</li>

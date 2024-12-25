@@ -25,7 +25,7 @@ export default function DienstContent({ content, features, gallery, slides }: Di
       
       {features.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Features</h2>
+          <h2 className="text-3xl font mb-8">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex flex-col items-center text-center">
@@ -40,7 +40,7 @@ export default function DienstContent({ content, features, gallery, slides }: Di
       
       {gallery.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Gallery</h2>
+          <h2 className="text-3xl font mb-8">Gallery</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {gallery.map((image, index) => (
               <div key={index} className="relative aspect-square">
@@ -53,7 +53,7 @@ export default function DienstContent({ content, features, gallery, slides }: Di
 
       {slides && slides.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Slides</h2>
+          <h2 className="text-3xl font mb-8">Slides</h2>
           <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
             {slides.map((slide, index) => (
               <div

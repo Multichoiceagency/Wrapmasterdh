@@ -5,38 +5,9 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-/* Voeg hier de DIN-fonts toe */
-@font-face {
-  font-family: 'DIN';
-  src: url('/fonts/DIN.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DIN';
-  src: url('/fonts/DIN-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DIN';
-  src: url('/fonts/DIN-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DIN';
-  src: url('/fonts/DIN-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-}
 
 /* Pas de standaard body font aan naar DIN */
 body {
-  font-family: 'DIN', sans-serif;
   margin: 0;
   line-height: normal;
   -webkit-font-smoothing: antialiased; /* Ensures better font rendering on WebKit browsers */
@@ -125,10 +96,10 @@ body {
 
 @layer base {
   * {
-    @layer border-border;
+    @apply border-border;
   }
   body {
-    @layer bg-background;
+    @apply bg-background text-foreground;
   }
 }
 
@@ -188,3 +159,4 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
+

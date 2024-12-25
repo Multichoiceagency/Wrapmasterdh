@@ -73,12 +73,12 @@ const WallpaperPage = () => {
     <>
       {/* Header Section */}
       <section className="w-full h-[50vh] bg-black flex items-center justify-center">
-        <h1 className="text-5xl font-bold text-white uppercase">Wallpapers downloaden</h1>
+        <h1 className="text-5xl font text-white uppercase">Wallpapers downloaden</h1>
       </section>
 
       {/* Wallpapers Section */}
       <section className="max-w-7xl mx-auto mt-20">
-        <h2 className="text-5xl font-bold text-center uppercase mb-16">Download Jouw Favoriete Wallappers</h2>
+        <h2 className="text-5xl font text-center uppercase mb-16">Download Jouw Favoriete Wallappers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {wallpapers.map((wallpaper) => (
             <div key={wallpaper.id} className="group relative overflow-hidden rounded-md shadow-md">
@@ -95,14 +95,14 @@ const WallpaperPage = () => {
 
               {/* Details and Download Button */}
               <div className="p-4 text-center">
-                <h3 className="text-l font-bold uppercase group-hover:text-red-600 transition-colors">
+                <h3 className="text-l font uppercase group-hover:text-red-600 transition-colors">
                   {wallpaper.title}
                 </h3>
                 <p className="text-gray-500 mt-2">{wallpaper.subtitle}</p>
                 <a
                   href={wallpaper.download_link}
                   download
-                  className="mt-4 inline-block px-6 py-2 bg-red-600 text-white font-bold uppercase rounded hover:bg-red-700 transition"
+                  className="mt-4 inline-block px-6 py-2 bg-red-600 text-white font uppercase rounded hover:bg-red-700 transition"
                 >
                   Downloaden
                 </a>

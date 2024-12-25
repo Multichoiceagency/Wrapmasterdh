@@ -39,7 +39,7 @@ export default function TeamSection({ videoUrl, teamMembers }: TeamSectionProps)
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Ons Team</h1>
+          <h1 className="text-4xl md:text-5xl font text-white">Ons Team</h1>
         </div>
       </div>
 

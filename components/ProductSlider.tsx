@@ -86,6 +86,7 @@ const products: Product[] = [
 const ProductSlider: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
@@ -107,7 +108,7 @@ const ProductSlider: React.FC = () => {
   return (
     <section className="py-12 overflow-hidden bg-white">
       <div className="text-left mb-12 ml-12">
-        <h2 className="text-2xl font-medium text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
+        <h2 className="text-3xl font-light text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
         <p className="text-l text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
       </div>
 

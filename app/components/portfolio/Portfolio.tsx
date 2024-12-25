@@ -55,7 +55,7 @@ const Portfolio: React.FC = () => {
   return (
     <section className="py-12 h-100 overflow-hidden">
       <div className="text-left mb-12 ml-12">
-        <h2 className="text-3xl font-bold text-gray-800">PORTFOLIO</h2>
+        <h2 className="text-3xl font text-gray-800">PORTFOLIO</h2>
       </div>
 
       <div className="carousel-container overflow-hidden">

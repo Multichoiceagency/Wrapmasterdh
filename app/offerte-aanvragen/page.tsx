@@ -64,7 +64,7 @@ export default function OfferteAanvragen() {
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-start justify-center px-4 lg:px-16">
         {/* Formulier sectie */}
         <div className="bg-white shadow-lg rounded-lg w-full lg:w-1/2 p-8 space-y-6">
-          <h2 className="text-3xl font-bold mb-4">Vraag een offerte aan.</h2>
+          <h2 className="text-3xl font mb-4">Vraag een offerte aan.</h2>
           <p className="text-gray-700 mb-6">
             Vul je gegevens in en wij zorgen ervoor dat je een vrijblijvende, op maat gemaakte offerte ontvangt voor een carwrap.
           </p>
@@ -188,7 +188,7 @@ export default function OfferteAanvragen() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition"
+              className="w-full bg-yellow-500 text-white font py-3 rounded hover:bg-yellow-600 transition"
             >
               Verstuur Offerte
             </button>
@@ -205,7 +205,7 @@ export default function OfferteAanvragen() {
             className="mb-6"
           />
           <div className="text-center text-gray-700 space-y-2">
-            <h3 className="text-2xl font-bold">Contact</h3>
+            <h3 className="text-2xl font">Contact</h3>
             <p>Westvlietweg 72-L</p>
             <p>2495 AA, Den Haag</p>
             <p>070 - 225 07 21</p>

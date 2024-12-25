@@ -31,6 +31,7 @@ const carWrapDesigns: ThreeDCarwrapping[] = [
 const ThreeDCarwrapping: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
@@ -59,8 +60,8 @@ const ThreeDCarwrapping: React.FC = () => {
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
         <div className="text-left mb-12 ml-12">
-          <h1 className="text-2xl font-medium text-gray-800">3D CARWRAPPING ONTWERPEN</h1>
-          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in 3D carwrapping en auto customization</p>
+          <h1 className="text-3xl font-light text-gray-800">3D CARWRAPPING ONTWERPEN</h1>
+          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in 3D carwrapping en auto printfolie</p>
         </div>
 
         <div className="carousel-container overflow-hidden">

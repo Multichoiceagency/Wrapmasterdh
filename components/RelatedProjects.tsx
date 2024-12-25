@@ -21,7 +21,7 @@ export default function RelatedProjects({ relatedProjects }: RelatedProjectsProp
   return (
     <div className="container relative my-16">
       <div className="text-center mb-12 position-relative z-index-1">
-        <h2 className="text-3xl font-bold">Related Projects</h2>
+        <h2 className="text-3xl font">Related Projects</h2>
       </div>
       {Array.isArray(relatedProjects) && relatedProjects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

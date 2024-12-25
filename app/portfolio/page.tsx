@@ -96,7 +96,7 @@ const PortfolioPage = () => {
     <div>
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] bg-gray-800 text-white flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Our Portfolio</h1>
+        <h1 className="text-4xl font">Our Portfolio</h1>
       </div>
 
       {/* Portfolio Grid */}

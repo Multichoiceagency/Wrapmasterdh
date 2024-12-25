@@ -1,9 +1,16 @@
 import { Metadata } from "next";
+import { Roboto } from 'next/font/google';
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import "photoswipe/dist/photoswipe.css";
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "Wrapmaster - Specialisten in Car wrapping",
@@ -22,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
-      <body className="font-DIN">
+    <html lang="nl" className={roboto.className}>
+      <body>
         <Header />
         {children}
         <Footer />

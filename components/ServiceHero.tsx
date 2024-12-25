@@ -52,7 +52,7 @@ export default function ServiceHero({
           )}
           <div className="absolute inset-0 bg-black bg-opacity-40" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10 px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{title}</h1>
+            <h1 className="text-4xl md:text-5xl font mb-6">{title}</h1>
             <p className="max-w-2xl text-lg md:text-xl mb-8">{description}</p>
             <a
               href={buttonLink}

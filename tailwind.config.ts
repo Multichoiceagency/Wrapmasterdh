@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 import animatePlugin from 'tailwindcss-animate';
 
-export default {
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -11,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-		sans: ['DIN', 'sans-serif'], // DIN als standaard sans-serif font
-        DIN: ['DIN','sans-serif'], // Specifieke referentie als je direct DIN wilt gebruiken
+        sans: ['Roboto', 'sans-serif'], // Roboto as default sans-serif font
+        roboto: ['Roboto', 'sans-serif'], // Specific reference if you want to use Roboto directly
       },
       keyframes: {
         fadeInUp: {
@@ -75,18 +75,18 @@ export default {
         xl: '1200px',
         '2xl': '1400px',
       },
-	  fontSize: {
-		h1: ['1.25rem', { lineHeight: '1.875rem' }], // 40px / 32px = 1.25 rem
-		h2: ['1rem', { lineHeight: '1.5625rem' }],  // 32px / 32px = 1 rem
-		h3: ['0.875rem', { lineHeight: '1.125rem' }], // 28px / 32px = 0.875 rem
-		h4: ['0.75rem', { lineHeight: '1rem' }],   // 24px / 32px = 0.75 rem
-		h5: ['0.625rem', { lineHeight: '0.875rem' }], // 20px / 32px = 0.625 rem
-		h6: ['0.5rem', { lineHeight: '0.75rem' }], // 16px / 32px = 0.5 rem
-		body: ['0.5625rem', { lineHeight: '0.875rem' }], // 18px / 32px = 0.5625 rem
-	  },	  
+      fontSize: {
+        h1: ['1.25rem', { lineHeight: '1.9rem' }], // 40px / 32px = 1.25 rem
+        h2: ['1rem', { lineHeight: '1.5625rem' }],  // 32px / 32px = 1 rem
+        h3: ['0.875rem', { lineHeight: '1.125rem' }], // 28px / 32px = 0.875 rem
+        h4: ['0.75rem', { lineHeight: '1rem' }],   // 24px / 32px = 0.75 rem
+        h5: ['0.625rem', { lineHeight: '0.875rem' }], // 20px / 32px = 0.625 rem
+        h6: ['0.5rem', { lineHeight: '0.75rem' }], // 16px / 32px = 0.5 rem
+        body: ['0.5625rem', { lineHeight: '0.875rem' }], // 18px / 32px = 0.5625 rem
+      },
       fontWeight: {
-        h1: '700',
-        h2: '400',
+        h1: '300',
+        h2: '300',
         h3: '400',
         h4: '500',
         h5: '500',
@@ -143,4 +143,7 @@ export default {
     },
   },
   plugins: [animatePlugin],
-} satisfies Config;
+};
+
+export default config;
+

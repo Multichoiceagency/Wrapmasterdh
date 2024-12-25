@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
             <div className="absolute inset-x-0 bottom-20 md:bottom-28 flex flex-col items-center text-center text-white z-10 px-4">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-regular mb-4 animate-fade-in">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 animate-fade-in">
                 {slide.heroTitle}
               </h1>
               <a

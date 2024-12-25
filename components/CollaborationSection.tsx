@@ -43,13 +43,13 @@ export default function CollaborationSection({
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Samenwerking</h1>
+          <h1 className="text-4xl md:text-5xl font text-white">Samenwerking</h1>
         </div>
       </div>
 
       {/* Brands Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Alle Folie Merken</h2>
+        <h2 className="text-3xl font mb-8 text-center">Alle Folie Merken</h2>
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}
@@ -100,7 +100,7 @@ export default function CollaborationSection({
 
       {/* Partners Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Partners</h2>
+        <h2 className="text-3xl font mb-8 text-center">Partners</h2>
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}

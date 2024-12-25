@@ -7,9 +7,9 @@ export default function BodykitInstallatieSection() {
     <div className="flex flex-col lg:flex-row py-8 lg:py-16">
       {/* Content Section */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-8">
+        <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
           Professionele Bodykit Installatie
-        </h1>
+        </h2>
         <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
           <p>
             Transformeer uw voertuig met onze expertise in bodykit installatie. Onze vakkundige 
@@ -29,7 +29,7 @@ export default function BodykitInstallatieSection() {
         </div>
         <a 
           href="/diensten/bodykit-installatie"
-          className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+          className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
         >
           Ontdek Mogelijkheden
         </a>

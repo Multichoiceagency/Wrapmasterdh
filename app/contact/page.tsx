@@ -43,7 +43,7 @@ export default function ContactPage() {
         <div className="bg-white shadow-lg rounded-lg flex flex-col lg:flex-row">
           {/* Contactformulier */}
           <div className="w-full lg:w-2/3 p-8">
-            <h2 className="text-3xl font-bold mb-4">Neem contact met ons op</h2>
+            <h2 className="text-3xl font mb-4">Neem contact met ons op</h2>
             <p className="text-gray-700 mb-6">
               Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met je op.
             </p>
@@ -79,7 +79,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition"
+                className="w-full bg-yellow-500 text-white font py-3 rounded hover:bg-yellow-600 transition"
               >
                 Verstuur Bericht
               </button>
@@ -88,7 +88,7 @@ export default function ContactPage() {
 
           {/* Contactgegevens */}
           <div className="w-full lg:w-1/3 bg-gray-100 p-8 flex flex-col justify-center">
-            <h3 className="text-2xl font-bold mb-4">Contactgegevens</h3>
+            <h3 className="text-2xl font mb-4">Contactgegevens</h3>
             <p className="text-gray-700 mb-2">Westvlietweg 72-L</p>
             <p className="text-gray-700 mb-2">2495 AA, Den Haag</p>
             <p className="text-gray-700 mb-2">070 - 225 07 21</p>

@@ -40,7 +40,7 @@ export default function ServiceContent({
       {/* Features */}
       {features && features.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">Features</h2>
+          <h2 className="text-3xl font text-center mb-12">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="text-center p-6">
@@ -62,7 +62,7 @@ export default function ServiceContent({
       {/* Gallery */}
       {gallery && gallery.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">Gallery</h2>
+          <h2 className="text-3xl font text-center mb-12">Gallery</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {gallery.map((image, index) => (
               <div key={index} className="aspect-[4/3] relative overflow-hidden rounded-lg">
@@ -82,7 +82,7 @@ export default function ServiceContent({
       {/* Testimonials */}
       {testimonials && testimonials.length > 0 && (
         <div>
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+          <h2 className="text-3xl font text-center mb-12">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-lg">

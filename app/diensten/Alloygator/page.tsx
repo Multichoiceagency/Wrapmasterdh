@@ -94,9 +94,10 @@ const products: Product[] = [
   },
 ];
 
-export default function DienstPage() {
+export default function Carwrapping() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
   const [isLoaded, setIsLoaded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
@@ -138,7 +139,7 @@ export default function DienstPage() {
       <section className="flex flex-col lg:flex-row py-8 lg:py-16">
         {/* Text Content */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font mb-4 lg:mb-8">
             {dienstData.title}
           </h1>
           <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
@@ -156,7 +157,7 @@ export default function DienstPage() {
           </div>
           <Link 
             href="/contact"
-            className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
           >
             NEEM CONTACT OP
           </Link>

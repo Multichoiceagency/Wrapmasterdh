@@ -22,7 +22,7 @@ export default function PortfolioGallery({ mediaGallery }: PortfolioGalleryProps
   return (
     <div className="container relative my-16">
       <div className="text-center mb-12 position-relative z-index-1">
-        <h2 className="text-3xl font-bold">Project Gallery</h2>
+        <h2 className="text-3xl font">Project Gallery</h2>
       </div>
       <Gallery>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

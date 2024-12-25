@@ -92,7 +92,7 @@ const NewCustomSection = () => {
           />
           {/* Overlay text on image */}
           <div className="absolute inset-0 flex flex-col justify-start items-start text-left bg-black bg-opacity-30 p-6 md:p-12">
-            <h3 className="text-3xl md:text-xl font-bold uppercase text-white">{customSlides[2].video_titel}</h3>
+            <h3 className="text-3xl md:text-xl font uppercase text-white">{customSlides[2].video_titel}</h3>
             <p className="text-base md:text-l font-light mt-2 md:mt-4 text-white max-w-md">{customSlides[2].video_beschrijving}</p>
             <Link href={customSlides[2].link}>
               <button className="mt-4 md:mt-6 px-4 py-2 md:py-3 bg-black text-white text-sm md:text-base font-semibold hover:bg-gray-800 transition">

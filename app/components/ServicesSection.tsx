@@ -88,12 +88,12 @@ const ServicesSection: React.FC = () => {
           {services.acf.service_1_link ? (
             <a
               href={services.acf.service_1_link}
-              className="text-sm sm:text-base md:text-lg font-bold tracking-wider hover:text-red-900"
+              className="text-sm sm:text-base md:text-lg font tracking-wider hover:text-red-900"
             >
               {services.acf.service_1}
             </a>
           ) : (
-            <span className="text-sm sm:text-base md:text-lg font-bold tracking-wider">
+            <span className="text-sm sm:text-base md:text-lg font tracking-wider">
               {services.acf.service_1}
             </span>
           )}
@@ -102,12 +102,12 @@ const ServicesSection: React.FC = () => {
           {services.acf.service_2_link ? (
             <a
               href={services.acf.service_2_link}
-              className="text-sm sm:text-base md:text-lg font-bold tracking-wider hover:text-red-900"
+              className="text-sm sm:text-base md:text-lg font tracking-wider hover:text-red-900"
             >
               {services.acf.service_2}
             </a>
           ) : (
-            <span className="text-sm sm:text-base md:text-lg font-bold tracking-wider">
+            <span className="text-sm sm:text-base md:text-lg font tracking-wider">
               {services.acf.service_2}
             </span>
           )}
@@ -116,12 +116,12 @@ const ServicesSection: React.FC = () => {
           {services.acf.service_3_link ? (
             <a
               href={services.acf.service_3_link}
-              className="text-sm sm:text-base md:text-lg font-bold tracking-wider hover:text-red-900"
+              className="text-sm sm:text-base md:text-lg font tracking-wider hover:text-red-900"
             >
               {services.acf.service_3}
             </a>
           ) : (
-            <span className="text-sm sm:text-base md:text-lg font-bold tracking-wider">
+            <span className="text-sm sm:text-base md:text-lg font tracking-wider">
               {services.acf.service_3}
             </span>
           )}
@@ -130,12 +130,12 @@ const ServicesSection: React.FC = () => {
           {services.acf.service_4_link ? (
             <a
               href={services.acf.service_4_link}
-              className="text-sm sm:text-base md:text-lg font-bold tracking-wider hover:text-red-900"
+              className="text-sm sm:text-base md:text-lg font tracking-wider hover:text-red-900"
             >
               {services.acf.service_4}
             </a>
           ) : (
-            <span className="text-sm sm:text-base md:text-lg font-bold tracking-wider">
+            <span className="text-sm sm:text-base md:text-lg font tracking-wider">
               {services.acf.service_4}
             </span>
           )}
