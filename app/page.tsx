@@ -12,6 +12,7 @@ import PrintFolie from '@/components/PrintFolie'
 import NewCustomSection from '@/components/NewCustomSection'
 import ThreeDCarwrapping from '@/components/ThreeDCarwrapping'
 import BoatSection from '@/components/BoatSection'
+import BoatenSlider from '@/components/BoatenSlider'
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <PrintFolie  />
       <ThreeDCarwrapping />
       <NewCustomSection />
+      <BoatenSlider />
       <BoatSection />
       <LogoSlider />
     </div>

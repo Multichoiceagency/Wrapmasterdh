@@ -34,27 +34,9 @@ const BoatenSlider: React.FC = () => {
     }, 
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
-
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
 
   const handleImageLoad = useCallback(() => {
     setImagesLoaded((prev) => {
@@ -119,20 +101,6 @@ const BoatenSlider: React.FC = () => {
               ))}
             </div>
           </div>
-          <button
-            className="embla__prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font py-2 px-4 rounded-full z-10"
-            onClick={scrollPrev}
-            disabled={!prevBtnEnabled}
-          >
-            &#8592;
-          </button>
-          <button
-            className="embla__next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 text-gray-800 font py-2 px-4 rounded-full z-10"
-            onClick={scrollNext}
-            disabled={!nextBtnEnabled}
-          >
-            &#8594;
-          </button>
         </div>
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -202,20 +170,6 @@ const BoatenSlider: React.FC = () => {
         }
         .carousel-container {
           min-height: 650px;
-        }
-        .embla__prev,
-        .embla__next {
-          opacity: 0.7;
-          transition: opacity 0.3s;
-        }
-        .embla__prev:hover,
-        .embla__next:hover {
-          opacity: 1;
-        }
-        .embla__prev:disabled,
-        .embla__next:disabled {
-          opacity: 0.3;
-          cursor: not-allowed;
         }
       `}</style>
     </>
