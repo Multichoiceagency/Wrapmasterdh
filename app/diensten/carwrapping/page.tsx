@@ -20,8 +20,9 @@ const socialMedia = {
 const dienstData = {
   title: "Carwrapping bij Wrapmaster",
   description: "Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
+  heroImage: "/enes-website/auto-wrappen/urus-khaki/BlndrAgency_Wrapmaster_URUS (1 of 14).jpg",
+  contentImage1: "/enes-website/auto-wrappen/rsq3/rsq3.jpg",
+  contentImage3: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (23 of 24).jpg",
   contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
 };
 
@@ -203,16 +204,16 @@ export default function Carwrapping() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"
