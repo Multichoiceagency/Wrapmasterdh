@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
     title: 'Wrapmaster Den Haag | Car Wrapping, PPF, Sterrenhemel & Window Tinting',
     description: 'Wrapmaster Den Haag: Specialist in car wrapping, Paint Protection Film (PPF), sterrenhemel voor auto-interieurs en professionele raam tinting. Verhoog en bescherm je voertuig met op maat gemaakte premium oplossingen.',

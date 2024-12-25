@@ -37,3 +37,7 @@ next-env.d.ts
 
 # media-folder
 public/enes-website
+/dist/_next/static/chunks
+/dist/_next/static
+/dist
+ 
