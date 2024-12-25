@@ -1,269 +1,363 @@
 'use client';
 
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { Card, CardContent } from "@/components/ui/card";
+import OnzeDiensten from '@/app/components/Diensten/Diensten';
+import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const dienstData = {
-  title: "Professionele Bodykit Installatie",
-  description: "Transformeer uw voertuig met onze expertise in bodykit installatie. Onze vakkundige technici zorgen voor een naadloze integratie van hoogwaardige bodykits, waardoor uw auto een unieke en opvallende uitstraling krijgt.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  gridImages: [
-    "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
-    "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_2.png"
-  ]
+const socialMedia = {
+  instagram: 'https://www.instagram.com/wrapmasterdh/',
+  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
+  whatsapp: 'https://wa.me/31638718893',
+  facebook: 'https://www.facebook.com/WrapmasterDH',
 };
 
-interface Product {
-  id: number;
-  title: string;
-  subtitle: string;
-  featured_image: string;
-}
+const dienstData = {
+  title: "Bodykit Montage bij Wrapmaster",
+  description: "Geef Jouw Auto een Unieke en Sportieve Look. Professionele montage van bodykits voor een verbeterde aerodynamica en opvallende uitstraling.",
+  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
+  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
+  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+};
 
-const products: Product[] = [
+const sliderImages = [
+  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
+  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
+  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
+  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+];
+
+const reels = [
   {
     id: 1,
-    title: "Velgen",
-    subtitle: "Stijlvolle velgen voor uw auto",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png"
+    video: "/video/audi-rsq8.mp4",
+    likes: "65.2k",
+    comments: "195",
   },
   {
     id: 2,
-    title: "Remklauwen",
-    subtitle: "Hoogwaardige remklauwen voor betere prestaties",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg"
+    video: "/video/audi-rsq8.mp4",
+    likes: "120k",
+    comments: "345",
   },
   {
     id: 3,
-    title: "Uitlaten",
-    subtitle: "Sportuitlaten voor een krachtig geluid",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg"
+    video: "/video/audi-rsq8.mp4",
+    likes: "45.6k",
+    comments: "89",
   },
   {
     id: 4,
-    title: "Bodykits",
-    subtitle: "Custom bodykits voor een unieke look",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg"
-  },
-  {
-    id: 5,
-    title: "Interieur Accessoires",
-    subtitle: "Luxe accessoires voor uw interieur",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_2.png"
-  },
-  {
-    id: 6,
-    title: "Verlichting",
-    subtitle: "LED-verlichting voor extra stijl en veiligheid",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-3-Lamborghini-Urus-Mk1-16126_1.jpg"
-  },
-  {
-    id: 7,
-    title: "Carwrapping",
-    subtitle: "Transformeer uw auto met premium wraps",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg"
-  },
-  {
-    id: 8,
-    title: "PPF (Paint Protection Film)",
-    subtitle: "Bescherm uw lak tegen steenslag en krassen",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg"
-  },
-  {
-    id: 9,
-    title: "Chrome Delete",
-    subtitle: "Vervang chroom accenten voor een moderne look",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_19.jpg"
-  },
-  {
-    id: 10,
-    title: "Ramentinten",
-    subtitle: "Privacy en UV-bescherming voor uw auto",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Splitters-Lamborghini-Urus-Mk1-21178_7.jpg"
-  },
-  {
-    id: 11,
-    title: "Alloygator",
-    subtitle: "Velgbescherming op maat",
-    featured_image: "/enes-website/memo-map/bodykit/eng_pl_Street-Pro-Rear-Side-Splitters-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18949_3.jpg"
+    video: "/video/audi-rsq8.mp4",
+    likes: "78.9k",
+    comments: "230",
   },
 ];
 
-export default function Carwrapping() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [imagesLoaded, setImagesLoaded] = useState(0);
+export default function BodykitMontage() {
+  const [showMore, setShowMore] = useState(false);
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'center',
+      slidesToScroll: 1,
+    },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
 
-  const handleImageLoad = useCallback(() => {
-    setImagesLoaded((prev) => {
-      const newCount = prev + 1;
-      if (newCount >= 3 && !isLoaded) {
-        setIsLoaded(true);
-      }
-      return newCount;
-    });
-  }, [isLoaded]);
+  const shortText = (
+    <p>
+      Wil je jouw auto een compleet nieuwe uitstraling geven? Kies voor bodykit montage bij Wrapmaster! Met een professioneel gemonteerde bodykit verbeter je niet alleen de aerodynamica van jouw voertuig, maar geef je het ook een sportieve en opvallende look. Ons team met jarenlange ervaring zorgt voor een perfecte installatie, zodat jouw auto er strak uitziet en optimaal presteert.
+    </p>
+  );
 
-  useEffect(() => {
-    if (emblaApi && isLoaded) {
-      emblaApi.reInit();
-    }
-  }, [emblaApi, isLoaded]);
+  const fullText = (
+    <>
+      {shortText}
+      <h3 className="mt-6 text-xl font-semibold">Wat is een Bodykit?</h3>
+      <p className="mt-3">
+        Een bodykit is een set carrosserie-onderdelen die speciaal is ontworpen om de stijl en prestaties van jouw voertuig te verbeteren. Denk hierbij aan bumpers, sideskirts, spoilers en diffuserkits. Een bodykit kan subtiel zijn voor een verfijnde look, of juist opvallend voor een agressief en sportief ontwerp.
+      </p>
+      <h4 className="mt-4 text-lg font-semibold">Voordelen van een bodykit:</h4>
+      <ul className="list-disc list-inside mt-2">
+        <li>Sportieve uitstraling: Geef jouw auto een dynamische en unieke look.</li>
+        <li>Verbeterde aerodynamica: Verhoog de stabiliteit en prestaties van je voertuig.</li>
+        <li>Personalisatie: Creëer een stijl die volledig aansluit bij jouw persoonlijke smaak.</li>
+        <li>Waardeverhoging: Een professioneel gemonteerde bodykit voegt waarde toe aan jouw auto.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Bodykit Montage bij Wrapmaster</h3>
+      <p className="mt-3">
+        Bij Wrapmaster zijn we gespecialiseerd in de montage van diverse soorten bodykits. Of je nu kiest voor een subtiele styling of een complete transformatie, wij werken met precisie en zorgen voor een naadloze installatie. Ons team heeft ervaring met alle merken en modellen, zodat je verzekerd bent van een perfecte pasvorm en afwerking.
+      </p>
+      <h4 className="mt-4 text-lg font-semibold">Wat wij bieden:</h4>
+      <ul className="list-disc list-inside mt-2">
+        <li>Montage van bumpers, sideskirts, spoilers en diffuserkits.</li>
+        <li>Aanpassingen aan bestaande bodykits voor een perfecte pasvorm.</li>
+        <li>Combinatie met wrapping of lakwerk voor een compleet nieuwe uitstraling.</li>
+        <li>Advies over de beste bodykits die passen bij jouw auto en stijl.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Wrapmaster?</h3>
+      <p className="mt-3">
+        Bij Wrapmaster combineren we vakmanschap met hoogwaardige materialen om jouw auto een unieke uitstraling te geven. Ons team met jarenlange ervaring zorgt ervoor dat jouw bodykit perfect wordt geïnstalleerd, zonder compromissen op kwaliteit of veiligheid.
+      </p>
+      <h4 className="mt-4 text-lg font-semibold">Voordelen van Wrapmaster:</h4>
+      <ul className="list-disc list-inside mt-2">
+        <li>Professionele montage: Wij garanderen een veilige en nauwkeurige installatie van jouw bodykit.</li>
+        <li>Hoogwaardige afwerking: Elk detail wordt met zorg behandeld voor een strak eindresultaat.</li>
+        <li>Persoonlijke service: Samen met jou kiezen we de juiste bodykit die past bij jouw wensen en voertuig.</li>
+        <li>Snelle doorlooptijd: Wij zorgen ervoor dat je snel weer de weg op kunt met jouw vernieuwde auto.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Onze Werkwijze</h3>
+      <ol className="list-decimal list-inside mt-2">
+        <li>Adviesgesprek: We bespreken jouw wensen en adviseren over de beste bodykit voor jouw auto.</li>
+        <li>Voorbereiding: Jouw auto wordt grondig geïnspecteerd en voorbereid voor de montage.</li>
+        <li>Montage: Onze professionals monteren de bodykit nauwkeurig, waarbij we zorgen voor een perfecte pasvorm.</li>
+        <li>Afwerking: We werken de kit netjes af en testen of alles stevig en veilig is geïnstalleerd.</li>
+      </ol>
+      <h3 className="mt-6 text-xl font-semibold">Populaire Bodykit Onderdelen</h3>
+      <p className="mt-3">
+        Bij Wrapmaster kunnen we een breed scala aan bodykit-onderdelen installeren, waaronder:
+      </p>
+      <ul className="list-disc list-inside mt-2">
+        <li>Frontbumpers en achterbumpers: Voor een agressieve en sportieve look.</li>
+        <li>Sideskirts: Voor een lager ogende en aerodynamische uitstraling.</li>
+        <li>Spoilers: Verhoog de downforce en verbeter de stabiliteit.</li>
+        <li>Diffusers: Voeg een dynamisch accent toe en verbeter de luchtstroom.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Transformeer Jouw Auto met Wrapmaster Bodykit Montage!</h3>
+      <p className="mt-3">
+        Wil je jouw auto een unieke en sportieve look geven? Kies voor de expertise van Wrapmaster en laat jouw bodykit professioneel installeren. Neem vandaag nog contact met ons op voor meer informatie of een vrijblijvende offerte. Samen maken we van jouw auto een echte blikvanger!
+      </p>
+    </>
+  );
 
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="relative h-screen">
-        <Image
-          src={dienstData.heroImage}
-          alt={dienstData.title}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-20">
-          <div className="text-left text-white px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-6xl mb-2">{dienstData.title}</h1>
-            <p className="text-lg md:text-xl">{dienstData.description}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="flex flex-col lg:flex-row py-8 lg:py-16">
-        {/* Text Content */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font mb-4 lg:mb-8">
-            {dienstData.title}
-          </h1>
-          <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
-            <p>{dienstData.description}</p>
-            <p className="mt-3 lg:mt-4">
-              Van subtiele verbeteringen tot dramatische stijlveranderingen, wij bieden een breed 
-              scala aan opties om aan uw wensen te voldoen. Elk onderdeel wordt zorgvuldig 
-              geselecteerd en geïnstalleerd voor optimale pasvorm en duurzaamheid.
-            </p>
-            <p className="mt-3 lg:mt-4">
-              Onze bodykit installatie omvat niet alleen esthetische verbeteringen, maar kan ook 
-              de aerodynamica en prestaties van uw voertuig verbeteren. Laat ons uw auto 
-              transformeren tot een echte blikvanger op de weg.
-            </p>
-          </div>
-          <Link 
-            href="/contact"
-            className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-          >
-            NEEM CONTACT OP
-          </Link>
-        </div>
-
-        {/* Image Section */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
-          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
-            <Image
-              src={dienstData.contentImage}
-              alt={dienstData.title}
-              fill
-              className="object-cover object-center transform lg:transform-none scale-x-[-1] lg:scale-x-100"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Product Slider Section */}
-      <section className="py-12 overflow-hidden bg-gray-100">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
-          <p className="text-xl text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
-        </div>
-
-        <div className="carousel-container overflow-visible">
-          <div className="embla" ref={emblaRef}>
-            <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-              {products.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
+    <>
+      <NextSeo
+        title="Bodykit Montage bij Wrapmaster - Geef Jouw Auto een Unieke en Sportieve Look"
+        description="Professionele montage van bodykits voor een verbeterde aerodynamica en opvallende uitstraling. Transformeer jouw auto met Wrapmaster's expertise."
+        canonical="https://wrapmasterdh.nl/bodykit-montage"
+        openGraph={{
+          url: "https://wrapmasterdh.nl/bodykit-montage",
+          title: "Bodykit Montage bij Wrapmaster - Geef Jouw Auto een Unieke en Sportieve Look",
+          description: "Professionele montage van bodykits voor een verbeterde aerodynamica en opvallende uitstraling. Transformeer jouw auto met Wrapmaster's expertise.",
+          images: [
+            {
+              url: dienstData.heroImage,
+              width: 1200,
+              height: 630,
+              alt: dienstData.title,
+            },
+          ],
+          site_name: "Wrapmaster",
+        }}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content: 'bodykit, bodykit installatie, carrosserie, spoilers, sideskirts, bumpers, diffusers, auto styling',
+          },
+        ]}
+      />
+      <main className="bg-white">
+        {/* Hero Section */}
+        <section className="relative h-[50vh] sm:h-screen">
+          <Image
+            src={dienstData.heroImage}
+            alt={dienstData.title}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+            <div className="text-left text-white px-4 max-w-4xl">
+              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
+              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
+              <div className='flex justify-center'>
+                <Link 
+                  href="/diensten"
+                  className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
                 >
-                  <Link href={`/products/${product.id}`}>
-                    <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
-                      <div className="relative h-[500px] w-full">
-                        <Image
-                          src={product.featured_image}
-                          alt={product.title}
-                          fill
-                          priority={index < 3}
-                          style={{ objectFit: 'cover' }}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          onLoad={handleImageLoad}
-                        />
-                      </div>
-                      <CardContent className="flex flex-col justify-end flex-grow">
-                        <div>
-                          <h3 className="text-xl">{product.title}</h3>
-                          <p className="text-sm text-gray-400">{product.subtitle}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  TERUG NAAR DIENSTEN
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Text with Image Section */}
+        <section className="flex flex-col lg:flex-row py-8 lg:py-16">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
+            <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
+              Bodykit Montage bij Wrapmaster – Geef Jouw Auto een Unieke en Sportieve Look
+            </h2>
+            <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
+              {showMore ? fullText : shortText}
+              <button
+                className="mt-4 text-blue-600 hover:underline focus:outline-none"
+                onClick={() => setShowMore(!showMore)}
+              >
+                {showMore ? "Lees minder" : "Lees meer"}
+              </button>
+            </div>
+            <Link 
+              href="/offerte-aanvragen"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              Offerte aanvragen
+            </Link>
+          </div>
+          <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+              <Image
+                src={dienstData.contentImage1}
+                alt="Bodykit Montage bij Wrapmaster"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Image Slider Section */}
+        <section className="py-16 bg-gray-100">
+          <div className="embla" ref={emblaRef}>
+            <div className="embla__container flex">
+              {sliderImages.map((image, index) => (
+                <div key={index} className="embla__slide flex-[0_0_100%] relative h-[500px]">
+                  <Image
+                    src={image}
+                    alt={`Slide ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Full-width Images Section */}
-      <section className="w-full h-screen flex">
-        {dienstData.gridImages.map((imageUrl, index) => (
-          <div key={index} className="relative w-1/2 h-full">
-            <Image
-              src={imageUrl}
-              alt={`Full-width image ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
+        {/* Two Images Section */}
+        <section className="max-w-full mx-auto mt-16 md:mt-44">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="relative h-[300px] sm:h-[500px]">
+              <Image
+                src={dienstData.contentImage1}
+                alt="Content Image 1"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="relative h-[300px] sm:h-[500px]">
+              <Image
+                src={dienstData.contentImage2}
+                alt="Content Image 2"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
-        ))}
-      </section>
+        </section>
 
-      <style jsx global>{`
-        .embla {
-          overflow: visible;
-          margin: 0 -20px;
-        }
-        .embla__container {
-          display: flex;
-        }
-        .embla__slide {
-          flex: 0 0 100%;
-          min-width: 0;
-          padding: 0 20px;
-        }
-        @media (min-width: 640px) {
-          .embla__slide {
-            flex: 0 0 50%;
-          }
-        }
-        @media (min-width: 1024px) {
-          .embla__slide {
-            flex: 0 0 33.33%;
-          }
-        }
-        .carousel-container {
-          min-height: 650px;
-        }
-      `}</style>
-    </main>
+        {/* Instagram Reels Section */}
+        <section className="w-full bg-white py-16">
+          <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4">
+            {reels.map((reel) => (
+              <div
+                key={reel.id}
+                className="relative w-full h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
+              >
+                {/* Video */}
+                <video
+                  src={reel.video}
+                  className="w-full h-full object-cover"
+                  loop
+                  muted
+                  autoPlay
+                  playsInline
+                ></video>
+                {/* Instagram Reel Overlay */}
+                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
+                  <div className="flex items-center text-white text-sm font-semibold">
+                    <Image
+                      src="/logos/logo-wit.png"
+                      alt="Reels Play Icon"
+                      width={20}
+                      height={20}
+                      className="mr-2"
+                    />
+                    Reels
+                  </div>
+                  <div className="text-white space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">
+                        <Image
+                          src="/logos/handtekening-wit.png"
+                          alt="Reels Play Icon"
+                          width={100}
+                          height={20}
+                          className="mr-2"
+                        />
+                      </span>
+                      <div className="flex space-x-2">
+                        <a
+                          href={socialMedia.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faInstagram} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.tiktok}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faTiktok} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.whatsapp}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faFacebook} size="lg" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Wrapmaster Services Section */}
+        <section className="py-9">
+          <OnzeDiensten />
+        </section>
+      </main>
+    </>
   );
 }
 

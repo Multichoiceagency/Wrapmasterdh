@@ -9,7 +9,6 @@ import DynamicSection from '@/components/DynamicSection'
 import ProductSlider from '@/components/ProductSlider'
 import OnzeDiensten from './components/Diensten/Diensten'
 import PrintFolie from '@/components/PrintFolie'
-import BoatenSlider from '@/components/BoatenSlider'
 import NewCustomSection from '@/components/NewCustomSection'
 import ThreeDCarwrapping from '@/components/ThreeDCarwrapping'
 import BoatSection from '@/components/BoatSection'
@@ -28,7 +27,6 @@ export default function Home() {
       <PrintFolie  />
       <ThreeDCarwrapping />
       <NewCustomSection />
-      <BoatenSlider />
       <BoatSection />
       <LogoSlider />
     </div>

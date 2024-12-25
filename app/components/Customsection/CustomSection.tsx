@@ -37,14 +37,14 @@ const customSlides: CustomSlide[] = [
   },
   {
     id: 3,
-    titel: "FERRARI SF90",
-    subtitel: "GEWRAPT IN ROSSO MARS, ORGINEEL FERRARI KLEUR",
+    titel: "BRABUS G800 NARDO GREY",
+    subtitel: "",
     foto: "/video/brabus-g800-video.mp4",
     slug: "youtube",
     link: "https://www.youtube.com/channel/UCeYPrQZxZXLLtGXVQqLEqZA",
     isVideo: true,
-    video_titel: "FERRARI SF90",
-    video_beschrijving: "GEWRAPT IN ROSSO MARS, ORGINEEL FERRARI KLEUR",
+    video_titel: "BRABUS G800 NARDO GREY",
+    video_beschrijving: "",
   }
 ];
 

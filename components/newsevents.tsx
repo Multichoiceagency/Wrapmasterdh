@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import Link from "next/link"
@@ -12,7 +11,7 @@ interface NewsCard {
   featured_image: string
   video_file: string
   excerpt: string
-  link: string
+  slug: string
 }
 
 const NewsEvents: React.FC = () => {
@@ -38,7 +37,7 @@ const NewsEvents: React.FC = () => {
             featured_image: featuredImage,
             video_file: post.scf?.video_file || "",
             excerpt: post.scf?.custom_excerpt || post.excerpt.rendered || "No excerpt available.",
-            link: post.scf?.custom_link || post.link || "#",
+            slug: post.slug,
           }
         })
 
@@ -63,53 +62,54 @@ const NewsEvents: React.FC = () => {
   }
 
   return (
-    <section className="container mx-auto  py-12">
-      <h2 className="text-4xl font-light text-center mb-8">NEWS & EVENTS</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {newsPosts.length === 0 ? (
-          <div className="text-center text-gray-500">No news posts available.</div>
-        ) : (
-          newsPosts.map((post) => (
-            <Link key={post.id} href={post.link} className="block group">
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
-                {post.video_file ? (
-                  <video
-                    src={post.video_file}
-                    autoPlay
-                    loop
-                    muted
-                    className="w-full h-full object-contain"
-                  ></video>
-                ) : (
-                  <Image
-                    src={post.featured_image}
-                    alt={post.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="group-hover:scale-105 transition-transform duration-300"
-                  />
-                )}
-              </div>
-              <div className="p-4 bg-white">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-gray-600">{post.date}</p>
-                <p className="text-sm text-gray-700 mt-2">
-                  {post.excerpt.replace(/(<([^>]+)>)/gi, "").slice(0, 80)}...
-                </p>
-              </div>
-            </Link>
-          ))
-        )}
-      </div>
-      <div className="flex justify-center mt-12">
-        <Link
-          href="/blog"
-          className="px-6 py-3 bg-black text-white font-medium hover:bg-red-700 transition"
-        >
-          Bekijk alle nieuws
-        </Link>
+    <section className="w-full py-12">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-light text-center mb-8">NEWS & EVENTS</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {newsPosts.length === 0 ? (
+            <div className="text-center text-gray-500 col-span-full">No news posts available.</div>
+          ) : (
+            newsPosts.map((post) => (
+              <Link key={post.id} href={`/blog/${post.slug}`} className="block group overflow-hidden">
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  {post.video_file ? (
+                    <video
+                      src={post.video_file}
+                      autoPlay
+                      loop
+                      muted
+                      className="w-full h-full object-cover"
+                    ></video>
+                  ) : (
+                    <Image
+                      src={post.featured_image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  )}
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">{post.date}</p>
+                  <p className="text-sm text-gray-700">
+                    {post.excerpt.replace(/(<([^>]+)>)/gi, "").slice(0, 80)}...
+                  </p>
+                </div>
+              </Link>
+            ))
+          )}
+        </div>
+        <div className="flex justify-center mt-12">
+          <Link
+            href="/blog"
+            className="px-6 py-3 bg-black text-white font-medium hover:bg-red-700 transition"
+          >
+            Bekijk alle nieuws
+          </Link>
+        </div>
       </div>
     </section>
   )

@@ -1,52 +1,52 @@
 'use client'
 
 import Link from "next/link"
-import { Facebook, Instagram, Youtube } from 'lucide-react'
-import { TikTok } from '@/components/TikTok'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons'
 
 export default function Footer() {
   const navigationGroups = [
     {
       items: [
-        { title: "OVER ONS", href: "/wie-wij-zijn", isHeading: true },
-        { title: "DIENSTEN", href: "/vind-een-dealer", isHeading: true },
-        { title: "PORTFOLIO", href: "/colofon", isHeading: true },
+        { title: "ONS TEAM", href: "/ons-team", isHeading: true },
+        { title: "SAMENWERKINGEN", href: "/samenwerking", isHeading: true },
+        { title: "DIENSTEN", href: "/portfolio", isHeading: true },
       ],
-      socialIcon: <Instagram className="h-5 w-5" />,
-      socialLink: "#instagram"
+      socialIcon: <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />,
+      socialLink: "https://www.instagram.com/wrapmasterdh/"
     },
     {
       items: [
-        { title: "SAMENWERKING", href: "/geschiedenis", isHeading: true },
+        { title: "PORTFOLIO", href: "/algemene voorwaarden", isHeading: true },
         { title: "6X6 Rental", href: "/herroeping-claim", isHeading: true },
         { title: "Ons team", href: "/voorwaarden", isHeading: true },
       ],
-      socialIcon: <TikTok className="h-5 w-5" />,
+      socialIcon: <FontAwesomeIcon icon={faTiktok} className="h-5 w-5" />,
       socialLink: "https://www.tiktok.com/@wrapmasterdh"
     },
     {
       items: [
-        { title: "ALGEMENE VOORWAARDEN", href: "/tuning-shop", isHeading: true },
-        { title: "MODE SHOP", href: "/mode-shop", isHeading: true },
-        { title: "PRIVACYBELEID", href: "/privacybeleid", isHeading: true },
+        { title: "OFFERTE AANVRAGEN", href: "/tuning-shop", isHeading: true },
+        { title: "CONTACT", href: "/mode-shop", isHeading: true },
+        { title: "VACATURES", href: "/privacybeleid", isHeading: true },
       ],
-      socialIcon: <Facebook className="h-5 w-5" />,
-      socialLink: "#facebook"
+      socialIcon: <FontAwesomeIcon icon={faFacebookF} className="h-5 w-5" />,
+      socialLink: "https://www.facebook.com/WrapmasterDH"
     },
     {
       items: [
-        { title: "CARRIÈRE", href: "/carriere", isHeading: true },
-        { title: "CONTACT", href: "/contact", isHeading: true },
-        { title: "COOKIE-INSTELLINGEN", href: "/cookie-instellingen", isHeading: true },
+        { title: "WRAPVOORWAARDEN", href: "/carriere", isHeading: true },
+        { title: "ALGEMENE VOORWAARDEN", href: "/contact", isHeading: true },
+        { title: "PRIVACYBELEID", href: "/cookie-instellingen", isHeading: true },
       ],
-      socialIcon: <Youtube className="h-5 w-5" />,
-      socialLink: "#youtube"
+      socialIcon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />,
+      socialLink: "https://www.youtube.com/@wrapmasterdh/videos"
     },
   ]
 
   return (
     <footer className="bg-white w-full">
-      <div className="container mx-auto px-6 md:px-0 py-12">
+      <div className="container mx-auto md:px-0 py-12">
         {/* Desktop Navigation */}
         <div className="hidden md:grid grid-cols-4 gap-8 text-center mb-8">
           {navigationGroups.map((group, groupIndex) => (
@@ -57,7 +57,7 @@ export default function Footer() {
                   href={item.href}
                   className={`block ${
                     item.isHeading 
-                      ? 'font-semibold text-[#333] hover:text-[#666]' 
+                      ? 'font-light text-[#333] hover:text-[#666]' 
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -65,30 +65,31 @@ export default function Footer() {
                 </Link>
               ))}
               {/* Social media icon */}
-              <Link href={group.socialLink} className="text-black hover:text-gray-600 mt-4">
+              <Link href={group.socialLink} className="text-white bg-black py-2 px-2 rounded-md hover:text-red-600 mt-4 hover:scale-110 transition-all duration-300">
                 {group.socialIcon}
               </Link>
             </div>
           ))}
         </div>
 
-        {/* Mobile Footer with 2-column grid */}
-        <div className="md:hidden px-4 w-full mb-8">
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+        {/* Mobile Footer with list layout */}
+        <div className="md:hidden w-full mb-8">
+          <ul className="space-y-8">
             {navigationGroups.flatMap(group => 
               group.items.map((item, itemIndex) => (
-                <Link
-                  key={`${item.title}-${itemIndex}`}
-                  href={item.href}
-                  className="text-[#333] font-semibold hover:text-[#666]"
-                >
-                  {item.title}
-                </Link>
+                <li key={`${item.title}-${itemIndex}`}>
+                  <Link
+                    href={item.href}
+                    className="text-[#333] font-light hover:text-[#666] block"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
               ))
             )}
-          </div>
+          </ul>
           {/* Social Media Icons for Mobile */}
-          <div className="flex justify-start space-x-4 mt-6">
+          <div className="flex justify-center space-x-6 mt-8">
             {navigationGroups.map((group, index) => (
               <Link 
                 key={index} 
@@ -103,7 +104,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="w-full text-center py-4 text-sm text-white bg-black">
+      <div className="w-full text-center py-4 px-20 text-sm text-white bg-black">
         Website gerealiseerd door{' '}
         <Link 
           href="https://multichoiceagency.nl/" 

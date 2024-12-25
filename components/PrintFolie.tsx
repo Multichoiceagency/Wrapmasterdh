@@ -17,7 +17,7 @@ const banner: Banner = {
   title: "3D Carwrapping",
   featured_image: "/enes-website/memo-map/design/Changer_12.png",
   button_text: "Visualiseer jouw voertuig",
-  button_link: "/diensten/print-folie"
+  button_link: "/diensten/diensten/reclame-en-design"
 };
 
 function PrintFolie() {
