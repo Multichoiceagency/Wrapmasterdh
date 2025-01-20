@@ -20,7 +20,7 @@ const socialMedia = {
 const dienstData = {
   title: "Carwrapping bij Wrapmaster",
   description: "Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling.",
-  heroImage: "/enes-website/auto-wrappen/urus-khaki/BlndrAgency_Wrapmaster_URUS (1 of 14).jpg",
+  heroImage: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg",
   contentImage1: "/enes-website/auto-wrappen/rsq3/rsq3.jpg",
   contentImage3: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (23 of 24).jpg",
   contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
