@@ -20,28 +20,29 @@ const socialMedia = {
 const dienstData = {
   title: "Paint Protection Film (PPF) bij Wrapmaster",
   description: "Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  heroImage: "/video/LAMBO REEL.mp4",
+  contentImage1: "/enes-website/ppf/Maasvlakte-13.jpg",
+  contentImage2: "/enes-website/ppf/Maasvlakte-100.jpg",
+  contentImage3: "/enes-website/ppf/WM-47.jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/ppf/Maasvlakte-4.jpg",
+  "/enes-website/ppf/Mercedez-Benz AMG GT63_DONE_ (21 of 41).jpg",
+  "/enes-website/ppf/WM-1.jpg",
+  "/enes-website/ppf/Lamborghini-Urus19.jpg",
 ];
 
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Mercedes-Benz AMG GT 63 Polish & PPF  V3 VIDEO.MP4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Wrapmaster Hurucan extended  VIDEO.mp4",
     likes: "120k",
     comments: "345",
   },
@@ -131,7 +132,7 @@ export default function Carwrapping() {
             {
               url: dienstData.heroImage,
               width: 1200,
-              height: 630,
+              height: 768,
               alt: dienstData.title,
             },
           ],
@@ -144,31 +145,31 @@ export default function Carwrapping() {
           },
         ]}
       />
-      <main className="bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
-          <Image
-            src={dienstData.heroImage}
-            alt={dienstData.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
-            <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
-              <div className='flex justify-center'>
-            <Link 
-              href="/diensten"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-            >
-              TERUG NAAR DIENSTEN
-            </Link>
-            </div>
-            </div>
-          </div>
-        </section>
+
+<main className="">
+  {/* Hero Sectie */}
+  <section className="relative h-[80vh]">
+    <video
+      src="/video/LAMBO REEL.mp4"
+      autoPlay
+      loop
+      muted
+      className="absolute w-full h-full object-cover opacity-100"
+    ></video>
+    <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 space-y-4">
+      <h1 className="text-2xl md:text-4xl font-bold text-white text-center">
+        PAINT PROTECTION FILM
+      </h1>
+      <Link 
+        href="/diensten"
+        className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+      >
+        TERUG NAAR DIENSTEN
+      </Link>
+    </div>
+  </section>
+
+
 
         {/* Text with Image Section */}
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
@@ -195,7 +196,7 @@ export default function Carwrapping() {
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Paint Protection Film bij Wrapmaster"
                 fill
                 className="object-cover"
@@ -216,7 +217,7 @@ export default function Carwrapping() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -236,7 +237,7 @@ export default function Carwrapping() {
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[700px]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"

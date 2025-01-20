@@ -18,19 +18,19 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Carwrapping bij Wrapmaster",
-  description: "Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling.",
+  title: "CARWRAPPING",
+  description: "",
   heroImage: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg",
-  contentImage1: "/enes-website/auto-wrappen/rsq3/rsq3.jpg",
-  contentImage3: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (23 of 24).jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  contentImage1: "/enes-website/auto-wrappen/rs6/RS6-10.jpg",
+  contentImage3: "/enes-website/auto-wrappen/elia/BlndrAgency_ (25 of 34).jpg",
+  contentImage2: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (17 of 24).jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/auto-wrappen/elia/elia1.jpg",
+  "/enes-website/auto-wrappen/rs6/RS6-11.jpg",
+  "/enes-website/auto-wrappen/urus-khaki/urus2.jpg",
+  "/enes-website/auto-wrappen/g-wagon/brabus1.jpg",
 ];
 
 const reels = [
@@ -42,19 +42,19 @@ const reels = [
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/YELLOW FERARRI VERSIE 1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/BLACK FERARRI normal 25-12.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Eljero Elia-_1.mp4",
     likes: "78.9k",
     comments: "230",
   },
@@ -123,7 +123,7 @@ export default function Carwrapping() {
       />
       <main className="bg-white">
         {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
+        <section className="relative h-[70vh] sm:h-70vh">
           <Image
             src={dienstData.heroImage}
             alt={dienstData.title}
@@ -133,8 +133,7 @@ export default function Carwrapping() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
+              <h1 className="text-5xl sm:text-5xl mb-2 py-5 text-center">{dienstData.title}</h1>
               <div className='flex justify-center'>
             <Link 
               href="/diensten"
@@ -193,7 +192,7 @@ export default function Carwrapping() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
