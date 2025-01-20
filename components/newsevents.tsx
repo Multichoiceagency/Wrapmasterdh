@@ -26,6 +26,7 @@ const NewsEvents: React.FC = () => {
         )
         const data = await response.json()
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedPosts = data.map((post: any) => {
           const featuredImage =
             post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg"
@@ -64,7 +65,7 @@ const NewsEvents: React.FC = () => {
   return (
     <section className="w-full py-12">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-light text-center mb-8">NEWS & EVENTS</h2>
+        <h2 className="text-3xl font-light text-center mb-8">NEWS & EVENTS</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsPosts.length === 0 ? (
             <div className="text-center text-gray-500 col-span-full">No news posts available.</div>
@@ -90,7 +91,7 @@ const NewsEvents: React.FC = () => {
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
+                  <h3 className="text-sm font-bold text-gray-800 mb-2 group-hover:text-primary transition">
                     {post.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-2">{post.date}</p>

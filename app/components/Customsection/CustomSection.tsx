@@ -41,7 +41,7 @@ const customSlides: CustomSlide[] = [
     subtitel: "",
     foto: "/video/brabus-g800-video.mp4",
     slug: "youtube",
-    link: "https://www.youtube.com/channel/UCeYPrQZxZXLLtGXVQqLEqZA",
+    link: "https://www.youtube.com/@wrapmasterdh/shorts",
     isVideo: true,
     video_titel: "BRABUS G800 NARDO GREY",
     video_beschrijving: "",
@@ -60,7 +60,7 @@ const CustomSection = () => {
   }, []);
 
   return (
-    <section className="max-w-full mx-auto mt-16 md:mt-44">
+    <section className="max-w-full mx-auto">
       <div className="relative w-full">
         {/* Dynamic Image Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 relative">

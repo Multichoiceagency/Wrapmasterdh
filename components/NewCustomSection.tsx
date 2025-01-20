@@ -49,7 +49,7 @@ const customSlides: CustomSlide[] = [
 
 const NewCustomSection = () => {
   return (
-    <section className="max-w-full mx-auto mt-16 md:mt-44">
+    <section className="max-w-full mx-auto">
       <div className="relative w-full">
         {/* Dynamic Image Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 relative">

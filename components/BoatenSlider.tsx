@@ -3,26 +3,22 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
-import Link from 'next/link';
 import Head from 'next/head';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
 interface BoatDesign {
   id: number;
-  titel: string;
-  subtitel: string;
   afbeelding: string;
-  slug: string;
 }
 
 const boatDesigns: BoatDesign[] = [
-  { id: 1, titel: "Luxe Jacht Ontwerp", subtitel: "Elegantie op het water", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_3.png", slug: "luxe-jacht" },
-  { id: 2, titel: "Speedboot Styling", subtitel: "Snelheid en stijl gecombineerd", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_4.png", slug: "speedboot" },
-  { id: 3, titel: "Zeilboot Innovatie", subtitel: "Moderne zeilprestaties", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_5.png", slug: "zeilboot" },
-  { id: 4, titel: "Catamaran Concept", subtitel: "Ruimte en stabiliteit", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_7.png", slug: "catamaran" },
-  { id: 5, titel: "Vissersboot Upgrade", subtitel: "Functionaliteit meets comfort", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_8.png", slug: "vissersboot" },
-  { id: 6, titel: "Woonboot Renovatie", subtitel: "Drijvend woongenot", afbeelding: "/enes-website/memo-map/design/3dchanger/changer_9.png", slug: "woonboot" },
+  { id: 1, afbeelding: "/enes-website/auto-wrappen/range/rangerover.jpg" },
+  { id: 2, afbeelding: "/enes-website/OSMAN/V3 OSTA IDBUZZ/DSC06265.jpg" },
+  { id: 3, afbeelding: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg" },
+  { id: 4, afbeelding: "/enes-website/auto-wrappen/rsq3/RSQ3-23.jpg" },
+  { id: 5, afbeelding: "/enes-website/auto-wrappen/ferrari/1.jpg" },
+  { id: 6, afbeelding: "/enes-website/auto-wrappen/g-wagon/Brabus.jpg"},
 ];
 
 const BoatenSlider: React.FC = () => {
@@ -32,7 +28,7 @@ const BoatenSlider: React.FC = () => {
       align: 'start',
       slidesToScroll: 1,
     }, 
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [Autoplay({ delay: 3000, stopOnInteraction: true })]
   );
   const [isLoaded, setIsLoaded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,12 +56,11 @@ const BoatenSlider: React.FC = () => {
         <title>Bootontwerpen - BoatMaster | Specialist in Bootdesign en Customization</title>
         <meta name="description" content="Ontdek onze uitgebreide reeks van professionele bootontwerpen, waaronder luxe jachten, speedboten, zeilboten en meer. BoatMaster is uw specialist voor alle boot customization behoeften." />
         <meta name="keywords" content="bootontwerp, jachtdesign, speedboot styling, zeilboot innovatie, catamaran concept, vissersboot upgrade, woonboot renovatie" />
-        <link rel="canonical" href="https://www.boatmaster.nl/ontwerpen" />
+        <link rel="canonical" href="https://www.wrapmasterdh.nl" />
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
-        <div className="text-left mb-12 ml-12">
-          <h1 className="text-3xl font-light text-gray-800">ONZE BOOTONTWERPEN</h1>
-          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in bootdesign en customization</p>
+        <div className="text-center mb-12 ml-12">
+          <h1 className="text-3xl font-light text-gray-800">CARWRAPPING</h1>
         </div>
 
         <div className="carousel-container overflow-hidden relative">
@@ -76,12 +71,11 @@ const BoatenSlider: React.FC = () => {
                   key={design.id}
                   className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
                 >
-                  <Link href={`/ontwerpen/${design.slug}`}>
                     <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
                       <div className="relative h-[500px] w-full">
                         <Image
                           src={design.afbeelding}
-                          alt={design.titel}
+                          alt=''
                           fill
                           priority
                           className="object-cover"
@@ -90,13 +84,8 @@ const BoatenSlider: React.FC = () => {
                         />
                       </div>
                       <CardContent className="flex flex-col justify-end flex-grow">
-                        <div>
-                          <h2 className="text-l mt-5 font-semibold">{design.titel}</h2>
-                          <p className="text-sm text-gray-500">{design.subtitel}</p>
-                        </div>
                       </CardContent>
                     </Card>
-                  </Link>
                 </div>
               ))}
             </div>

@@ -45,7 +45,7 @@ const OnzeDiensten: React.FC = () => {
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
     setImagesLoaded((prev) => {
@@ -64,71 +64,71 @@ const OnzeDiensten: React.FC = () => {
   }, [emblaApi, isLoaded]);
 
   return (
-    <section className="py-12 h-100 overflow-hidden bg-white">
-      <div className="text-left mb-12 ml-12">
-        <h2 className="text-2xl font-medium text-gray-800">ONZE DIENSTEN</h2>
-        <p className="text-l text-gray-600 mt-2">Gespecialiseerd in carwrapping</p>
-      </div>
-      <div className="carousel-container overflow-hidden relative">
-        <div className="embla" ref={emblaRef}>
-          <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-            {diensten.map((dienst) => (
-              <div
-                key={dienst.id}
-                className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
-              >
-                <Link href={`/diensten/${dienst.slug}`}>
-                  <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
-                    <div className="relative h-[500px] w-full">
-                      <Image
-                        src={dienst.afbeelding}
-                        alt={dienst.titel}
-                        fill
-                        priority
-                        style={{ objectFit: 'cover' }}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onLoad={handleImageLoad}
-                      />
-                    </div>
-                    <CardContent className="flex flex-col justify-end flex-grow">
-                      <div>
-                        <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
-                        <p className="text-sm text-gray-500">{dienst.subtitel}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            ))}
+<section className="py-16 h-100 overflow-hidden bg-white">
+  <div className="text-center">
+    {/* Aangepaste klassen voor centreren */}
+    <h2 className="pb-10 text-3xl font-medium text-gray-800">ONZE DIENSTEN</h2>
+  </div>
+  <div className="carousel-container overflow-hidden relative">
+    <div className="embla" ref={emblaRef}>
+      <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        {diensten.map((dienst) => (
+          <div
+            key={dienst.id}
+            className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
+          >
+            <Link href={`/diensten/${dienst.slug}`}>
+              <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
+                <div className="relative h-[500px] w-full">
+                  <Image
+                    src={dienst.afbeelding}
+                    alt={dienst.titel}
+                    fill
+                    priority
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onLoad={handleImageLoad}
+                  />
+                </div>
+                <CardContent className="flex flex-col justify-end flex-grow">
+                  <div>
+                    <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
+                    <p className="text-sm text-gray-500">{dienst.subtitel}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
-        </div>
+        ))}
       </div>
-      <style jsx global>{`
-        .embla {
-          overflow: hidden;
-        }
-        .embla__container {
-          display: flex;
-        }
-        .embla__slide {
-          flex: 0 0 100%;
-          min-width: 0;
-        }
-        @media (min-width: 640px) {
-          .embla__slide {
-            flex: 0 0 50%;
-          }
-        }
-        @media (min-width: 1024px) {
-          .embla__slide {
-            flex: 0 0 33.33%;
-          }
-        }
-        .carousel-container {
-          min-height: 650px;
-        }
-      `}</style>
-    </section>
+    </div>
+  </div>
+  <style jsx global>{`
+    .embla {
+      overflow: hidden;
+    }
+    .embla__container {
+      display: flex;
+    }
+    .embla__slide {
+      flex: 0 0 100%;
+      min-width: 0;
+    }
+    @media (min-width: 640px) {
+      .embla__slide {
+        flex: 0 0 50%;
+      }
+    }
+    @media (min-width: 1024px) {
+      .embla__slide {
+        flex: 0 0 33.33%;
+      }
+    }
+    .carousel-container {
+      min-height: 350px;
+    }
+  `}</style>
+</section>
   );
 };
 

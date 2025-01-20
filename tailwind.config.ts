@@ -11,8 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'], // Roboto as default sans-serif font
-        roboto: ['Roboto', 'sans-serif'], // Specific reference if you want to use Roboto directly
+        sans: ['DM Sans', 'sans-serif'], // Gebruik DM Sans als de standaard sans-serif
+        dmsans: ['DM Sans', 'sans-serif'], // Specifiek voor directe referentie
       },
       keyframes: {
         fadeInUp: {
@@ -146,4 +146,3 @@ const config: Config = {
 };
 
 export default config;
-

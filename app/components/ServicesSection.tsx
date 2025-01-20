@@ -16,10 +16,10 @@ const ServicesSection: React.FC = () => {
       {/* Services Container */}
       <div className="w-full flex flex-wrap justify-between items-center text-center border-b border-gray-300 py-4 px-4">
         {services.map((service, index) => (
-          <div key={index} className="w-1/2 sm:w-1/4 mb-4 sm:mb-0">
+          <div key={index} className="w-1/2 sm:w-1/4 mb-4 mt-2 sm:mb-0">
             <Link 
               href={service.link}
-              className="text-sm sm:text-base md:text-lg font tracking-wider hover:text-red-900"
+              className="text-sm sm:text-base md:text-sm font-bold tracking-wider hover:text-red-900"
             >
               {service.name}
             </Link>

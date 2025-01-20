@@ -97,12 +97,12 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
             <div className="absolute inset-x-0 bottom-20 md:bottom-28 flex flex-col items-center text-center text-white z-10 px-4">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 animate-fade-in">
+              <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-2xl mb-4 animate-fade-in">
                 {slide.heroTitle}
               </h1>
               <a
                 href={slide.buttonLink}
-                className="mt-2 px-4 md:px-6 py-2 md:py-3 bg-black text-white text-sm sm:text-base md:text-lg font-semibold hover:bg-white hover:text-black transition duration-300 animate-fade-in"
+                className="mt-2 px-4 md:px-6 py-2 md:py-3 bg-black text-white text-sm sm:text-base md:text-sm hover:bg-red-700 hover:text-white transition duration-300 animate-fade-in"
               >
                 {slide.buttonText}
               </a>

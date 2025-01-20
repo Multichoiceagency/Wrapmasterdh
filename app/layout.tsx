@@ -1,15 +1,16 @@
 import { Metadata } from "next";
-import { Roboto } from 'next/font/google';
+import { DM_Sans } from 'next/font/google'; // Gebruik DM Sans van next/font
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import "photoswipe/dist/photoswipe.css";
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+// Importeer DM Sans met de juiste configuratie
+const dmSans = DM_Sans({
+  weight: ['400', '500', '700'], // Voeg de gewenste gewichten toe
+  subsets: ['latin'], // Gebruik 'latin' subset
+  display: 'swap', // Voor betere prestaties
 });
 
 export const metadata: Metadata = {
@@ -29,14 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={roboto.className}>
+    <html lang="nl" className={dmSans.className}> {/* Gebruik DM Sans hier */}
       <body>
         <Header />
         {children}
         <Footer />
         <WhatsAppFloatingIcon phoneNumber="31638718893" />
       </body>
-    </html>  
+    </html>
   );
 }
-

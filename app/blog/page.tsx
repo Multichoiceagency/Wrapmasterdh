@@ -10,6 +10,7 @@ async function getBlogPosts(): Promise<BlogPost[]> {
   const res = await fetch("https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed", { next: { revalidate: 3600 } })
   const data = await res.json()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return data.map((post: any) => ({
     id: post.id,
     title: post.title.rendered || "Geen titel",
@@ -40,7 +41,7 @@ export default function BlogPage() {
           description: 'Ontdek de nieuwste trends, projecten en expertise in autofolie en voertuigaanpassingen op de Wrapmaster blog.',
           images: [
             {
-              url: '/blog-hero.jpg',
+              url: '/enes-website/carwrapping/urus-khaki/URUS-export.jpg',
               width: 1200,
               height: 630,
               alt: 'Wrapmaster Blog Hero Image',
@@ -49,18 +50,18 @@ export default function BlogPage() {
           site_name: 'Wrapmaster',
         }}
       />
-      <main className="bg-white">
+      <main className="bg-slate-200">
         {/* Hero Sectie */}
-        <section className="relative h-[70vh] bg-gray-900">
-          <Image
-            src="/blog-hero.jpg"
-            alt="Blog Hero"
-            fill
-            className="object-cover opacity-50"
-            priority
-          />
+        <section className="relative h-[70vh]">
+          <video
+            src="/enes-website/auto-wrappen/urus-khaki/urus.mp4"
+            autoPlay
+            loop
+            muted
+            className="absolute w-full h-full object-cover opacity-100"
+          ></video>
           <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white text-center">
+            <h1 className="text-2xl md:text-4xl font-bold text-white text-center">
               Wrapmaster Blog
             </h1>
           </div>
@@ -89,8 +90,8 @@ export default function BlogPage() {
                     />
                   )}
                 </div>
-                <div className="p-4 bg-white">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
+                <div className="p-4 bg-white rounded-md">
+                  <h3 className="text-l font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
                     {post.title}
                   </h3>
                   <p className="text-sm text-gray-600">{post.date}</p>
@@ -116,4 +117,3 @@ export default function BlogPage() {
     </>
   )
 }
-

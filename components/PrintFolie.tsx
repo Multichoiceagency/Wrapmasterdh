@@ -17,7 +17,7 @@ const banner: Banner = {
   title: "3D Carwrapping",
   featured_image: "/enes-website/memo-map/design/Changer_12.png",
   button_text: "Visualiseer jouw voertuig",
-  button_link: "/diensten/diensten/reclame-en-design"
+  button_link: "/diensten/reclame-en-design"
 };
 
 function PrintFolie() {
@@ -31,11 +31,11 @@ function PrintFolie() {
         sizes="100vw"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
       />
-      <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-end items-center pb-8 px-4">
+      <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-end items-center pb-8">
         <h3 className="text-4xl font-light uppercase py-7 text-white text-center">{banner.title}</h3>
         {banner.button_text && banner.button_link && (
           <Link href={banner.button_link}>
-            <button className="px-6 py-2 bg-red-600 text-white font-semibold text-sm sm:text-base hover:bg-red-700 transition duration-300 ease-in-out">
+            <button className="px-6 py-2 bg-black text-white font-semibold text-sm sm:text-base hover:bg-red-700 transition duration-300 ease-in-out">
               {banner.button_text}
             </button>
           </Link>

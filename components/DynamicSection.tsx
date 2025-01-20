@@ -4,10 +4,10 @@ import Image from 'next/image'
 
 export default function BodykitInstallatieSection() {
   return (
-    <div className="flex flex-col lg:flex-row py-8 lg:py-16">
+    <div className="flex flex-col lg:flex-row pt-20 lg:py-20">
       {/* Content Section */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
-        <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
+        <h2 className="text-3xl font-light sm:text-3xl lg:text-3xl mb-4 lg:mb-8">
           Professionele Bodykit Installatie
         </h2>
         <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
@@ -28,7 +28,7 @@ export default function BodykitInstallatieSection() {
           </p>
         </div>
         <a 
-          href="/diensten/bodykit-installatie"
+          href="/diensten/bodykit"
           className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
         >
           Ontdek Mogelijkheden

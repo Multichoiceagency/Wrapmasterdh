@@ -3,7 +3,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
-import Link from 'next/link';
 import Head from 'next/head';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -13,19 +12,18 @@ interface ThreeDCarwrapping {
   titel: string;
   subtitel: string;
   afbeelding: string;
-  slug: string;
 }
 
 const carWrapDesigns: ThreeDCarwrapping[] = [
-  { id: 1, titel: "Matte Zwart Wrap", subtitel: "Elegante en stijlvolle finish", afbeelding: "/enes-website/memo-map/design/changer_1.png", slug: "matte-zwart" },
-  { id: 2, titel: "Glanzend Chroom Wrap", subtitel: "Opvallende en luxueuze uitstraling", afbeelding: "/enes-website/memo-map/design/changer_3.png", slug: "glanzend-chroom" },
-  { id: 3, titel: "Camouflage Wrap", subtitel: "Uniek en avontuurlijk design", afbeelding: "/enes-website/memo-map/design/changer_4.png", slug: "camouflage" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_5.png", slug: "kleurverloop" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_6.png", slug: "carbon-fiber" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_7.png", slug: "holografisch" },
-  { id: 7, titel: "Kleurverloop Wrap 2", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png", slug: "kleurverloop-2" },
-  { id: 8, titel: "Carbon Fiber Wrap 2", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png", slug: "carbon-fiber-2" },
-  { id: 9, titel: "Holografische Wrap 2", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png", slug: "holografisch-2" },
+  { id: 1, titel: "Matte Zwart Wrap", subtitel: "Elegante en stijlvolle finish", afbeelding: "/enes-website/memo-map/design/changer_1.png", },
+  { id: 2, titel: "Glanzend Chroom Wrap", subtitel: "Opvallende en luxueuze uitstraling", afbeelding: "/enes-website/memo-map/design/changer_3.png" },
+  { id: 3, titel: "Camouflage Wrap", subtitel: "Uniek en avontuurlijk design", afbeelding: "/enes-website/memo-map/design/changer_4.png" },
+  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_5.png" },
+  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_6.png" },
+  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_7.png" },
+  { id: 7, titel: "Kleurverloop Wrap 2", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png" },
+  { id: 8, titel: "Carbon Fiber Wrap 2", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png" },
+  { id: 9, titel: "Holografische Wrap 2", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {
@@ -60,8 +58,7 @@ const ThreeDCarwrapping: React.FC = () => {
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
         <div className="text-left mb-12 ml-12">
-          <h1 className="text-3xl font-light text-gray-800">3D CARWRAPPING ONTWERPEN</h1>
-          <p className="text-l text-gray-600 mt-2">Gespecialiseerd in 3D carwrapping en auto printfolie</p>
+          <h1 className="text-3xl text-center font-light text-gray-800">3D CARWRAPPING ONTWERPEN</h1>
         </div>
 
         <div className="carousel-container overflow-hidden">
@@ -72,7 +69,6 @@ const ThreeDCarwrapping: React.FC = () => {
                   key={design.id}
                   className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
                 >
-                  <Link href={`/3d-carwrapping/${design.slug}`}>
                     <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
                       <div className="relative h-[500px] w-full">
                         <Image
@@ -92,7 +88,6 @@ const ThreeDCarwrapping: React.FC = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </Link>
                 </div>
               ))}
             </div>

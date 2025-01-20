@@ -4,7 +4,6 @@ import { NextSeo } from 'next-seo';
 import HeroSection from './components/hero/Hero'
 import CustomSection from './components/Customsection/CustomSection'
 import ServicesSection from './components/ServicesSection'
-import LogoSlider from '@/components/LogoSlider'
 import NewsEvents from '@/components/newsevents'
 import Afbeelding from '@/components/Afbeelding'
 import DynamicSection from '@/components/DynamicSection'
@@ -62,7 +61,6 @@ export default function Home() {
       <NewCustomSection />
       <BoatenSlider />
       <BoatSection />
-      <LogoSlider />
     </div>
   )
 }

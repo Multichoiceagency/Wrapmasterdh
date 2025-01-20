@@ -3,7 +3,6 @@
 import { BlogPost } from "@/app/types/blog"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from "next/navigation"
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { useEffect, useState } from 'react'
@@ -33,6 +32,7 @@ async function getRecentPosts(): Promise<BlogPost[]> {
   const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed&per_page=6`, { next: { revalidate: 3600 } })
   const posts = await res.json()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return posts.map((post: any) => ({
     id: post.id,
     title: post.title.rendered || "Geen titel",
@@ -68,7 +68,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative h-[50vh] bg-gray-900">
+      <section className="relative h-[60vh] justify-center bg-gray-900">
         <Image
           src={post.featured_image}
           alt={post.title}
@@ -77,14 +77,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white text-center px-4">
+          <h1 className="text-3xl md:text-3xl  font-bold text-white text-center px-4">
             {post.title}
           </h1>
         </div>
       </section>
 
       <article className="container mx-auto py-12 px-4">
-        <Link href="/blog" className="text-primary hover:underline mb-4 inline-block">
+        <Link href="/blog" className="text-primary font-bold hover:text-red-700 hover:underline mb-4 inline-block">
           &larr; Terug naar Blog
         </Link>
         <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
@@ -96,23 +96,32 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 className="w-full h-auto object-cover"
               ></video>
             ) : (
-              <div className="relative aspect-[16/9] w-full">
+              <div className="relative aspect-[4/3] w-full ">
                 <Image
                   src={post.featured_image}
                   alt={post.title}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-xl"
                 />
               </div>
             )}
           </div>
           <div className="md:w-1/2">
-            <p className="text-gray-600 mb-4">{post.date}</p>
+            <p className="text-gray-600 mb-4">Plaatsingsdatum: {post.date}</p>
+            <h2 className="text-3xl py-4 font-bold">{post.title}</h2>
             <div 
               className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content || '' }}
             />
           </div>
+        </div>
+        <div className="flex justify-center mt-12">
+          <Link
+            href="/blog"
+            className="px-6 py-3 bg-green-700 rounded-md uppercase text-white font-medium hover:bg-red-700 transition"
+          >
+            Vrijblijvend offerte aanvragen
+          </Link>
         </div>
       </article>
 
@@ -126,7 +135,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             {recentPosts.map((recentPost) => (
               <div key={recentPost.id} className="embla__slide flex-[0_0_33.33%] min-w-0 px-4">
                 <Link href={`/blog/${recentPost.slug}`} className="block group">
-                  <div className="relative aspect-[16/9] w-full mb-4 overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden rounded-md">
                     <Image
                       src={recentPost.featured_image}
                       alt={recentPost.title}
@@ -134,7 +143,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
+                  <h3 className="text-sm font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
                     {recentPost.title}
                   </h3>
                   <p className="text-sm text-gray-600">{recentPost.date}</p>
