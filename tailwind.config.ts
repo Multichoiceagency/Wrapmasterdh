@@ -85,8 +85,8 @@ const config: Config = {
         body: ['0.5625rem', { lineHeight: '0.875rem' }], // 18px / 32px = 0.5625 rem
       },
       fontWeight: {
-        h1: '300',
-        h2: '300',
+        h1: '400',
+        h2: '400',
         h3: '400',
         h4: '500',
         h5: '500',

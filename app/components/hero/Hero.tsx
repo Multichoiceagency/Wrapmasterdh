@@ -22,7 +22,7 @@ interface HeroSlide {
 const slides: HeroSlide[] = [
   {
     id: 1,
-    videoFile: "/video/audi-rsq8.mp4",
+    videoFile: "/video/black-ferrari.mp4",
     heroTitle: "SPECIALIST IN CAR CUSTOMIZING",
     buttonText: "BEKIJK ONZE DIENSTEN",
     buttonLink: "/diensten",
