@@ -18,48 +18,49 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Ambient Light Inbouwen bij Wrapmaster",
-  description: "Creëer een luxe en sfeervolle rijervaring met professioneel ingebouwde ambient lighting door Wrapmaster.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  title: "Paint Protection Film (PPF) bij Wrapmaster",
+  description: "Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto.",
+  heroImage: "/video/urus-reel.mp4",
+  contentImage1: "/enes-website/ppf/Maasvlakte-8.jpg",
+  contentImage2: "/enes-website/ppf/Maasvlakte-100.jpg",
+  contentImage3: "/enes-website/ppf/WM-47.jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/ppf/Maasvlakte-4.jpg",
+  "/enes-website/ppf/Mercedez-Benz AMG GT63_DONE_ (21 of 41).jpg",
+  "/enes-website/ppf/WM-1.jpg",
+  "/enes-website/ppf/Lamborghini-Urus19.jpg",
 ];
 
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Mercedes-Benz AMG GT 63 Polish & PPF  V3 VIDEO.MP4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Wrapmaster Hurucan extended  VIDEO.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/audi-a4.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/LAMBO REEL.mp4",
     likes: "78.9k",
     comments: "230",
   },
 ];
 
-export default function AmbientLighting() {
+export default function Carwrapping() {
   const [showMore, setShowMore] = useState(false);
   const [emblaRef] = useEmblaCarousel(
     {
@@ -72,48 +73,47 @@ export default function AmbientLighting() {
 
   const shortText = (
     <p>
-      Bij Wrapmaster tillen we jouw rijervaring naar een hoger niveau met professioneel ingebouwde ambient lighting. Deze stijlvolle, subtiele verlichting voegt niet alleen een moderne uitstraling toe aan het interieur van jouw auto, maar verhoogt ook het rijcomfort. Of je nu kiest voor zachte kleuren voor een ontspannen sfeer of juist een dynamisch lichtontwerp, onze oplossingen zijn volledig aanpasbaar aan jouw wensen.
+      Bij Wrapmaster begrijpen we dat jouw voertuig meer is dan alleen een vervoersmiddel; het is een waardevol bezit dat de beste bescherming verdient. Daarom bieden wij premium Paint Protection Film (PPF) aan – de ultieme oplossing om jouw lakwerk te beschermen tegen dagelijkse slijtage, steenslag, krasjes en weersinvloeden.
     </p>
   );
 
   const fullText = (
     <>
       {shortText}
-      <h3 className="mt-6 text-xl font-semibold">Wat is Ambient Lighting?</h3>
+      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Paint Protection Film?</h3>
       <p className="mt-3">
-        Ambient lighting, ook wel sfeerverlichting genoemd, is decoratieve LED-verlichting die strategisch in het interieur van je auto wordt geplaatst. Denk aan verlichte deurlijsten, dashboardlijnen, middenconsoles en zelfs de voetruimte. Het resultaat? Een luxueuze, persoonlijke ambiance die jouw rijervaring uniek maakt, zowel overdag als 's nachts.
+        PPF is een transparante, zelfhelende folie die speciaal is ontworpen om de lak van jouw auto in topconditie te houden. Het beschermt jouw voertuig tegen:
       </p>
-      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Ambient Lighting in jouw Auto?</h3>
       <ul className="list-disc list-inside mt-2">
-        <li>Luxe uitstraling: Geef jouw auto een premium look die je normaal alleen in exclusieve voertuigen ziet.</li>
-        <li>Aanpasbare kleuren: Kies uit een breed scala aan kleuren die aansluiten bij jouw stemming of het interieur van je auto.</li>
-        <li>Verbeterde zichtbaarheid: Subtiele verlichting in de avonduren maakt knoppen, handgrepen en andere elementen beter zichtbaar.</li>
-        <li>Persoonlijke touch: Maak jouw auto uniek met verlichting die volledig naar jouw smaak is ingesteld.</li>
+        <li>Kleine krasjes: De folie herstelt zichzelf bij blootstelling aan warmte.</li>
+        <li>Steenslag en vuil: Voorkomt schade door steentjes en vuil onderweg.</li>
+        <li>UV-stralen: Beschermt tegen verkleuring door zonlicht.</li>
+        <li>Weersinvloeden: Houdt regen, sneeuw en pekel op afstand van jouw lak.</li>
+      </ul>
+      <p className="mt-3">
+        Met PPF behoudt jouw auto niet alleen zijn esthetische uitstraling, maar ook zijn restwaarde.
+      </p>
+      <h3 className="mt-6 text-xl font-semibold">Ervaring en Expertise bij Wrapmaster</h3>
+      <p className="mt-3">
+        Bij Wrapmaster mag je rekenen op vakmanschap en expertise. Ons team van installateurs beschikt over uitgebreide kennis en jarenlange ervaring in het professioneel aanbrengen van Paint Protection Film. Elk voertuig behandelen we met zorg en precisie, zodat je verzekerd bent van een naadloze afwerking en maximale bescherming.
+      </p>
+      <p className="mt-3">
+        We maken uitsluitend gebruik van hoogwaardige PPF-materialen van gerenommeerde merken. Bovendien passen wij geavanceerde technieken toe om ervoor te zorgen dat de folie perfect aansluit op de vormen van jouw voertuig.
+      </p>
+      <h3 className="mt-6 text-xl font-semibold">Voordelen van PPF door Wrapmaster</h3>
+      <ul className="list-disc list-inside mt-2">
+        <li>Onzichtbare bescherming: De transparante folie is nauwelijks zichtbaar, waardoor het originele design van jouw auto behouden blijft.</li>
+        <li>Duurzaam en onderhoudsvriendelijk: Onze PPF is ontworpen om jarenlang mee te gaan en eenvoudig te reinigen.</li>
+        <li>Maatwerk oplossingen: Of het nu gaat om volledige lakbescherming of specifieke delen zoals bumpers en spiegels, wij leveren een oplossing op maat.</li>
+        <li>Verhoogde waarde: Bescherm jouw investering en behoud de uitstraling van je voertuig.</li>
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Wrapmaster?</h3>
       <p className="mt-3">
-        Bij Wrapmaster kun je rekenen op een team van professionals met jarenlange ervaring in het inbouwen van hoogwaardige ambient lighting. We werken met de nieuwste technologieën en materialen om ervoor te zorgen dat het resultaat niet alleen mooi, maar ook duurzaam is. Onze expertise garandeert een nette installatie zonder zichtbare draden of beschadigingen aan het interieur van jouw voertuig.
+        Bij Wrapmaster staan kwaliteit en klanttevredenheid centraal. Wij denken met je mee en bieden een op maat gemaakte service die volledig is afgestemd op jouw wensen. Of je nu een sportauto, bedrijfsvoertuig of motorfiets wilt beschermen, wij hebben de expertise om elk project tot een succes te maken.
       </p>
-      <h3 className="mt-6 text-xl font-semibold">Voordelen van Ambient Lighting door Wrapmaster</h3>
-      <ul className="list-disc list-inside mt-2">
-        <li>Premium kwaliteit: We gebruiken uitsluitend hoogwaardige LED-verlichting die energiezuinig en duurzaam is.</li>
-        <li>Maatwerk oplossingen: Elke installatie wordt volledig aangepast aan jouw wensen en de unieke kenmerken van je auto.</li>
-        <li>Perfecte afwerking: Ons ervaren team zorgt voor een naadloze en onzichtbare installatie.</li>
-        <li>Innovatieve technologie: Geniet van opties zoals dimbare verlichting en verlichting die meebeweegt met de muziek in je auto.</li>
-      </ul>
-      <h3 className="mt-6 text-xl font-semibold">Ons Proces: Zorgvuldigheid en Vakmanschap</h3>
+      <h3 className="mt-6 text-xl font-semibold">Neem vandaag nog contact met ons op!</h3>
       <p className="mt-3">
-        Bij Wrapmaster doorlopen we een zorgvuldig proces om jouw ambient lighting perfect te installeren:
-      </p>
-      <ol className="list-decimal list-inside mt-2">
-        <li>Advies en ontwerp: We bespreken jouw voorkeuren en adviseren over de beste oplossingen voor jouw voertuig.</li>
-        <li>Voorbereiding: Het interieur van je auto wordt zorgvuldig voorbereid om schade te voorkomen.</li>
-        <li>Installatie: Onze professionals installeren de verlichting met uiterste precisie.</li>
-        <li>Test en oplevering: We testen de verlichting om te garanderen dat alles perfect werkt en aan jouw verwachtingen voldoet.</li>
-      </ol>
-      <h3 className="mt-6 text-xl font-semibold">Maak jouw auto uniek met Wrapmaster Ambient Lighting!</h3>
-      <p className="mt-3">
-        Ben je klaar om de sfeer in jouw auto naar een hoger niveau te tillen? Kies voor de expertise van Wrapmaster en geniet van stijlvolle, sfeervolle verlichting die jouw voertuig uniek maakt. Neem vandaag nog contact met ons op voor een vrijblijvend advies of een offerte!
+        Wil je meer weten over de voordelen van Paint Protection Film of een afspraak maken? Het team van Wrapmaster staat klaar om jouw voertuig de bescherming te bieden die het verdient. Neem direct contact met ons op en ervaar de perfecte combinatie van vakmanschap en hoogwaardige materialen.
       </p>
     </>
   );
@@ -121,18 +121,18 @@ export default function AmbientLighting() {
   return (
     <>
       <NextSeo
-        title="Ambient Light Inbouwen bij Wrapmaster"
-        description="Creëer een luxe en sfeervolle rijervaring met professioneel ingebouwde ambient lighting door Wrapmaster. Ontdek onze dynamische lichten en sfeerverlichting oplossingen."
-        canonical="https://wrapmasterdh.nl/ambient-lighting"
+        title="Paint Protection Film (PPF) bij Wrapmaster"
+        description="Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto."
+        canonical="https://wrapmasterdh.nl/ppf"
         openGraph={{
-          url: "https://wrapmasterdh.nl/ambient-lighting",
-          title: "Ambient Light Inbouwen bij Wrapmaster",
-          description: "Creëer een luxe en sfeervolle rijervaring met professioneel ingebouwde ambient lighting door Wrapmaster. Ontdek onze dynamische lichten en sfeerverlichting oplossingen.",
+          url: "https://wrapmasterdh.nl/ppf",
+          title: "Paint Protection Film (PPF) bij Wrapmaster",
+          description: "Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto.",
           images: [
             {
               url: dienstData.heroImage,
               width: 1200,
-              height: 630,
+              height: 768,
               alt: dienstData.title,
             },
           ],
@@ -141,41 +141,41 @@ export default function AmbientLighting() {
         additionalMetaTags={[
           {
             name: 'keywords',
-            content: 'ambient lighting, sfeerverlichting, dynamische lichten, auto-interieur, LED-verlichting, luxe auto-upgrade',
+            content: 'Paint Protection Film, PPF, lakbescherming, steenslagbescherming, UV-bescherming, ppf paint protection film',
           },
         ]}
       />
-      <main className="bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
-          <Image
-            src={dienstData.heroImage}
-            alt={dienstData.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
-            <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
-              <div className='flex justify-center'>
-            <Link 
-              href="/diensten"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-            >
-              TERUG NAAR DIENSTEN
-            </Link>
-            </div>
-            </div>
-          </div>
-        </section>
+
+<main className="">
+  {/* Hero Sectie */}
+      <section className="relative h-[100vh] sm:h-100vh">
+  <video
+      src="/video/urus-reel.mp4"
+      autoPlay
+      loop
+      muted
+      className="absolute w-full h-full object-cover opacity-100"
+    ></video>
+    <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 space-y-4">
+      <h1 className="text-2xl md:text-4xl font-bold text-white text-center">
+        PAINT PROTECTION FILM
+      </h1>
+      <Link 
+        href="/diensten"
+        className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+      >
+        TERUG NAAR DIENSTEN
+      </Link>
+    </div>
+  </section>
+
+
 
         {/* Text with Image Section */}
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
             <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
-              Ambient Lighting bij Wrapmaster – Verhoog de Sfeer in Jouw Auto
+              Paint Protection Film (PPF) bij Wrapmaster – Ultieme Bescherming voor Jouw Voertuig
             </h2>
             <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
               {showMore ? fullText : shortText}
@@ -196,8 +196,8 @@ export default function AmbientLighting() {
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
-                src={dienstData.contentImage1}
-                alt="Ambient Lighting bij Wrapmaster"
+                src={dienstData.contentImage3}
+                alt="Paint Protection Film bij Wrapmaster"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -217,7 +217,7 @@ export default function AmbientLighting() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -228,7 +228,7 @@ export default function AmbientLighting() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[700px]">
               <Image
                 src={dienstData.contentImage1}
                 alt="Content Image 1"
@@ -237,7 +237,7 @@ export default function AmbientLighting() {
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[700px]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"

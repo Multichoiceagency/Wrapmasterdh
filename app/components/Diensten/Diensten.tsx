@@ -22,7 +22,7 @@ const diensten: Dienst[] = [
   { id: 14, titel: "Chrome Delete", subtitel: "Moderne look zonder chroom", afbeelding: "/enes-website/chrome-delete/chrome-delete.jpg", slug: "chrome-delete" },
   { id: 13, titel: "Detailing", subtitel: "Professionele autodetailing", afbeelding: "/enes-website/detailing/Brabus 800 (9 of 20).jpg", slug: "detailing" },
   { id: 12, titel: "Sterrenhemel", subtitel: "Luxueuze interieurverlichting", afbeelding: "/enes-website/ambient-light/Project- Ram-7.jpg", slug: "sterrenhemel" },
-  { id: 11, titel: "Gordel", subtitel: "Veiligheid met stijl", afbeelding: "/enes-website/gordelkleur/IMG_1750.JPG", slug: "gordel" },
+  { id: 11, titel: "Gordel", subtitel: "Veiligheid met stijl", afbeelding: "/enes-website/gordelkleur/IMG_1750.JPG", slug: "gordelkleur-veranderen" },
   { id: 10, titel: "Lampentinten", subtitel: "Stijlvolle lampaanpassingen", afbeelding: "/enes-website/lampen-tinten/lampentinten.jpg", slug: "lampentinten" },
   { id: 9, titel: "Ramentinten", subtitel: "Privacy en UV-bescherming", afbeelding: "/enes-website/ramentint/RSQ3-ramentint1.jpg", slug: "ramentinten" },
   { id: 8, titel: "Reclame/Design", subtitel: "Opvallende voertuigreclame", afbeelding: "/enes-website/reclame/_GLA5951.jpg", slug: "reclame-design" },
@@ -64,7 +64,7 @@ const OnzeDiensten: React.FC = () => {
   }, [emblaApi, isLoaded]);
 
   return (
-<section className="py-16 h-100 overflow-hidden bg-white">
+<section className="py-16 h-90 overflow-hidden bg-white">
   <div className="text-center">
     {/* Aangepaste klassen voor centreren */}
     <h2 className="pb-10 text-3xl font-medium text-gray-800">ONZE DIENSTEN</h2>
@@ -77,7 +77,7 @@ const OnzeDiensten: React.FC = () => {
             key={dienst.id}
             className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
           >
-            <Link href={`/diensten/${dienst.slug}`}>
+            <Link href={`/${dienst.slug}`}>
               <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
                 <div className="relative h-[500px] w-full">
                   <Image

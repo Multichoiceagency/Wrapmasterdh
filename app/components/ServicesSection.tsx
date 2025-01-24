@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 const ServicesSection: React.FC = () => {
   const services = [
-    { name: 'Carwrapping', link: '/diensten/carwrapping' },
-    { name: 'PPF', link: '/diensten/ppf' },
-    { name: 'Detailing', link: '/diensten/detailing' },
-    { name: 'Bodykit', link: '/diensten/bodykit' },
+    { name: 'Carwrapping', link: '/carwrapping' },
+    { name: 'PPF', link: '/ppf' },
+    { name: 'Detailing', link: '/detailing' },
+    { name: 'Bodykit', link: '/bodykit' },
   ];
 
   return (

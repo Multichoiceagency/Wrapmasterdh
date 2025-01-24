@@ -18,18 +18,19 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Sterrenhemel Inbouwen bij Wrapmaster",
-  description: "Maak van jouw Auto een Unieke Beleving - Creëer een magische sfeer met onze op maat gemaakte sterrenhemel voor jouw auto.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  title: "CARWRAPPING",
+  description: "",
+  heroImage: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg",
+  contentImage1: "/enes-website/auto-wrappen/rs6/RS6-10.jpg",
+  contentImage3: "/enes-website/auto-wrappen/elia/BlndrAgency_ (25 of 34).jpg",
+  contentImage2: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (17 of 24).jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/auto-wrappen/elia/elia1.jpg",
+  "/enes-website/auto-wrappen/rs6/RS6-11.jpg",
+  "/enes-website/auto-wrappen/urus-khaki/urus2.jpg",
+  "/enes-website/auto-wrappen/g-wagon/brabus1.jpg",
 ];
 
 const reels = [
@@ -41,25 +42,25 @@ const reels = [
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/YELLOW FERARRI VERSIE 1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/BLACK FERARRI normal 25-12.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Eljero Elia-_1.mp4",
     likes: "78.9k",
     comments: "230",
   },
 ];
 
-export default function SterrenhemelInbouwen() {
+export default function Carwrapping() {
   const [showMore, setShowMore] = useState(false);
   const [emblaRef] = useEmblaCarousel(
     {
@@ -72,49 +73,23 @@ export default function SterrenhemelInbouwen() {
 
   const shortText = (
     <p>
-      Wil jij jouw auto een spectaculaire en luxe uitstraling geven? Bij Wrapmaster bieden we de mogelijkheid om een prachtige sterrenhemel in te bouwen in jouw voertuig. Met honderden subtiele LED-lichtpuntjes in het interieur creëren we een magische en exclusieve sfeer, geïnspireerd door de sterrenhemels die je normaal alleen in de meest luxe auto's ziet.
+      Bij Wrapmaster zijn we gespecialiseerd in carwrapping, dé perfecte manier om jouw voertuig een compleet nieuwe uitstraling te geven. Of je nu kiest voor een opvallende kleur, een matte afwerking, of een bedrijfsbranding, met carwrapping transformeren we jouw auto precies zoals jij het wilt.
     </p>
   );
 
   const fullText = (
     <>
       {shortText}
-      <h3 className="mt-6 text-xl font-semibold">Wat is een Sterrenhemel in de Auto?</h3>
+      <h3 className="mt-6 text-xl font-semibold">Wat is Carwrapping?</h3>
       <p className="mt-3">
-        Een sterrenhemel in de auto bestaat uit een netwerk van kleine LED-lichtjes die in de bekleding van het plafond worden geplaatst. Deze lichtjes bootsen een realistische sterrenhemel na, compleet met verschillende helderheden en zelfs de optie voor aanpasbare kleuren en twinkelende effecten. Het resultaat is een ongeëvenaarde rijervaring die niet alleen indrukwekkend is, maar ook ontspannend werkt.
+        Carwrapping is een innovatieve techniek waarbij een hoogwaardige folie over de originele lak van je voertuig wordt aangebracht. Dit biedt niet alleen een visuele upgrade, maar beschermt ook de lak tegen steenslag, UV-straling en kleine beschadigingen. Het grote voordeel? De wrap is volledig verwijderbaar, waardoor je altijd kunt terugkeren naar de originele lak.
       </p>
-      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor een Sterrenhemel in jouw Auto?</h3>
-      <ul className="list-disc list-inside mt-2">
-        <li>Luxe uitstraling: Geef jouw voertuig een unieke en exclusieve look die gegarandeerd indruk maakt.</li>
-        <li>Volledig personaliseerbaar: Kies jouw favoriete kleuren, patronen en twinkle-effecten.</li>
-        <li>Ontspannende sfeer: De zachte verlichting zorgt voor een rustgevende ambiance tijdens het rijden.</li>
-        <li>Uniek ontwerp: Elk sterrenhemelproject wordt volledig op maat gemaakt en aangepast aan jouw wensen.</li>
-      </ul>
-      <h3 className="mt-6 text-xl font-semibold">Wrapmaster: Jouw Specialist in Sterrenhemels</h3>
-      <p className="mt-3">
-        Bij Wrapmaster mag je rekenen op vakmanschap en precisie. Ons team van professionals met jarenlange ervaring zorgt ervoor dat elke sterrenhemel perfect wordt ingebouwd, zonder schade aan jouw voertuig. We werken met hoogwaardige materialen en LED-technologie om een verbluffend en duurzaam resultaat te garanderen.
-      </p>
-      <h3 className="mt-6 text-xl font-semibold">Voordelen van een Sterrenhemel door Wrapmaster</h3>
-      <ul className="list-disc list-inside mt-2">
-        <li>Hoogwaardige afwerking: Ons ervaren team zorgt voor een naadloze installatie waarbij de originele bekleding intact blijft.</li>
-        <li>Maatwerk: Van kleurkeuze tot patroonontwerp, wij creëren een sterrenhemel die volledig bij jouw stijl past.</li>
-        <li>Geavanceerde technologie: Onze systemen zijn energiezuinig en kunnen worden bediend via een afstandsbediening of smartphone-app.</li>
-        <li>Lange levensduur: Wij gebruiken premium LED-lichtjes die jaren meegaan zonder helderheidsverlies.</li>
-      </ul>
-      <h3 className="mt-6 text-xl font-semibold">Hoe werkt het Inbouwen van een Sterrenhemel?</h3>
-      <ol className="list-decimal list-inside mt-2">
-        <li>Adviesgesprek: We bespreken jouw wensen en geven advies over de mogelijkheden.</li>
-        <li>Ontwerp en voorbereiding: Samen creëren we een uniek sterrenhemelontwerp, inclusief kleur- en effectopties.</li>
-        <li>Installatie: Ons team installeert de LED-lichtjes nauwkeurig in het plafond van jouw auto, met oog voor detail.</li>
-        <li>Afwerking en controle: We testen het systeem en zorgen voor een perfect afgewerkt interieur.</li>
-      </ol>
       <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Wrapmaster?</h3>
       <p className="mt-3">
-        Bij Wrapmaster begrijpen we dat jouw auto meer is dan alleen een vervoermiddel. Wij combineren passie voor innovatie met een scherp oog voor detail om een sterrenhemel te creëren die jouw auto echt uniek maakt. Met onze focus op kwaliteit en klanttevredenheid zorgen we ervoor dat jouw verwachtingen worden overtroffen.
+        Bij Wrapmaster mag je rekenen op vakmanschap, precisie en passie. Ons team bestaat uit professionals met jarenlange ervaring in carwrapping. We hebben talloze projecten succesvol afgerond, variërend van luxe sportauto’s tot bedrijfswagens.
       </p>
-      <h3 className="mt-6 text-xl font-semibold">Transformeer jouw Auto met een Wrapmaster Sterrenhemel!</h3>
       <p className="mt-3">
-        Wil jij een sterrenhemel laten inbouwen en jouw auto een luxe uitstraling geven? Kies voor Wrapmaster en geniet van een interieur dat letterlijk straalt. Neem vandaag nog contact met ons op voor meer informatie of een vrijblijvende offerte. Samen maken we jouw droom werkelijkheid!
+        Met oog voor detail en gebruik van alleen de beste wrapfolies van toonaangevende merken zorgen wij voor een perfecte afwerking die niet alleen stijlvol, maar ook duurzaam is. Of je nu kiest voor een complete wrap of alleen voor specifieke delen zoals dak, spiegels of motorkap, wij leveren maatwerk dat past bij jouw wensen.
       </p>
     </>
   );
@@ -122,13 +97,13 @@ export default function SterrenhemelInbouwen() {
   return (
     <>
       <NextSeo
-        title="Sterrenhemel Inbouwen bij Wrapmaster - Maak van jouw Auto een Unieke Beleving"
-        description="Creëer een magische sfeer in jouw auto met een op maat gemaakte sterrenhemel door Wrapmaster. Ontdek onze luxe LED-verlichting oplossingen voor auto-interieurs."
-        canonical="https://wrapmasterdh.nl/sterrenhemel-inbouwen"
+        title="Carwrapping bij Wrapmaster"
+        description="Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling."
+        canonical="https://wrapmasterdh.nl/carwrapping"
         openGraph={{
-          url: "https://wrapmasterdh.nl/sterrenhemel-inbouwen",
-          title: "Sterrenhemel Inbouwen bij Wrapmaster - Maak van jouw Auto een Unieke Beleving",
-          description: "Creëer een magische sfeer in jouw auto met een op maat gemaakte sterrenhemel door Wrapmaster. Ontdek onze luxe LED-verlichting oplossingen voor auto-interieurs.",
+          url: "https://wrapmasterdh.nl/carwrapping",
+          title: "Carwrapping bij Wrapmaster",
+          description: "Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling.",
           images: [
             {
               url: dienstData.heroImage,
@@ -142,14 +117,14 @@ export default function SterrenhemelInbouwen() {
         additionalMetaTags={[
           {
             name: 'keywords',
-            content: 'sterrenhemel inbouwen, auto sterrenhemel, LED-verlichting auto, luxe auto-interieur, custom car lighting',
+            content: 'carwrapping, auto wrappen, voertuig wrap, lakbescherming',
           },
         ]}
       />
       <main className="bg-white">
         {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
-          <Image
+        <section className="relative h-[100vh] sm:h-100vh">
+        <Image
             src={dienstData.heroImage}
             alt={dienstData.title}
             fill
@@ -158,16 +133,15 @@ export default function SterrenhemelInbouwen() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
+              <h1 className="text-5xl sm:text-5xl mb-2 py-5 text-center">{dienstData.title}</h1>
               <div className='flex justify-center'>
-                <Link 
-                  href="/diensten"
-                  className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-                >
-                  TERUG NAAR DIENSTEN
-                </Link>
-              </div>
+            <Link 
+              href="/diensten"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              TERUG NAAR DIENSTEN
+            </Link>
+            </div>
             </div>
           </div>
         </section>
@@ -176,7 +150,7 @@ export default function SterrenhemelInbouwen() {
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
             <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
-              Sterrenhemel Inbouwen bij Wrapmaster – Maak van jouw Auto een Unieke Beleving
+              Carwrapping bij Wrapmaster – Geef jouw Voertuig een Nieuwe Look
             </h2>
             <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
               {showMore ? fullText : shortText}
@@ -198,7 +172,7 @@ export default function SterrenhemelInbouwen() {
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
                 src={dienstData.contentImage1}
-                alt="Sterrenhemel Inbouwen bij Wrapmaster"
+                alt="Carwrapping bij Wrapmaster"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -218,7 +192,7 @@ export default function SterrenhemelInbouwen() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -229,16 +203,16 @@ export default function SterrenhemelInbouwen() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"
@@ -249,6 +223,7 @@ export default function SterrenhemelInbouwen() {
             </div>
           </div>
         </section>
+
 
         {/* Instagram Reels Section */}
         <section className="w-full bg-white py-16">
@@ -284,13 +259,12 @@ export default function SterrenhemelInbouwen() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="/logos/handtekening-wit.png"
-                          alt="Reels Play Icon"
-                          width={100}
-                          height={20}
-                          className="mr-2"
-                        />
-                      </span>
+                      src="/logos/handtekening-wit.png"
+                      alt="Reels Play Icon"
+                      width={100}
+                      height={20}
+                      className="mr-2"
+                    /></span>
                       <div className="flex space-x-2">
                         <a
                           href={socialMedia.instagram}
@@ -343,4 +317,3 @@ export default function SterrenhemelInbouwen() {
     </>
   );
 }
-

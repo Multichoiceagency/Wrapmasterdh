@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 
-interface BoatSection {
+interface AudiRs6 {
   id: number;
   title: string;
   featured_image: string;
@@ -12,15 +12,15 @@ interface BoatSection {
   button_link?: string;
 }
 
-const banner: BoatSection = {
+const banner: AudiRs6 = {
   id: 1,
   title: "",
   featured_image: "/enes-website/rs6-3.jpg",
   button_text: "Carwrapping",
-  button_link: "/diensten/print-folie"
+  button_link: "/diensten/carwrapping"
 };
 
-function BoatSection() {
+function AudiRs6() {
   return (
     <section className="relative text-white h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen overflow-hidden">
       <Image
@@ -35,7 +35,7 @@ function BoatSection() {
         <h3 className="text-4xl font-light uppercase py-7 text-white text-center">{banner.title}</h3>
         {banner.button_text && banner.button_link && (
           <Link href={banner.button_link}>
-            <button className="px-6 py-2 bg-black text-white font-semibold text-sm sm:text-base hover:bg-red-700 transition duration-300 ease-in-out">
+            <button className="px-6 py-2 bg-red-700 text-white font-semibold text-sm sm:text-base hover:bg-red-700 transition duration-300 ease-in-out">
               {banner.button_text}
             </button>
           </Link>
@@ -45,5 +45,5 @@ function BoatSection() {
   );
 }
 
-export default BoatSection;
+export default AudiRs6;
 

@@ -45,20 +45,30 @@ const DienstenPage: React.FC = () => {
       </Head>
 
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] md:h-[80vh]">
-        <Image
+      <section className="relative h-[100vh] sm:h-100vh">
+      <Image
           src="/enes-website/wallpaper/lambo-urus-satin-black.jpg"
-          alt="Wrapmaster Hero Image"
+          alt="Wrapmaster Hero afbeelding"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center">
-          <h1 className="text-4xl md:text-6xl font mb-4">Onze Diensten</h1>
-          <p className="text-xl md:text-2xl">Ontdek onze professionele auto customization services</p>
-        </div>
-      </section>
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+            <div className="text-left text-white px-4 max-w-4xl">
+              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">Onze diensten</h1>
+              <p className="text-base sm:text-xl mb-6 px-16 text-center">Proffessionele carwrapping diensten</p>
+              <div className='flex justify-center'>
+            <Link 
+              href="/offerte-aanvragen"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              Offerte aanvragen
+            </Link>
+            </div>
+            </div>
+          </div>
+        </section>
 
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
@@ -69,7 +79,7 @@ const DienstenPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {diensten.map((dienst) => (
-              <Link key={dienst.id} href={`/diensten/${dienst.slug}`}>
+              <Link key={dienst.id} href={`/${dienst.slug}`}>
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                   <div className="relative h-64">
                     <Image
@@ -96,19 +106,19 @@ const DienstenPage: React.FC = () => {
         "@type": "LocalBusiness",
         "name": "Wrapmaster",
         "description": "Specialist in carwrapping en auto customization",
-        "url": "https://www.wrapmaster.nl",
-        "telephone": "+31XXXXXXXXX",
+        "url": "https://www.wrapmasterdh.nl",
+        "telephone": "0702250721",
         "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Straatnaam 123",
-          "addressLocality": "Stad",
-          "postalCode": "1234 AB",
+          "@type": "PostallAdress",
+          "streetAddress": "Westvlietweg 72L",
+          "addressLocality": "Den Haag",
+          "postalCode": "2495AA",
           "addressCountry": "NL"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 52.3676,
-          "longitude": 4.9041
+          "latitude": 52.06350716913658,
+          "longitude": 4.364688783795313
         },
         "openingHoursSpecification": [
           {
@@ -127,12 +137,12 @@ const DienstenPage: React.FC = () => {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": "Saturday",
             "opens": "10:00",
-            "closes": "17:00"
+            "closes": "18:00"
           }
         ],
         "sameAs": [
-          "https://www.facebook.com/wrapmaster",
-          "https://www.instagram.com/wrapmaster"
+          "https://www.facebook.com/WrapmasterDH",
+          "https://www.instagram.com/wrapmasterdh"
         ]
       })} } />
     </>

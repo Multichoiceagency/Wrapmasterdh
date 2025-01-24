@@ -18,42 +18,43 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Auto Detailing bij Wrapmaster",
-  description: "Voor een Showroomwaardige Auto - Professionele auto detailing diensten voor een diepgaande reiniging en herstel van uw voertuig.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  title: "Detailing",
+  description: "",
+  heroImage: "/enes-website/detailing/20211216_141527.jpg",
+  contentImage1: "/enes-website/detailing/Lamborghini Urus11.jpg",
+  contentImage2: "/enes-website/detailing/WM-8.jpg",
+  contentImage3: "/enes-website/detailing/Lamborghini Urus7.jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/detailing/BlndrAgency_ (5 of 34).jpg",
+  "/enes-website/detailing/RSQ3-8.jpg",
+  "/enes-website/detailing/Mercedez-Benz AMG GT63_DONE_ (3 of 41).jpg",
+  "/enes-website/detailing/Maasvlakte-18.jpg",
 ];
 
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/BLACK FERARRI normal 25-12.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/G WAGON 50FPS_1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/PORSCHE FINAL 2.MP4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/SWIPE V2 - @wrapmaster.MP4",
     likes: "78.9k",
     comments: "230",
   },
@@ -93,7 +94,7 @@ export default function AutoDetailing() {
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Wrapmaster: Jouw Specialist in Auto Detailing</h3>
       <p className="mt-3">
-        Bij Wrapmaster werken we met een team van ervaren professionals met jarenlange ervaring in het perfectioneren van voertuigen. Onze passie voor auto's en oog voor detail zorgen ervoor dat elk project met precisie en vakmanschap wordt uitgevoerd. Wij gebruiken uitsluitend premium producten en technieken om ervoor te zorgen dat jouw auto het beste resultaat krijgt.
+        Bij Wrapmaster werken we met een team van ervaren professionals met jarenlange ervaring in het perfectioneren van voertuigen. Onze passie voor autos en oog voor detail zorgen ervoor dat elk project met precisie en vakmanschap wordt uitgevoerd. Wij gebruiken uitsluitend premium producten en technieken om ervoor te zorgen dat jouw auto het beste resultaat krijgt.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Onze Detailing Diensten</h3>
       <p className="mt-3">
@@ -222,7 +223,7 @@ export default function AutoDetailing() {
           </div>
         </section>
 
-        {/* Image Slider Section */}
+       {/* Image Slider Section */}
         <section className="py-16 bg-gray-100">
           <div className="embla" ref={emblaRef}>
             <div className="embla__container flex">
@@ -232,7 +233,7 @@ export default function AutoDetailing() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -240,29 +241,30 @@ export default function AutoDetailing() {
           </div>
         </section>
 
-        {/* Two Images Section */}
-        <section className="max-w-full mx-auto mt-16 md:mt-44">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
-              <Image
-                src={dienstData.contentImage1}
-                alt="Content Image 1"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="relative h-[300px] sm:h-[500px]">
-              <Image
-                src={dienstData.contentImage2}
-                alt="Content Image 2"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        </section>
+
+                        {/* Two Images Section */}
+                        <section className="max-w-full mx-auto mt-16 md:mt-44">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="relative h-[700px] sm:h-[700px]">
+                              <Image
+                                src={dienstData.contentImage2}
+                                alt="Content Image 1"
+                                fill
+                                className="object-cover"
+                                priority
+                              />
+                            </div>
+                            <div className="relative h-[700px] sm:h-[700px]">
+                              <Image
+                                src={dienstData.contentImage3}
+                                alt="Content Image 2"
+                                fill
+                                className="object-cover"
+                                priority
+                              />
+                            </div>
+                          </div>
+                        </section>
 
         {/* Instagram Reels Section */}
         <section className="w-full bg-white py-16">
