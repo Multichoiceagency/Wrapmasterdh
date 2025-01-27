@@ -7,6 +7,7 @@ import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import "photoswipe/dist/photoswipe.css";
 import OfferteAanvragen from "@/components/offerte-aanvragen";
 
+
 // Importeer DM Sans met de juiste configuratie
 const dmSans = DM_Sans({
   weight: ['400', '500', '700'], // Voeg de gewenste gewichten toe
@@ -22,6 +23,10 @@ export const metadata: Metadata = {
     description: "Transformeer uw voertuig met onze hoogwaardige car wrapping diensten in Den Haag. Kies voor stijl, bescherming en perfectie.",
     locale: "nl_NL",
     type: "website",
+    
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -34,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="nl" className={dmSans.className}> {/* Gebruik DM Sans hier */}
       <body>
-        <Header />
+        <Header /><link rel="icon" href="/favicon.ico" />
         {children}<OfferteAanvragen />
         <Footer />
         <WhatsAppFloatingIcon phoneNumber="31638718893" />
