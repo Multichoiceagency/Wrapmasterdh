@@ -20,22 +20,23 @@ const socialMedia = {
 const dienstData = {
   title: "Gordels Vervangen in Kleur bij Wrapmaster",
   description: "Geef Jouw Auto een Unieke en Luxe Uitstraling met op maat gemaakte gekleurde gordels. Veiligheid ontmoet stijl bij Wrapmaster.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  heroImage: "/enes-website/gordelkleur/IMG_0496.JPG",
+  contentImage1: "/enes-website/gordelkleur/IMG_2475.jpg",
+  contentImage2: "/enes-website/gordelkleur/IMG_2067.JPG",
+  contentImage3: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/gordelkleur/IMG_2067.JPG",
+  "/enes-website/gordelkleur/IMG_1932.JPG",
+  "/enes-website/gordelkleur/IMG_1750.JPG",
+  "/enes-website/gordelkleur/IMG_1985.JPG",
 ];
 
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/shot_1.mp4",
     likes: "65.2k",
     comments: "195",
   },
@@ -218,7 +219,8 @@ export default function GordelsVervangen() {
           </div>
         </section>
 
-        {/* Image Slider Section */}
+
+       {/* Image Slider Section */}
         <section className="py-16 bg-gray-100">
           <div className="embla" ref={emblaRef}>
             <div className="embla__container flex">
@@ -228,7 +230,7 @@ export default function GordelsVervangen() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -236,29 +238,29 @@ export default function GordelsVervangen() {
           </div>
         </section>
 
-        {/* Two Images Section */}
-        <section className="max-w-full mx-auto mt-16 md:mt-44">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
-              <Image
-                src={dienstData.contentImage1}
-                alt="Content Image 1"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="relative h-[300px] sm:h-[500px]">
-              <Image
-                src={dienstData.contentImage2}
-                alt="Content Image 2"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        </section>
+               {/* Two Images Section */}
+               <section className="max-w-full mx-auto mt-16 md:mt-44">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div className="relative h-[700px] sm:h-[700px]">
+                     <Image
+                       src={dienstData.contentImage2}
+                       alt="Content Image 1"
+                       fill
+                       className="object-cover"
+                       priority
+                     />
+                   </div>
+                   <div className="relative h-[700px] sm:h-[700px]">
+                     <Image
+                       src={dienstData.contentImage3}
+                       alt="Content Image 2"
+                       fill
+                       className="object-cover"
+                       priority
+                     />
+                   </div>
+                 </div>
+               </section>
 
         {/* Instagram Reels Section */}
         <section className="w-full bg-white py-16">

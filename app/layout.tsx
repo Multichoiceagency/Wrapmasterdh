@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import "photoswipe/dist/photoswipe.css";
+import OfferteAanvragen from "@/components/offerte-aanvragen";
 
 // Importeer DM Sans met de juiste configuratie
 const dmSans = DM_Sans({
@@ -29,11 +30,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="nl" className={dmSans.className}> {/* Gebruik DM Sans hier */}
       <body>
         <Header />
-        {children}
+        {children}<OfferteAanvragen />
         <Footer />
         <WhatsAppFloatingIcon phoneNumber="31638718893" />
       </body>
