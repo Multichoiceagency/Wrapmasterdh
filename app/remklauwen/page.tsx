@@ -20,9 +20,10 @@ const socialMedia = {
 const dienstData = {
   title: "Remklauwen Kleuren bij Wrapmaster",
   description: "Geef Jouw Auto een Sportieve en Luxe Uitstraling met professioneel gekleurde remklauwen. Verbeter de look en bescherming van je remmen.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
+  heroImage: "/enes-website/remklauwen/RS6-8.jpg",
+  contentImage1: "/enes-website/remklauwen/1000017877.jpg",
   contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  contentImage3: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
 };
 
 const sliderImages = [
