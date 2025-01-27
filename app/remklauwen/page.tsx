@@ -22,15 +22,15 @@ const dienstData = {
   description: "Geef Jouw Auto een Sportieve en Luxe Uitstraling met professioneel gekleurde remklauwen. Verbeter de look en bescherming van je remmen.",
   heroImage: "/enes-website/remklauwen/RS6-8.jpg",
   contentImage1: "/enes-website/remklauwen/1000017877.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
-  contentImage3: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  contentImage2: "/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
+  contentImage3: "/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/remklauwen/1000018243.jpg",
+  "/enes-website/remklauwen/IMG_2540.JPG",
+  "/enes-website/remklauwen/IMG_2288.jpg",
+  "/enes-website/remklauwen/1000017877.jpg",
 ];
 
 const reels = [
@@ -219,7 +219,7 @@ export default function RemklauwenKleuren() {
           </div>
         </section>
 
-        {/* Image Slider Section */}
+       {/* Image Slider Section */}
         <section className="py-16 bg-gray-100">
           <div className="embla" ref={emblaRef}>
             <div className="embla__container flex">
@@ -229,7 +229,7 @@ export default function RemklauwenKleuren() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
