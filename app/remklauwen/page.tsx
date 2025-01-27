@@ -22,7 +22,7 @@ const dienstData = {
   description: "Geef Jouw Auto een Sportieve en Luxe Uitstraling met professioneel gekleurde remklauwen. Verbeter de look en bescherming van je remmen.",
   heroImage: "/enes-website/remklauwen/RS6-8.jpg",
   contentImage1: "/enes-website/remklauwen/1000017877.jpg",
-  contentImage2: "/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
+  contentImage2: "/enes-website/remklauwen/WrapMaster Black Range Rover (6 of 13).jpg",
   contentImage3: "/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
 };
 
@@ -240,16 +240,16 @@ export default function RemklauwenKleuren() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"
