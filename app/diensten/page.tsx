@@ -54,7 +54,7 @@ const DienstenPage: React.FC = () => {
           className="object-cover"
           sizes="100vw"
         />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
               <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">Onze diensten</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">Proffessionele carwrapping diensten</p>
