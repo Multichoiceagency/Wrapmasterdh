@@ -10,25 +10,25 @@ export default function Footer() {
       items: [
         { title: "ONS TEAM", href: "/ons-team", isHeading: true },
         { title: "SAMENWERKINGEN", href: "/samenwerking", isHeading: true },
-        { title: "DIENSTEN", href: "/portfolio", isHeading: true },
+        { title: "DIENSTEN", href: "/diensten", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />,
       socialLink: "https://www.instagram.com/wrapmasterdh/"
     },
     {
       items: [
-        { title: "PORTFOLIO", href: "/algemene voorwaarden", isHeading: true },
-        { title: "6X6 Rental", href: "/herroeping-claim", isHeading: true },
-        { title: "Ons team", href: "/voorwaarden", isHeading: true },
+        { title: "PORTFOLIO", href: "/portfolio", isHeading: true },
+        { title: "6X6 Rental", href: "https://www.6x6rental.nl", isHeading: true },
+        { title: "WALLPAPER", href: "/wallpaper", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faTiktok} className="h-5 w-5" />,
       socialLink: "https://www.tiktok.com/@wrapmasterdh"
     },
     {
       items: [
-        { title: "OFFERTE AANVRAGEN", href: "/tuning-shop", isHeading: true },
-        { title: "CONTACT", href: "/mode-shop", isHeading: true },
-        { title: "VACATURES", href: "/privacybeleid", isHeading: true },
+        { title: "OFFERTE AANVRAGEN", href: "/offerte-aanvraagen", isHeading: true },
+        { title: "CONTACT", href: "/contact", isHeading: true },
+        { title: "VACATURES", href: "/vacatures", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faFacebookF} className="h-5 w-5" />,
       socialLink: "https://www.facebook.com/WrapmasterDH"

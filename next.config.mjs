@@ -6,31 +6,42 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.website.wrapmasterdh.nl',
-        pathname: '/**', // Allow all paths under this hostname
+        protocol: "https",
+        hostname: "www.website.wrapmasterdh.nl",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'drive.google.com',
-        pathname: '/uc', // Allow Google Drive direct image URLs
+        protocol: "https",
+        hostname: "drive.google.com",
+        pathname: "/uc",
       },
       {
-        protocol: 'https',
-        hostname: 'asset.cloudinary.com',
-        pathname: '/**', // Allow all assets under asset.cloudinary.com
+        protocol: "https",
+        hostname: "asset.cloudinary.com",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '/**', // Allow all assets under res.cloudinary.com
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'wrapmasterdh-production.up.railway.app',
-        pathname: '/**', // Allow all paths under this hostname
+        protocol: "https",
+        hostname: "wrapmasterdh-production.up.railway.app",
+        pathname: "/**",
       },
     ],
+  },
+
+  // **Automatische WebP Redirects voor alle lokale afbeeldingen**
+  async redirects() {
+    return [
+      {
+        source: "/:path*.{jpg,jpeg,png}",
+        destination: "/:path*.webp",
+        permanent: false,
+      },
+    ];
   },
 };
 
