@@ -16,18 +16,35 @@ export default function OfferteAanvragen() {
     gewensteKleur: "",
     bericht: "",
     privacyCheck: false,
-    uploadedFiles: null as File | null,
+    uploadedFiles: [] as File[], // ✅ Nu een array van bestanden
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // ✅ Handle file selection (Meerdere bestanden)
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files) // Zet FileList om naar array
+      setFormData((prev) => ({
+        ...prev,
+        uploadedFiles: [...prev.uploadedFiles, ...filesArray], // ✅ Bestanden toevoegen aan state
+      }))
+    }
+  }
+
+  // ✅ Bestanden verwijderen uit de lijst
+  const removeFile = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      uploadedFiles: prev.uploadedFiles.filter((_, i) => i !== index),
+    }))
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
 
     if (type === "checkbox") {
       setFormData({ ...formData, [name]: (e.target as HTMLInputElement).checked })
-    } else if (type === "file") {
-      setFormData({ ...formData, uploadedFiles: (e.target as HTMLInputElement).files?.[0] || null })
     } else {
       setFormData({ ...formData, [name]: value })
     }
@@ -46,8 +63,8 @@ export default function OfferteAanvragen() {
     try {
       const submitData = new FormData()
       Object.entries(formData).forEach(([key, value]) => {
-        if (key === "uploadedFiles" && value instanceof File) {
-          submitData.append(key, value, value.name)
+        if (key === "uploadedFiles" && Array.isArray(value)) {
+          value.forEach((file) => submitData.append("uploadedFiles", file)) // ✅ Meerdere bestanden toevoegen
         } else {
           submitData.append(key, String(value))
         }
@@ -71,7 +88,7 @@ export default function OfferteAanvragen() {
           gewensteKleur: "",
           bericht: "",
           privacyCheck: false,
-          uploadedFiles: null,
+          uploadedFiles: [],
         })
       } else {
         throw new Error("Verzending mislukt.")
@@ -108,15 +125,25 @@ export default function OfferteAanvragen() {
             {/* File Upload */}
             <label className="block">
               Voeg foto's toe van uw auto:
-              <input type="file" name="uploadedFiles" onChange={handleChange} className="p-3 border rounded w-full mt-2" />
+              <input type="file" name="uploadedFiles" onChange={handleFileChange} multiple className="p-3 border rounded w-full mt-2" />
             </label>
+
+            {/* ✅ Thumbnails van geüploade afbeeldingen */}
+            <div className="flex flex-wrap gap-4 mt-4">
+              {formData.uploadedFiles.map((file, index) => (
+                <div key={index} className="relative">
+                  <img src={URL.createObjectURL(file)} alt="Upload Preview" className="w-24 h-24 object-cover rounded-lg shadow" />
+                  <button type="button" onClick={() => removeFile(index)} className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs">
+                    ❌
+                  </button>
+                </div>
+              ))}
+            </div>
 
             {/* Privacy Check */}
             <div className="mt-4 flex items-center space-x-2">
               <Checkbox id="privacyCheck" checked={formData.privacyCheck} onCheckedChange={(checked) => setFormData({ ...formData, privacyCheck: !!checked })} />
-              <label htmlFor="privacyCheck" className="text-gray-700">
-                Ik ga akkoord met het privacybeleid
-              </label>
+              <label htmlFor="privacyCheck" className="text-gray-700">Ik ga akkoord met het privacybeleid</label>
             </div>
 
             {/* Submit Button */}
@@ -124,19 +151,6 @@ export default function OfferteAanvragen() {
               {isSubmitting ? "Versturen..." : "Verstuur Offerte"}
             </button>
           </form>
-        </div>
-
-        {/* Contactgegevens sectie */}
-        <div className="flex flex-col items-center justify-center w-full bg-white shadow-lg rounded-lg p-8 lg:w-1/2 lg:ml-8 mb-10 lg:mb-0">
-          <Image src="/logos/logo-zwart.png" alt="Wrapmaster Logo" width={200} height={100} className="mb-6" />
-          <div className="text-center text-gray-700 space-y-2">
-            <h3 className="text-2xl font-bold">Contact</h3>
-            <p>Westvlietweg 72-L, 2495 AA, Den Haag</p>
-            <p>070 - 225 07 21</p>
-            <p><a href="mailto:info@wrapmasterdh.nl" className="text-blue-600 hover:underline">info@wrapmasterdh.nl</a></p>
-            <p>BTW NR: NL0023328992</p>
-            <p>KvK NR: 68374232</p>
-          </div>
         </div>
       </div>
     </main>

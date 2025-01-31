@@ -16,7 +16,7 @@ const menuItems = [
   { id: 8, title: 'Ons Team', link: '/ons-team' },
   { id: 7, title: 'Wallpaper', link: '/wallpaper' },
   { id: 4, title: 'Samenwerking', link: '/samenwerking' },
-  { id: 5, title: '6×6 Rental', link: '/6x6-rental' },
+  { id: 5, title: '6×6 Rental', link: 'https://www.6x6rental.nl' },
 ];
 
 const socialMedia = {
@@ -243,14 +243,10 @@ const Header: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <div className="p-4 border-t border-gray-200">
+            <div className="p-4 pb-7 border-t border-gray-200 z-999">
               <div className="md:hidden">
                 {renderSocialIcons(true)}
-              </div>
-              <Link href="/offerte-aanvragen" className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 transition-colors hover:scale-110 duration-900 fade-in-out">
-                <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
-                Offerte Aanvragen
-              </Link>
+                </div>
             </div>
           </div>
         </nav>

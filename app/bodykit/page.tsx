@@ -20,16 +20,18 @@ const socialMedia = {
 const dienstData = {
   title: "Bodykit Montage bij Wrapmaster",
   description: "Geef Jouw Auto een Unieke en Sportieve Look. Professionele montage van bodykits voor een verbeterde aerodynamica en opvallende uitstraling.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  heroImage: "/enes-website/bodykit/eng_pl_Set-of-Splitters-Mercedes-AMG-GT-C-C190-Facelift-22294_20.jpg",
+  contentImage1: "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg",
+  contentImage2: "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_17.jpg",
+  contentImage3: "/enes-website/bodykit/eng_pl_Set-of-Splitters-V-3-BMW-1-M-Pack-F70-22415_11.jpg",
+
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/bodykit/eng_pl_Rear-Splitter-with-vertical-bars-Mercedes-AMG-GT-C-C190-Facelift-22292_3.jpg",
+  "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_10.jpg",
+  "/enes-website/bodykit/eng_pl_Set-of-Splitters-Land-Rover-Range-Rover-Sport-Mk2-22478_1.jpg",
+  "/enes-website/bodykit/eng_pl_Set-of-Splitters-V-2-Volkswagen-Golf-GTI-Clubsport-Mk8-Facelift-22345_10.jpg",
 ];
 
 const reels = [
@@ -173,10 +175,10 @@ export default function BodykitMontage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
+              <h1 className="text-3xl sm:text-6xl mb-2 text-gray-400 py-5 text-center">{dienstData.title}</h1>
+              <p className="text-base sm:text-xl mb-6 text-gray-400 px-16 text-center">{dienstData.description}</p>
               <div className='flex justify-center'>
                 <Link 
                   href="/diensten"
@@ -226,7 +228,7 @@ export default function BodykitMontage() {
         </section>
 
         {/* Image Slider Section */}
-        <section className="py-16 bg-gray-100">
+        <section className="py-16">
           <div className="embla" ref={emblaRef}>
             <div className="embla__container flex">
               {sliderImages.map((image, index) => (
@@ -235,7 +237,7 @@ export default function BodykitMontage() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -246,16 +248,16 @@ export default function BodykitMontage() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"

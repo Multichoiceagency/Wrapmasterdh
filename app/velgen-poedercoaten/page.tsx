@@ -20,43 +20,17 @@ const socialMedia = {
 const dienstData = {
   title: "Velgen Poedercoaten bij Wrapmaster",
   description: "Geef Jouw Auto een Luxe en Duurzame Upgrade met professioneel gepoedercoate velgen. Verbeter de look en bescherming van je velgen.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  heroImage: "/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
+  contentImage1: "/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (30 of 41)-min.jpg",
+  contentImage2: "/enes-website/velgen-poedercoaten/RSQ3-15-min.jpg",
+  contentImage3: "/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
-];
-
-const reels = [
-  {
-    id: 1,
-    video: "/video/audi-rsq8.mp4",
-    likes: "65.2k",
-    comments: "195",
-  },
-  {
-    id: 2,
-    video: "/video/audi-rsq8.mp4",
-    likes: "120k",
-    comments: "345",
-  },
-  {
-    id: 3,
-    video: "/video/audi-rsq8.mp4",
-    likes: "45.6k",
-    comments: "89",
-  },
-  {
-    id: 4,
-    video: "/video/audi-rsq8.mp4",
-    likes: "78.9k",
-    comments: "230",
-  },
+  "/enes-website/velgen-poedercoaten/WM-21-min.jpg",
+  "/enes-website/velgen-poedercoaten/BlndrAgency_ (21 of 34)-min.jpg",
+  "/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (26 of 41)-min.jpg",
+  "/enes-website/velgen-poedercoaten/1000019599-min.jpg",
 ];
 
 export default function VelgenPoedercoaten() {
@@ -218,7 +192,7 @@ export default function VelgenPoedercoaten() {
           </div>
         </section>
 
-        {/* Image Slider Section */}
+       {/* Image Slider Section */}
         <section className="py-16 bg-gray-100">
           <div className="embla" ref={emblaRef}>
             <div className="embla__container flex">
@@ -228,7 +202,7 @@ export default function VelgenPoedercoaten() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -239,16 +213,16 @@ export default function VelgenPoedercoaten() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative h-[700px] sm:h-[800px]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"
@@ -257,91 +231,6 @@ export default function VelgenPoedercoaten() {
                 priority
               />
             </div>
-          </div>
-        </section>
-
-        {/* Instagram Reels Section */}
-        <section className="w-full bg-white py-16">
-          <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4">
-            {reels.map((reel) => (
-              <div
-                key={reel.id}
-                className="relative w-full h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
-              >
-                {/* Video */}
-                <video
-                  src={reel.video}
-                  className="w-full h-full object-cover"
-                  loop
-                  muted
-                  autoPlay
-                  playsInline
-                ></video>
-                {/* Instagram Reel Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
-                  <div className="flex items-center text-white text-sm font-semibold">
-                    <Image
-                      src="/logos/logo-wit.png"
-                      alt="Reels Play Icon"
-                      width={20}
-                      height={20}
-                      className="mr-2"
-                    />
-                    Reels
-                  </div>
-                  <div className="text-white space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">
-                        <Image
-                          src="/logos/handtekening-wit.png"
-                          alt="Reels Play Icon"
-                          width={100}
-                          height={20}
-                          className="mr-2"
-                        />
-                      </span>
-                      <div className="flex space-x-2">
-                        <a
-                          href={socialMedia.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faInstagram} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.tiktok}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faTiktok} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.whatsapp}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faWhatsapp} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.facebook}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faFacebook} size="lg" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 

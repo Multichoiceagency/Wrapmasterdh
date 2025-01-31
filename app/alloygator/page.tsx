@@ -20,40 +20,41 @@ const socialMedia = {
 const dienstData = {
   title: "AlloyGator Bescherming bij Wrapmaster",
   description: "Bescherm en Personaliseer Jouw Velgen met AlloyGator. Voorkom stoeprandschade en geef je auto een unieke uitstraling.",
-  heroImage: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  contentImage1: "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_2.jpg",
-  contentImage2: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-V-2-Mercedes-AMG-C63-Sedan-Estate-W205-Facelift-18962_1.jpg",
+  heroImage: "/enes-website/alloygator/78415338_2707704222583229_8578045637193367552_o.jpg",
+  contentImage1: "/enes-website/alloygator/AG-17-e1539160979388-min.jpg",
+  contentImage2: "/enes-website/alloygator/AG-19-e1539165703298.jpg",
+  contentImage3: "/enes-website/alloygator/Ontwerp zonder titel (1).png",
 };
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "/enes-website/alloygator/18121011_1447403318613332_4401985287136650865_o.jpg",
+  "/enes-website/alloygator/Mini_Excusive-Black (1).jpg",
+  "/enes-website/alloygator/lamborghini.jpg",
+  "/enes-website/alloygator/Ontwerp zonder titel (1).png",
 ];
 
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/GITD (1).mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/Femme_Frontaal_AlloyGator.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/AlloyGator Wheel Protection in action.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "/video/AlloyGator commercial.mp4",
     likes: "78.9k",
     comments: "230",
   },
@@ -224,7 +225,7 @@ export default function AlloyGatorBescherming() {
                     src={image}
                     alt={`Slide ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover px-2"
                   />
                 </div>
               ))}
@@ -235,16 +236,16 @@ export default function AlloyGatorBescherming() {
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage3}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="relative h-[300px] sm:h-[500px]">
+            <div className="relative aspect-[4/3]">
               <Image
                 src={dienstData.contentImage2}
                 alt="Content Image 2"

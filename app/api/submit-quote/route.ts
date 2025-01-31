@@ -24,18 +24,26 @@ export async function POST(req: NextRequest) {
     const gewensteKleur = getString(formData.get("gewensteKleur"))
     const bericht = getString(formData.get("bericht"))
 
-    // 📌 Upload bestand ophalen
-    const uploadedFile = formData.get("uploadedFiles") as File | null
-    let fileBuffer: Buffer | null = null
-    let fileName = ""
+    // 📌 Meerdere bestanden ophalen en controleren
+    const uploadedFiles: { filename: string; content: Buffer }[] = []
 
-    if (uploadedFile) {
-      const fileArrayBuffer = await uploadedFile.arrayBuffer()
-      fileBuffer = Buffer.from(fileArrayBuffer)
-      fileName = uploadedFile.name
+    for (const entry of formData.entries()) {
+      const [key, value] = entry
+
+      if (key === "uploadedFiles" && value instanceof File) {
+        if (value.size > 10 * 1024 * 1024) {
+          return NextResponse.json(
+            { success: false, message: `Bestand ${value.name} is te groot (max 10MB per bestand)` },
+            { status: 400 }
+          )
+        }
+
+        const fileBuffer = Buffer.from(await value.arrayBuffer()) // Zet naar Buffer
+        uploadedFiles.push({ filename: value.name, content: fileBuffer })
+      }
     }
 
-    // 📌 Laad lettertypes & logo
+    // 📌 Laad lettertypes
     const fontRegular = path.join(process.cwd(), "public/fonts/DIN.ttf")
     const fontBold = path.join(process.cwd(), "public/fonts/DIN-Bold.ttf")
 
@@ -103,11 +111,9 @@ export async function POST(req: NextRequest) {
     doc.moveDown(0.5)
     doc.font(fontRegular).text(bericht || "Geen opmerkingen", col1, doc.y + 5, { width: 400 })
 
-    doc.moveDown(2)
-
     doc.moveDown(4)
 
-    // 📌 Bedrijfsgegevens onder logo
+    // 📌 Bedrijfsgegevens onderaan
     doc.font(fontBold).text("Met vriendelijke groet,", { align: "center" })
     doc.text("Wrapmaster Den Haag", { align: "center" })
     doc.font(fontRegular).text("Westvlietweg 72-L, 2495 AA, Den Haag", { align: "center" })
@@ -135,25 +141,18 @@ export async function POST(req: NextRequest) {
         filename: `offerte-aanvraag-${naam}.pdf`,
         content: pdfBuffer,
       },
+      ...uploadedFiles, // ✅ Voeg alle bestanden toe
     ]
-
-    if (fileBuffer) {
-      attachments.push({
-        filename: fileName,
-        content: fileBuffer,
-      })
-    }
 
     // 🔹 **Verstuur e-mail naar de klant**
     await transporter.sendMail({
-      from: `"🎉 Bedankt voor je offerteaanvraag – We nemen snel contact met u op" <${process.env.SMTP_FROM}>`, // ✅ Zorgt ervoor dat de naam correct wordt weergegeven
+      from: `"Wrapmaster Den Haag" <${process.env.SMTP_FROM}>`,
       to: email,
       subject: "🎉 Bedankt voor je offerteaanvraag – Wrapmaster",
       html: `<p>Beste ${naam},</p>
         <p>Bedankt voor je aanvraag voor een wrap-offerte! 🎨🚗</p>
         <p>We hebben je gegevens goed ontvangen en gaan hiermee aan de slag.</p>
-        <p>Ons team bekijkt je aanvraag zorgvuldig en neemt binnen <strong>2 werkdagen</strong> contact met je op met een op maat gemaakte offerte.</p>
-        <p>Je kunt ons bereiken via <a href="mailto:info@wrapmasterdh.nl">info@wrapmasterdh.nl</a> of <a href="tel:0702250721">070 - 225 07 21</a>.</p>
+        <p>Ons team bekijkt je aanvraag zorgvuldig en neemt binnen <strong>2 werkdagen</strong> contact met je op.</p>
         <br/>
         <p>Met vriendelijke groet,</p>
         <p><strong>Wrapmaster Den Haag</strong></p>`,

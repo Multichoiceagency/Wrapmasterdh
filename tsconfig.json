@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "components/MultiFileDropzone.jsx", "components/MultiFileDropzone.js"  ],
+, "components/MultiFileDropzone.jsx", "components/MultiFileDropzone.js", "app/api/convert-to-webp/route.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -17,7 +17,7 @@ const banner: AudiRs6 = {
   title: "",
   featured_image: "/enes-website/rs6-3.jpg",
   button_text: "Carwrapping",
-  button_link: "/diensten/carwrapping"
+  button_link: "/carwrapping"
 };
 
 function AudiRs6() {

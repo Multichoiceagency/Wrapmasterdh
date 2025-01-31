@@ -23,7 +23,7 @@ const dienstData = {
   heroImage: "/enes-website/reclame/_GLA5938.jpg",
   contentImage1: "/enes-website/reclame/IMG_0605.JPEG",
   contentImage2: "/enes-website/reclame/gardenlux.JPG",
-  contentImage3: "/enes-website/reclame/gardenlux.JPG",
+  contentImage3: "/enes-website/reclame/1F530CAE-FE9D-4B41-8508-4D07EEFE481E.jpg",
 };
 
 const sliderImages = [

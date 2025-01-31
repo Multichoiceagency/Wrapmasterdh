@@ -32,17 +32,6 @@ const nextConfig = {
       },
     ],
   },
-
-  // **Automatische WebP Redirects voor alle lokale afbeeldingen**
-  async redirects() {
-    return [
-      {
-        source: "/:path*.{jpg,jpeg,png}",
-        destination: "/:path*.webp",
-        permanent: false,
-      },
-    ];
-  },
 };
 
 export default nextConfig;

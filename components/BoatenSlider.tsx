@@ -14,7 +14,7 @@ interface BoatDesign {
 
 const boatDesigns: BoatDesign[] = [
   { id: 1, afbeelding: "/enes-website/auto-wrappen/range/rangerover.jpg" },
-  { id: 2, afbeelding: "/enes-website/OSMAN/V3 OSTA IDBUZZ/DSC06265.jpg" },
+  { id: 2, afbeelding: "/enes-website/OSMAN/idbuzz/DSC06265.jpg" },
   { id: 3, afbeelding: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg" },
   { id: 4, afbeelding: "/enes-website/auto-wrappen/rsq3/RSQ3-23.jpg" },
   { id: 5, afbeelding: "/enes-website/auto-wrappen/ferrari/1.jpg" },

@@ -96,7 +96,7 @@ const ProductSlider: React.FC = () => {
                 key={product.id}
                 className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
               >
-                <Link href={`/products/${product.id}`}>
+                <Link href={`/bodykit`}>
                   <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
                     <div className="relative h-[500px] w-full bg-gray-200">
                       <Image

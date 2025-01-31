@@ -199,7 +199,7 @@ export default function Ramentinten() {
                 alt="Ramentinten bij Wrapmaster"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 70vw"
                 priority
               />
             </div>
