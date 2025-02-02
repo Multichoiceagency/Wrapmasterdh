@@ -9,6 +9,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -18,8 +19,8 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Gordels Vervangen in Kleur bij Wrapmaster",
-  description: "Geef Jouw Auto een Unieke en Luxe Uitstraling met op maat gemaakte gekleurde gordels. Veiligheid ontmoet stijl bij Wrapmaster.",
+  title: "GORDELS IN KLEUR",
+  description: "",
   heroImage: "/enes-website/gordelkleur/IMG_0496.JPG",
   contentImage1: "/enes-website/gordelkleur/IMG_2475.jpg",
   contentImage2: "/enes-website/gordelkleur/RSQ3-6.jpg",
@@ -167,9 +168,9 @@ export default function GordelsVervangen() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
               <div className='flex justify-center'>
                 <Link 
@@ -220,23 +221,8 @@ export default function GordelsVervangen() {
         </section>
 
 
-       {/* Image Slider Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="embla" ref={emblaRef}>
-            <div className="embla__container flex">
-              {sliderImages.map((image, index) => (
-                <div key={index} className="embla__slide flex-[0_0_100%] relative h-[500px]">
-                  <Image
-                    src={image}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover px-2"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ImageCarousel images={sliderImages} />
+
 
                {/* Two Images Section */}
                <section className="max-w-full mx-auto mt-16 md:mt-44">

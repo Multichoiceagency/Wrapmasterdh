@@ -15,15 +15,15 @@ interface ThreeDCarwrapping {
 }
 
 const carWrapDesigns: ThreeDCarwrapping[] = [
-  { id: 1, titel: "Matte Zwart Wrap", subtitel: "Elegante en stijlvolle finish", afbeelding: "/enes-website/memo-map/design/changer_1.png", },
-  { id: 2, titel: "Glanzend Chroom Wrap", subtitel: "Opvallende en luxueuze uitstraling", afbeelding: "/enes-website/memo-map/design/changer_3.png" },
-  { id: 3, titel: "Camouflage Wrap", subtitel: "Uniek en avontuurlijk design", afbeelding: "/enes-website/memo-map/design/changer_4.png" },
-  { id: 4, titel: "Kleurverloop Wrap", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_5.png" },
-  { id: 5, titel: "Carbon Fiber Wrap", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_6.png" },
-  { id: 6, titel: "Holografische Wrap", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_7.png" },
-  { id: 7, titel: "Kleurverloop Wrap 2", subtitel: "Vloeiende en dynamische look", afbeelding: "/enes-website/memo-map/design/changer_9.png" },
-  { id: 8, titel: "Carbon Fiber Wrap 2", subtitel: "Sportieve en high-tech uitstraling", afbeelding: "/enes-website/memo-map/design/changer_11.png" },
-  { id: 9, titel: "Holografische Wrap 2", subtitel: "Futuristische en opvallende stijl", afbeelding: "/enes-website/memo-map/design/changer_12.png" },
+  { id: 1, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_1.png", },
+  { id: 2, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_3.png" },
+  { id: 3, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_4.png" },
+  { id: 4, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_5.png" },
+  { id: 5, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_6.png" },
+  { id: 6, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_7.png" },
+  { id: 7, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_9.png" },
+  { id: 8, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_11.png" },
+  { id: 9, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_12.png" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {
@@ -69,7 +69,7 @@ const ThreeDCarwrapping: React.FC = () => {
                   key={design.id}
                   className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
                 >
-                    <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
+                    <Card className="w-full h-[400px] flex flex-col relative overflow-hidden">
                       <div className="relative h-[500px] w-full">
                         <Image
                           src={design.afbeelding}

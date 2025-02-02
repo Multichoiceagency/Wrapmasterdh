@@ -41,7 +41,7 @@ const customSlides: CustomSlide[] = [
     subtitel: "",
     foto: "/video/brabus-g800-video.mp4",
     slug: "youtube",
-    link: "https://www.youtube.com/@wrapmasterdh/shorts",
+    link: "https://www.youtube.com/shorts/eajMeJ5aJ64",
     isVideo: true,
     video_titel: "BRABUS G800 NARDO GREY",
     video_beschrijving: "",

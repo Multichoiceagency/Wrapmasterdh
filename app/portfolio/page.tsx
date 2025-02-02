@@ -1,141 +1,82 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import Link from "next/link";
+import Image from "next/image";
+import { NextSeo } from 'next-seo';
 
-interface PortfolioItem {
-  id: number;
-  title: string;
-  excerpt: string;
-  featuredImage: string;
-  slug: string;
-  heroMediaType: 'image' | 'video';
-  heroVideo: string;
-}
+// ✅ Portfolio items handmatig toegevoegd
+const portfolioItems = [
+  { id: 1, title: "Audi RS6", featuredImage: "/enes-website/portfolio/brabus23.jpg", slug: "audi-rs6" },
+  { id: 2, title: "Lamborghini Urus", featuredImage: "/enes-website/portfolio/brabus12.jpg", slug: "lamborghini-urus" },
+  { id: 3, title: "Mercedes G-Wagon", featuredImage: "/enes-website/portfolio/brabus19.jpg", slug: "mercedes-g-wagon" },
+  { id: 4, title: "BMW M4", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (6 of 41)-min.jpg", slug: "bmw-m4" },
+  { id: 5, title: "Porsche 911", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (19 of 41)-min.jpg", slug: "porsche-911" },
+  { id: 6, title: "Ferrari 488", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (32 of 41)-min-min.jpg", slug: "ferrari-488" },
+  { id: 7, title: "Tesla Model X", featuredImage: "/enes-website/portfolio/tesla-1.jpg", slug: "tesla-model-x" },
+  { id: 8, title: "Range Rover SVR", featuredImage: "/enes-website/portfolio/range-rover-1.jpg", slug: "range-rover-svr" },
+  { id: 9, title: "Nissan GT-R", featuredImage: "/enes-website/portfolio/gtr-1.jpg", slug: "nissan-gtr" },
+  { id: 10, title: "Lexus LC500", featuredImage: "/enes-website/portfolio/lexus-1.jpg", slug: "lexus-lc500" },
+  { id: 11, title: "BMW X6M", featuredImage: "/enes-website/portfolio/x6m-1.jpg", slug: "bmw-x6m" },
+  { id: 12, title: "McLaren 720S", featuredImage: "/enes-website/portfolio/mclaren-1.jpg", slug: "mclaren-720s" },
+  { id: 13, title: "Ford Mustang", featuredImage: "/enes-website/portfolio/mustang-1.jpg", slug: "ford-mustang" },
+  { id: 14, title: "Audi R8", featuredImage: "/enes-website/portfolio/r8-1.jpg", slug: "audi-r8" },
+  { id: 15, title: "Bentley Bentayga", featuredImage: "/enes-website/portfolio/bentley-1.jpg", slug: "bentley-bentayga" },
+];
 
-interface WPPortfolioItem {
-  id: number;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  slug: string;
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{
-      source_url: string;
-    }>;
-  };
-  acf?: {
-    hero_media_type?: 'image' | 'video';
-    hero_video?: string;
-  };
-}
-
-const PortfolioPage = () => {
-  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getMediaUrl = (url: string): string => {
-    if (url.includes('drive.google.com')) {
-      const fileIdMatch = url.match(/[-\w]{25,}/);
-      return fileIdMatch ? `https://drive.google.com/uc?export=view&id=${fileIdMatch[0]}` : url;
-    }
-    return url;
-  };
-
-  useEffect(() => {
-    const fetchPortfolioItems = async () => {
-      try {
-        const response = await fetch(
-          'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/portfolio?_embed'
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data: WPPortfolioItem[] = await response.json();
-
-        const formattedPortfolioItems: PortfolioItem[] = data.map((item) => ({
-          id: item.id,
-          title: item.title.rendered || 'Untitled',
-          excerpt: item.excerpt.rendered || '',
-          featuredImage: getMediaUrl(item._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/placeholder.jpg'),
-          slug: item.slug,
-          heroMediaType: item.acf?.hero_media_type || 'image',
-          heroVideo: getMediaUrl(item.acf?.hero_video || ''),
-        }));
-
-        setPortfolioItems(formattedPortfolioItems);
-      } catch (error) {
-        console.error('Failed to fetch portfolio items:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPortfolioItems();
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <div className="w-16 h-16 border-4 border-t-transparent border-blue-500 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (portfolioItems.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-2xl text-gray-600">No portfolio items found.</h1>
-      </div>
-    );
-  }
-
+export default function PortfolioPage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative w-full h-[60vh] bg-gray-800 text-white flex items-center justify-center">
-        <h1 className="text-4xl font">Our Portfolio</h1>
-      </div>
+    <>
+      <NextSeo
+        title="Wrapmaster Portfolio - Onze Projecten"
+        description="Ontdek onze portfolio met indrukwekkende voertuigwraps en aanpassingen. Bekijk onze recente projecten!"
+        canonical="https://wrapmasterdh.nl/portfolio"
+      />
 
-      {/* Portfolio Grid */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItems.map((item) => (
-            <Link key={item.id} href={`/portfolio/${item.slug}`}>
-              <div className="group relative overflow-hidden rounded-lg shadow-md cursor-pointer">
-                {item.heroMediaType === 'video' && item.heroVideo ? (
-                  <video
-                    controls
-                    className="w-full h-[300px] rounded-lg object-cover"
-                    src={item.heroVideo}
-                  />
-                ) : (
+      <main className="bg-slate-200">
+        {/* ✅ Hero Sectie ✅ */}
+        <section className="relative h-[70vh]">
+          <Image
+            src="/enes-website/portfolio/brabus24.jpg"
+            alt="Wrapmaster Portfolio"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
+            <h1 className="text-2xl md:text-4xl font-medium text-white text-center">
+              WRAPMASTER PORTFOLIO
+            </h1>
+          </div>
+        </section>
+
+        {/* ✅ 2+1 Grid Portfolio ✅ */}
+        <section className="container mx-auto py-12 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center flex items-center">
+            {portfolioItems.map((item, index) => (
+              <div key={item.id} className={`relative w-full ${index % 3 === 2 ? 'md:col-span-2 h-[700px]' : 'h-[700px]'}`}>
+                <Link href={`/portfolio/${item.slug}`} className="block group">
                   <Image
                     src={item.featuredImage}
                     alt={item.title}
-                    width={400}
-                    height={300}
-                    className="rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
                   />
-                )}
-                <div className="p-4 bg-white">
-                  <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
-                    {item.title}
-                  </h2>
-                  <div
-                    className="text-gray-600"
-                    dangerouslySetInnerHTML={{ __html: item.excerpt }}
-                  />
-                </div>
+                </Link>
               </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+            ))}
+          </div>
+        </section>
 
-export default PortfolioPage;
+        {/* ✅ Beschrijving Sectie ✅ */}
+        <section className="bg-gray-100 py-12">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-semibold mb-4">Ontdek Onze Unieke Portfolio</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Bekijk ons werk en ontdek hoe we voertuigen transformeren met hoogwaardige carwraps en unieke aanpassingen.
+            </p>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}

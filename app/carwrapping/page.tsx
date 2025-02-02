@@ -9,6 +9,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -19,11 +20,10 @@ const socialMedia = {
 
 const dienstData = {
   title: "CARWRAPPING",
-  description: "",
-  heroImage: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg",
+  heroVideo: "/video/BLACK FERARRI CLASSIC 25-12.mp4",
   contentImage1: "/enes-website/auto-wrappen/rs6/RS6-10.jpg",
-  contentImage3: "/enes-website/auto-wrappen/elia/BlndrAgency_ (25 of 34).jpg",
   contentImage2: "/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (17 of 24).jpg",
+  contentImage3: "/enes-website/auto-wrappen/elia/BlndrAgency_ (25 of 34).jpg",
 };
 
 const sliderImages = [
@@ -60,16 +60,13 @@ const reels = [
   },
 ];
 
+
 export default function Carwrapping() {
-  const [showMore, setShowMore] = useState(false);
   const [emblaRef] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      slidesToScroll: 1,
-    },
+    { loop: true, align: 'center', slidesToScroll: 1 },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
+  const [showMore, setShowMore] = useState(false);
 
   const shortText = (
     <p>
@@ -100,53 +97,35 @@ export default function Carwrapping() {
         title="Carwrapping bij Wrapmaster"
         description="Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling."
         canonical="https://wrapmasterdh.nl/carwrapping"
-        openGraph={{
-          url: "https://wrapmasterdh.nl/carwrapping",
-          title: "Carwrapping bij Wrapmaster",
-          description: "Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling.",
-          images: [
-            {
-              url: dienstData.heroImage,
-              width: 1200,
-              height: 630,
-              alt: dienstData.title,
-            },
-          ],
-          site_name: "Wrapmaster",
-        }}
-        additionalMetaTags={[
-          {
-            name: 'keywords',
-            content: 'carwrapping, auto wrappen, voertuig wrap, lakbescherming',
-          },
-        ]}
       />
+
       <main className="bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[100vh] sm:h-100vh">
-        <Image
-            src={dienstData.heroImage}
-            alt={dienstData.title}
-            fill
-            className="object-cover"
-            priority
+        {/* ✅ Hero Video */}
+        <section className="relative h-[100vh] sm:h-[100vh]">
+          <video
+            src={dienstData.heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-5xl sm:text-5xl mb-2 py-5 text-center">{dienstData.title}</h1>
-              <div className='flex justify-center'>
-            <Link 
-              href="/diensten"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-            >
-              TERUG NAAR DIENSTEN
-            </Link>
-            </div>
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
+              <div className="flex justify-center">
+                <Link 
+                  href="/diensten"
+                  className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+                >
+                  TERUG NAAR DIENSTEN
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Text with Image Section */}
+        {/* ✅ Tekst met Afbeelding-sectie met Lees Meer functionaliteit */}
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
             <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
@@ -175,56 +154,38 @@ export default function Carwrapping() {
                 alt="Carwrapping bij Wrapmaster"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
             </div>
           </div>
         </section>
 
-        {/* Image Slider Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="embla" ref={emblaRef}>
-            <div className="embla__container flex">
-              {sliderImages.map((image, index) => (
-                <div key={index} className="embla__slide flex-[0_0_100%] relative h-[500px]">
-                  <Image
-                    src={image}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover px-2"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Two Images Section */}
-        <section className="max-w-full mx-auto mt-16 md:mt-44">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={dienstData.contentImage3}
-                alt="Content Image 1"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={dienstData.contentImage2}
-                alt="Content Image 2"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        </section>
-
-
+        <ImageCarousel images={sliderImages} />
+        
+                {/* Two Images Section */}
+                <section className="max-w-full mx-auto mt-16 md:mt-44">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="relative h-[700px] sm:h-[800px]">
+                      <Image
+                        src={dienstData.contentImage3}
+                        alt="Content Image 1"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                    <div className="relative h-[700px] sm:h-[800px]">
+                      <Image
+                        src={dienstData.contentImage2}
+                        alt="Content Image 2"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </section>
+        
         {/* Instagram Reels Section */}
         <section className="w-full bg-white py-16">
           <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
@@ -244,7 +205,7 @@ export default function Carwrapping() {
                   playsInline
                 ></video>
                 {/* Instagram Reel Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
+                <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
                     <Image
                       src="/logos/logo-wit.png"
@@ -259,12 +220,13 @@ export default function Carwrapping() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                      src="/logos/handtekening-wit.png"
-                      alt="Reels Play Icon"
-                      width={100}
-                      height={20}
-                      className="mr-2"
-                    /></span>
+                          src="/logos/handtekening-wit.png"
+                          alt="Reels Play Icon"
+                          width={100}
+                          height={20}
+                          className="mr-2"
+                        />
+                      </span>
                       <div className="flex space-x-2">
                         <a
                           href={socialMedia.instagram}
@@ -309,7 +271,7 @@ export default function Carwrapping() {
           </div>
         </section>
 
-        {/* Wrapmaster Services Section */}
+        {/* ✅ Wrapmaster Services */}
         <section className="py-9">
           <OnzeDiensten />
         </section>

@@ -1,21 +1,22 @@
-'use client'
+'use client';
 
-import { BlogPost } from "@/app/types/blog"
-import Image from "next/image"
-import Link from "next/link"
-import useEmblaCarousel from 'embla-carousel-react'
-import Autoplay from 'embla-carousel-autoplay'
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation'; // ✅ Haal params correct op in client components
+import { BlogPost } from "@/app/types/blog";
+import Image from "next/image";
+import Link from "next/link";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?slug=${slug}&_embed`, { next: { revalidate: 3600 } })
-  const posts = await res.json()
+  const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?slug=${slug}&_embed`, { next: { revalidate: 3600 } });
+  const posts = await res.json();
 
   if (posts.length === 0) {
-    return null
+    return null;
   }
 
-  const post = posts[0]
+  const post = posts[0];
   return {
     id: post.id,
     title: post.title.rendered || "Geen titel",
@@ -25,14 +26,13 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
     excerpt: post.scf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
     content: post.content.rendered || "Geen inhoud beschikbaar.",
     slug: post.slug,
-  }
+  };
 }
 
 async function getRecentPosts(): Promise<BlogPost[]> {
-  const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed&per_page=6`, { next: { revalidate: 3600 } })
-  const posts = await res.json()
+  const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed&per_page=6`, { next: { revalidate: 3600 } });
+  const posts = await res.json();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return posts.map((post: any) => ({
     id: post.id,
     title: post.title.rendered || "Geen titel",
@@ -40,44 +40,37 @@ async function getRecentPosts(): Promise<BlogPost[]> {
     featured_image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg",
     excerpt: post.scf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
     slug: post.slug,
-  }))
+  }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const [post, setPost] = useState<BlogPost | null>(null)
-  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([])
-  const [emblaRef] = useEmblaCarousel({ 
-    loop: true,
-    slidesToScroll: 3,
-    align: 'start'
-  }, [Autoplay()])
+export default function BlogPostPage() {
+  const params = useParams(); // ✅ Gebruik useParams() in client component
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+  const [emblaRef] = useEmblaCarousel({ loop: true, slidesToScroll: 3, align: 'start' }, [Autoplay()]);
 
   useEffect(() => {
-    getBlogPost(params.slug).then(setPost)
-    getRecentPosts().then(setRecentPosts)
-  }, [params.slug])
+    if (params?.slug) {
+      getBlogPost(params.slug as string).then(setPost);
+      getRecentPosts().then(setRecentPosts);
+    }
+  }, [params?.slug]);
 
   if (!post) {
     return (
       <div className="flex items-center justify-center h-screen bg-white">
         <div className="w-16 h-16 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
       </div>
-    )
+    );
   }
 
   return (
     <main className="bg-white">
       {/* Hero Section */}
       <section className="relative h-[60vh] justify-center bg-gray-900">
-        <Image
-          src={post.featured_image}
-          alt={post.title}
-          fill
-          className="object-cover opacity-50"
-          priority
-        />
+        <Image src={post.featured_image} alt={post.title} fill className="object-cover opacity-50" priority />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-3xl md:text-3xl  font-bold text-white text-center px-4">
+          <h1 className="text-3xl md:text-3xl font-bold text-white text-center px-4">
             {post.title}
           </h1>
         </div>
@@ -90,36 +83,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
           <div className="md:w-1/2 mb-8 md:mb-0">
             {post.video_file ? (
-              <video
-                src={post.video_file}
-                controls
-                className="w-full h-auto object-cover"
-              ></video>
+              <video src={post.video_file} controls className="w-full h-auto object-cover"></video>
             ) : (
-              <div className="relative aspect-[4/3] w-full ">
-                <Image
-                  src={post.featured_image}
-                  alt={post.title}
-                  fill
-                  className="object-cover rounded-xl"
-                />
+              <div className="relative aspect-[16/9] w-full ">
+                <Image src={post.featured_image} alt={post.title} fill className="object-cover rounded-xl" />
               </div>
             )}
           </div>
           <div className="md:w-1/2">
             <p className="text-gray-600 mb-4">Plaatsingsdatum: {post.date}</p>
             <h2 className="text-3xl py-4 font-bold">{post.title}</h2>
-            <div 
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content || '' }}
-            />
+            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
           </div>
         </div>
         <div className="flex justify-center mt-12">
-          <Link
-            href="/blog"
-            className="px-6 py-3 bg-green-700 rounded-md uppercase text-white font-medium hover:bg-red-700 transition"
-          >
+          <Link href="/offerte-aanvragen" className="px-6 py-3 bg-green-700 rounded-md uppercase text-white font-medium hover:bg-red-700 transition">
             Vrijblijvend offerte aanvragen
           </Link>
         </div>
@@ -154,6 +132,5 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
     </main>
-  )
+  );
 }
-

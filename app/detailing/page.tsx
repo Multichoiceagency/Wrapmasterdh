@@ -9,6 +9,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -18,7 +19,7 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Detailing",
+  title: "DETAILING",
   description: "",
   heroImage: "/enes-website/detailing/20211216_141527.jpg",
   contentImage1: "/enes-website/detailing/Lamborghini Urus11.jpg",
@@ -171,9 +172,9 @@ export default function AutoDetailing() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
               <div className='flex justify-center'>
                 <Link 
@@ -223,23 +224,8 @@ export default function AutoDetailing() {
           </div>
         </section>
 
-       {/* Image Slider Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="embla" ref={emblaRef}>
-            <div className="embla__container flex">
-              {sliderImages.map((image, index) => (
-                <div key={index} className="embla__slide flex-[0_0_100%] relative h-[500px]">
-                  <Image
-                    src={image}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover px-2"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ImageCarousel images={sliderImages} />
+
 
 
                         {/* Two Images Section */}
@@ -285,7 +271,7 @@ export default function AutoDetailing() {
                   playsInline
                 ></video>
                 {/* Instagram Reel Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
+                <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
                     <Image
                       src="/logos/logo-wit.png"

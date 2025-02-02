@@ -81,7 +81,7 @@ const NewsEvents: React.FC = () => {
           ) : (
             newsPosts.slice(0, visibleCount).map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`} className="block group overflow-hidden">
-                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
                   {post.video_file ? (
                     <video
                       src={post.video_file}

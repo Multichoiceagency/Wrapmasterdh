@@ -150,7 +150,7 @@ export async function POST(req: NextRequest) {
       to: email,
       subject: "🎉 Bedankt voor je offerteaanvraag – Wrapmaster",
       html: `<p>Beste ${naam},</p>
-        <p>Bedankt voor je aanvraag voor een wrap-offerte! 🎨🚗</p>
+        <p>Bedankt voor je aanvraag voor een offerte! 🎨🚗</p>
         <p>We hebben je gegevens goed ontvangen en gaan hiermee aan de slag.</p>
         <p>Ons team bekijkt je aanvraag zorgvuldig en neemt binnen <strong>2 werkdagen</strong> contact met je op.</p>
         <br/>

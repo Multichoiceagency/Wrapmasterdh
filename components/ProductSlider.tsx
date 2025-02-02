@@ -85,7 +85,7 @@ const ProductSlider: React.FC = () => {
     <section className="pt-16 overflow-hidden bg-white">
       <div className="text-center mb-6 ml-12">
         <h2 className="text-3xl font-light text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
-        <p className="text-l text-gray-600 mt-2">Wij installeren ook onderdelen aan uw voertuig</p>
+        <p className="text-l text-gray-600 mt-2">Informeer naar de mogelijkheden voor jouw auto</p>
       </div>
 
       <div className="carousel-container overflow-hidden">

@@ -18,8 +18,8 @@ const socialMedia = {
 };
 
 const dienstData = {
-  title: "Folie Verwijderen bij Wrapmaster",
-  description: "Professioneel, Veilig en Zonder Beschadigingen. Vakkundige verwijdering van wraps voor auto's, scooters en motoren.",
+  title: "FOLIE VERWIJDEREN",
+  description: "",
   heroImage: "/enes-website/wrapfolie/GLA_4446-scaled.jpg",
   contentImage1: "/enes-website/wrapfolie/GLA_4446-scaled.jpg",
 };
@@ -162,9 +162,9 @@ export default function FolieVerwijderen() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">{dienstData.title}</h1>
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
               <div className='flex justify-center'>
                 <Link 

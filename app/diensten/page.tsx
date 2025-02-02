@@ -38,14 +38,16 @@ const DienstenPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Onze Diensten - Wrapmaster | Specialist in Carwrapping en Auto Customization</title>
+        <title>Onze Diensten - Wrapmaster | Specialist in Auto Wrappen en Car Customization</title>
         <meta name="description" content="Ontdek onze uitgebreide reeks van professionele autodiensten, waaronder carwrapping, PPF, detailing, en meer. Wrapmaster is uw specialist voor alle auto customization behoeften." />
         <meta name="keywords" content="carwrapping, PPF, detailing, bodykit, auto customization, folie verwijderen, security alarm, velgen poedercoaten, ramentinten, chrome delete" />
         <link rel="canonical" href="https://www.wrapmasterdh.nl/diensten" />
       </Head>
 
       {/* Hero Section */}
-      <section className="relative h-[100vh] sm:h-100vh">
+      <section className="relative h-[100vh] sm:h-[100vh]">
+  {/* ✅ Zwarte balk bovenop de afbeelding */}
+  <div className="absolute top-0 left-0 right-0 h-[8vh] bg-black/15 z-10"></div>
       <Image
           src="/enes-website/wallpaper/lambo-urus-satin-black.jpg"
           alt="Wrapmaster Hero afbeelding"
@@ -56,8 +58,7 @@ const DienstenPage: React.FC = () => {
         />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5 text-center">Onze diensten</h1>
-              <p className="text-base sm:text-xl mb-6 px-16 text-center">Proffessionele carwrapping diensten</p>
+              <h1 className="text-3xl sm:text-3xl mb-2 py-5 text-center">ONZE DIENSTEN</h1>
               <div className='flex justify-center'>
             <Link 
               href="/offerte-aanvragen"
@@ -73,8 +74,8 @@ const DienstenPage: React.FC = () => {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-left mb-12">
-            <h2 className="text-3xl font text-gray-800">ONZE DIENSTEN</h2>
-            <p className="text-xl text-gray-600 mt-2">Gespecialiseerd in carwrapping en auto customization</p>
+            <h2 className="text-3xl font text-gray-800 justify-center text-center">ONZE DIENSTEN</h2>
+            <p className="text-xl text-gray-600 mt-2 text-center">Gespecialiseerd in Car Wrapping & Car Customization</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

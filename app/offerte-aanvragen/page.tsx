@@ -108,7 +108,7 @@ export default function OfferteAanvragen() {
         <div className="bg-white shadow-lg rounded-lg w-full lg:w-1/2 p-8 space-y-6">
           <h2 className="text-3xl font-bold mb-4">Vraag een offerte aan</h2>
           <p className="text-gray-700 mb-6">
-            Vul je gegevens in en ontvang een vrijblijvende offerte voor een carwrap.
+            Vul je gegevens in en ontvang een vrijblijvende offerte!
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">

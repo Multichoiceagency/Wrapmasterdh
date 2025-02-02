@@ -9,6 +9,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -207,23 +208,8 @@ export default function Carwrapping() {
           </div>
         </section>
 
-        {/* Image Slider Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="embla" ref={emblaRef}>
-            <div className="embla__container flex">
-              {sliderImages.map((image, index) => (
-                <div key={index} className="embla__slide flex-[0_0_100%] relative h-[500px]">
-                  <Image
-                    src={image}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover px-2"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ImageCarousel images={sliderImages} />
+
 
         {/* Two Images Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
@@ -268,7 +254,7 @@ export default function Carwrapping() {
                   playsInline
                 ></video>
                 {/* Instagram Reel Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
+                <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
                     <Image
                       src="/logos/logo-wit.png"

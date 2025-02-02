@@ -40,7 +40,7 @@ const customSlides: CustomSlide[] = [
     subtitel: "BEKIJK ONZE VIDEOS",
     foto: "/enes-website/auto-wrappen/rsq3/rsq3-18.jpg",
     slug: "youtube",
-    link: "https://www.youtube.com/channel/UCeYPrQZxZXLLtGXVQqLEqZA",
+    link: "https://www.youtube.com/@wrapmasterdh",
     isVideo: false,
     video_titel: "YOUTUBE KANAAL",
     video_beschrijving: "BEKIJK ONZE GEDETAILLEERDE VIDEOS OP YOUTUBE",

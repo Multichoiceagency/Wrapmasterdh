@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 // Hero section data
 const dienstData = {
-  title: "Alarmsystemen Installeren bij Wrapmaster",
-  description: "Bescherm Jouw Voertuig Met de Beste Beveiliging. Professionele installatie van hoogwaardige alarmsystemen voor auto's, scooters en motoren.",
+  title: "ALARMBEVEILIGING",
+  description: "",
   heroImage: "/enes-website/alarm/proefdruk-alarm-stickers.webp",
 };
 
@@ -19,9 +19,16 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een goedgekeurde SCM startonderbreker beveiligt uw auto tegen diefstal. Af-fabriek is elke Europese auto voorzien van een startonderbreker. Deze is door nieuwe diefstalmethodes niet meer voldoende. Daarom wordt er een extra startonderbreker met eigen autorisatie geïnstalleerd.
+          Een goedgekeurde **SCM startonderbreker** beveiligt uw auto tegen diefstal. Af-fabriek is elke Europese auto voorzien van een startonderbreker, 
+          maar door nieuwe diefstalmethodes is deze niet meer voldoende. Daarom wordt er een **extra startonderbreker met eigen autorisatie** geïnstalleerd.
         </p>
-        <p className="mt-4 font-bold">Prijs: €389,- incl. 21% BTW</p>
+        <h3 className="mt-4 font-semibold">Voordelen van een SCM startonderbreker:</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Dubbele automatische startonderbreking (blokkering van startmotor en brandstofpomp).</li>
+          <li>Eigen autorisatie via draadloze transponder of handzender.</li>
+          <li>LED-indicator schrikt autodieven af.</li>
+          <li>SCM/VbV goedgekeurde installatie door specialisten.</li>
+        </ul>
       </>
     ),
   },
@@ -30,9 +37,15 @@ const klassenData = [
     content: (
       <>
         <p>
-          SCM Klasse Alarmsysteem (voorheen Klasse 2) bevat een SCM gecertificeerde startonderbreker aangevuld met een alarmsysteem met inbraakdetectie en alarmering.
+          **SCM Klasse Alarmsysteem** (voorheen Klasse 2) bevat een SCM gecertificeerde startonderbreker aangevuld met een alarmsysteem met **inbraakdetectie en alarmering**.
         </p>
-        <p className="mt-4 font-bold">Prijs: vanaf €999,- incl. 21% BTW</p>
+        <h3 className="mt-4 font-semibold">Wat biedt Klasse 2?</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>SCM gecertificeerde startonderbreker.</li>
+          <li>Omtrekdetectie (deuren, achterklep en motorkap beveiligd).</li>
+          <li>Optische en akoestische alarmering bij inbraak (sirene + knipperlichten).</li>
+          <li>Automatische inschakeling mogelijk.</li>
+        </ul>
       </>
     ),
   },
@@ -41,9 +54,16 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een SCM Alarmsysteem 3 heeft hellingshoekdetectie, een goedgekeurde startonderbreker en akoestische en optische alarmering bij inbraak of sabotage.
+          Een **SCM Alarmsysteem 3** biedt **extra beveiliging** met hellingshoekdetectie en een **triple beveiliging** tegen diefstal en sabotage.
         </p>
-        <p className="mt-4 font-bold">Prijs: vanaf €1099,- incl. 21% BTW</p>
+        <h3 className="mt-4 font-semibold">Beveiligingsfuncties van Klasse 3:</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Omtrekdetectie (beveiliging van deuren, motorkap en achterklep).</li>
+          <li>Interieurdetectie (bewegingssensoren in de auto).</li>
+          <li>Hellingshoekdetectie (tegen diefstal van velgen en sleepdiefstal).</li>
+          <li>Gecodeerde noodstroomsirene.</li>
+          <li>Optische signalering via knipperlichten.</li>
+        </ul>
       </>
     ),
   },
@@ -52,23 +72,16 @@ const klassenData = [
     content: (
       <>
         <p>
-          Het SCM Klasse Voertuigvolgsysteem helpt bij het volgen, opsporen en blokkeren van een gestolen voertuig en is gekoppeld aan een PAC-meldkamer.
+          **SCM Klasse Voertuigvolgsysteem** is de nieuwe naam voor **Klasse 4 en 5**, aangevuld met een extra startonderbreker.
         </p>
-        <p className="mt-4 font-bold">Prijs: €699,- incl. 21% BTW</p>
-      </>
-    ),
-  },
-  {
-    title: "Klasse 5",
-    content: (
-      <>
-        <p>
-          Het Terugvindsysteem (TV01) zorgt ervoor dat uw voertuig na diefstal binnen 24 uur teruggevonden wordt. Vereist een geldig SCM certificaat.
-        </p>
-        <p className="mt-4 font-bold">
-          Prijs: €849,- incl. 21% BTW (voor voertuigen met Alarm klasse 3)<br />
-          Prijs: €1399,- incl. 21% BTW (voor voertuigen zonder Alarm klasse 3)
-        </p>
+        <h3 className="mt-4 font-semibold">Wat biedt een voertuigvolgsysteem?</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Volgsysteem (Mi50) met GPS-tracking.</li>
+          <li>Startonderbreker (MiBlock) voor extra beveiliging.</li>
+          <li>Koppeling met een **PAC-meldkamer** (directe communicatie met politie).</li>
+          <li>Sabotagemeldingen bij ongeautoriseerde beweging.</li>
+          <li>Live tracking bij diefstal.</li>
+        </ul>
       </>
     ),
   },
@@ -77,9 +90,14 @@ const klassenData = [
     content: (
       <>
         <p>
-          Is uw alarmsysteem ouder dan 3 jaar? Dan is het verplicht deze jaarlijks te laten keuren om uw certificaat geldig te houden.
+          Laat uw alarmsysteem **op tijd keuren**! Als uw alarm ouder is dan **3 jaar**, moet u deze jaarlijks laten keuren om het certificaat geldig te houden.
         </p>
-        <p className="mt-4 font-bold">Kosten: vanaf €50,- incl. BTW</p>
+        <h3 className="mt-4 font-semibold">Waarom keuren?</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Verzekeraars eisen een geldige keuring.</li>
+          <li>Controle of het alarmsysteem nog goed functioneert.</li>
+          <li>Afmelding bij het SCM na succesvolle keuring.</li>
+        </ul>
       </>
     ),
   },
@@ -88,9 +106,14 @@ const klassenData = [
     content: (
       <>
         <p>
-          De Keyless Protector heeft sinds 2020 CCV / SCM goedkeuring voor het KE01 keurmerk. Vanaf 2021 verplichten verzekeraars aanvullende maatregelen tegen relay attacks.
+          Sinds 2020 heeft de **Keyless Protector** CCV / SCM goedkeuring voor het **KE01 keurmerk**. Vanaf 2021 verplichten verzekeraars **extra bescherming tegen relay attacks**.
         </p>
-        <p className="mt-4 font-bold">Prijs: vanaf €175,-</p>
+        <h3 className="mt-4 font-semibold">Wat beschermt KE01?</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Beveiliging tegen diefstal via keyless entry.</li>
+          <li>Extra controle bij ontgrendelen.</li>
+          <li>SCM gecertificeerde installatie.</li>
+        </ul>
       </>
     ),
   },
@@ -99,9 +122,15 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een Peilzender is een na-diefstal terugvindsysteem dat zorgt dat uw voertuig traceerbaar blijft. Werkt met een meldkamer abonnement en dagelijkse locatie-updates.
+          Een **peilzender** zorgt ervoor dat uw auto traceerbaar blijft na diefstal. Dit systeem werkt samen met een **meldkamer abonnement**.
         </p>
-        <p className="mt-4 font-bold">Prijs: vanaf €389,- incl. 21% BTW</p>
+        <h3 className="mt-4 font-semibold">Voordelen van een Peilzender:</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-2">
+          <li>Na-diefstal terugvindsysteem.</li>
+          <li>Dagelijkse locatie-updates.</li>
+          <li>Gecertificeerde meldkamer (PAC).</li>
+          <li>Ook beschikbaar als standalone oplossing.</li>
+        </ul>
       </>
     ),
   },
@@ -117,13 +146,13 @@ export default function AlarmsystemenInstalleren() {
   return (
     <>
       <NextSeo
-        title="Alarmsystemen Installeren bij Wrapmaster - Bescherm Jouw Voertuig Met de Beste Beveiliging"
+        title="Alarmsystemen Installeren bij Wrapmaster"
         description="Professionele installatie van hoogwaardige alarmsystemen voor auto's, scooters en motoren. Bescherm je voertuig tegen diefstal met Wrapmaster's expertise."
         canonical="https://wrapmasterdh.nl/alarmsystemen-installeren"
       />
       <main className="bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
+        {/* ✅ Hero Section ✅ */}
+        <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-50vh">
           <Image
             src={dienstData.heroImage}
             alt={dienstData.title}
@@ -131,21 +160,19 @@ export default function AlarmsystemenInstalleren() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-10 sm:pb-20">
-            <div className="text-center text-white px-4 max-w-4xl">
-              <h1 className="text-3xl sm:text-6xl mb-2 py-5">{dienstData.title}</h1>
-              <p className="text-base sm:text-xl mb-6">{dienstData.description}</p>
-              <Link
-                href="/diensten"
-                className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors"
-              >
-                TERUG NAAR DIENSTEN
-              </Link>
-            </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 sm:pb-20">
+            <h1 className="text-2xl md:text-4xl font-bold text-white text-center">{dienstData.title}</h1>
+            <p className="text-lg sm:text-xl text-gray-300 text-center mt-2">{dienstData.description}</p>
+            <Link
+              href="/diensten"
+              className="mt-5 bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font-medium text-sm sm:text-base uppercase tracking-wide hover:bg-red-700 transition-colors"
+            >
+              TERUG NAAR DIENSTEN
+            </Link>
           </div>
         </section>
 
-        {/* Accordion Section */}
+        {/* ✅ Accordion Section ✅ */}
         <section className="max-w-4xl mx-auto px-4 py-16">
           <h2 className="text-3xl font-bold mb-6 text-center">Alarmsystemen Klassen</h2>
           <div className="space-y-4">
