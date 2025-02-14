@@ -1,23 +1,26 @@
+// layout.tsx
 import { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
-import Head from "next/head"; // Gebruik next/head voor metadata
 import "./globals.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
-import "photoswipe/dist/photoswipe.css";
 import OfferteAanvragen from "@/components/offerte-aanvragen";
+import "photoswipe/dist/photoswipe.css";
+import FloatingSocialIcons from "@/components/FloatingSocialIcons";
 
-// Importeer DM Sans met de juiste configuratie
+// Import DM Sans using Next.js built-in font support
 const dmSans = DM_Sans({
-  weight: ["400", "500", "700"], // Voeg de gewenste gewichten toe
-  subsets: ["latin"], // Gebruik 'latin' subset
-  display: "swap", // Voor betere prestaties
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
+// Use the metadata API to define global meta tags, including the viewport.
 export const metadata: Metadata = {
   title: "Wrapmaster - Specialisten in Car wrapping",
   description: "Hoogwaardige car wrapping en PPF diensten in Den Haag",
+  // IMPORTANT: Set the viewport with viewport-fit=cover so that iOS extends content into the notch.
   openGraph: {
     title: "Wrapmaster - Specialisten in Car Wrapping",
     description:
@@ -27,25 +30,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" className={dmSans.className}>
-      <head>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-      </head>
       <body>
         <Header />
         {children}
         <OfferteAanvragen />
         <Footer />
+        <FloatingSocialIcons />
         <WhatsAppFloatingIcon phoneNumber="31638718893" />
       </body>
     </html>

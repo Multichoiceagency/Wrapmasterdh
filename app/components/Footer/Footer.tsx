@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import { useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons'
 
@@ -44,6 +45,19 @@ export default function Footer() {
     },
   ]
 
+  // State to track which accordion groups are open on mobile
+  const [openAccordions, setOpenAccordions] = useState(
+    new Array(navigationGroups.length).fill(false)
+  )
+
+  const toggleAccordion = (index: number) => {
+    setOpenAccordions((prev) => {
+      const newState = [...prev]
+      newState[index] = !newState[index]
+      return newState
+    })
+  }
+
   return (
     <footer className="bg-white w-full">
       <div className="container mx-auto md:px-0 py-12">
@@ -65,29 +79,48 @@ export default function Footer() {
                 </Link>
               ))}
               {/* Social media icon */}
-              <Link href={group.socialLink} className="text-white bg-black py-2 px-2 rounded-md hover:text-red-600 mt-4 hover:scale-110 transition-all duration-300">
+              <Link 
+                href={group.socialLink} 
+                className="text-white bg-black py-2 px-2 rounded-md hover:text-red-600 mt-4 hover:scale-110 transition-all duration-300"
+              >
                 {group.socialIcon}
               </Link>
             </div>
           ))}
         </div>
 
-        {/* Mobile Footer with list layout */}
+        {/* Mobile Footer Accordion */}
         <div className="md:hidden w-full mb-8">
-          <ul className="space-y-8">
-            {navigationGroups.flatMap(group => 
-              group.items.map((item, itemIndex) => (
-                <li key={`${item.title}-${itemIndex}`}>
-                  <Link
-                    href={item.href}
-                    className="text-[#333] font-light hover:text-[#666] block"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))
-            )}
-          </ul>
+          {navigationGroups.map((group, index) => (
+            <div key={index} className="border-b border-gray-300">
+              <button 
+                onClick={() => toggleAccordion(index)}
+                className="w-full text-left py-4 flex justify-between items-center"
+              >
+                {/* Use the first item's title as the accordion header */}
+                <span className="text-[#333] font-light">
+                  {group.items[0].title}
+                </span>
+                <span className="text-2xl">
+                  {openAccordions[index] ? '-' : '+'}
+                </span>
+              </button>
+              {openAccordions[index] && (
+                <ul className="space-y-4 pb-4 pl-4">
+                  {group.items.map((item, itemIndex) => (
+                    <li key={`${item.title}-${itemIndex}`}>
+                      <Link
+                        href={item.href}
+                        className="text-[#333] font-light hover:text-[#666] block"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
           {/* Social Media Icons for Mobile */}
           <div className="flex justify-center space-x-6 mt-8">
             {navigationGroups.map((group, index) => (
@@ -118,4 +151,3 @@ export default function Footer() {
     </footer>
   )
 }
-

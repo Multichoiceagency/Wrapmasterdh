@@ -22,24 +22,23 @@ const portfolioItems = [
   { id: 15, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus5-min.jpg" },
   { id: 17, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus11-min.jpg" },
   { id: 18, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus18-min.jpg" },
-  { id: 22, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-4.jpg" },
-  { id: 23, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-17.jpg" },
-  { id: 24, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-9.jpg" },
-  { id: 26, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-7.jpg" },
-  { id: 27, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-28.jpg" },
-  { id: 28, title: "", featuredImage: "/enes-website/portfolio2/WM-8.jpg" },
-  { id: 29, title: "", featuredImage: "/enes-website/portfolio2/WM-25.jpg" },
-  { id: 30, title: "", featuredImage: "/enes-website/portfolio2/WM-28.jpg" },
-  { id: 31, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-9 (2)-min.jpg" },
-  { id: 32, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-10.jpg" },
-  { id: 33, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-16 (2).jpg" },
-  { id: 34, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-21.jpg" },
-  { id: 35, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-9.jpg" },
-  { id: 36, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-10.jpg" },
-  { id: 37, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-18.jpg" },
-  { id: 38, title: "", featuredImage: "/enes-website/portfolio2/RS6-1.jpg" },
-  { id: 39, title: "", featuredImage: "/enes-website/portfolio2/RS6-7.jpg" },
-  { id: 40, title: "", featuredImage: "/enes-website/portfolio2/RS6-10.jpg" },
+  { id: 19, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-4.jpg" },
+  { id: 20, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-17.jpg" },
+  { id: 21, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-9.jpg" },
+  { id: 22, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-7.jpg" },
+  { id: 23, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-28.jpg" },
+  { id: 24, title: "", featuredImage: "/enes-website/portfolio2/WM-8.jpg" },
+  { id: 25, title: "", featuredImage: "/enes-website/portfolio2/WM-25.jpg" },
+  { id: 26, title: "", featuredImage: "/enes-website/portfolio2/WM-28.jpg" },
+  { id: 27, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-9 (2)-min.jpg" },
+  { id: 28, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-10.jpg" },
+  { id: 29, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-16 (2).jpg" },
+  { id: 30, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-21.jpg" },
+  { id: 31, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-9.jpg" },
+  { id: 32, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-10.jpg" },
+  { id: 33, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-18.jpg" },
+  { id: 34, title: "", featuredImage: "/enes-website/portfolio2/RS6-1.jpg" },
+  { id: 35, title: "", featuredImage: "/enes-website/portfolio2/RS6-7.jpg" },
 ];
 
 export default function PortfolioPage() {
@@ -83,9 +82,9 @@ export default function PortfolioPage() {
             priority
           />
           <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
-            <h1 className="text-2xl md:text-4xl font-medium text-white text-center">
-              WRAPMASTER PORTFOLIO
-            </h1>
+            <h2 className="mt-6 text-2xl sm:text-3xl lg:text-4xl font-light text-white">
+              PORTFOLIO
+            </h2>
           </div>
         </section>
 
@@ -95,7 +94,9 @@ export default function PortfolioPage() {
             {portfolioItems.map((item, index) => (
               <div
                 key={item.id}
-                className={`relative w-full ${index % 3 === 2 ? 'md:col-span-2 h-[700px]' : 'h-[700px]'}`}
+                className={`relative w-full aspect-square md:aspect-auto ${
+                  index % 3 === 2 ? 'md:col-span-2 md:h-[700px]' : 'md:h-[700px]'
+                }`}
               >
                 <button
                   onClick={() => openModal(index)}
@@ -112,18 +113,11 @@ export default function PortfolioPage() {
             ))}
           </div>
         </section>
+
+        {/* New Custom Section */}
         <section>
-        <div className="container mx-auto text-center">
-        <NewCustomSection />
-          </div>
-        </section>
-        {/* ✅ Beschrijving Sectie ✅ */}
-        <section className="bg-gray-100 py-12">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-semibold mb-4">Ontdek Onze Unieke Portfolio</h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Bekijk ons werk en ontdek hoe we voertuigen transformeren met hoogwaardige carwraps en unieke aanpassingen.
-            </p>
+            <NewCustomSection />
           </div>
         </section>
 

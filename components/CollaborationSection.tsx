@@ -49,7 +49,7 @@ export default function CollaborationSection({
 
       {/* Brands Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font mb-8 text-center">Alle Folie Merken</h2>
+        <h2 className="text-3xl font mb-8 text-center"></h2>
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}
@@ -100,7 +100,7 @@ export default function CollaborationSection({
 
       {/* Partners Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font mb-8 text-center">Partners</h2>
+        <h2 className="text-3xl font mb-8 text-center">PARTNERS</h2>
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}

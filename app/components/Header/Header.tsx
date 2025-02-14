@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,7 +44,8 @@ const Header: React.FC = () => {
     setMenuOpen((prev) => !prev);
   };
 
-  const renderSocialIcons = () => {
+  // Updated renderSocialIcons that accepts a custom container className
+  const renderSocialIcons = (containerClass = "hidden md:flex justify-end space-x-4 pr-4") => {
     const iconMap: { [key: string]: IconProp } = {
       instagram: faInstagram,
       tiktok: faTiktok,
@@ -53,14 +54,14 @@ const Header: React.FC = () => {
     };
 
     return (
-      <div className="hidden md:flex justify-end space-x-4 pr-4">
+      <div className={containerClass}>
         {Object.entries(socialMedia).map(([key, value]) => {
-          const icon = iconMap[key as keyof typeof iconMap];
+          const icon = iconMap[key];
           return (
             <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
               <FontAwesomeIcon
                 icon={icon}
-                className={`text-2xl transition duration-300 ${
+                className={`text-2xl transition duration-300 text-black ${isScrolled ? 'md:text-black' : 'md:text-white'} hover:text-red-600 ${
                   isScrolled ? 'text-black' : 'text-white'
                 } hover:text-red-600`}
               />
@@ -78,7 +79,7 @@ const Header: React.FC = () => {
           isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
         }`}
       >
-        {/* Linkerknop (Hamburger menu) */}
+        {/* Left: Hamburger menu */}
         <div className="flex justify-start pl-4">
           <button
             className="p-3 flex items-center focus:outline-none z-50"
@@ -94,7 +95,7 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Logo exact in het midden */}
+        {/* Center: Logo */}
         <div className="flex justify-center items-center">
           <Link href="/">
             <Image
@@ -107,11 +108,11 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        {/* Rechterkant (Sociale media iconen) */}
+        {/* Right: Social media icons for desktop */}
         {renderSocialIcons()}
       </header>
 
-      {/* Mobiele menu-overlay */}
+      {/* Mobile menu overlay */}
       <nav
         ref={menuRef}
         className={`fixed top-0 left-0 bg-white z-[100] w-full md:w-[300px] h-screen shadow-lg transform transition-transform duration-300 ease-in-out ${
@@ -142,17 +143,11 @@ const Header: React.FC = () => {
             ))}
           </ul>
 
-          {/* Social icons onderaan menu (Mobiel) */}
-          <div className="p-4 pb-7 border-t border-gray-200">
-            <div className="md:hidden flex justify-center space-x-4">
-              {Object.entries(socialMedia).map(([key, value]) => (
-                <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    className="text-2xl text-gray-600 hover:text-red-600 transition duration-300"
-                  />
-                </a>
-              ))}
+          {/* Social icons at the bottom of mobile menu */}
+          <div className="p-4 pb-8 border-t border-gray-200">
+            <div className="flex justify-center space-x-4">
+              {renderSocialIcons("flex justify-center space-x-4")}
+              
             </div>
           </div>
         </div>

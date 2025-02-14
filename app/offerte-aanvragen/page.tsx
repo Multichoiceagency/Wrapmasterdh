@@ -16,38 +16,30 @@ export default function OfferteAanvragen() {
     gewensteKleur: "",
     bericht: "",
     privacyCheck: false,
-    uploadedFiles: [] as File[], // ✅ Nu een array van bestanden
   })
 
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]) // ✅ Bestanden apart beheren
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // ✅ Handle file selection (Meerdere bestanden)
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const filesArray = Array.from(e.target.files) // Zet FileList om naar array
-      setFormData((prev) => ({
-        ...prev,
-        uploadedFiles: [...prev.uploadedFiles, ...filesArray], // ✅ Bestanden toevoegen aan state
-      }))
+      const filesArray = Array.from(e.target.files)
+      setUploadedFiles((prev) => [...prev, ...filesArray]) // ✅ Bestanden opslaan
     }
   }
 
   // ✅ Bestanden verwijderen uit de lijst
   const removeFile = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      uploadedFiles: prev.uploadedFiles.filter((_, i) => i !== index),
-    }))
+    setUploadedFiles((prev) => prev.filter((_, i) => i !== index))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
-
-    if (type === "checkbox") {
-      setFormData({ ...formData, [name]: (e.target as HTMLInputElement).checked })
-    } else {
-      setFormData({ ...formData, [name]: value })
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,14 +55,14 @@ export default function OfferteAanvragen() {
     try {
       const submitData = new FormData()
       Object.entries(formData).forEach(([key, value]) => {
-        if (key === "uploadedFiles" && Array.isArray(value)) {
-          value.forEach((file) => submitData.append("uploadedFiles", file)) // ✅ Meerdere bestanden toevoegen
-        } else {
-          submitData.append(key, String(value))
-        }
+        submitData.append(key, String(value))
       })
 
-      const response = await fetch("/api/submit-quote", {
+      uploadedFiles.forEach((file) => {
+        submitData.append("uploadedFiles", file)
+      })
+
+      const response = await fetch("/api/send-offerte", {
         method: "POST",
         body: submitData,
       })
@@ -88,8 +80,8 @@ export default function OfferteAanvragen() {
           gewensteKleur: "",
           bericht: "",
           privacyCheck: false,
-          uploadedFiles: [],
         })
+        setUploadedFiles([]) // ✅ Bestanden resetten
       } else {
         throw new Error("Verzending mislukt.")
       }
@@ -107,9 +99,7 @@ export default function OfferteAanvragen() {
         {/* Formulier sectie */}
         <div className="bg-white shadow-lg rounded-lg w-full lg:w-1/2 p-8 space-y-6">
           <h2 className="text-3xl font-bold mb-4">Vraag een offerte aan</h2>
-          <p className="text-gray-700 mb-6">
-            Vul je gegevens in en ontvang een vrijblijvende offerte!
-          </p>
+          <p className="text-gray-700 mb-6">Vul je gegevens in en ontvang een vrijblijvende offerte!</p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <input type="text" name="naam" value={formData.naam} onChange={handleChange} className="p-3 border rounded w-full" placeholder="Naam" required />
@@ -130,19 +120,26 @@ export default function OfferteAanvragen() {
 
             {/* ✅ Thumbnails van geüploade afbeeldingen */}
             <div className="flex flex-wrap gap-4 mt-4">
-              {formData.uploadedFiles.map((file, index) => (
-                <div key={index} className="relative">
-                  <img src={URL.createObjectURL(file)} alt="Upload Preview" className="w-24 h-24 object-cover rounded-lg shadow" />
-                  <button type="button" onClick={() => removeFile(index)} className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs">
-                    ❌
-                  </button>
-                </div>
-              ))}
+              {uploadedFiles.map((file, index) => {
+                const previewUrl = URL.createObjectURL(file)
+                return (
+                  <div key={index} className="relative">
+                    <img src={previewUrl} alt="Upload Preview" className="w-24 h-24 object-cover rounded-lg shadow" />
+                    <button type="button" onClick={() => removeFile(index)} className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs">
+                      ❌
+                    </button>
+                  </div>
+                )
+              })}
             </div>
 
             {/* Privacy Check */}
             <div className="mt-4 flex items-center space-x-2">
-              <Checkbox id="privacyCheck" checked={formData.privacyCheck} onCheckedChange={(checked) => setFormData({ ...formData, privacyCheck: !!checked })} />
+              <Checkbox
+                id="privacyCheck"
+                checked={formData.privacyCheck}
+                onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, privacyCheck: checked === true }))}
+              />
               <label htmlFor="privacyCheck" className="text-gray-700">Ik ga akkoord met het privacybeleid</label>
             </div>
 

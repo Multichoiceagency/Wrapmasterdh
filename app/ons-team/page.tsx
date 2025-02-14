@@ -4,45 +4,53 @@ export default function TeamPage() {
   return (
     <main>
       <TeamSection 
-        videoUrl="https://res.cloudinary.com/dkdltgrov/video/upload/v1732802787/AUDI_RSQ8_CORRECTIE_trv9wc.mp4"
         teamMembers={[
           {
-            name: "Team Member 1",
-            role: "Founder",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Altun",
+            role: "Eigenaar",
+            image: "/enes-website/ons-team/placeholder-2-1.png"
           },
           {
-            name: "Team Member 2",
-            role: "Lead Designer",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Cinar",
+            role: "Office manager",
+            image: "/enes-website/ons-team/placeholder-2-1.png"
           },
           {
-            name: "Team Member 3",
-            role: "Specialist",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Enes",
+            role: "Marketing & Sales",
+            image: "/enes-website/ons-team/placeholder-2-1.png"
           },
           {
-            name: "Team Member 4",
-            role: "Technician",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Adrian",
+            role: "Carwrapper & Designer",
+            image: "/enes-website/ons-team/1 (1).bmp"
           },
           {
-            name: "Team Member 5",
-            role: "Designer",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Patrick",
+            role: "Carwrapper & PPF installer images ",
+            image: "/enes-website/ons-team/placeholder-2-1.png"
           },
           {
-            name: "Team Member 6",
-            role: "Specialist",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Kevin",
+            role: "Carwrapper & PPF installer",
+            image: "/enes-website/ons-team/1-16.jpg"
           },
           {
-            name: "Team Member 7",
-            role: "Technician",
-            image: "https://drive.google.com/uc?export=view&id=1lOJTNgeeaIGFyRrYgSoavLuGCq2OVJ4g"
+            name: "Amelia",
+            role: "Carwrapper",
+            image: "/enes-website/ons-team/1 (3).bmp"
           },
-        ]} 
-      />
+          {
+            name: "Frank",
+            role: "Carwrapper",
+            image: "/enes-website/ons-team/placeholder-2-1.png"
+          },
+          {
+            name: "Ayoub",
+            role: "Detailer",
+            image: "/enes-website/ons-team/1 (7).bmp"
+          },
+        ]} bannerImage={''}      />
     </main>
   );
 }
