@@ -10,8 +10,7 @@ export default function Footer() {
     {
       items: [
         { title: "ONS TEAM", href: "/ons-team", isHeading: true },
-        { title: "SAMENWERKINGEN", href: "/samenwerking", isHeading: true },
-        { title: "DIENSTEN", href: "/diensten", isHeading: true },
+        { title: "SAMENWERKING", href: "/samenwerking", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />,
       socialLink: "https://www.instagram.com/wrapmasterdh/"
@@ -19,7 +18,6 @@ export default function Footer() {
     {
       items: [
         { title: "PORTFOLIO", href: "/portfolio", isHeading: true },
-        { title: "6X6 Rental", href: "https://www.6x6rental.nl", isHeading: true },
         { title: "WALLPAPER", href: "/wallpaper", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faTiktok} className="h-5 w-5" />,
@@ -27,9 +25,8 @@ export default function Footer() {
     },
     {
       items: [
-        { title: "OFFERTE AANVRAGEN", href: "/offerte-aanvraagen", isHeading: true },
-        { title: "CONTACT", href: "/contact", isHeading: true },
-        { title: "", href: "", isHeading: true },
+        { title: "OFFERTE AANVRAGEN", href: "/offerte-aanvragen", isHeading: true },
+        { title: "6X6 Rental", href: "https://www.6x6rental.nl", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faFacebookF} className="h-5 w-5" />,
       socialLink: "https://www.facebook.com/WrapmasterDH"
@@ -37,8 +34,7 @@ export default function Footer() {
     {
       items: [
         { title: "ALGEMENE VOORWAARDEN", href: "/video/Algemene-Voorwaarden-Wrapmaster-1.pdf", isHeading: true },
-        { title: "", href: "", isHeading: true },
-        { title: "", href: "", isHeading: true },
+        { title: "CONTACT", href: "/contact", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />,
       socialLink: "https://www.youtube.com/@wrapmasterdh/videos"

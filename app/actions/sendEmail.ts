@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
   secure: false, // true voor 465, false voor andere poorten
   auth: {
     user: 'info@wrapmasterdh.nl', // Jouw e-mailadres
-    pass: 'your-email-password',  // Wachtwoord
+    pass: 'Wrapmaster2025//',  // Wachtwoord
   },
 });
 

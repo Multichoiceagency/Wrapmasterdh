@@ -91,13 +91,15 @@ export default function ContactPage() {
             <h3 className="text-2xl font mb-4">Contactgegevens</h3>
             <p className="text-gray-700 mb-2">Westvlietweg 72-L</p>
             <p className="text-gray-700 mb-2">2495 AA, Den Haag</p>
-            <p className="text-gray-700 mb-2">070 - 225 07 21</p>
+            <a href="tel:0702250721" className="text-blue-600 hover:underline">
+            070 - 225 07 21
+              </a>
             <p className="text-gray-700 mb-6">
               <a href="mailto:info@wrapmasterdh.nl" className="text-blue-600 hover:underline">
                 info@wrapmasterdh.nl
               </a>
             </p>
-            <p className="text-gray-700 mb-2">BTW NR: NL0023328992</p>
+            <p className="text-gray-700 mb-2">BTW NR: NL002332891B92</p>
             <p className="text-gray-700 mb-2">KvK NR: 68374232</p>
           </div>
         </div>
