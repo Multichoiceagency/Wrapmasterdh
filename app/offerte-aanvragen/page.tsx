@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 
@@ -18,14 +17,20 @@ export default function OfferteAanvragen() {
     privacyCheck: false,
   })
 
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]) // ✅ Bestanden apart beheren
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // ✅ Handle file selection (Meerdere bestanden)
+  // ✅ Bestanden uploaden (max 10MB per bestand)
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files)
-      setUploadedFiles((prev) => [...prev, ...filesArray]) // ✅ Bestanden opslaan
+
+      const validFiles = filesArray.filter((file) => file.size <= 10 * 1024 * 1024) // Max 10MB
+      if (validFiles.length !== filesArray.length) {
+        alert("Sommige bestanden zijn te groot! Max 10MB per bestand.")
+      }
+
+      setUploadedFiles((prev) => [...prev, ...validFiles])
     }
   }
 
@@ -34,7 +39,8 @@ export default function OfferteAanvragen() {
     setUploadedFiles((prev) => prev.filter((_, i) => i !== index))
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  // ✅ Input wijzigingen verwerken
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -42,6 +48,7 @@ export default function OfferteAanvragen() {
     }))
   }
 
+  // ✅ Formulier indienen
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -81,7 +88,7 @@ export default function OfferteAanvragen() {
           bericht: "",
           privacyCheck: false,
         })
-        setUploadedFiles([]) // ✅ Bestanden resetten
+        setUploadedFiles([])
       } else {
         throw new Error("Verzending mislukt.")
       }
@@ -112,34 +119,25 @@ export default function OfferteAanvragen() {
             <input type="text" name="gewensteKleur" value={formData.gewensteKleur} onChange={handleChange} className="p-3 border rounded w-full" placeholder="Gewenste kleur" />
             <textarea name="bericht" value={formData.bericht} onChange={handleChange} className="p-3 border rounded w-full" placeholder="Uw bericht" />
 
-            {/* File Upload */}
+            {/* ✅ Bestand upload veld */}
             <label className="block">
-              Voeg foto's toe van uw auto:
+              <span className="font-semibold">Voeg foto's toe:</span>
               <input type="file" name="uploadedFiles" onChange={handleFileChange} multiple className="p-3 border rounded w-full mt-2" />
             </label>
 
-            {/* ✅ Thumbnails van geüploade afbeeldingen */}
+            {/* ✅ Bestanden preview */}
             <div className="flex flex-wrap gap-4 mt-4">
-              {uploadedFiles.map((file, index) => {
-                const previewUrl = URL.createObjectURL(file)
-                return (
-                  <div key={index} className="relative">
-                    <img src={previewUrl} alt="Upload Preview" className="w-24 h-24 object-cover rounded-lg shadow" />
-                    <button type="button" onClick={() => removeFile(index)} className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs">
-                      ❌
-                    </button>
-                  </div>
-                )
-              })}
+              {uploadedFiles.map((file, index) => (
+                <div key={index} className="relative">
+                  <p className="text-sm">{file.name}</p>
+                  <button type="button" onClick={() => removeFile(index)} className="text-red-500 text-sm ml-2">❌ Verwijderen</button>
+                </div>
+              ))}
             </div>
 
             {/* Privacy Check */}
             <div className="mt-4 flex items-center space-x-2">
-              <Checkbox
-                id="privacyCheck"
-                checked={formData.privacyCheck}
-                onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, privacyCheck: checked === true }))}
-              />
+              <Checkbox id="privacyCheck" checked={formData.privacyCheck} onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, privacyCheck: checked === true }))} />
               <label htmlFor="privacyCheck" className="text-gray-700">Ik ga akkoord met het privacybeleid</label>
             </div>
 

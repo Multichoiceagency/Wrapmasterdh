@@ -29,16 +29,16 @@ export default function Footer() {
       items: [
         { title: "OFFERTE AANVRAGEN", href: "/offerte-aanvraagen", isHeading: true },
         { title: "CONTACT", href: "/contact", isHeading: true },
-        { title: "VACATURES", href: "/vacatures", isHeading: true },
+        { title: "", href: "", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faFacebookF} className="h-5 w-5" />,
       socialLink: "https://www.facebook.com/WrapmasterDH"
     },
     {
       items: [
-        { title: "WRAPVOORWAARDEN", href: "/carriere", isHeading: true },
-        { title: "ALGEMENE VOORWAARDEN", href: "/contact", isHeading: true },
-        { title: "PRIVACYBELEID", href: "/cookie-instellingen", isHeading: true },
+        { title: "ALGEMENE VOORWAARDEN", href: "/video/Algemene-Voorwaarden-Wrapmaster-1.pdf", isHeading: true },
+        { title: "", href: "", isHeading: true },
+        { title: "", href: "", isHeading: true },
       ],
       socialIcon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />,
       socialLink: "https://www.youtube.com/@wrapmasterdh/videos"
@@ -138,15 +138,14 @@ export default function Footer() {
 
       {/* Copyright Section */}
       <div className="w-full text-center py-4 px-20 text-sm text-white bg-black">
-        Website gerealiseerd door{' '}
+        {' '}
         <Link 
           href="https://multichoiceagency.nl/" 
           target="_blank" 
           className="font-semibold underline hover:text-gray-400"
         >
-          Multichoiceagency.nl - Webdesign Studio
         </Link>{' '}
-        | Copyright 2024 © door Wrapmaster
+         Copyright © by 2025 Wrapmaster
       </div>
     </footer>
   )

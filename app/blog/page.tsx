@@ -50,7 +50,7 @@ export default function BlogPage() {
           site_name: 'Wrapmaster',
         }}
       />
-      <main className="bg-slate-200">
+      <main className="bg-white">
         {/* Hero Sectie */}
         <section className="relative h-[70vh]">
           <video
@@ -109,17 +109,6 @@ export default function BlogPage() {
     ))}
   </div>
 </section>
-
-
-        {/* Beschrijving Sectie */}
-        <section className="bg-gray-100 py-12">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-semibold mb-4">Blijf Up-To-Date over de laatste nieuws met Wrapmaster!</h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Ontdek het laatste nieuws, evenementen en inzichten uit de wereld van autofolie en voertuigaanpassingen. Onze blog is jouw go-to bron voor industrietrends, projectshowcases en experttips.
-            </p>
-          </div>
-        </section>
       </main>
     </>
   )

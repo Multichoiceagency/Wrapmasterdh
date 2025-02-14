@@ -21,7 +21,7 @@ const customSlides: CustomSlide[] = [
     id: 1,
     titel: "JEEP GLADIATOR 6X6",
     subtitel: "HUUR DIRECT OP www.6x6rental.nl",
-    foto: "/enes-website/wallpaper/Maasvlakte-9.jpg",
+    foto: "/enes-website/wallpaper/Maasvlakte-8.jpg",
     slug: "instagram",
     link: "https://www.6x6rental.nl/",
     isVideo: false,

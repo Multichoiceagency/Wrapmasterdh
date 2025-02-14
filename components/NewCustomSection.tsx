@@ -55,7 +55,7 @@ const NewCustomSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 relative">
           {customSlides.slice(0, 2).map((slide) => (
             <div key={slide.id} className="relative w-full h-[50vh] md:h-screen">
-              <Link href={slide.link}>
+              <Link href={slide.link} target="_blank" rel="noopener noreferrer">
                 <div className="relative h-full">
                   <Image
                     src={slide.foto}
@@ -94,7 +94,7 @@ const NewCustomSection = () => {
           <div className="absolute inset-0 flex flex-col justify-start items-start text-left bg-black bg-opacity-30 p-6 md:p-12">
             <h3 className="text-3xl md:text-xl font uppercase text-white">{customSlides[2].video_titel}</h3>
             <p className="text-base md:text-l font-light mt-2 md:mt-4 text-white max-w-md">{customSlides[2].video_beschrijving}</p>
-            <Link href={customSlides[2].link}>
+            <Link href={customSlides[2].link} target="_blank" rel="noopener noreferrer">
               <button className="mt-4 md:mt-6 px-4 py-2 md:py-3 bg-black text-white text-sm md:text-base font-semibold hover:bg-gray-800 transition">
                 Bekijk Kanaal
               </button>
@@ -107,4 +107,3 @@ const NewCustomSection = () => {
 };
 
 export default NewCustomSection;
-

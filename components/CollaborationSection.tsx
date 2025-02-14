@@ -35,15 +35,15 @@ export default function CollaborationSection({
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[400px] w-full mb-16">
+      <div className="relative h-[90vh] min-h-[400px] w-full mb-16">
         <Image
           src={getMediaUrl(heroImage)}
           alt="Samenwerking Hero"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font text-white">Samenwerking</h1>
+        <div className="absolute inset-0 bg-black/50 flex items-end p-6 justify-center">
+          <h1 className="text-4xl md:text-4xl font-light text-white">SAMENWERKING</h1>
         </div>
       </div>
 
