@@ -15,7 +15,7 @@ interface Banner {
 const banner: Banner = {
   id: 1,
   title: "3D Carwrapping",
-  featured_image: "/enes-website/design/Changer12.png",
+  featured_image: "/enes-website/design/Changer_12.png",
   button_text: "Visualiseer jouw voertuig",
   button_link: "/reclame-en-design"
 };

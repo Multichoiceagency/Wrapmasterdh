@@ -12,11 +12,12 @@ const menuItems = [
   { id: 1, title: 'Home', link: '/' },
   { id: 2, title: 'Diensten', link: '/diensten' },
   { id: 3, title: 'Portfolio', link: '/portfolio' },
-  { id: 6, title: 'Offerte aanvragen', link: '/offerte-aanvragen' },
-  { id: 8, title: 'Ons Team', link: '/ons-team' },
-  { id: 7, title: 'Wallpaper', link: '/wallpaper' },
-  { id: 4, title: 'Samenwerking', link: '/samenwerking' },
-  { id: 5, title: '6×6 Rental', link: 'https://www.6x6rental.nl' },
+  { id: 4, title: 'Offerte aanvragen', link: '/offerte-aanvragen' },
+  { id: 5, title: 'Ons Team', link: '/ons-team' },
+  { id: 6, title: 'Wallpaper', link: '/wallpaper' },
+  { id: 7, title: 'Samenwerking', link: '/samenwerking' },
+  { id: 8, title: 'Contact', link: '/contact' },
+  { id: 9, title: '6×6 Rental', link: 'https://www.6x6rental.nl' },
 ];
 
 const socialMedia = {

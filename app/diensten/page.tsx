@@ -15,7 +15,7 @@ interface Dienst {
 }
 
 const diensten: Dienst[] = [
-  { id: 17, titel: "Carwrapping", subtitel: "Complete voertuigtransformatie", afbeelding: "/enes-website/auto-wrappen/lambo-urus-satin-black.jpg", slug: "carwrapping" },
+  { id: 17, titel: "Carwrapping", subtitel: "Complete voertuigtransformatie", afbeelding: "/enes-website/auto-wrappen/elia/lambo-eljero-elia.jpg", slug: "carwrapping" },
   { id: 16, titel: "PPF (Paint Protection Film)", subtitel: "Onzichtbare lakbescherming", afbeelding: "/enes-website/ppf/Maasvlakte-9.jpg", slug: "ppf" },
   { id: 15, titel: "Ambient Light", subtitel: "Sfeervolle interieurverlichting", afbeelding: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (18 of 41).jpg", slug: "ambient-light" },
   { id: 14, titel: "Chrome Delete", subtitel: "Moderne look zonder chroom", afbeelding: "/enes-website/chrome-delete/chrome-delete.jpg", slug: "chrome-delete" },
@@ -27,7 +27,7 @@ const diensten: Dienst[] = [
   { id: 8, titel: "Reclame/Design", subtitel: "Opvallende voertuigreclame", afbeelding: "/enes-website/reclame/_GLA5951.jpg", slug: "reclame-en-design" },
   { id: 7, titel: "Remklauwen", subtitel: "Customization van remklauwen", afbeelding: "/enes-website/remklauwen/Brabus 800 (5 of 7).jpg", slug: "remklauwen" },
   { id: 6, titel: "Velgen Poedercoaten", subtitel: "Duurzame velgafwerking", afbeelding: "/enes-website/velgen/WM-21.jpg", slug: "velgen-poedercoaten" },
-  { id: 5, titel: "Alloygator", subtitel: "Velgbescherming op maat", afbeelding: "/enes-website/alloygator/bluelambo.png", slug: "alloygator" },
+  { id: 5, titel: "Alloygator", subtitel: "Velgbescherming op maat", afbeelding: "/enes-website/Alloygator/lambo.png", slug: "alloygator" },
   { id: 4, titel: "Scooter/Motor Wrap", subtitel: "Stijlvolle wraps voor tweewielers", afbeelding: "/enes-website/memo/IMG_2501.JPG", slug: "scooter-motor-wrap" },
   { id: 3, titel: "Security Alarm", subtitel: "Geavanceerde beveiligingssystemen", afbeelding: "/enes-website/memo-map/510x1000x0_proefdruk-alarm-stickers-0.jpg", slug: "alarmbeveiliging-auto" },
   { id: 2, titel: "Bodykit", subtitel: "Custom bodykit installatie", afbeelding: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg", slug: "bodykit" },
@@ -49,7 +49,7 @@ const DienstenPage: React.FC = () => {
   {/* ✅ Zwarte balk bovenop de afbeelding */}
   <div className="absolute top-0 left-0 right-0 h-[8vh] bg-black/15 z-10"></div>
       <Image
-          src="/enes-website/auto-wrappen/lambo-urus-satin-black.jpg"
+          src="/enes-website/auto-wrappen/elia/lambo-eljero-elia.jpg"
           alt="Wrapmaster Hero afbeelding"
           fill
           priority

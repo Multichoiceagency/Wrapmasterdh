@@ -27,17 +27,17 @@ const socialMedia = {
 const dienstData = {
   title: "ALLOYGATOR",
   description: "",
-  heroImage: "/enes-website/alloygator/78415338_2707704222583229_8578045637193367552_o.jpg",
-  contentImage1: "/enes-website/alloygator/AG-17-e1539160979388-min.jpg",
-  contentImage2: "/enes-website/alloygator/AG-19-e1539165703298.jpg",
-  contentImage3: "/enes-website/alloygator/Ontwerp zonder titel (1).png",
+  heroImage: "/enes-website/Alloygator/78415338_2707704222583229_8578045637193367552_o.jpg",
+  contentImage1: "/enes-website/Alloygator/AG-17-e1539160979388-min.jpg",
+  contentImage2: "/enes-website/Alloygator/AG-19-e1539165703298.jpg",
+  contentImage3: "/enes-website/Alloygator/Ontwerp zonder titel (1).png",
 };
 
 const sliderImages = [
-  "/enes-website/alloygator/tesla.jpg",
-  "/enes-website/alloygator/Mini_Excusive-Black (1).jpg",
-  "/enes-website/alloygator/lamborghini.jpg",
-  "/enes-website/alloygator/Ontwerp zonder titel (1).png",
+  "/enes-website/Alloygator/tesla.jpg",
+  "/enes-website/Alloygator/Mini_Excusive-Black (1).jpg",
+  "/enes-website/Alloygator/lamborghini.jpg",
+  "/enes-website/Alloygator/Ontwerp zonder titel (1).png",
 ];
 
 const reels = [

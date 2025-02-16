@@ -15,15 +15,15 @@ interface ThreeDCarwrapping {
 }
 
 const carWrapDesigns: ThreeDCarwrapping[] = [
-  { id: 1, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer1.png", },
-  { id: 2, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer3.png" },
-  { id: 3, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer4.png" },
-  { id: 4, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer5.png" },
-  { id: 5, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer6.png" },
-  { id: 6, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer7.png" },
-  { id: 7, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer9.png" },
-  { id: 8, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer11.png" },
-  { id: 9, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer12.png" },
+  { id: 1, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_1.png", },
+  { id: 2, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_3.png" },
+  { id: 3, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_4.png" },
+  { id: 4, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_5.png" },
+  { id: 5, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_6.png" },
+  { id: 6, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_7.png" },
+  { id: 7, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_9.png" },
+  { id: 8, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_11.png" },
+  { id: 9, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer_12.png" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {

@@ -8,6 +8,7 @@ import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon";
 import OfferteAanvragen from "@/components/offerte-aanvragen";
 import "photoswipe/dist/photoswipe.css";
 import FloatingSocialIcons from "@/components/FloatingSocialIcons";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl" className={dmSans.className}>
       <body>
         <Header />
-        {children}
+        <SmoothScrolling>{children}</SmoothScrolling>
         <OfferteAanvragen />
         <Footer />
         <FloatingSocialIcons />
