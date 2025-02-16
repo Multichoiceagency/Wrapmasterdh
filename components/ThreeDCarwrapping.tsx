@@ -15,15 +15,15 @@ interface ThreeDCarwrapping {
 }
 
 const carWrapDesigns: ThreeDCarwrapping[] = [
-  { id: 1, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_1.png", },
-  { id: 2, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_3.png" },
-  { id: 3, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_4.png" },
-  { id: 4, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_5.png" },
-  { id: 5, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_6.png" },
-  { id: 6, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_7.png" },
-  { id: 7, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_9.png" },
-  { id: 8, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_11.png" },
-  { id: 9, titel: "", subtitel: "", afbeelding: "/enes-website/memo-map/design/changer_12.png" },
+  { id: 1, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer1.png", },
+  { id: 2, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer3.png" },
+  { id: 3, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer4.png" },
+  { id: 4, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer5.png" },
+  { id: 5, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer6.png" },
+  { id: 6, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer7.png" },
+  { id: 7, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer9.png" },
+  { id: 8, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer11.png" },
+  { id: 9, titel: "", subtitel: "", afbeelding: "/enes-website/design/Changer12.png" },
 ];
 
 const ThreeDCarwrapping: React.FC = () => {
@@ -54,7 +54,7 @@ const ThreeDCarwrapping: React.FC = () => {
         <title>3D Carwrapping - WrapMaster | Specialist in Auto Customization</title>
         <meta name="description" content="Ontdek onze uitgebreide reeks van professionele 3D carwrapping ontwerpen, waaronder matte, glanzende, en unieke wraps. WrapMaster is uw specialist voor alle auto customization behoeften." />
         <meta name="keywords" content="3D carwrapping, auto wrap, matte wrap, glanzende wrap, camouflage wrap, kleurverloop wrap, carbon fiber wrap, holografische wrap" />
-        <link rel="canonical" href="https://www.wrapmaster.nl/3d-carwrapping" />
+        <link rel="canonical" href="https://www.wrapmaster.nl/reclame-en-design" />
       </Head>
       <section className="py-12 h-100 overflow-hidden bg-white">
         <div className="text-left mb-12 ml-12">
@@ -99,13 +99,13 @@ const ThreeDCarwrapping: React.FC = () => {
         "@type": "LocalBusiness",
         "name": "WrapMaster",
         "description": "Specialist in 3D carwrapping en auto customization",
-        "url": "https://www.wrapmaster.nl",
+        "url": "https://www.wrapmasterdh.nl",
         "telephone": "+31XXXXXXXXX",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Autostraat 123",
-          "addressLocality": "Amsterdam",
-          "postalCode": "1234 AB",
+          "streetAddress": "Westvlietweg 72L",
+          "addressLocality": "Den Haag",
+          "postalCode": "1",
           "addressCountry": "NL"
         },
         "geo": {

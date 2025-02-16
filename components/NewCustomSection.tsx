@@ -29,7 +29,7 @@ const customSlides: CustomSlide[] = [
     id: 2,
     titel: "TIKTOK",
     subtitel: "VOLG ONS OP TIKTOK",
-    foto: "/enes-website/wallpaper/Maasvlakte-100.jpg",
+    foto: "/enes-website/wallpaper/mclaren.jpg",
     slug: "tiktok",
     link: "https://www.tiktok.com/@wrapmasterdh",
     isVideo: false,

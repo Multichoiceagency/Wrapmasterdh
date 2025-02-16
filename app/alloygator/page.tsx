@@ -34,7 +34,7 @@ const dienstData = {
 };
 
 const sliderImages = [
-  "/enes-website/alloygator/18121011_1447403318613332_4401985287136650865_o.jpg",
+  "/enes-website/alloygator/tesla.jpg",
   "/enes-website/alloygator/Mini_Excusive-Black (1).jpg",
   "/enes-website/alloygator/lamborghini.jpg",
   "/enes-website/alloygator/Ontwerp zonder titel (1).png",
@@ -169,6 +169,7 @@ export default function AlloyGatorBescherming() {
             fill
             className="object-cover"
             priority
+            unoptimized
           />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">

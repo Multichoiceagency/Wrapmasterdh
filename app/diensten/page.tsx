@@ -15,7 +15,7 @@ interface Dienst {
 }
 
 const diensten: Dienst[] = [
-  { id: 17, titel: "Carwrapping", subtitel: "Complete voertuigtransformatie", afbeelding: "/enes-website/wallpaper/lambo-urus-satin-black.jpg", slug: "carwrapping" },
+  { id: 17, titel: "Carwrapping", subtitel: "Complete voertuigtransformatie", afbeelding: "/enes-website/auto-wrappen/lambo-urus-satin-black.jpg", slug: "carwrapping" },
   { id: 16, titel: "PPF (Paint Protection Film)", subtitel: "Onzichtbare lakbescherming", afbeelding: "/enes-website/ppf/Maasvlakte-9.jpg", slug: "ppf" },
   { id: 15, titel: "Ambient Light", subtitel: "Sfeervolle interieurverlichting", afbeelding: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (18 of 41).jpg", slug: "ambient-light" },
   { id: 14, titel: "Chrome Delete", subtitel: "Moderne look zonder chroom", afbeelding: "/enes-website/chrome-delete/chrome-delete.jpg", slug: "chrome-delete" },
@@ -49,12 +49,13 @@ const DienstenPage: React.FC = () => {
   {/* ✅ Zwarte balk bovenop de afbeelding */}
   <div className="absolute top-0 left-0 right-0 h-[8vh] bg-black/15 z-10"></div>
       <Image
-          src="/enes-website/wallpaper/lambo-urus-satin-black.jpg"
+          src="/enes-website/auto-wrappen/lambo-urus-satin-black.jpg"
           alt="Wrapmaster Hero afbeelding"
           fill
           priority
           className="object-cover"
           sizes="100vw"
+          unoptimized
         />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">

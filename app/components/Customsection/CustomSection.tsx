@@ -21,7 +21,7 @@ const customSlides: CustomSlide[] = [
     id: 1,
     titel: "JEEP GLADIATOR 6X6",
     subtitel: "HUUR DIRECT OP www.6x6rental.nl",
-    foto: "/enes-website/wallpaper/Maasvlakte-8.jpg",
+    foto: "public/enes-website/wallpaper/Maasvlakte-8.jpg",
     slug: "instagram",
     link: "https://www.6x6rental.nl/",
     isVideo: false,
@@ -75,6 +75,7 @@ const CustomSection = () => {
                     style={{ objectFit: 'cover' }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
+                    unoptimized
                   />
                   <div className="absolute inset-0 flex flex-col justify-end md:justify-bottom items-center text-left text-white p-6 md:p-12 bg-black bg-opacity-30">
                     <h3 className="text-xl md:text-xl font-medium tracking-widest uppercase">{slide.titel}</h3>
