@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,11 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -133,7 +138,7 @@ export default function GordelsVervangen() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Gordels Vervangen in Kleur bij Wrapmaster - Geef Jouw Auto een Unieke Uitstraling"
         description="Upgrade je auto-interieur met gekleurde gordels van Wrapmaster. Veilig, stijlvol en volledig gepersonaliseerd. Ontdek onze gordel vervangen service."
         canonical="https://wrapmasterdh.nl/gordels-vervangen"

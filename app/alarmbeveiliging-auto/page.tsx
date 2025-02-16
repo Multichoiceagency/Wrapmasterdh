@@ -4,6 +4,12 @@ import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 // Hero section data
 const dienstData = {
@@ -145,7 +151,7 @@ export default function AlarmsystemenInstalleren() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Alarmsystemen Installeren bij Wrapmaster"
         description="Professionele installatie van hoogwaardige alarmsystemen voor auto's, scooters en motoren. Bescherm je voertuig tegen diefstal met Wrapmaster's expertise."
         canonical="https://wrapmasterdh.nl/alarmsystemen-installeren"

@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { NextSeo } from 'next-seo';
 import HeroSection from './components/hero/Hero'
 import CustomSection from './components/Customsection/CustomSection'
 import ServicesSection from './components/ServicesSection'
@@ -14,11 +13,18 @@ import NewCustomSection from '@/components/NewCustomSection'
 import ThreeDCarwrapping from '@/components/ThreeDCarwrapping'
 import BoatSection from '@/components/BoatSection'
 import BoatenSlider from '@/components/BoatenSlider'
+import dynamic from 'next/dynamic';
+
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
     <div className="w-full overflow-x-hidden">
-      <NextSeo
+      <NextSeoClient
         title="Wrapmaster - Professionele Carwrapping Specialist"
         description="Wrapmaster biedt hoogwaardige carwrapping, chrome delete, en andere autofolie diensten. Transformeer uw voertuig met onze expertise en kwaliteitsproducten."
         canonical="https://wrapmasterdh.nl/"

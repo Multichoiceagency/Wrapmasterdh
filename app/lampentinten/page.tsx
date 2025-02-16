@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,12 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+// Dynamically import NextSeo to disable SSR for it.
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -121,7 +127,7 @@ export default function Lampentinten() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Lampentinten bij Wrapmaster - Geef Jouw Auto een Stoere en Exclusieve Look"
         description="Upgrade je auto met professionele lampentinten van Wrapmaster. Verbeter de uitstraling van je koplampen, achterlichten en meer. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/lampentinten"
@@ -210,121 +216,117 @@ export default function Lampentinten() {
 
         <ImageCarousel images={sliderImages} />
 
-
-               {/* Two Images Section */}
-               <section className="max-w-full mx-auto mt-16 md:mt-44">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative h-[700px] sm:h-[700px]">
-          <Image
-            src={dienstData.contentImage2 || "/placeholder.svg"}
-            alt="Content Image 1"
-            fill
-            className="object-cover object-top"
-            priority
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
-            Before
-          </div>
-        </div>
-        <div className="relative h-[700px] sm:h-[700px]">
-          <Image
-            src={dienstData.contentImage3 || "/placeholder.svg"}
-            alt="Content Image 2"
-            fill
-            className="object-cover object-top"
-            priority
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
-            After
-          </div>
-        </div>
-      </div>
-    </section>
-
-{/* Instagram Reels Section */}
-<section className="w-full bg-white py-16">
-  <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
-  <div className="flex justify-between gap-2 px-4">
-    {reels.slice(0, 2).map((reel) => (
-      <div
-        key={reel.id}
-        className="relative w-screen max-w-[49%] h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
-      >
-        {/* Video */}
-        <video
-          src={reel.video}
-          className="w-full h-full object-cover"
-          loop
-          muted
-          autoPlay
-          playsInline
-        ></video>
-        {/* Instagram Reel Overlay */}
-        <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
-          <div className="flex items-center text-white text-sm font-semibold">
-            <Image
-              src="/logos/logo-wit.png"
-              alt="Reels Play Icon"
-              width={20}
-              height={20}
-              className="mr-2"
-            />
-            Reels
-          </div>
-          <div className="text-white space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm">
-                <Image
-                  src="/logos/handtekening-wit.png"
-                  alt="Reels Play Icon"
-                  width={100}
-                  height={20}
-                  className="mr-2"
-                />
-              </span>
-              <div className="flex space-x-2">
-                <a
-                  href={socialMedia.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FontAwesomeIcon icon={faInstagram} size="lg" />
-                </a>
-                <a
-                  href={socialMedia.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FontAwesomeIcon icon={faTiktok} size="lg" />
-                </a>
-                <a
-                  href={socialMedia.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FontAwesomeIcon icon={faWhatsapp} size="lg" />
-                </a>
-                <a
-                  href={socialMedia.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FontAwesomeIcon icon={faFacebook} size="lg" />
-                </a>
+        {/* Two Images Section */}
+        <section className="max-w-full mx-auto mt-16 md:mt-44">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="relative h-[700px] sm:h-[700px]">
+              <Image
+                src={dienstData.contentImage2 || "/placeholder.svg"}
+                alt="Content Image 1"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
+                Before
               </div>
             </div>
-            <div className="flex items-center justify-between text-sm"></div>
+            <div className="relative h-[700px] sm:h-[700px]">
+              <Image
+                src={dienstData.contentImage3 || "/placeholder.svg"}
+                alt="Content Image 2"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
+                After
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+        </section>
 
+        {/* Instagram Reels Section */}
+        <section className="w-full bg-white py-16">
+          <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
+          <div className="flex justify-between gap-2 px-4">
+            {reels.slice(0, 2).map((reel) => (
+              <div
+                key={reel.id}
+                className="relative w-screen max-w-[49%] h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
+              >
+                <video
+                  src={reel.video}
+                  className="w-full h-full object-cover"
+                  loop
+                  muted
+                  autoPlay
+                  playsInline
+                ></video>
+                <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
+                  <div className="flex items-center text-white text-sm font-semibold">
+                    <Image
+                      src="/logos/logo-wit.png"
+                      alt="Reels Play Icon"
+                      width={20}
+                      height={20}
+                      className="mr-2"
+                    />
+                    Reels
+                  </div>
+                  <div className="text-white space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">
+                        <Image
+                          src="/logos/handtekening-wit.png"
+                          alt="Reels Play Icon"
+                          width={100}
+                          height={20}
+                          className="mr-2"
+                        />
+                      </span>
+                      <div className="flex space-x-2">
+                        <a
+                          href={socialMedia.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faInstagram} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.tiktok}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faTiktok} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.whatsapp}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+                        </a>
+                        <a
+                          href={socialMedia.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-400"
+                        >
+                          <FontAwesomeIcon icon={faFacebook} size="lg" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-sm"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Wrapmaster Services Section */}
         <section className="py-9">
@@ -334,4 +336,3 @@ export default function Lampentinten() {
     </>
   );
 }
-

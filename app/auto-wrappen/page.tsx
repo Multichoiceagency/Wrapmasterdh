@@ -9,6 +9,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import Image from 'next/image';
 import { SwiperSlide } from 'swiper/react';
+import dynamic from 'next/dynamic';
+
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 // Initialize Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
@@ -16,6 +23,33 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 export default function AutoWrappenDiensten() {
   return (
     <main className="bg-gray-100">
+      <NextSeoClient
+        title="Auto laten Wrappen bij Wrapmaster - Personaliseer uw voertuig"
+        description="Ontdek de professionele car wrapping services van Wrapmaster. Transformeer uw auto met hoogwaardige folie, unieke designs en een duurzame afwerking."
+        canonical="https://wrapmasterdh.nl/auto-wrappen"
+        openGraph={{
+          url: "https://wrapmasterdh.nl/auto-wrappen",
+          title: "Auto Wrappen bij Wrapmaster - Personaliseer uw voertuig",
+          description:
+            "Ontdek de professionele car wrapping services van Wrapmaster. Transformeer uw auto met hoogwaardige folie, unieke designs en een duurzame afwerking.",
+          images: [
+            {
+              url: "/images/auto-wrappen-hero.jpg", // Update with your actual hero image
+              width: 1200,
+              height: 630,
+              alt: "Auto Wrappen bij Wrapmaster",
+            },
+          ],
+          site_name: "Wrapmaster",
+        }}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content:
+              "auto wrappen, car wrapping, wrapmaster, folie, autowrapping services, voertuig personalisatie",
+          },
+        ]}
+      />
       {/* Hero Section */}
       <SwiperSlide>
           <div className="relative w-full h-[90vh] bg-black"> {/* Full height */}

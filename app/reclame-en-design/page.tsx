@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,11 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -115,7 +120,7 @@ export default function ReclameEnDesignWraps() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Reclame en Design Wraps bij Wrapmaster - Laat Jouw Auto Opvallen!"
         description="Transformeer je voertuig met professionele reclame en design wraps van Wrapmaster. Ideaal voor bedrijfsreclame en unieke persoonlijke designs. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/reclame-en-design-wraps"

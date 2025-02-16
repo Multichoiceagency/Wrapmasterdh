@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,11 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -123,7 +128,7 @@ export default function SterrenhemelInbouwen() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Sterrenhemel Inbouwen bij Wrapmaster - Maak van jouw Auto een Unieke Beleving"
         description="Creëer een magische sfeer in jouw auto met een op maat gemaakte sterrenhemel door Wrapmaster. Ontdek onze luxe LED-verlichting oplossingen voor auto-interieurs."
         canonical="https://wrapmasterdh.nl/sterrenhemel-inbouwen"

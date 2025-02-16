@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { NextSeo } from "next-seo";
+import dynamic from 'next/dynamic';
 import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
@@ -10,6 +10,12 @@ import OnzeDiensten from "@/app/components/Diensten/Diensten";
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageCarousel from "@/components/ImageCarousel";
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
+
 
 const socialMedia = {
   instagram: "https://www.instagram.com/wrapmasterdh/",
@@ -47,7 +53,7 @@ export default function Ramentinten() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Ramentinten bij Wrapmaster - Stijl, Privacy en Bescherming in Één"
         description="Upgrade je auto met professionele ramentinten en chameleon folie van Wrapmaster. Verbeter privacy, stijl en UV-bescherming. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/ramentinten"

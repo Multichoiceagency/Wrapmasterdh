@@ -2,8 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import NewCustomSection from '@/components/NewCustomSection';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 // Portfolio items (feel free to adjust or add more items)
 const portfolioItems = [
@@ -65,7 +70,7 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Wrapmaster Portfolio - Onze Projecten"
         description="Ontdek onze portfolio met indrukwekkende voertuigwraps en aanpassingen. Bekijk onze recente projecten!"
         canonical="https://wrapmasterdh.nl/portfolio"

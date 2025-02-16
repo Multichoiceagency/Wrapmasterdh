@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,11 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -106,7 +111,7 @@ export default function VelgenPoedercoaten() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Velgen Poedercoaten bij Wrapmaster - Geef Jouw Auto een Luxe en Duurzame Upgrade"
         description="Upgrade je auto met professioneel gepoedercoate velgen van Wrapmaster. Verbeter de look en bescherming van je velgen. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/velgen-poedercoaten"

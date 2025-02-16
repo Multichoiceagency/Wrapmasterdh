@@ -3,8 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { NextSeo } from "next-seo";
+import dynamic from 'next/dynamic';
 import DOMPurify from "dompurify";
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 // BlogPost type
 type BlogPost = {
@@ -56,7 +61,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Wrapmaster Blog - Laatste Nieuws en Evenementen"
         description="Ontdek de nieuwste trends, projecten en expertise in autofolie en voertuigaanpassingen op de Wrapmaster blog. Blijf op de hoogte van onze evenementen en industrietrends."
         canonical="https://wrapmasterdh.nl/blog"

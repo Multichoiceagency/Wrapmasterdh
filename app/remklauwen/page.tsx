@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,12 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
+
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -107,13 +113,13 @@ export default function RemklauwenKleuren() {
 
   return (
     <>
-      <NextSeo
-        title="Remklauwen Kleuren bij Wrapmaster - Geef Jouw Auto een Sportieve en Luxe Uitstraling"
+      <NextSeoClient
+        title="Remklauwen kleur veranderen bij Wrapmaster - Geef Jouw Auto een Sportieve en Luxe Uitstraling"
         description="Upgrade je auto met professioneel gekleurde remklauwen van Wrapmaster. Verbeter de look en bescherming van je remmen. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/remklauwen-kleuren"
         openGraph={{
           url: "https://wrapmasterdh.nl/remklauwen-kleuren",
-          title: "Remklauwen Kleuren bij Wrapmaster - Geef Jouw Auto een Sportieve en Luxe Uitstraling",
+          title: "Remklauwen kleur veranderen bij Wrapmaster - Geef Jouw Auto een Sportieve en Luxe Uitstraling",
           description: "Upgrade je auto met professioneel gekleurde remklauwen van Wrapmaster. Verbeter de look en bescherming van je remmen. Ontdek onze diensten!",
           images: [
             {

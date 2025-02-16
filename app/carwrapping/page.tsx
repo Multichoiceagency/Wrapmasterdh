@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +9,12 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+import dynamic from 'next/dynamic';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -93,7 +98,7 @@ export default function Carwrapping() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Carwrapping bij Wrapmaster"
         description="Transformeer jouw voertuig met Wrapmaster's carwrapping diensten. Bescherm je lak en geef je auto een unieke uitstraling."
         canonical="https://wrapmasterdh.nl/carwrapping"

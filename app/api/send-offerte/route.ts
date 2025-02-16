@@ -65,9 +65,9 @@ export async function POST(req: Request) {
       from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
       to: email,
       replyTo: process.env.SMTP_TO, // ✅ Reply gaat naar jouw admin e-mail
-      subject: "🎉 Bedankt voor je offerteaanvraag – Wrapmaster",
+      subject: "🎉 Bedankt voor je offerteaanvraag",
       html: `<p>Beste ${naam},</p>
-        <p>Bedankt voor je aanvraag voor een wrap-offerte! 🎨🚗</p>
+        <p>Bedankt voor je aanvraag voor een offerte! 🎨🚗</p>
         <p>We hebben je gegevens goed ontvangen en gaan hiermee aan de slag.</p>
         <p>Ons team bekijkt je aanvraag zorgvuldig en neemt binnen <strong>2 werkdagen</strong> contact met je op met een op maat gemaakte offerte.</p>
         <p>Je kunt ons bereiken via <a href="mailto:info@wrapmasterdh.nl">info@wrapmasterdh.nl</a> of <a href="tel:0702250721">070 - 225 07 21</a>.</p>

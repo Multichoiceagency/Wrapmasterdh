@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -9,6 +9,12 @@ import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
+
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -127,7 +133,7 @@ export default function FolieVerwijderen() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Folie Verwijderen bij Wrapmaster - Professioneel, Veilig en Zonder Beschadigingen"
         description="Vakkundige verwijdering van wraps voor auto's, scooters en motoren. Kies voor de expertise van Wrapmaster voor een veilige en schadevrije folieverwijdering."
         canonical="https://wrapmasterdh.nl/folie-verwijderen"

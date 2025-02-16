@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +10,11 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -106,7 +111,7 @@ export default function ScooterEnMotorWraps() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="Scooter en Motor Wraps bij Wrapmaster - Maak van Jouw Tweewieler een Blikvanger"
         description="Personaliseer en bescherm je scooter of motor met professionele wraps van Wrapmaster. Creëer een unieke look die past bij jouw stijl. Ontdek onze diensten!"
         canonical="https://wrapmasterdh.nl/scooter-en-motor-wraps"

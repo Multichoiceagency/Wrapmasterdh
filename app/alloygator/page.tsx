@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -10,6 +9,13 @@ import OnzeDiensten from '@/app/components/Diensten/Diensten';
 import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
+import dynamic from 'next/dynamic';
+
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -129,7 +135,7 @@ export default function AlloyGatorBescherming() {
 
   return (
     <>
-      <NextSeo
+      <NextSeoClient
         title="AlloyGator Bescherming bij Wrapmaster - Bescherm en Personaliseer Jouw Velgen"
         description="Bescherm je velgen tegen stoeprandschade en geef ze een unieke uitstraling met AlloyGator velgbescherming van Wrapmaster. Ontdek onze professionele installatie!"
         canonical="https://wrapmasterdh.nl/alloygator-bescherming"
