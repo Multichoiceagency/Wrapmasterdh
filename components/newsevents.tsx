@@ -27,7 +27,6 @@ const NewsEvents: React.FC = () => {
         )
         const data = await response.json()
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedPosts = data.map((post: any) => {
           const featuredImage =
             post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg"
