@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
     // 📌 E-mailinhoud
     const emailContent = `
-      <h2>Nieuwe Offerte Aanvraag</h2>
+      <h2>Offerte aanvraag Wrapmaster</h2>
       <p><strong>Naam:</strong> ${naam}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Telefoonnummer:</strong> ${telefoonnummer}</p>
@@ -65,15 +65,31 @@ export async function POST(req: Request) {
       from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
       to: email,
       replyTo: process.env.SMTP_TO, // ✅ Reply gaat naar jouw admin e-mail
-      subject: "🎉 Bedankt voor je offerteaanvraag",
+      subject: "Offerte Aanvraag Wrapmaster",
       html: `<p>Beste ${naam},</p>
-        <p>Bedankt voor je aanvraag voor een offerte! 🎨🚗</p>
-        <p>We hebben je gegevens goed ontvangen en gaan hiermee aan de slag.</p>
-        <p>Ons team bekijkt je aanvraag zorgvuldig en neemt binnen <strong>2 werkdagen</strong> contact met je op met een op maat gemaakte offerte.</p>
-        <p>Je kunt ons bereiken via <a href="mailto:info@wrapmasterdh.nl">info@wrapmasterdh.nl</a> of <a href="tel:0702250721">070 - 225 07 21</a>.</p>
-        <br/>
-        <p>Met vriendelijke groet,</p>
-        <p><strong>Wrapmaster Den Haag</strong></p>`,
+              <p>Bedankt voor je aanvraag.</p>
+              <p>Ons team bekijkt je aanvraag zorgvuldig en neemt direct contact met u op.</p>
+            Met vriendelijke groet,<br>
+            Team Wrapmaster<br>
+          </p>
+            <p>
+              T: <a href="tel:0702250721" style="color: #333; text-decoration: none;">070 225 0721</a><br>
+              M: <a href="tel:+31638718893" style="color: #333; text-decoration: none;">+31 6 38718893</a><br>
+              E: <a href="mailto:info@wrapmasterdh.nl" style="color: #333; text-decoration: none;">info@wrapmasterdh.nl</a><br>
+              W: <a href="https://www.wrapmasterdh.nl" style="color: #333; text-decoration: none;">www.wrapmasterdh.nl</a><br>
+            </p>
+
+            <!-- Social media links inline -->
+            <p>
+              <a href="https://www.instagram.com/wrapmasterdh/" style="color: #333; text-decoration: none;">Instagram</a>&nbsp;|&nbsp;
+              <a href="https://www.facebook.com/WrapmasterDH" style="color: #333; text-decoration: none;">Facebook</a>&nbsp;|&nbsp;
+              <a href="https://www.tiktok.com/@wrapmasterdh" style="color: #333; text-decoration: none;">TikTok</a>&nbsp;|&nbsp;
+              <a href="https://www.youtube.com/@wrapmasterdh/videos" style="color: #333; text-decoration: none;">YouTube</a>
+            </p>
+          <!-- Website logo -->
+          <p style="margin-top: 20px;">
+            <img src="https://wrapmasterdh.nl/_next/image?url=%2Flogos%2Fhandtekening-zwart.png&w=256&q=75" alt="Wrapmaster Logo" width="150" height="50" style="vertical-align: middle;">
+          </p>`,
       attachments,
     })
 
@@ -82,7 +98,7 @@ export async function POST(req: Request) {
       from: process.env.SMTP_FROM,
       to: process.env.SMTP_TO, // Admin e-mail uit .env
       replyTo: email, // ✅ Reply gaat nu naar de klant!
-      subject: "📩 Nieuwe offerte aanvraag ontvangen!",
+      subject: "Offerte aanvraag Wrapmaster",
       html: emailContent,
       attachments,
     })

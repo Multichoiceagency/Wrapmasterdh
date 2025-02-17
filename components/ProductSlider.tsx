@@ -62,7 +62,6 @@ const products: Product[] = [
 const ProductSlider: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay()]);
   const [isLoaded, setIsLoaded] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
@@ -81,14 +80,22 @@ const ProductSlider: React.FC = () => {
     }
   }, [emblaApi, isLoaded]);
 
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
-    <section className="pt-16 overflow-hidden bg-white">
-      <div className="text-center mb-6 ml-12">
+    <section className="pt-16 bg-white relative">
+      <div className="text-center mb-6 ml-4">
         <h2 className="text-3xl font-light text-gray-800">ACCESSOIRES VOOR JOUW VOERTUIG</h2>
         <p className="text-l text-gray-600 mt-2">Informeer naar de mogelijkheden voor jouw auto</p>
       </div>
 
-      <div className="carousel-container overflow-hidden">
+      <div className="carousel-container relative overflow-hidden">
         <div className="embla" ref={emblaRef}>
           <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
             {products.map((product, index) => (
@@ -97,8 +104,10 @@ const ProductSlider: React.FC = () => {
                 className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
               >
                 <Link href={`/bodykit`}>
-                  <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
-                    <div className="relative h-[500px] w-full bg-gray-200">
+                  {/* Op mobiel geen vaste hoogte, op grotere schermen behoudt het de oorspronkelijke hoogte */}
+                  <Card className="w-full h-auto md:h-[600px] flex flex-col relative overflow-hidden">
+                    {/* Op mobiel vierkante afbeelding */}
+                    <div className="relative w-full bg-gray-200 aspect-square md:aspect-auto md:h-[500px]">
                       <Image
                         src={product.featured_image}
                         fill
@@ -110,6 +119,7 @@ const ProductSlider: React.FC = () => {
                       />
                     </div>
                     <CardContent className="flex flex-col justify-end flex-grow">
+                      {/* Extra content indien nodig */}
                     </CardContent>
                   </Card>
                 </Link>
@@ -117,6 +127,26 @@ const ProductSlider: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Pijlknoppen */}
+        <button
+          onClick={scrollPrev}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-3 rounded-full shadow-lg z-20"
+          aria-label="Vorige slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={scrollNext}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-3 rounded-full shadow-lg z-20"
+          aria-label="Volgende slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
 
       <style jsx global>{`
@@ -140,8 +170,14 @@ const ProductSlider: React.FC = () => {
             flex: 0 0 33.33%;
           }
         }
+        /* Vaste min-height alleen op grotere schermen */
         .carousel-container {
           min-height: 650px;
+        }
+        @media (max-width: 640px) {
+          .carousel-container {
+            min-height: auto;
+          }
         }
       `}</style>
     </section>
@@ -149,4 +185,3 @@ const ProductSlider: React.FC = () => {
 };
 
 export default ProductSlider;
-

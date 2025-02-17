@@ -18,20 +18,15 @@ const boatDesigns: BoatDesign[] = [
   { id: 3, afbeelding: "/enes-website/auto-wrappen/urus-khaki/urus1.jpg" },
   { id: 4, afbeelding: "/enes-website/auto-wrappen/rsq3/RSQ3-23.jpg" },
   { id: 5, afbeelding: "/enes-website/auto-wrappen/ferrari/1.jpg" },
-  { id: 6, afbeelding: "/enes-website/auto-wrappen/g-wagon/Brabus.jpg"},
+  { id: 6, afbeelding: "/enes-website/auto-wrappen/g-wagon/Brabus.jpg" },
 ];
 
-const BoatenSlider: React.FC = () => {
+const BoatSlider: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true, 
-      align: 'start',
-      slidesToScroll: 1,
-    }, 
+    { loop: true, align: 'start', slidesToScroll: 1 },
     [Autoplay({ delay: 3000, stopOnInteraction: true })]
   );
   const [isLoaded, setIsLoaded] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleImageLoad = useCallback(() => {
@@ -50,6 +45,14 @@ const BoatenSlider: React.FC = () => {
     }
   }, [emblaApi, isLoaded]);
 
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
     <>
       <Head>
@@ -58,84 +61,61 @@ const BoatenSlider: React.FC = () => {
         <meta name="keywords" content="bootontwerp, jachtdesign, speedboot styling, zeilboot innovatie, catamaran concept, vissersboot upgrade, woonboot renovatie" />
         <link rel="canonical" href="https://www.wrapmasterdh.nl" />
       </Head>
-      <section className="py-12 h-100 overflow-hidden bg-white">
-        <div className="text-center mb-12 ml-12">
-          <h1 className="text-3xl font-light text-gray-800">CARWRAPPING</h1>
+      <section className="pt-16 bg-white relative">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-light text-gray-800">BOOTONTWERPEN</h2>
+          <p className="text-l text-gray-600 mt-2">Ontdek onze unieke bootontwerpen</p>
         </div>
 
-        <div className="carousel-container overflow-hidden relative">
+        <div className="carousel-container relative overflow-hidden">
           <div className="embla" ref={emblaRef}>
             <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-              {boatDesigns.map((design) => (
-                <div
-                  key={design.id}
-                  className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2"
-                >
-                    <Card className="w-full h-[600px] flex flex-col relative overflow-hidden">
-                      <div className="relative h-[500px] w-full">
-                        <Image
-                          src={design.afbeelding}
-                          alt=''
-                          fill
-                          priority
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          onLoad={handleImageLoad}
-                        />
-                      </div>
-                      <CardContent className="flex flex-col justify-end flex-grow">
-                      </CardContent>
-                    </Card>
+              {boatDesigns.map((design, index) => (
+                <div key={design.id} className="embla__slide w-full sm:w-1/2 lg:w-1/3 px-2">
+                  <Card className="w-full h-auto md:h-[600px] flex flex-col relative overflow-hidden">
+                    {/* Op mobiel vierkante afbeelding, op grotere schermen vaste hoogte */}
+                    <div className="relative w-full bg-gray-200 aspect-square md:aspect-auto md:h-[500px]">
+                      <Image
+                        src={design.afbeelding}
+                        fill
+                        alt=""
+                        priority={index < 3}
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 33vw"
+                        onLoad={handleImageLoad}
+                      />
+                    </div>
+                    <CardContent className="flex flex-col justify-end flex-grow">
+                      {/* Eventuele extra content */}
+                    </CardContent>
+                  </Card>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Navigatiepijlen */}
+          <button
+            onClick={scrollPrev}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-3 rounded-full shadow-lg z-20"
+            aria-label="Vorige slide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={scrollNext}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-3 rounded-full shadow-lg z-20"
+            aria-label="Volgende slide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </section>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "BoatMaster",
-        "description": "Specialist in bootdesign en customization",
-        "url": "https://www.boatmaster.nl",
-        "telephone": "+31XXXXXXXXX",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Havenstraat 123",
-          "addressLocality": "Amsterdam",
-          "postalCode": "1234 AB",
-          "addressCountry": "NL"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 52.3676,
-          "longitude": 4.9041
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday"
-            ],
-            "opens": "09:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "10:00",
-            "closes": "17:00"
-          }
-        ],
-        "sameAs": [
-          "https://www.facebook.com/boatmaster",
-          "https://www.instagram.com/boatmaster"
-        ]
-      })} } />
+
       <style jsx global>{`
         .embla {
           overflow: hidden;
@@ -160,10 +140,14 @@ const BoatenSlider: React.FC = () => {
         .carousel-container {
           min-height: 650px;
         }
+        @media (max-width: 640px) {
+          .carousel-container {
+            min-height: auto;
+          }
+        }
       `}</style>
     </>
   );
 };
 
-export default BoatenSlider;
-
+export default BoatSlider;
