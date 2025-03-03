@@ -8,17 +8,17 @@ export default function TeamPage() {
           {
             name: "Altun",
             role: "Eigenaar",
-            image: "/enes-website/ons-team/placeholder-2-1.png"
+            image: "/enes-website/ons-team/ufuk.jpg"
           },
           {
             name: "Cinar",
-            role: "Office manager",
-            image: "/enes-website/ons-team/placeholder-2-1.png"
+            role: "Workshop manager",
+            image: "/enes-website/ons-team/mehmet.jpg"
           },
           {
             name: "Enes",
             role: "Marketing & Sales",
-            image: "/enes-website/ons-team/placeholder-2-1.png"
+            image: "/enes-website/ons-team/enes.jpg"
           },
           {
             name: "Adrian",

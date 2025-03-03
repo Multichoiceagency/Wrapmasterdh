@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Brand {
   name: string;
@@ -19,14 +19,6 @@ interface CollaborationSectionProps {
   partners: Brand[];
 }
 
-const getMediaUrl = (url: string) => {
-  if (url.includes('cloudinary.com')) {
-    return url;
-  }
-  const fileId = url.match(/[-\w]{25,}/);
-  return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : url;
-};
-
 export default function CollaborationSection({ 
   heroImage, 
   brands, 
@@ -37,7 +29,7 @@ export default function CollaborationSection({
       {/* Hero Section */}
       <div className="relative h-[90vh] min-h-[400px] w-full mb-16">
         <Image
-          src={getMediaUrl(heroImage)}
+          src={heroImage}
           alt="Samenwerking Hero"
           fill
           className="object-cover"
@@ -49,7 +41,7 @@ export default function CollaborationSection({
 
       {/* Brands Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font mb-8 text-center"></h2>
+        <h2 className="text-3xl font mb-8 text-center">MERKEN</h2>
         <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay]}
@@ -64,15 +56,9 @@ export default function CollaborationSection({
               disableOnInteraction: false,
             }}
             breakpoints={{
-              640: {
-                slidesPerView: 3,
-              },
-              768: {
-                slidesPerView: 4,
-              },
-              1024: {
-                slidesPerView: 5,
-              },
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1024: { slidesPerView: 5 },
             }}
             className="py-4"
           >
@@ -80,7 +66,7 @@ export default function CollaborationSection({
               <SwiperSlide key={index}>
                 <div className="aspect-[3/2] relative">
                   <Image
-                    src={getMediaUrl(brand.logo)}
+                    src={brand.logo}
                     alt={brand.name}
                     fill
                     className="object-contain"
@@ -89,11 +75,11 @@ export default function CollaborationSection({
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="brand-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-lg">
-            <ChevronLeft className="w-6 h-6" />
+          <button className="brand-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full">
+            <ChevronLeft className="w-6 h-6 text-white hover:text-red-500" />
           </button>
-          <button className="brand-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-lg">
-            <ChevronRight className="w-6 h-6" />
+          <button className="brand-next absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full">
+            <ChevronRight className="w-6 h-6 text-white hover:text-red-500" />
           </button>
         </div>
       </div>
@@ -115,15 +101,9 @@ export default function CollaborationSection({
               disableOnInteraction: false,
             }}
             breakpoints={{
-              640: {
-                slidesPerView: 3,
-              },
-              768: {
-                slidesPerView: 4,
-              },
-              1024: {
-                slidesPerView: 6,
-              },
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1024: { slidesPerView: 6 },
             }}
             className="py-4"
           >
@@ -131,7 +111,7 @@ export default function CollaborationSection({
               <SwiperSlide key={index}>
                 <div className="aspect-[3/2] relative">
                   <Image
-                    src={getMediaUrl(partner.logo)}
+                    src={partner.logo}
                     alt={partner.name}
                     fill
                     className="object-contain"
@@ -140,15 +120,14 @@ export default function CollaborationSection({
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="partner-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-lg">
-            <ChevronLeft className="w-6 h-6" />
+          <button className="partner-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full">
+            <ChevronLeft className="w-6 h-6 text-white hover:text-red-500" />
           </button>
-          <button className="partner-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-lg">
-            <ChevronRight className="w-6 h-6" />
+          <button className="partner-next absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full">
+            <ChevronRight className="w-6 h-6 text-white hover:text-red-500" />
           </button>
         </div>
       </div>
     </div>
   );
 }
-

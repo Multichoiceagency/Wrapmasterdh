@@ -56,15 +56,14 @@ const BoatSlider: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Bootontwerpen - BoatMaster | Specialist in Bootdesign en Customization</title>
-        <meta name="description" content="Ontdek onze uitgebreide reeks van professionele bootontwerpen, waaronder luxe jachten, speedboten, zeilboten en meer. BoatMaster is uw specialist voor alle boot customization behoeften." />
-        <meta name="keywords" content="bootontwerp, jachtdesign, speedboot styling, zeilboot innovatie, catamaran concept, vissersboot upgrade, woonboot renovatie" />
+        <title>Carwrapping Den Haag - Auto laten wrappen | Specialist in carwrapping en Customization</title>
+        <meta name="description" content="Ontdek onze uitgebreide reeks van professionele auto ontwerpen, waaronder luxe auto's, Wrapmaster is uw specialist voor alle auto aanpassing behoeften." />
+        <meta name="keywords" content="carwrapping den haag, auto wrappen, auto folie, auto kleur veranderen" />
         <link rel="canonical" href="https://www.wrapmasterdh.nl" />
       </Head>
       <section className="pt-16 bg-white relative">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-light text-gray-800">BOOTONTWERPEN</h2>
-          <p className="text-l text-gray-600 mt-2">Ontdek onze unieke bootontwerpen</p>
+          <h2 className="text-3xl font-light text-gray-800">CARWRAPPING</h2>
         </div>
 
         <div className="carousel-container relative overflow-hidden">

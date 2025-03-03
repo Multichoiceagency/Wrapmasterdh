@@ -58,7 +58,7 @@ const HeroSection: React.FC = () => {
   )
 
   return (
-    <div className="relative w-full h-[85vh] md:h-[93vh]">
+    <div className="relative w-full h-[85vh] md:h-[93vh]"> 
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, Navigation]}
         spaceBetween={0}

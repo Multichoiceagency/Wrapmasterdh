@@ -79,22 +79,30 @@ body {
   }
 }
 
+/* Swiper navigatie-pijlen */
 .swiper-button-prev,
 .swiper-button-next {
-  font-size: 24px;
-  color: #333;
-  transition: background-color 0.3s ease;
+  color: #ffffff !important; /* Witte pijlen */
+  transition: color 0.3s ease;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background-color: rgba(255, 255, 255, 1);
+  color: #ff0000 !important; /* Rood bij hover */
 }
 
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  display: none;
+/* Swiper paginatie-bullets */
+.swiper-pagination-bullet {
+  background-color: #fff !important; /* Witte bullets */
+  opacity: 1;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: #ff0000 !important; /* Rode actieve bullet */
+  opacity: 1;
+}
+
+
 
 @layer base {
   * {

@@ -26,7 +26,7 @@ const socialMedia = {
 const dienstData = {
   title: "Paint Protection Film (PPF) bij Wrapmaster",
   description: "Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto.",
-  heroImage: "/video/urus-reel.mp4",
+  heroImage: "/video/lambo-urus.mp4",
   contentImage1: "/enes-website/ppf/Maasvlakte-8.jpg",
   contentImage2: "/enes-website/ppf/Maasvlakte-100.jpg",
   contentImage3: "/enes-website/ppf/WM-47.jpg",
@@ -60,7 +60,7 @@ const reels = [
   },
   {
     id: 4,
-    video: "/video/LAMBO REEL.mp4",
+    video: "/video/aventador.mp4",
     likes: "78.9k",
     comments: "230",
   },

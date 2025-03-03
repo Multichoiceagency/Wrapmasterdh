@@ -155,8 +155,8 @@ export default function SterrenhemelInbouwen() {
       />
       <main className="bg-white">
         {/* Hero Section */}
-        <section className="relative h-[50vh] sm:h-screen">
-          <Image
+        <section className="relative h-[100vh] sm:h-100vh">
+        <Image
             src={dienstData.heroImage}
             alt={dienstData.title}
             fill
