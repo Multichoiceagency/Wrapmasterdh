@@ -4,6 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: "https",
@@ -31,6 +32,20 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)", // Alle routes en bestanden
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, must-revalidate", // 7 dagen cache
+          },
+        ],
+      },
+    ];
   },
 };
 

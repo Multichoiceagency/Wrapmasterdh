@@ -34,7 +34,7 @@ export default function Home() {
           description: 'Ontdek de transformatieve kracht van professionele carwrapping en autofolie diensten bij Wrapmaster. Van chrome delete tot printfolie, wij bieden topkwaliteit voor uw voertuig.',
           images: [
             {
-              url: 'https://wrapmasterdh.nl/images/wrapmaster-og-image.jpg',
+              url: 'https://wrapmasterdh.nl/logos/logo-zwart.png',
               width: 1200,
               height: 630,
               alt: 'Wrapmaster Carwrapping',
