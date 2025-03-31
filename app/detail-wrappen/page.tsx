@@ -23,7 +23,7 @@ export default function AutoWrappenDiensten() {
             style={{ backgroundImage: 'url(/images/range-rover-sport-nardo-grijs.jpg)' }} // Double-check this path
           >
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-1xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
+              <h1 className="text-1xl xs:text-3xl sm:text-4xl md:text-5xl font tracking-widest">
                 DISCOVER THE FUTURE
               </h1>
               <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
@@ -35,7 +35,7 @@ export default function AutoWrappenDiensten() {
       {/* Logo Section */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Wij gebruiken</h2>
+          <h2 className="text-3xl font mb-8">Wij gebruiken</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3  gap-8 items-center">
             {/* 3M Logo */}
             <div className="flex justify-center">
@@ -74,25 +74,25 @@ export default function AutoWrappenDiensten() {
       {/* Overzicht van Detailwrappen */}
       <section className="py-16 bg-white text-center">
         <div className="container mx-auto animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8">Waarom kiezen voor Detailwrappen?</h2>
+          <h2 className="text-3xl font mb-8">Waarom kiezen voor Detailwrappen?</h2>
           <p className="text-lg mb-6 text-gray-700">
             Detailwrappen biedt een unieke manier om de uitstraling van uw voertuig volledig te personaliseren, zonder permanente veranderingen aan te brengen aan de originele lak. Met hoogwaardige folie kunt u kiezen uit een breed scala aan kleuren en afwerkingen.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <p className="text-4xl font-bold text-red-600">500+</p>
+              <p className="text-4xl font text-red-600">500+</p>
               <p className="text-lg">Auto's Gewrapt</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">10+</p>
+              <p className="text-4xl font text-red-600">10+</p>
               <p className="text-lg">Jaren Ervaring</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">100%</p>
+              <p className="text-4xl font text-red-600">100%</p>
               <p className="text-lg">Tevreden Klanten</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-red-600">Premium</p>
+              <p className="text-4xl font text-red-600">Premium</p>
               <p className="text-lg">Materialen & Service</p>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function AutoWrappenDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">
+              <h2 className="text-3xl font mb-8 text-left">
                 Detailwrappen: Wat is het precies?
               </h2>
               <p className="text-lg mb-4 text-gray-700">
@@ -128,7 +128,7 @@ export default function AutoWrappenDiensten() {
               <p className="text-lg font-semibold">
                 Met detailwrappen geeft u uw auto een unieke en persoonlijke uitstraling die volledig aan uw wensen voldoet.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -141,22 +141,22 @@ export default function AutoWrappenDiensten() {
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="flex flex-col justify-center order-2 lg:order-1">
-              <h2 className="text-3xl font-bold mb-8 text-left">Hoe lang duurt het detailwrappen?</h2>
+              <h2 className="text-3xl font mb-8 text-left">Hoe lang duurt het detailwrappen?</h2>
               <p className="text-lg mb-4 text-gray-700">
                 Bij Wrapmaster begrijpen we dat u benieuwd bent naar de tijdsduur van het wrapproces. Dit kan variëren afhankelijk van uw specifieke wensen.
               </p>
-              <h4 className="text-2xl font-bold mb-4">Standaard Auto Detailwrappen</h4>
+              <h4 className="text-2xl font mb-4">Standaard Auto Detailwrappen</h4>
               <p className="text-lg mb-6 text-gray-700">
                 Het detailwrappen van een standaard personenauto duurt gemiddeld 2 tot 3 dagen.
               </p>
-              <h4 className="text-2xl font-bold mb-4">Inclusief Deuren en Sponningen</h4>
+              <h4 className="text-2xl font mb-4">Inclusief Deuren en Sponningen</h4>
               <p className="text-lg mb-6 text-gray-700">
                 Als u ervoor kiest om ook de binnenkant van de deuren en sponningen te laten wrappen, duurt het proces ongeveer 4 extra dagen.
               </p>
               <p className="text-lg font-semibold">
                 Met detailwrappen geeft u uw auto een unieke en persoonlijke uitstraling die volledig aan uw wensen voldoet.
               </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3  w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3  w-56 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
                 BEKIJK PORTFOLIO
               </button>
             </div>
@@ -176,7 +176,7 @@ export default function AutoWrappenDiensten() {
       {/* Wat kost detailwrappen? */}
       <section id="kosten-wrappen" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Wat kost detailwrappen?</h2>
+          <h2 className="text-3xl font mb-8 text-center">Wat kost detailwrappen?</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             De kosten van het detailwrappen van een auto zijn afhankelijk van verschillende factoren.
           </p>
@@ -195,7 +195,7 @@ export default function AutoWrappenDiensten() {
             </li>
           </ul>
           <div className="text-center">
-            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
+            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
               OFFERTE AANVRAGEN
             </button>
           </div>
@@ -208,7 +208,7 @@ export default function AutoWrappenDiensten() {
       {/* Garanties */}
       <section id="garanties" className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Onze Garanties</h2>
+          <h2 className="text-3xl font mb-8 text-center">Onze Garanties</h2>
           <p className="text-lg mb-6 text-gray-700 text-center">
             Bij Wrapmaster bieden we uitgebreide garanties en kwaliteitsservices voor uw gewrapte auto.
           </p>
@@ -233,7 +233,7 @@ export default function AutoWrappenDiensten() {
       {/* Voordelen van Detailwrappen */}
       <section id="voordelen" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">De Voordelen van Detailwrappen</h2>
+          <h2 className="text-3xl font mb-8 text-center">De Voordelen van Detailwrappen</h2>
           <div className="flex flex-col items-center gap-8">
             <ul className="list-none text-lg mb-6 text-gray-700 text-center">
               <li>
@@ -283,7 +283,7 @@ export default function AutoWrappenDiensten() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">Onderhoudstips voor Gewrapte Auto's</h2>
+              <h2 className="text-3xl font mb-8 text-left">Onderhoudstips voor Gewrapte Auto's</h2>
               <ol className="list-decimal list-inside text-lg mb-6 text-gray-700">
                 <li>
                   <strong>Regelmatig Wassen:</strong> Was uw auto minimaal twee keer per maand met de hand.
@@ -306,7 +306,7 @@ export default function AutoWrappenDiensten() {
       {/* Call to Action */}
       <section className="bg-red-600 py-16 text-white text-center animate-fadeInUp">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Klaar om uw auto te transformeren?</h2>
+          <h2 className="text-4xl font mb-6">Klaar om uw auto te transformeren?</h2>
           <p className="text-lg mb-8">
             Vraag vandaag nog een offerte aan en ontdek wat Wrapmaster voor u kan betekenen.
           </p>

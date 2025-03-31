@@ -1,194 +1,155 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import React from 'react';
+import Image from 'next/image';
+import { Card, CardContent } from "@/components/ui/card";
+import Link from 'next/link';
+import Head from 'next/head';
 
-const diensten = [
-  {
-    title: 'Carwrapping',
-    description: 'Verander je voertuig volledig met een hoogwaardige car wrap die niet alleen stijlvol is, maar ook bescherming biedt tegen schade. Ontdek de talloze kleuren en afwerkingen, en geef je auto een unieke, persoonlijke look.',
-    image: '/images/carwrapping.jpg'
-  },
-  {
-    title: 'Detail Wrapping',
-    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
-    image: '/images/detailwrapping.png'
-  },
-  {
-    title: 'Chrome Delete',
-    description: 'Geen fan van chromen accenten? Met een chrome delete veranderen wij alle chromen onderdelen van je auto naar een matte of glanzende afwerking in de kleur van jouw keuze. Perfect voor een gestroomlijnde look.',
-    image: '/images/chrome-delete.jpg'
-  },
-  {
-    title: 'Reclamebelettering',
-    description: 'Verhoog de zichtbaarheid van je bedrijf met professionele autobelettering. Creëer een mobiele advertentie voor je merk en trek overal de aandacht met opvallende reclame op je bedrijfswagen.',
-    image: '/images/reclamebelettering.png'
-  }
-]
-
-const additionalServices = [
-  {
-    title: 'Poetsen & Glascoating',
-    description: 'Bescherm je auto met een duurzame glascoating die zorgt voor een diepe glans en eenvoudige reiniging. Onze poets- en coatingdiensten zorgen ervoor dat je auto er altijd als nieuw uitziet, terwijl hij beschermd is tegen de elementen.',
-    image: '/images/poetsen-glascoating.jpeg'
-  },
-  {
-    title: 'Velgen & Remklauwen',
-    description: 'Laat je velgen en remklauwen opvallen met een nieuwe, op maat gemaakte afwerking. Of je nu kiest voor spuiten, coaten of wrappen, wij zorgen ervoor dat elk detail perfect aansluit bij de look van je auto.',
-    image: '/images/velgen-remklauwen-spuiten.png'
-  },
-  {
-    title: 'Koplampen Tinten',
-    description: 'Geef je auto een sportieve en elegante uitstraling met professioneel getinte koplampen. Kies uit verschillende tinten die passen bij jouw stijl en zorgen voor een indrukwekkende uitstraling op de weg.',
-    image: '/images/lampen-tinten.png'
-  },
-]
-
-const specializedServices = [
-  {
-    title: 'Autogordels',
-    description: 'Wrapmaster is dé specialist in het vervangen en aanpassen van autogordels. Of je nu beschadigde gordels wilt vervangen of je auto een sportieve look wilt geven met gordels in een nieuwe kleur, wij regelen het voor je.',
-    image: '/images/gordelkleur-vervangen.jpg'
-  },
-  {
-    title: 'Scooter & Motorwrap',
-    description: 'Geef je scooter of motor een opvallende nieuwe look met een professionele wrap. Kies uit verschillende kleuren en afwerkingen om jouw tweewieler volledig te personaliseren.',
-    image: '/images/scooter-motorwrapping.png'
-  }
-]
-
-function useParallax() {
-  const [offset, setOffset] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  return offset
+interface Dienst {
+  id: number;
+  titel: string;
+  subtitel: string;
+  afbeelding: string;
+  slug: string;
 }
 
-export default function Diensten() {
-  const [currentAdditionalService, setCurrentAdditionalService] = useState(0)
-  const scrollY = useParallax()
+const diensten: Dienst[] = [
+  { id: 17, titel: "Carwrapping", subtitel: "Complete voertuigtransformatie", afbeelding: "/enes-website/auto-wrappen/elia/lambo-eljero-elia.jpg", slug: "carwrapping" },
+  { id: 16, titel: "PPF (Paint Protection Film)", subtitel: "Onzichtbare lakbescherming", afbeelding: "/enes-website/ppf/Maasvlakte-9.jpg", slug: "ppf" },
+  { id: 15, titel: "Ambient Light", subtitel: "Sfeervolle interieurverlichting", afbeelding: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (18 of 41).jpg", slug: "ambient-light" },
+  { id: 14, titel: "Chrome Delete", subtitel: "Moderne look zonder chroom", afbeelding: "/enes-website/chrome-delete/chrome-delete.jpg", slug: "chrome-delete" },
+  { id: 13, titel: "Detailing", subtitel: "Professionele autodetailing", afbeelding: "/enes-website/detailing/Brabus 800 (9 of 20).jpg", slug: "detailing" },
+  { id: 12, titel: "Sterrenhemel", subtitel: "Luxueuze interieurverlichting", afbeelding: "/enes-website/ambient-light/ram.jpg", slug: "sterrenhemel" },
+  { id: 11, titel: "Gordel", subtitel: "Veiligheid met stijl", afbeelding: "/enes-website/gordelkleur/IMG_1750.JPG", slug: "gordelkleur-veranderen" },
+  { id: 10, titel: "Lampentinten", subtitel: "Stijlvolle lampaanpassingen", afbeelding: "/enes-website/lampen-tinten/lampentinten.jpg", slug: "lampentinten" },
+  { id: 9, titel: "Ramentinten", subtitel: "Privacy en UV-bescherming", afbeelding: "/enes-website/ramentint/RSQ3-ramentint1.jpg", slug: "ramentinten" },
+  { id: 8, titel: "Reclame/Design", subtitel: "Opvallende voertuigreclame", afbeelding: "/enes-website/reclame/_GLA5951.jpg", slug: "reclame-en-design" },
+  { id: 7, titel: "Remklauwen", subtitel: "Customization van remklauwen", afbeelding: "/enes-website/remklauwen/Brabus 800 (5 of 7).jpg", slug: "remklauwen" },
+  { id: 6, titel: "Velgen Poedercoaten", subtitel: "Duurzame velgafwerking", afbeelding: "/enes-website/velgen/WM-21.jpg", slug: "velgen-poedercoaten" },
+  { id: 5, titel: "Alloygator", subtitel: "Velgbescherming op maat", afbeelding: "/enes-website/Alloygator/lambo.png", slug: "alloygator" },
+  { id: 4, titel: "Scooter/Motor Wrap", subtitel: "Stijlvolle wraps voor tweewielers", afbeelding: "/enes-website/memo/IMG_2501.JPG", slug: "scooter-motor-wrap" },
+  { id: 3, titel: "Security Alarm", subtitel: "Geavanceerde beveiligingssystemen", afbeelding: "/enes-website/memo-map/510x1000x0_proefdruk-alarm-stickers-0.jpg", slug: "alarmbeveiliging-auto" },
+  { id: 2, titel: "Bodykit", subtitel: "Custom bodykit installatie", afbeelding: "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg", slug: "bodykit" },
+  { id: 1, titel: "Folie Verwijderen", subtitel: "Professionele folieverwijdering", afbeelding: "/enes-website/wrapfolie/GLA_4446-scaled.jpg", slug: "folie-verwijderen" },
+];
 
+const DienstenPage: React.FC = () => {
   return (
-    <main>
-      {/* Hero Section with Parallax */}
-      <section className="relative h-screen overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
-        >
-          <Image 
-            src="/images/hero-background.jpg" 
-            alt="Wrapmaster services"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-        </div>
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
-        <div 
-          className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8"
-          style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
-            transition: 'transform 0.5s ease-out',
-          }}
-        >
-          <h1 className="text-6xl font-bold text-white mb-4 items-center">Onze diensten.</h1>
-          <p className="text-xl text-white mb-8 justify-items-center">
-            Bij Wrapmaster zorgen wij voor eersteklas car wrapping en nevendiensten die je voertuig naar een hoger niveau tillen.
-          </p>
-          <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-600 transition w-max">
-            Ontdek meer
-          </button>
-        </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <span className="text-white text-sm">Scrollen</span>
-          <svg className="w-6 h-6 text-white mx-auto mt-2 animate-bounce" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+    <>
+      <Head>
+        <title>Onze Diensten - Wrapmaster | Specialist in Auto Wrappen en Car Customization</title>
+        <meta name="description" content="Ontdek onze uitgebreide reeks van professionele autodiensten, waaronder carwrapping, PPF, detailing, en meer. Wrapmaster is uw specialist voor alle auto customization behoeften." />
+        <meta name="keywords" content="carwrapping, PPF, detailing, bodykit, auto customization, folie verwijderen, security alarm, velgen poedercoaten, ramentinten, chrome delete" />
+        <link rel="canonical" href="https://www.wrapmasterdh.nl/diensten" />
+      </Head>
+
+      {/* Hero Section */}
+      <section className="relative h-[100vh] sm:h-[100vh]">
+  {/* ✅ Zwarte balk bovenop de afbeelding */}
+  <div className="absolute top-0 left-0 right-0 h-[8vh] bg-black/15 z-10"></div>
+      <Image
+          src="/enes-website/auto-wrappen/elia/lambo-eljero-elia.jpg"
+          alt="Wrapmaster Hero afbeelding"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          unoptimized
+        />
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
+            <div className="text-left text-white px-4 max-w-4xl">
+              <h1 className="text-3xl sm:text-3xl mb-2 py-5 text-center">ONZE DIENSTEN</h1>
+              <div className='flex justify-center'>
+            <Link 
+              href="/offerte-aanvragen"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              Offerte aanvragen
+            </Link>
+            </div>
+            </div>
+          </div>
+        </section>
+
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-left mb-12">
+            <h2 className="text-3xl font text-gray-800 justify-center text-center">ONZE DIENSTEN</h2>
+            <p className="text-xl text-gray-600 mt-2 text-center">Gespecialiseerd in Car Wrapping & Car Customization</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {diensten.map((dienst) => (
+              <Link key={dienst.id} href={`/${dienst.slug}`}>
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative h-64">
+                    <Image
+                      src={dienst.afbeelding}
+                      alt={dienst.titel}
+                      fill
+                      className="object-cover rounded-t-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="text-xl font-semibold mb-2">{dienst.titel}</h3>
+                    <p className="text-gray-600">{dienst.subtitel}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4">
-        <section className="mb-16 pt-16">
-          <h2 className="text-4xl font-bold mb-8">Onze diensten</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {diensten.map((service, index) => (
-              <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                <Image src={service.image} alt={service.title} width={400} height={300} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                    Meer weten
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Wrapmaster",
+        "description": "Specialist in carwrapping en auto customization",
+        "url": "https://www.wrapmasterdh.nl",
+        "telephone": "0702250721",
+        "address": {
+          "@type": "PostallAdress",
+          "streetAddress": "Westvlietweg 72L",
+          "addressLocality": "Den Haag",
+          "postalCode": "2495AA",
+          "addressCountry": "NL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.06350716913658,
+          "longitude": 4.364688783795313
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "10:00",
+            "closes": "18:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/WrapmasterDH",
+          "https://www.instagram.com/wrapmasterdh"
+        ]
+      })} } />
+    </>
+  );
+};
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Aanvullende Diensten</h2>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-              <Image 
-                src={additionalServices[currentAdditionalService].image} 
-                alt={additionalServices[currentAdditionalService].title} 
-                width={600} 
-                height={400} 
-                className="w-full h-64 object-cover rounded-lg"
-              />
-            </div>
-            <div className="md:w-1/2">
-              <h3 className="text-2xl font-semibold mb-4">{additionalServices[currentAdditionalService].title}</h3>
-              <p className="text-gray-600 mb-4">{additionalServices[currentAdditionalService].description}</p>
-              <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                Meer weten
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-center mt-4">
-            {additionalServices.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full mx-1 ${index === currentAdditionalService ? 'bg-red-500' : 'bg-gray-300'}`}
-                onClick={() => setCurrentAdditionalService(index)}
-              />
-            ))}
-          </div>
-        </section>
+export default DienstenPage;
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Specialistische Diensten</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {specializedServices.map((service, index) => (
-              <div key={index} className="flex bg-white shadow-lg rounded-lg overflow-hidden">
-                <Image src={service.image} alt={service.title} width={200} height={200} className="w-1/3 object-cover" />
-                <div className="w-2/3 p-4">
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                    Meer weten
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
-  )
-}

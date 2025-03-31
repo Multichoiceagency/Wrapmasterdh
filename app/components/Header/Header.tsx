@@ -1,134 +1,159 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Link from 'next/link';
-import Button from '../Button';
+import Image from 'next/image';
+
+const menuItems = [
+  { id: 1, title: 'Home', link: '/' },
+  { id: 2, title: 'Diensten', link: '/diensten' },
+  { id: 3, title: 'Portfolio', link: '/portfolio' },
+  { id: 4, title: 'Offerte aanvragen', link: '/offerte-aanvragen' },
+  { id: 5, title: 'Ons Team', link: '/ons-team' },
+  { id: 6, title: 'Wallpaper', link: '/wallpaper' },
+  { id: 7, title: 'Samenwerking', link: '/samenwerking' },
+  { id: 8, title: 'Contact', link: '/contact' },
+  { id: 9, title: '6×6 Rental', link: 'https://www.6x6rental.nl' },
+];
+
+const socialMedia = {
+  instagram: 'https://www.instagram.com/wrapmasterdh/',
+  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
+  whatsapp: 'https://wa.me/31638718893',
+  facebook: 'https://www.facebook.com/WrapmasterDH',
+};
 
 const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
-    { href: "/diensten", text: "DIENSTEN" },
-    { href: "/auto-wrappen", text: "AUTO WRAPPEN" },
-    { href: "/auto-wrappen", text: "PPF" },
-    { href: "/auto-wrappen", text: "3D MODELLEN" },
-    { href: "/boats", text: "PORTFOLIO" },
-    { href: "/bekende-nederlanders", text: "BEKENDE BN'ERS" },
-    { href: "/over-ons", text: "OVER ONS" },
-    { href: "/contact", text: "CONTACT" },
-  ];
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  // Updated renderSocialIcons that accepts a custom container className
+  const renderSocialIcons = (containerClass = "hidden md:flex justify-end space-x-4 pr-4") => {
+    const iconMap: { [key: string]: IconProp } = {
+      instagram: faInstagram,
+      tiktok: faTiktok,
+      whatsapp: faWhatsapp,
+      facebook: faFacebook,
+    };
+
+    return (
+      <div className={containerClass}>
+        {Object.entries(socialMedia).map(([key, value]) => {
+          const icon = iconMap[key];
+          return (
+            <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
+              <FontAwesomeIcon
+                icon={icon}
+                className={`text-2xl transition duration-300 text-black ${isScrolled ? 'md:text-black' : 'md:text-white'} hover:text-red-600 ${
+                  isScrolled ? 'text-black' : 'text-white'
+                } hover:text-red-600`}
+              />
+            </a>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
-    <header
-      className={`fixed top-0 w-full transition-all duration-300 z-50 flex justify-between items-center px-4 xs:px-10 sm:px-6 md:px-8 lg:px-10 xl:px-16 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
-      }`}
-    >
-      <button
-        className={`z-50 flex items-center text-2xl focus:outline-none transition-all duration-300 ease-in-out ${
-          menuOpen || isScrolled ? 'text-black' : 'text-white'
+    <>
+      <header
+        className={`fixed top-0 w-full transition-all duration-300 z-50 grid grid-cols-3 items-center py-2 ${
+          isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
         }`}
-        onClick={toggleMenu}
-        aria-label={menuOpen ? "Close Menu" : "Open Menu"}
       >
-        <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
-      </button>
+        {/* Left: Hamburger menu */}
+        <div className="flex justify-start pl-4">
+          <button
+            className="p-3 flex items-center focus:outline-none z-50"
+            onClick={toggleMenu}
+            aria-label={menuOpen ? 'Close Menu' : 'Open Menu'}
+          >
+            <FontAwesomeIcon
+              icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)}
+              className={`text-2xl transition duration-300 ${
+                isScrolled ? 'text-black' : 'text-white'
+              } hover:text-red-600`}
+            />
+          </button>
+        </div>
 
-      <div className="flex-grow flex justify-center">
-        <Link href="/">
-          <img
-            src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
-            alt="wrapmaster logo"
-            className={`transition-all duration-300
-              ${isScrolled 
-                ? 'h-6 w-auto xs:h-12 sm:h-10 md:h-12 lg:h-14 xl:h-16' 
-                : 'h-8 w-auto xs:h-16 sm:h-14 md:h-16 lg:h-18 xl:h-20'}
-              pt-2`}
-            width={200}
-            height={150}
-          />
-        </Link>
-      </div>
-
-      <a
-        href="tel:0702250721"
-        className={`text-xl block md:hidden ${
-          menuOpen ? 'hidden' : 'block'
-        } ${
-          isScrolled ? 'text-black' : 'text-white'
-        }`}
-        aria-label="Phone"
-      >
-        <FontAwesomeIcon icon={faPhone} />
-      </a>
-
-      <div className="hidden md:block">
-        <Link href="/offerte-aanvragen">
-          <Button className='bg-red-700 hover:bg-slate-950 font-medium' icon={<FontAwesomeIcon icon={faPhone} />}>
-            Gratis offerte
-          </Button>
-        </Link>
-      </div>
-
-      <nav
-        className={`fixed inset-0 bg-white z-40 transition-all duration-300 ease-in-out transform 
-          ${menuOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-full opacity-0 invisible'} 
-          md:w-[300px] md:left-0 md:h-screen ${menuOpen ? 'md:translate-x-0' : 'md:-translate-x-full'}`}
-      >
-        <ul className="flex flex-col font-bold items-center justify-center h-full space-y-8 text-lg md:space-y-5 md:items-start md:p-5">
+        {/* Center: Logo */}
+        <div className="flex justify-center items-center">
           <Link href="/">
-            <img
-              src="/logos/logo-zwart.png"
-              alt="Logo"
-              className='justify-items-right lg:w-32 md:w-38 xs:w-16'
+            <Image
+              src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
+              alt="wrapmaster logo"
               width={200}
               height={150}
+              className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 w-auto transition-all duration-300"
             />
           </Link>
-          {menuItems.map((item, index) => (
-            <li 
-              key={index} 
-              className={`w-full text-center md:text-left px-10 transform transition-all duration-300 ease-in-out ${
-                menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-              style={{ transitionDelay: `${menuOpen ? index * 50 : 0}ms` }}
-            >
-              <Link href={item.href} onClick={() => setMenuOpen(false)}>
-                {item.text}
-              </Link>
-            </li>
-          ))}
-          <li className={`w-full text-center md:text-left transform transition-all duration-300 ease-in-out ${
-            menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`} style={{ transitionDelay: `${menuOpen ? menuItems.length * 50 : 0}ms` }}>
-            <Link href="/offerte-aanvragen" onClick={() => setMenuOpen(false)}>
-              <Button className='bg-red-700 hover:bg-slate-950 font-bold' icon={<FontAwesomeIcon icon={faPhone} />}>
-                OFFERTE AANVRAGEN
-              </Button>
+        </div>
+
+        {/* Right: Social media icons for desktop */}
+        {renderSocialIcons()}
+      </header>
+
+      {/* Mobile menu overlay */}
+      <nav
+        ref={menuRef}
+        className={`fixed top-0 left-0 bg-white z-[100] w-full md:w-[300px] h-screen shadow-lg transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          <div className="flex justify-between items-center p-4">
+            <Link href="/">
+              <Image src="/logos/logo-zwart.png" alt="Logo zwart" width={250} height={150} className="w-36" />
             </Link>
-          </li>
-        </ul>
+            <button className="text-2xl focus:outline-none" onClick={toggleMenu} aria-label="Close Menu">
+              <FontAwesomeIcon icon={faTimes as IconProp} />
+            </button>
+          </div>
+
+          <ul className="flex-grow overflow-y-auto">
+            {menuItems.map((item) => (
+              <li key={item.id} className="py-2 px-4">
+                <Link
+                  href={item.link}
+                  onClick={toggleMenu}
+                  className="block w-full text-lg font-light hover:text-red-600 hover:font-medium transition-colors duration-200"
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Social icons at the bottom of mobile menu */}
+          <div className="p-4 pb-8 border-t border-gray-200">
+            <div className="flex justify-center space-x-4">
+              {renderSocialIcons("flex justify-center space-x-4")}
+              
+            </div>
+          </div>
+        </div>
       </nav>
-    </header>
+    </>
   );
 };
 

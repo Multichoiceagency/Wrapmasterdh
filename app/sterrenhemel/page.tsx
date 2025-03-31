@@ -1,295 +1,330 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
-import HeroSection from '@/app/components/hero/Hero'; // Importeer de hero section component
-import SwiperCore from 'swiper';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/autoplay';
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import OnzeDiensten from '@/app/components/Diensten/Diensten';
+import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ImageCarousel from '@/components/ImageCarousel';
 
-// Initialize Swiper modules
-SwiperCore.use([Autoplay, Pagination, Navigation]);
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
 
-export default function SterrenhemelDiensten() {
+const socialMedia = {
+  instagram: 'https://www.instagram.com/wrapmasterdh/',
+  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
+  whatsapp: 'https://wa.me/31638718893',
+  facebook: 'https://www.facebook.com/WrapmasterDH',
+};
+
+const dienstData = {
+  title: "STERRENHEMEL",
+  description: "",
+  heroImage: "/enes-website/ambient-light/ram.jpg",
+  contentImage1: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+  contentImage2: "/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
+  contentImage3: "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+};
+
+const sliderImages = [
+  "/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+  "/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
+  "/enes-website/ambient-light/ram2.jpg",
+  "/enes-website/gordelkleur/IMG_0488.JPG",
+];
+
+const reels = [
+  {
+    id: 1,
+    video: "/video/shot_2.mp4",
+    likes: "65.2k",
+    comments: "195",
+  },
+  {
+    id: 2,
+    video: "/video/shot_6.mp4",
+    likes: "120k",
+    comments: "345",
+  },
+  {
+    id: 3,
+    video: "/video/audi-rsq8.mp4",
+    likes: "45.6k",
+    comments: "89",
+  },
+  {
+    id: 4,
+    video: "/video/audi-rsq8.mp4",
+    likes: "78.9k",
+    comments: "230",
+  },
+];
+
+export default function SterrenhemelInbouwen() {
+  const [showMore, setShowMore] = useState(false);
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'center',
+      slidesToScroll: 1,
+    },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
+
+  const shortText = (
+    <p>
+      Wil jij jouw auto een spectaculaire en luxe uitstraling geven? Bij Wrapmaster bieden we de mogelijkheid om een prachtige sterrenhemel in te bouwen in jouw voertuig. Met honderden subtiele LED-lichtpuntjes in het interieur creëren we een magische en exclusieve sfeer, geïnspireerd door de sterrenhemels die je normaal alleen in de meest luxe autos ziet.
+    </p>
+  );
+
+  const fullText = (
+    <>
+      {shortText}
+      <h3 className="mt-6 text-xl font-semibold">Wat is een Sterrenhemel in de Auto?</h3>
+      <p className="mt-3">
+        Een sterrenhemel in de auto bestaat uit een netwerk van kleine LED-lichtjes die in de bekleding van het plafond worden geplaatst. Deze lichtjes bootsen een realistische sterrenhemel na, compleet met verschillende helderheden en zelfs de optie voor aanpasbare kleuren en twinkelende effecten. Het resultaat is een ongeëvenaarde rijervaring die niet alleen indrukwekkend is, maar ook ontspannend werkt.
+      </p>
+      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor een Sterrenhemel in jouw Auto?</h3>
+      <ul className="list-disc list-inside mt-2">
+        <li>Luxe uitstraling: Geef jouw voertuig een unieke en exclusieve look die gegarandeerd indruk maakt.</li>
+        <li>Volledig personaliseerbaar: Kies jouw favoriete kleuren, patronen en twinkle-effecten.</li>
+        <li>Ontspannende sfeer: De zachte verlichting zorgt voor een rustgevende ambiance tijdens het rijden.</li>
+        <li>Uniek ontwerp: Elk sterrenhemelproject wordt volledig op maat gemaakt en aangepast aan jouw wensen.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Wrapmaster: Jouw Specialist in Sterrenhemels</h3>
+      <p className="mt-3">
+        Bij Wrapmaster mag je rekenen op vakmanschap en precisie. Ons team van professionals met jarenlange ervaring zorgt ervoor dat elke sterrenhemel perfect wordt ingebouwd, zonder schade aan jouw voertuig. We werken met hoogwaardige materialen en LED-technologie om een verbluffend en duurzaam resultaat te garanderen.
+      </p>
+      <h3 className="mt-6 text-xl font-semibold">Voordelen van een Sterrenhemel door Wrapmaster</h3>
+      <ul className="list-disc list-inside mt-2">
+        <li>Hoogwaardige afwerking: Ons ervaren team zorgt voor een naadloze installatie waarbij de originele bekleding intact blijft.</li>
+        <li>Maatwerk: Van kleurkeuze tot patroonontwerp, wij creëren een sterrenhemel die volledig bij jouw stijl past.</li>
+        <li>Geavanceerde technologie: Onze systemen zijn energiezuinig en kunnen worden bediend via een afstandsbediening of smartphone-app.</li>
+        <li>Lange levensduur: Wij gebruiken premium LED-lichtjes die jaren meegaan zonder helderheidsverlies.</li>
+      </ul>
+      <h3 className="mt-6 text-xl font-semibold">Hoe werkt het Inbouwen van een Sterrenhemel?</h3>
+      <ol className="list-decimal list-inside mt-2">
+        <li>Adviesgesprek: We bespreken jouw wensen en geven advies over de mogelijkheden.</li>
+        <li>Ontwerp en voorbereiding: Samen creëren we een uniek sterrenhemelontwerp, inclusief kleur- en effectopties.</li>
+        <li>Installatie: Ons team installeert de LED-lichtjes nauwkeurig in het plafond van jouw auto, met oog voor detail.</li>
+        <li>Afwerking en controle: We testen het systeem en zorgen voor een perfect afgewerkt interieur.</li>
+      </ol>
+      <h3 className="mt-6 text-xl font-semibold">Waarom kiezen voor Wrapmaster?</h3>
+      <p className="mt-3">
+        Bij Wrapmaster begrijpen we dat jouw auto meer is dan alleen een vervoermiddel. Wij combineren passie voor innovatie met een scherp oog voor detail om een sterrenhemel te creëren die jouw auto echt uniek maakt. Met onze focus op kwaliteit en klanttevredenheid zorgen we ervoor dat jouw verwachtingen worden overtroffen.
+      </p>
+      <h3 className="mt-6 text-xl font-semibold">Transformeer jouw Auto met een Wrapmaster Sterrenhemel!</h3>
+      <p className="mt-3">
+        Wil jij een sterrenhemel laten inbouwen en jouw auto een luxe uitstraling geven? Kies voor Wrapmaster en geniet van een interieur dat letterlijk straalt. Neem vandaag nog contact met ons op voor meer informatie of een vrijblijvende offerte. Samen maken we jouw droom werkelijkheid!
+      </p>
+    </>
+  );
+
   return (
-    <main className="bg-gray-100">
-      {/* Hero Section */}
-      <HeroSection />
-      {/* Logo Section */}
-      <section className="py-16 bg-white text-center">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Wij gebruiken</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8 items-center">
-            {/* 3M Logo */}
-            <div className="flex justify-center">
-              <Image
-                src="/images/3m-wrap.png"
-                alt="3M Logo"
-                width={120}
-                height={60}
-                className="hover:scale-110 transform transition-transform duration-300"
-              />
-            </div>
-            {/* Avery Dennison Logo */}
-            <div className="flex justify-center">
-              <Image
-                src="/images/avery-logo.png"
-                alt="Avery Dennison Logo"
-                width={300}
-                height={60}
-                className="hover:scale-110 transform transition-transform duration-300"
-              />
-            </div>
-            {/* Xpel Logo */}
-            <div className="flex justify-center">
-              <Image
-                src="/images/xpel-logo.jpg"
-                alt="Xpel Logo"
-                width={300}
-                height={60}
-                className="hover:scale-110 transform transition-transform duration-300"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Overzicht van Sterrenhemel */}
-      <section className="py-16 bg-white text-center">
-        <div className="container mx-auto animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8">Waarom kiezen voor een Sterrenhemel?</h2>
-          <p className="text-lg mb-6 text-gray-700">
-            Een sterrenhemel-installatie in uw auto biedt een luxe en betoverende uitstraling. Het creëert een uniek visueel effect op het plafond van uw voertuig door honderden of duizenden kleine lichtjes die een sterrenhemel simuleren. Ideaal voor autoliefhebbers die een verfijnde, gepersonaliseerde ervaring willen.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <p className="text-4xl font-bold text-red-600">500+</p>
-              <p className="text-lg">Sterrenhemels Geïnstalleerd</p>
-            </div>
-            <div>
-              <p className="text-4xl font-bold text-red-600">10+</p>
-              <p className="text-lg">Jaren Ervaring</p>
-            </div>
-            <div>
-              <p className="text-4xl font-bold text-red-600">100%</p>
-              <p className="text-lg">Tevreden Klanten</p>
-            </div>
-            <div>
-              <p className="text-4xl font-bold text-red-600">Premium</p>
-              <p className="text-lg">Materialen & Installatie</p>
+    <>
+      <NextSeoClient
+        title="Sterrenhemel Inbouwen bij Wrapmaster - Maak van jouw Auto een Unieke Beleving"
+        description="Creëer een magische sfeer in jouw auto met een op maat gemaakte sterrenhemel door Wrapmaster. Ontdek onze luxe LED-verlichting oplossingen voor auto-interieurs."
+        canonical="https://wrapmasterdh.nl/sterrenhemel-inbouwen"
+        openGraph={{
+          url: "https://wrapmasterdh.nl/sterrenhemel-inbouwen",
+          title: "Sterrenhemel Inbouwen bij Wrapmaster - Maak van jouw Auto een Unieke Beleving",
+          description: "Creëer een magische sfeer in jouw auto met een op maat gemaakte sterrenhemel door Wrapmaster. Ontdek onze luxe LED-verlichting oplossingen voor auto-interieurs.",
+          images: [
+            {
+              url: dienstData.heroImage,
+              width: 1200,
+              height: 630,
+              alt: dienstData.title,
+            },
+          ],
+          site_name: "Wrapmaster",
+        }}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content: 'sterrenhemel inbouwen, auto sterrenhemel, LED-verlichting auto, luxe auto-interieur, custom car lighting',
+          },
+        ]}
+      />
+      <main className="bg-white">
+        {/* Hero Section */}
+        <section className="relative h-[100vh] sm:h-100vh">
+        <Image
+            src={dienstData.heroImage}
+            alt={dienstData.title}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
+            <div className="text-left text-white px-4 max-w-4xl">
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
+              <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
+              <div className='flex justify-center'>
+                <Link 
+                  href="/diensten"
+                  className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+                >
+                  TERUG NAAR DIENSTEN
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Wat is een Sterrenhemel? */}
-      <section id="wat-is-sterrenhemel" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
-                alt="Voorbeeld van Sterrenhemel"
-                width={800}
-                height={600}
-                className="rounded-lg shadow-lg animate-fadeInUp"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">
-                Sterrenhemel: Wat is het precies?
-              </h2>
-              <p className="text-lg mb-4 text-gray-700">
-                Een sterrenhemel-installatie creëert een prachtige, sfeervolle ambiance in uw auto. De kleine LED-lichtjes worden subtiel in het plafond van uw voertuig verwerkt, waardoor een prachtig sterrenpatroon ontstaat. U kunt de kleur, helderheid en het knipperpatroon van de sterren aanpassen voor een persoonlijke ervaring.
-              </p>
-              <ul className="list-disc list-inside text-lg mb-6 text-gray-700">
-                <li>Unieke, luxe uitstraling voor uw auto</li>
-                <li>Volledige aanpasbaarheid van lichtkleur en intensiteit</li>
-                <li>Beschikbaar voor alle voertuigmodellen</li>
-                <li>Duurzame LED-technologie</li>
-              </ul>
-              <p className="text-lg font-semibold">
-                Maak uw rijervaring betoverend met een gepersonaliseerde sterrenhemel in uw voertuig.
-              </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
-                BEKIJK PORTFOLIO
+        {/* Text with Image Section */}
+        <section className="flex flex-col lg:flex-row py-8 lg:py-16">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
+            <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
+              Sterrenhemel Inbouwen bij Wrapmaster – Maak van jouw Auto een Unieke Beleving
+            </h2>
+            <div className="mb-6 lg:mb-8 leading-relaxed max-w-xl font-regular text-sm sm:text-base">
+              {showMore ? fullText : shortText}
+              <button
+                className="mt-4 text-blue-600 hover:underline focus:outline-none"
+                onClick={() => setShowMore(!showMore)}
+              >
+                {showMore ? "Lees minder" : "Lees meer"}
               </button>
             </div>
+            <Link 
+              href="/offerte-aanvragen"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              Offerte aanvragen
+            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Hoe lang duurt een Sterrenhemel-installatie? */}
-      <section id="hoelang-duurt-sterrenhemel" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="flex flex-col justify-center order-2 lg:order-1">
-              <h2 className="text-3xl font-bold mb-8 text-left">Hoe lang duurt het om een sterrenhemel te installeren?</h2>
-              <p className="text-lg mb-4 text-gray-700">
-                Het installeren van een sterrenhemel in uw auto kan variëren afhankelijk van het model en het aantal lichtpunten dat u wilt. Een standaard installatie duurt meestal 1 tot 2 dagen.
-              </p>
-              <h4 className="text-2xl font-bold mb-4">Standaard Sterrenhemel</h4>
-              <p className="text-lg mb-6 text-gray-700">
-                Een basis sterrenhemel met honderden lichtpunten kan binnen één dag worden voltooid. Complexere installaties met duizenden lichtpunten of speciale effecten kunnen 2 dagen in beslag nemen.
-              </p>
-              <p className="text-lg font-semibold">
-                Sterrenhemels zijn een geweldige manier om uw auto luxe en uniek te maken met een korte installatieperiode.
-              </p>
-              <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 w-56 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
-                BEKIJK PORTFOLIO
-              </button>
-            </div>
-            <div className="order-1 lg:order-2">
+          <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
-                alt="Voorbeeld van Sterrenhemel"
-                width={800}
-                height={600}
-                className="rounded-lg shadow-lg animate-fadeInUp"
+                src={dienstData.contentImage1}
+                alt="Sterrenhemel Inbouwen bij Wrapmaster"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Wat kost een Sterrenhemel? */}
-      <section id="kosten-sterrenhemel" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Wat kost een sterrenhemel?</h2>
-          <p className="text-lg mb-6 text-gray-700 text-center">
-            De kosten voor een sterrenhemel-installatie variëren afhankelijk van het aantal lichtpunten, de complexiteit van de installatie en eventuele extra functies zoals kleurverandering of sterrenpatronen.
-          </p>
-          <ul className="list-disc list-inside text-lg mb-6 text-gray-700 max-w-2xl mx-auto">
-            <li>
-              <strong>Aantal Lichtpunten:</strong> Meer lichtpunten betekenen een complexere installatie en hogere kosten.
-            </li>
-            <li>
-              <strong>Kleur en Patronen:</strong> Installaties met meerdere kleuren of speciale knipperpatronen kunnen duurder zijn.
-            </li>
-            <li>
-              <strong>Aanvullende Opties:</strong> Optionele toevoegingen zoals afstandsbediening of geïntegreerde muziekbesturing kunnen de prijs verhogen.
-            </li>
-          </ul>
-          <div className="text-center">
-            <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-red-700 rounded-xl text-white font-bold hover:font-regular border-white hover:bg-black hover:text-white transition-all animate-fadeInUp">
-              OFFERTE AANVRAGEN
-            </button>
-          </div>
-          <p className="text-lg text-gray-700 text-center">
-            Neem contact met ons op voor een op maat gemaakte offerte.
-          </p>
-        </div>
-      </section>
+        <ImageCarousel images={sliderImages} />
 
-      {/* Garanties */}
-      <section id="garanties" className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">Onze Garanties</h2>
-          <p className="text-lg mb-6 text-gray-700 text-center">
-            Bij Wrapmaster bieden we uitgebreide garanties en kwaliteitsservices voor uw sterrenhemel-installatie.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Garantie op Sterrenhemel</h3>
-              <ul className="list-disc list-inside text-lg mb-6 text-gray-700">
-                <li>3 jaar garantie op de installatie, inclusief bescherming tegen defecten en uitval van lichtpunten.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Tevredenheidsgarantie</h3>
-              <p className="text-lg mb-6 text-gray-700">
-                Wij streven naar 100% klanttevredenheid. Als u niet volledig tevreden bent, doen we er alles aan om dit te verhelpen.
-              </p>
+
+
+        {/* Two Images Section */}
+        <section className="w-screen h-[80vh] mx-auto mt-16 md:mt-44">
+          <div className="flex h-full">
+            <div className="relative w-full h-full">
+              <Image
+                src={dienstData.contentImage2}
+                alt="Content Image 1"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Voordelen van een Sterrenhemel */}
-      <section id="voordelen" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8 text-center">De Voordelen van een Sterrenhemel</h2>
-          <div className="flex flex-col items-center gap-8">
-            <ul className="list-none text-lg mb-6 text-gray-700 text-center">
-              <li>
-                <strong>Luxe uitstraling:</strong> Een sterrenhemel geeft uw auto een exclusieve en elegante uitstraling.
-              </li>
-              <li>
-                <strong>Volledige aanpasbaarheid:</strong> Pas de kleur, helderheid en knipperpatronen aan naar uw voorkeur.
-              </li>
-              <li>
-                <strong>Duurzaam:</strong> De LED-technologie is energiezuinig en duurzaam, waardoor de installatie lang meegaat.
-              </li>
-              <li>
-                <strong>Niet-permanent:</strong> U kunt de verlichting gemakkelijk aanpassen of uitschakelen wanneer u wilt.
-              </li>
-            </ul>
+
+{/* Instagram Reels Section */}
+<section className="w-full bg-white py-16">
+  <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
+  <div className="flex justify-between gap-2 px-4">
+    {reels.slice(0, 2).map((reel) => (
+      <div
+        key={reel.id}
+        className="relative w-screen max-w-[49%] h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
+      >
+        {/* Video */}
+        <video
+          src={reel.video}
+          className="w-full h-full object-cover"
+          loop
+          muted
+          autoPlay
+          playsInline
+        ></video>
+        {/* Instagram Reel Overlay */}
+        <div className="absolute inset-0 flex flex-col justify-between p-4">
+          <div className="flex items-center text-white text-sm font-semibold">
             <Image
-              src="/images/brabus1.png"
-              alt="Voordelen van een Sterrenhemel"
-              width={1920}
-              height={1080}
-              className="rounded-lg shadow-lg animate-fadeInUp"
+              src="/logos/logo-wit.png"
+              alt="Reels Play Icon"
+              width={20}
+              height={20}
+              className="mr-2"
             />
-            <p className="mt-4 text-center text-gray-700">
-              Ontdek hoe u uw auto kunt transformeren met onze professionele sterrenhemel-installaties.
-            </p>
+            Reels
+          </div>
+          <div className="text-white space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm">
+                <Image
+                  src="/logos/handtekening-wit.png"
+                  alt="Reels Play Icon"
+                  width={100}
+                  height={20}
+                  className="mr-2"
+                />
+              </span>
+              <div className="flex space-x-2">
+                <a
+                  href={socialMedia.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400"
+                >
+                  <FontAwesomeIcon icon={faInstagram} size="lg" />
+                </a>
+                <a
+                  href={socialMedia.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400"
+                >
+                  <FontAwesomeIcon icon={faTiktok} size="lg" />
+                </a>
+                <a
+                  href={socialMedia.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400"
+                >
+                  <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+                </a>
+                <a
+                  href={socialMedia.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400"
+                >
+                  <FontAwesomeIcon icon={faFacebook} size="lg" />
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center justify-between text-sm"></div>
           </div>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
 
-      {/* Onderhoudstips */}
-      <section id="onderhoud" className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-16 animate-fadeInUp">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <Image
-                src="/images/poetsen-glascoating.jpeg"
-                alt="Onderhoud van Sterrenhemel"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg hover:scale-y-100 animate-fadeInUp"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-left">Onderhoudstips voor Sterrenhemels</h2>
-              <ol className="list-decimal list-inside text-lg mb-6 text-gray-700">
-                <li>
-                  <strong>Regelmatig Stofvrij Maken:</strong> Houd het interieur en plafond van uw voertuig schoon om de lichtpunten helder te houden.
-                </li>
-                <li>
-                  <strong>Vermijd Scherpe Objecten:</strong> Voorkom beschadigingen aan het plafond door scherpe voorwerpen weg te houden van de installatie.
-                </li>
-                <li>
-                  <strong>Juiste Elektrische Zorg:</strong> Zorg ervoor dat de bedrading van de sterrenhemel niet wordt blootgesteld aan overmatige hitte of druk.
-                </li>
-              </ol>
-              <p className="text-lg text-gray-700">
-                Met deze tips blijft uw sterrenhemel helder en probleemloos werken.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-red-600 py-16 text-white text-center animate-fadeInUp">
-        <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Klaar om uw auto te transformeren met een sterrenhemel?</h2>
-          <p className="text-lg mb-8">
-            Vraag vandaag nog een offerte aan en ontdek wat Wrapmaster voor u kan betekenen met sterrenhemel-installaties.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block px-8 py-3 bg-white text-red-600 font-semibold rounded-full hover:bg-gray-100 transition"
-          >
-            Vraag Offerte Aan
-          </a>
-        </div>
-      </section>
-    </main>
+        {/* Wrapmaster Services Section */}
+        <section className="py-9">
+          <OnzeDiensten />
+        </section>
+      </main>
+    </>
   );
 }
+

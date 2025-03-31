@@ -19,7 +19,7 @@ export default function OverOnsPage() {
               src="/video/carwrapping.mp4" // Ensure this video path is correct
             ></video>
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font tracking-widest">
                 AUTO WRAPPEN BIJ
               </h1>
               <button className="mt-4 px-4 py-2 xs:px-6 xs:py-3 sm:px-8 sm:py-3 bg-black text-white font-semibold border border-white hover:bg-white hover:text-black transition-all">
@@ -34,7 +34,7 @@ export default function OverOnsPage() {
         <div className="bg-cover bg-center relative h-80 rounded-lg mb-12" style={{ backgroundImage: "url('/images/company-banner.jpg')" }}>
           <div className="absolute inset-0 bg-black opacity-60 rounded-lg"></div>
           <div className="relative z-10 flex flex-col justify-center items-center h-full">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white">Over Ons</h1>
+            <h1 className="text-4xl lg:text-5xl font text-white">Over Ons</h1>
             <p className="text-white text-lg mt-4 text-center max-w-2xl">
               Wrapmaster is jouw specialist voor het wrappen van auto's, scooters, motoren, en meer. Met jarenlange ervaring en passie voor ons vak transformeren we voertuigen naar jouw smaak.
             </p>
@@ -45,7 +45,7 @@ export default function OverOnsPage() {
 
         {/* Bedrijfsinformatie */}
         <div className="bg-white shadow-lg rounded-lg p-8 mb-12">
-          <h2 className="text-3xl font-bold mb-4">Wie zijn wij?</h2>
+          <h2 className="text-3xl font mb-4">Wie zijn wij?</h2>
           <p className="text-gray-700 mb-6">
             Bij <strong>Wrapmaster</strong> draait alles om kwaliteit, professionaliteit, en passie voor voertuigen. Sinds onze oprichting hebben we ons gevestigd als een toonaangevende speler in de wrappen- en detailingindustrie. Of het nu gaat om het wrappen van auto's, scooters, motoren of het verzorgen van chrome delete, onze missie is om elk voertuig een unieke en persoonlijke uitstraling te geven.
           </p>
@@ -69,7 +69,7 @@ export default function OverOnsPage() {
 
         {/* Diensten sectie */}
         <div className="bg-white shadow-lg rounded-lg p-8 mb-12">
-          <h2 className="text-3xl font-bold mb-4">Onze Diensten</h2>
+          <h2 className="text-3xl font mb-4">Onze Diensten</h2>
           <p className="text-gray-700 mb-6">
             We bieden een breed scala aan diensten om aan al jouw wensen te voldoen:
           </p>
@@ -90,7 +90,7 @@ export default function OverOnsPage() {
 
         {/* Onze Waarden */}
         <div className="bg-white shadow-lg rounded-lg p-8 mb-12">
-          <h2 className="text-3xl font-bold mb-4">Onze Waarden</h2>
+          <h2 className="text-3xl font mb-4">Onze Waarden</h2>
           <p className="text-gray-700 mb-6">
             We geloven in het leveren van uitzonderlijke service en waarde aan onze klanten. Onze kernwaarden zijn:
           </p>
@@ -104,7 +104,7 @@ export default function OverOnsPage() {
 
         {/* Call to Action */}
         <div className="bg-red-600 text-white text-center py-12 rounded-lg">
-          <h2 className="text-3xl font-bold mb-4">Klaar om je voertuig te transformeren?</h2>
+          <h2 className="text-3xl font mb-4">Klaar om je voertuig te transformeren?</h2>
           <p className="text-lg mb-6">Neem vandaag nog contact met ons op voor een vrijblijvende offerte of bezoek onze werkplaats in Den Haag.</p>
           <a
             href="/contact"

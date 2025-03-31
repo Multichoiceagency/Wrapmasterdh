@@ -33,7 +33,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
+<<<<<<< HEAD
   ],
+=======
+, "components/MultiFileDropzone.jsx", "components/MultiFileDropzone.js", "app/api/convert-to-webp/route.js", "app/api/send-offerte"  ],
+>>>>>>> main
   "exclude": [
     "node_modules"
   ]

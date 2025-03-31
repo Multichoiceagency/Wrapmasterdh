@@ -1,13 +1,33 @@
+'use client'
 import React from 'react'
 import HeroSection from './components/hero/Hero'
-import Diensten from './components/Diensten/Diensten'
 import CustomSection from './components/Customsection/CustomSection'
-import Portfolio from './components/portfolio/Portfolio'
 import ServicesSection from './components/ServicesSection'
+<<<<<<< HEAD
 import LogoSlider from '@/components/LogoSlider'
+=======
+import NewsEvents from '@/components/newsevents'
+import Afbeelding from '@/components/Afbeelding'
+import DynamicSection from '@/components/DynamicSection'
+import ProductSlider from '@/components/ProductSlider'
+import OnzeDiensten from './components/Diensten/Diensten'
+import PrintFolie from '@/components/PrintFolie'
+import NewCustomSection from '@/components/NewCustomSection'
+import ThreeDCarwrapping from '@/components/ThreeDCarwrapping'
+import BoatSection from '@/components/BoatSection'
+import BoatenSlider from '@/components/BoatenSlider'
+import dynamic from 'next/dynamic';
+>>>>>>> main
 
-function Home() {
+
+const NextSeoClient = dynamic(
+  () => import('next-seo').then((mod) => mod.NextSeo),
+  { ssr: false }
+);
+
+export default function Home() {
   return (
+<<<<<<< HEAD
 
         <section className='w-full'>
                     <HeroSection />
@@ -17,7 +37,53 @@ function Home() {
                       <Portfolio />
                       <LogoSlider />
         </section>
+=======
+    <div className="w-full overflow-x-hidden">
+      <NextSeoClient
+        title="Wrapmaster - Professionele Carwrapping Specialist"
+        description="Wrapmaster biedt hoogwaardige carwrapping, chrome delete, en andere autofolie diensten. Transformeer uw voertuig met onze expertise en kwaliteitsproducten."
+        canonical="https://wrapmasterdh.nl/"
+        openGraph={{
+          url: 'https://wrapmasterdh.nl/',
+          title: 'Wrapmaster - Professionele Carwrapping Specialist',
+          description: 'Ontdek de transformatieve kracht van professionele carwrapping en autofolie diensten bij Wrapmaster. Van chrome delete tot printfolie, wij bieden topkwaliteit voor uw voertuig.',
+          images: [
+            {
+              url: 'https://wrapmasterdh.nl/logos/logo-zwart.png',
+              width: 1200,
+              height: 630,
+              alt: 'Wrapmaster Carwrapping',
+            },
+          ],
+          site_name: 'Wrapmaster',
+        }}
+        twitter={{
+          handle: '@wrapmasterdh',
+          site: '@wrapmasterdh',
+          cardType: 'summary_large_image',
+        }}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content: 'carwrapping, autofolie, chrome delete, printfolie, voertuigbelettering, auto styling, auto wrappen Den Haag',
+          },
+        ]}
+      />
+      <HeroSection />
+      <ServicesSection />
+      <NewsEvents />
+      <Afbeelding />
+      <DynamicSection />
+      <OnzeDiensten />
+      <CustomSection />
+      <ProductSlider />
+      <PrintFolie  />
+      <ThreeDCarwrapping />
+      <NewCustomSection />
+      <BoatenSlider />
+      <BoatSection />
+    </div>
+>>>>>>> main
   )
 }
 
-export default Home
