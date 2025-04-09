@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.your-imap-server.com', // Vervang door je IMAP-server
-  port: 587,  // Poort voor IMAP
-  secure: false, // true voor 465, false voor andere poorten
+  host: 'mail.wrapmasterdh.nl',
+  port: 993,
+  secure: true,
   auth: {
-    user: 'info@wrapmasterdh.nl', // Jouw e-mailadres
-    pass: 'Wrapmaster2025//',  // Wachtwoord
+    user: 'info@wrapmasterdh.nl',
+    pass: 'Wrapmaster2025//',
   },
 });
 
@@ -17,34 +16,52 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { voornaam, achternaam, email, diensten, datum } = req.body;
 
     try {
-      // Verzend een e-mail naar het bedrijf
+      // 1. E-mail naar admin: replyen moet naar klant
       await transporter.sendMail({
-        from: 'info@wrapmasterdh.nl',
-        to: 'info@wrapmasterdh.nl', // Bedrijfse-mailadres
-        subject: `Nieuwe offerte aanvraag van ${voornaam} ${achternaam}`,
+        from: {
+          name: `${voornaam} ${achternaam} (${email})`,
+          address: 'info@wrapmasterdh.nl', // jouw domein voor SPF
+        },
+        to: 'info@wrapmasterdh.nl', // jij ontvangt
+        replyTo: email, // reply = naar klant
+        subject: `Nieuwe contactaanvraag van ${voornaam} ${achternaam}`,
         text: `
-          Er is een nieuwe offerte aanvraag ontvangen van:
-          Naam: ${voornaam} ${achternaam}
-          Email: ${email}
-          Diensten: ${diensten.join(', ')}
-          Gewenste datum: ${datum}
+Er is een nieuwe contactaanvraag ontvangen:
+
+Naam: ${voornaam} ${achternaam}
+E-mailadres: ${email}
+Diensten: ${diensten.join(', ')}
+Gewenste datum: ${datum}
+
+Je kunt direct antwoorden op deze e-mail om contact op te nemen met de klant.
         `,
       });
 
-      // Verzend bevestiging naar de klant
+      // 2. Bevestiging naar klant
       await transporter.sendMail({
-        from: 'info@wrapmasterdh.nl',
-        to: email,  // Klant-e-mailadres
-        subject: 'Bevestiging van je offerte aanvraag',
-        text: `Bedankt ${voornaam} voor je aanvraag. We hebben het volgende ontvangen:
-        Diensten: ${diensten.join(', ')}
-        Gewenste datum: ${datum}
-        
-        We nemen snel contact met je op.`,
+        from: {
+          name: 'Wrapmaster DH',
+          address: 'info@wrapmasterdh.nl',
+        },
+        to: email,
+        replyTo: 'info@wrapmasterdh.nl',
+        subject: 'Bevestiging van je contactaanvraag',
+        text: `Bedankt dat je contact met ons hebt opgenomen, ${voornaam}!
+
+We hebben je aanvraag goed ontvangen met de volgende details:
+
+Diensten: ${diensten.join(', ')}
+Gewenste datum: ${datum}
+
+We nemen zo snel mogelijk contact met je op.
+
+Met vriendelijke groet,  
+Wrapmaster DH`,
       });
 
       res.status(200).json({ message: 'E-mails succesvol verzonden!' });
     } catch (error) {
+      console.error('E-mail fout:', error);
       res.status(500).json({ error: 'Er ging iets mis bij het verzenden van de e-mails.' });
     }
   } else {
