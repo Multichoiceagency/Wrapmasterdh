@@ -114,10 +114,10 @@ export default function Footer() {
         <Link 
           href="https://multichoiceagency.nl/" 
           target="_blank" 
-          className="font-semibold underline hover:text-gray-400"
+          className="font-semibold hover:text-red-700"
         >
-        </Link>
-         Copyright © by 2025 Wrapmaster
+         Copyright © by 2025 Wrapmaster - Built by Multichoiceagency
+         </Link>
       </div>
     </footer>
   )

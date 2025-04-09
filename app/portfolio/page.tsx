@@ -1,16 +1,10 @@
-'use client';
+"use client"
+import { useState } from "react"
+import Image from "next/image"
+import { Skeleton } from "@/components/ui/skeleton"
+import NewCustomSection from "@/components/NewCustomSection"
 
-import { useState } from 'react';
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
-import NewCustomSection from '@/components/NewCustomSection';
-
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
-);
-
-// Portfolio items (feel free to adjust or add more items)
+// Portfolio items
 const portfolioItems = [
   { id: 1, title: "", featuredImage: "/enes-website/portfolio/brabus23.jpg" },
   { id: 2, title: "", featuredImage: "/enes-website/portfolio/brabus12.jpg" },
@@ -44,124 +38,77 @@ const portfolioItems = [
   { id: 33, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-18.jpg" },
   { id: 34, title: "", featuredImage: "/enes-website/portfolio2/RS6-1.jpg" },
   { id: 35, title: "", featuredImage: "/enes-website/portfolio2/RS6-7.jpg" },
-];
+]
 
 export default function PortfolioPage() {
-  // Allow selectedIndex to be a number or null
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  // Track loaded images
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({})
+  const [heroLoaded, setHeroLoaded] = useState(false)
 
-  const openModal = (index: number) => {
-    setSelectedIndex(index);
-  };
-
-  const closeModal = () => {
-    setSelectedIndex(null);
-  };
-
-  const showPrev = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setSelectedIndex((prev) => ((prev! - 1 + portfolioItems.length) % portfolioItems.length));
-  };
-
-  const showNext = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setSelectedIndex((prev) => ((prev! + 1) % portfolioItems.length));
-  };
+  // Image loading handlers
+  const handleHeroLoad = () => setHeroLoaded(true)
+  const handleImageLoad = (index: number) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [index]: true,
+    }))
+  }
 
   return (
-    <>
-      <NextSeoClient
-        title="Wrapmaster Portfolio - Onze Projecten"
-        description="Ontdek onze portfolio met indrukwekkende voertuigwraps en aanpassingen. Bekijk onze recente projecten!"
-        canonical="https://wrapmasterdh.nl/portfolio"
-      />
+    <main className="bg-white">
+      {/* Hero Section */}
+      <section className="relative h-[100vh]">
+        {!heroLoaded && <Skeleton className="absolute inset-0 w-full h-full z-10" />}
+        <Image
+          src="/enes-website/portfolio/brabus24.jpg"
+          alt="Wrapmaster Portfolio"
+          width={1920}
+          height={1080}
+          className={`object-cover w-full h-full ${
+            heroLoaded ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-300`}
+          priority
+          onLoad={handleHeroLoad}
+        />
+        <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
+          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-4xl font-light text-white">PORTFOLIO</h2>
+        </div>
+      </section>
 
-      <main className="bg-white">
-        {/* ✅ Hero Sectie ✅ */}
-        <section className="relative h-[100vh]">
-          <Image
-            src="/enes-website/portfolio/brabus24.jpg"
-            alt="Wrapmaster Portfolio"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
-            <h2 className="mt-6 text-2xl sm:text-3xl lg:text-4xl font-light text-white">
-              PORTFOLIO
-            </h2>
-          </div>
-        </section>
-
-        {/* ✅ 2+1 Grid Portfolio ✅ */}
-        <section className="container mx-auto py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
-            {portfolioItems.map((item, index) => (
-              <div
-                key={item.id}
-                className={`relative w-full aspect-square md:aspect-auto ${
-                  index % 3 === 2 ? 'md:col-span-2 md:h-[700px]' : 'md:h-[700px]'
-                }`}
-              >
-                <button
-                  onClick={() => openModal(index)}
-                  className="block group w-full h-full relative focus:outline-none"
-                >
-                  <Image
-                    src={item.featuredImage}
-                    alt=""
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
-                  />
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* New Custom Section */}
-        <section>
-          <div className="container mx-auto text-center">
-            <NewCustomSection />
-          </div>
-        </section>
-
-        {/* ✅ Modal Lightbox ✅ */}
-        {selectedIndex !== null && (
-          <div
-            onClick={closeModal}
-            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-          >
-            <button
-              onClick={showPrev}
-              className="absolute left-4 text-white text-3xl focus:outline-none"
+      {/* Portfolio Grid with Skeletons */}
+      <section className="container mx-auto py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+          {portfolioItems.map((item, index) => (
+            <div
+              key={item.id}
+              className={`relative w-full aspect-square md:aspect-auto ${
+                index % 3 === 2 ? "md:col-span-2 md:h-[700px]" : "md:h-[700px]"
+              }`}
             >
-              &#8592;
-            </button>
-            <div className="max-w-4xl max-h-full relative">
+              {/* Show skeleton while image is loading */}
+              {!loadedImages[index] && <Skeleton className="absolute inset-0 w-full h-full rounded-lg z-10" />}
               <Image
-                src={portfolioItems[selectedIndex].featuredImage}
+                src={item.featuredImage || "/placeholder.svg"}
                 alt=""
-                width={500}
-                height={300}
-                className="object-cover rounded-md"
+                width={800}
+                height={600}
+                className={`object-cover w-full h-full rounded-lg ${
+                  loadedImages[index] ? "opacity-100" : "opacity-0"
+                } transition-opacity duration-300`}
+                loading="lazy"
+                onLoad={() => handleImageLoad(index)}
               />
             </div>
-            <button
-              onClick={showNext}
-              className="absolute right-4 text-white text-3xl focus:outline-none z-20"
-            >
-              &#8594;
-            </button>
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-3xl focus:outline-none z-20"
-            >
-              &times;
-            </button>
-          </div>
-        )}
-      </main>
-    </>
-  );
+          ))}
+        </div>
+      </section>
+
+      {/* New Custom Section */}
+      <section>
+        <div className="container mx-auto text-center">
+          <NewCustomSection />
+        </div>
+      </section>
+    </main>
+  )
 }

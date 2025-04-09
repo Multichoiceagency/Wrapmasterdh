@@ -81,7 +81,6 @@ export default function HeroSection() {
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, Navigation]}
         spaceBetween={0}
-        slidesPerView={1}
         loop={true}
         pagination={{
           clickable: true,
@@ -118,7 +117,7 @@ export default function HeroSection() {
                 <source src={slide.videoFile} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+              <div className="absolute inset-0"></div>
             </div>
             <div className="absolute inset-x-0 bottom-20 md:bottom-28 flex flex-col items-center text-center text-white z-10 px-4">
               <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-2xl mb-4">{slide.heroTitle}</h1>

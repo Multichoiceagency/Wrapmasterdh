@@ -1,21 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import OnzeDiensten from '@/app/components/Diensten/Diensten';
-import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageCarousel from '@/components/ImageCarousel';
-import dynamic from 'next/dynamic';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
-);
+const NextSeoClient = dynamic(() => import('next-seo').then((mod) => mod.NextSeo), { ssr: false });
 
 const socialMedia = {
   instagram: 'https://www.instagram.com/wrapmasterdh/',
@@ -40,41 +35,13 @@ const sliderImages = [
   "/enes-website/OSMAN/idbuzz/DSC05899.jpg",
 ];
 
-const reels = [
-  {
-    id: 1,
-    video: "/video/audi-rsq8.mp4",
-    likes: "65.2k",
-    comments: "195",
-  },
-  {
-    id: 2,
-    video: "/video/audi-rsq8.mp4",
-    likes: "120k",
-    comments: "345",
-  },
-  {
-    id: 3,
-    video: "/video/audi-rsq8.mp4",
-    likes: "45.6k",
-    comments: "89",
-  },
-  {
-    id: 4,
-    video: "/video/audi-rsq8.mp4",
-    likes: "78.9k",
-    comments: "230",
-  },
-];
-
 export default function Carwrapping() {
   const [showMore, setShowMore] = useState(false);
+  const [bannerLoaded, setBannerLoaded] = useState(false);
+  const [contentImagesLoaded, setContentImagesLoaded] = useState([false, false, false]);
+
   const [emblaRef] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      slidesToScroll: 1,
-    },
+    { loop: true, align: 'center', slidesToScroll: 1 },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
@@ -83,6 +50,7 @@ export default function Carwrapping() {
       Met Chrome Delete kun je glanzende chromen details vervangen door een strakke, moderne afwerking. Denk aan raamomlijstingen, grilles, spiegelkappen en sierlijsten. Een perfecte keuze voor een minimalistische uitstraling.
     </p>
   );
+
   const fullText = (
     <>
       {shortText}
@@ -131,33 +99,36 @@ export default function Carwrapping() {
           },
         ]}
       />
+
       <main className="bg-white">
         {/* Hero Section */}
-        <section className="relative h-[100vh] sm:h-100vh">
-        <Image
+        <section className="relative h-[100vh] sm:h-[100vh]">
+          {!bannerLoaded && <Skeleton className="absolute w-full h-full" />}
+          <Image
             src={dienstData.heroImage}
             alt={dienstData.title}
             fill
-            className="object-cover"
+            onLoad={() => setBannerLoaded(true)}
+            className={`object-cover transition-opacity duration-700 ${bannerLoaded ? 'opacity-100' : 'opacity-0'}`}
             priority
           />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
             <div className="text-left text-white px-4 max-w-4xl">
               <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
-              <div className='flex justify-center'>
-            <Link 
-              href="/diensten"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-            >
-              TERUG NAAR DIENSTEN
-            </Link>
-            </div>
+              <div className="flex justify-center">
+                <Link
+                  href="/diensten"
+                  className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+                >
+                  TERUG NAAR DIENSTEN
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Text with Image Section */}
+        {/* Text + Image Section */}
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
             <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
@@ -172,20 +143,26 @@ export default function Carwrapping() {
                 {showMore ? "Lees minder" : "Lees meer"}
               </button>
             </div>
-            <Link 
+            <Link
               href="/offerte-aanvragen"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
             >
               Offerte aanvragen
             </Link>
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+              {!contentImagesLoaded[0] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage1}
                 alt="Carwrapping bij Wrapmaster"
                 fill
-                className="object-cover"
+                onLoad={() => setContentImagesLoaded((prev) => {
+                  const newState = [...prev];
+                  newState[0] = true;
+                  return newState;
+                })}
+                className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[0] ? 'opacity-100' : 'opacity-0'}`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
@@ -193,34 +170,33 @@ export default function Carwrapping() {
           </div>
         </section>
 
+        {/* Carousel */}
         <ImageCarousel images={sliderImages} />
 
+        {/* Two Images Section */}
+        <section className="max-w-full mx-auto mt-16 md:mt-44">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[dienstData.contentImage2, dienstData.contentImage3].map((src, idx) => (
+              <div key={idx} className="relative h-[700px] sm:h-[700px]">
+                {!contentImagesLoaded[idx + 1] && <Skeleton className="absolute w-full h-full" />}
+                <Image
+                  src={src}
+                  alt={`Content Image ${idx + 2}`}
+                  fill
+                  onLoad={() => setContentImagesLoaded((prev) => {
+                    const newState = [...prev];
+                    newState[idx + 1] = true;
+                    return newState;
+                  })}
+                  className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[idx + 1] ? 'opacity-100' : 'opacity-0'}`}
+                  priority
+                />
+              </div>
+            ))}
+          </div>
+        </section>
 
-               {/* Two Images Section */}
-               <section className="max-w-full mx-auto mt-16 md:mt-44">
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <div className="relative h-[700px] sm:h-[700px]">
-                     <Image
-                       src={dienstData.contentImage2}
-                       alt="Content Image 1"
-                       fill
-                       className="object-cover"
-                       priority
-                     />
-                   </div>
-                   <div className="relative h-[700px] sm:h-[700px]">
-                     <Image
-                       src={dienstData.contentImage3}
-                       alt="Content Image 2"
-                       fill
-                       className="object-cover"
-                       priority
-                     />
-                   </div>
-                 </div>
-               </section>
-
-        {/* Wrapmaster Services Section */}
+        {/* Onze Diensten Section (already includes skeletons) */}
         <section className="py-9">
           <OnzeDiensten />
         </section>

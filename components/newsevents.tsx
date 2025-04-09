@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface NewsPost {
   id: number
@@ -23,11 +24,8 @@ export default function NewsEvents() {
   useEffect(() => {
     const fetchNewsPosts = async () => {
       try {
-        // Consider moving this URL to an environment variable
-        const response = await fetch(
-          "https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed",
-          { next: { revalidate: 3600 } }, // Cache for 1 hour
-        )
+        // Remove the Next.js cache option since this is client-side
+        const response = await fetch("https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed")
 
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
@@ -79,14 +77,24 @@ export default function NewsEvents() {
     }
   }
 
-  // Loading state
+  // Loading state with Skeleton UI
   if (isLoading) {
     return (
       <section className="w-full py-12">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-light text-center mb-8">NEWS & EVENTS</h2>
-          <div className="flex items-center justify-center py-12">
-            <div className="w-12 h-12 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white shadow-sm overflow-hidden">
+                <Skeleton className="aspect-[4/3] w-full" />
+                <div className="p-4">
+                  <Skeleton className="h-6 w-3/4 mb-2" />
+                  <Skeleton className="h-4 w-1/3 mb-2" />
+                  <Skeleton className="h-4 w-full mb-1" />
+                  <Skeleton className="h-4 w-2/3" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -99,7 +107,15 @@ export default function NewsEvents() {
       <section className="w-full py-12">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-light text-center mb-8">NEWS & EVENTS</h2>
-          <div className="text-center text-red-600 py-8">{error}</div>
+          <div className="text-center py-8">
+            <p className="text-red-600 mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-black text-white hover:bg-red-700 transition-colors"
+            >
+              Probeer opnieuw
+            </button>
+          </div>
         </div>
       </section>
     )
@@ -125,7 +141,7 @@ export default function NewsEvents() {
                     <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
                       <source src={post.video_file} type="video/mp4" />
                       <Image
-                        src={post.featured_image || "/placeholder.svg"}
+                        src={post.featured_image || "/placeholder.svg?height=300&width=400"}
                         alt={post.title}
                         fill
                         className="object-cover"
@@ -134,7 +150,7 @@ export default function NewsEvents() {
                     </video>
                   ) : (
                     <Image
-                      src={post.featured_image || "/placeholder.svg"}
+                      src={post.featured_image || "/placeholder.svg?height=300&width=400"}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"

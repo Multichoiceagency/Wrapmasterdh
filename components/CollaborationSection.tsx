@@ -1,38 +1,35 @@
-"use client";
-
-import React from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+"use client"
+import Image from "next/image"
+import { Swiper, SwiperSlide } from "swiper/react"
+// Import Swiper modules correctly
+import { Navigation, Autoplay } from "swiper/modules"
+// Import Swiper styles
+import "swiper/css"
+import "swiper/css/navigation"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface Brand {
-  name: string;
-  logo: string;
+  name: string
+  logo: string
 }
 
 interface CollaborationSectionProps {
-  heroImage: string;
-  brands: Brand[];
-  partners: Brand[];
+  heroImage: string
+  brands: Brand[]
+  partners: Brand[]
 }
 
-export default function CollaborationSection({ 
-  heroImage, 
-  brands, 
-  partners 
-}: CollaborationSectionProps) {
+export default function CollaborationSection({ heroImage, brands, partners }: CollaborationSectionProps) {
   return (
     <div className="w-full">
       {/* Hero Section */}
       <div className="relative h-[90vh] min-h-[400px] w-full mb-16">
         <Image
-          src={heroImage}
+          src={heroImage || "/placeholder.svg"}
           alt="Samenwerking Hero"
           fill
           className="object-cover"
+          priority={true} // Hero image loads with priority
         />
         <div className="absolute inset-0 bg-black/50 flex items-end p-6 justify-center">
           <h1 className="text-4xl md:text-4xl font-light text-white">SAMENWERKING</h1>
@@ -48,8 +45,8 @@ export default function CollaborationSection({
             spaceBetween={30}
             slidesPerView={2}
             navigation={{
-              prevEl: '.brand-prev',
-              nextEl: '.brand-next',
+              prevEl: ".brand-prev",
+              nextEl: ".brand-next",
             }}
             autoplay={{
               delay: 3000,
@@ -66,10 +63,11 @@ export default function CollaborationSection({
               <SwiperSlide key={index}>
                 <div className="aspect-[3/2] relative">
                   <Image
-                    src={brand.logo}
+                    src={brand.logo || "/placeholder.svg"}
                     alt={brand.name}
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
               </SwiperSlide>
@@ -93,8 +91,8 @@ export default function CollaborationSection({
             spaceBetween={30}
             slidesPerView={2}
             navigation={{
-              prevEl: '.partner-prev',
-              nextEl: '.partner-next',
+              prevEl: ".partner-prev",
+              nextEl: ".partner-next",
             }}
             autoplay={{
               delay: 3500,
@@ -111,10 +109,11 @@ export default function CollaborationSection({
               <SwiperSlide key={index}>
                 <div className="aspect-[3/2] relative">
                   <Image
-                    src={partner.logo}
+                    src={partner.logo || "/placeholder.svg"}
                     alt={partner.name}
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
               </SwiperSlide>
@@ -129,5 +128,5 @@ export default function CollaborationSection({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,49 +1,61 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import Link from 'next/link';
-import Image from 'next/image';
+import type React from "react"
+import { useState, useEffect, useRef } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free-brands-svg-icons"
+import type { IconProp } from "@fortawesome/fontawesome-svg-core"
+import Link from "next/link"
+import Image from "next/image"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const menuItems = [
-  { id: 1, title: 'Home', link: '/' },
-  { id: 2, title: 'Diensten', link: '/diensten' },
-  { id: 3, title: 'Portfolio', link: '/portfolio' },
-  { id: 4, title: 'Offerte aanvragen', link: '/offerte-aanvragen' },
-  { id: 5, title: 'Ons Team', link: '/ons-team' },
-  { id: 6, title: 'Wallpaper', link: '/wallpaper' },
-  { id: 7, title: 'Samenwerking', link: '/samenwerking' },
-  { id: 8, title: 'Contact', link: '/contact' },
-  { id: 9, title: '6×6 Rental', link: 'https://www.6x6rental.nl' },
-];
+  { id: 1, title: "Home", link: "/" },
+  { id: 2, title: "Diensten", link: "/diensten" },
+  { id: 3, title: "Portfolio", link: "/portfolio" },
+  { id: 4, title: "Offerte aanvragen", link: "/offerte-aanvragen" },
+  { id: 5, title: "Ons Team", link: "/ons-team" },
+  { id: 6, title: "Wallpaper", link: "/wallpaper" },
+  { id: 7, title: "Samenwerking", link: "/samenwerking" },
+  { id: 8, title: "Contact", link: "/contact" },
+  { id: 9, title: "6×6 Rental", link: "https://www.6x6rental.nl" },
+]
 
 const socialMedia = {
-  instagram: 'https://www.instagram.com/wrapmasterdh/',
-  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
-  whatsapp: 'https://wa.me/31638718893',
-  facebook: 'https://www.facebook.com/WrapmasterDH',
-};
+  instagram: "https://www.instagram.com/wrapmasterdh/",
+  tiktok: "https://www.tiktok.com/@wrapmasterdh",
+  whatsapp: "https://wa.me/31638718893",
+  facebook: "https://www.facebook.com/WrapmasterDH",
+}
 
 const Header: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+      setIsScrolled(window.scrollY > 50)
+    }
 
-    document.addEventListener('scroll', handleScroll);
-    return () => document.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.addEventListener("scroll", handleScroll)
+    return () => document.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    // Simulate loading of header data
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+    setMenuOpen((prev) => !prev)
+  }
 
   // Updated renderSocialIcons that accepts a custom container className
   const renderSocialIcons = (containerClass = "hidden md:flex justify-end space-x-4 pr-4") => {
@@ -52,32 +64,63 @@ const Header: React.FC = () => {
       tiktok: faTiktok,
       whatsapp: faWhatsapp,
       facebook: faFacebook,
-    };
+    }
 
     return (
       <div className={containerClass}>
         {Object.entries(socialMedia).map(([key, value]) => {
-          const icon = iconMap[key];
+          const icon = iconMap[key]
           return (
             <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
               <FontAwesomeIcon
                 icon={icon}
-                className={`text-2xl transition duration-300 text-black ${isScrolled ? 'md:text-black' : 'md:text-white'} hover:text-red-600 ${
-                  isScrolled ? 'text-black' : 'text-white'
+                className={`text-2xl transition duration-300 text-black ${isScrolled ? "md:text-black" : "md:text-white"} hover:text-red-600 ${
+                  isScrolled ? "text-black" : "text-white"
                 } hover:text-red-600`}
               />
             </a>
-          );
+          )
         })}
       </div>
-    );
-  };
+    )
+  }
+
+  // Loading skeleton for the header using shadcn Skeleton component
+  if (loading) {
+    return (
+      <header
+        className={`fixed top-0 w-full transition-all duration-300 z-50 grid grid-cols-3 items-center py-2 ${
+          isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
+      >
+        {/* Left: Hamburger menu icon skeleton */}
+        <div className="flex justify-start pl-4">
+          <div className="p-3">
+            <Skeleton className="h-6 w-6" />
+          </div>
+        </div>
+
+        {/* Center: Logo skeleton */}
+        <div className="flex justify-center items-center">
+          <Skeleton className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 w-40" />
+        </div>
+
+        {/* Right: Social media icons skeleton */}
+        <div className="hidden md:flex justify-end space-x-4 pr-4">
+          <Skeleton className="h-6 w-6 rounded-full" />
+          <Skeleton className="h-6 w-6 rounded-full" />
+          <Skeleton className="h-6 w-6 rounded-full" />
+          <Skeleton className="h-6 w-6 rounded-full" />
+        </div>
+      </header>
+    )
+  }
 
   return (
     <>
       <header
         className={`fixed top-0 w-full transition-all duration-300 z-50 grid grid-cols-3 items-center py-2 ${
-          isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+          isScrolled ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
         {/* Left: Hamburger menu */}
@@ -85,12 +128,12 @@ const Header: React.FC = () => {
           <button
             className="p-3 flex items-center focus:outline-none z-50"
             onClick={toggleMenu}
-            aria-label={menuOpen ? 'Close Menu' : 'Open Menu'}
+            aria-label={menuOpen ? "Close Menu" : "Open Menu"}
           >
             <FontAwesomeIcon
               icon={menuOpen ? (faTimes as IconProp) : (faBars as IconProp)}
               className={`text-2xl transition duration-300 ${
-                isScrolled ? 'text-black' : 'text-white'
+                isScrolled ? "text-black" : "text-white"
               } hover:text-red-600`}
             />
           </button>
@@ -100,7 +143,7 @@ const Header: React.FC = () => {
         <div className="flex justify-center items-center">
           <Link href="/">
             <Image
-              src={isScrolled ? '/logos/handtekening-zwart.png' : '/logos/handtekening-wit.png'}
+              src={isScrolled ? "/logos/handtekening-zwart.png" : "/logos/handtekening-wit.png"}
               alt="wrapmaster logo"
               width={200}
               height={150}
@@ -117,7 +160,7 @@ const Header: React.FC = () => {
       <nav
         ref={menuRef}
         className={`fixed top-0 left-0 bg-white z-[100] w-full md:w-[300px] h-screen shadow-lg transform transition-transform duration-300 ease-in-out ${
-          menuOpen ? 'translate-x-0' : '-translate-x-full'
+          menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
@@ -146,15 +189,12 @@ const Header: React.FC = () => {
 
           {/* Social icons at the bottom of mobile menu */}
           <div className="p-4 pb-8 border-t border-gray-200">
-            <div className="flex justify-center space-x-4">
-              {renderSocialIcons("flex justify-center space-x-4")}
-              
-            </div>
+            <div className="flex justify-center space-x-4">{renderSocialIcons("flex justify-center space-x-4")}</div>
           </div>
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

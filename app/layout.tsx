@@ -8,9 +8,9 @@ import WhatsAppFloatingIcon from "@/components/WhatsAppFloatingIcon"
 import OfferteAanvragen from "@/components/offerte-aanvragen"
 import "photoswipe/dist/photoswipe.css"
 import FloatingSocialIcons from "@/components/FloatingSocialIcons"
-import SmoothScrolling from "@/components/SmoothScrolling"
 import ScrollToTop from "@/components/ScrollToTop"
 import Script from "next/script"
+import SmoothScrolling from "@/components/SmoothScrolling"
 
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" className={dmSans.className} suppressHydrationWarning>
-      <body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className="min-h-screen bg-background text-foreground">
         {/* Google Tag Manager Script */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -49,8 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })(window,document,'script','dataLayer','GTM-KHW52J3G');
           `}
         </Script>
-
-        {/* Google Tag Manager noscript */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KHW52J3G"
@@ -59,10 +60,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-
         <Header />
         <ScrollToTop />
-        <SmoothScrolling>{children}</SmoothScrolling>
+        <SmoothScrolling><main>{children}</main></SmoothScrolling>
         <OfferteAanvragen />
         <Footer />
         <FloatingSocialIcons />

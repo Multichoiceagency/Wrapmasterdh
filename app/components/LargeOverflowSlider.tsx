@@ -29,7 +29,6 @@ const LargeOverflowSlider = () => {
         spaceBetween={50}
         slidesPerView={1}
         centeredSlides={true}
-        loop={true}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,

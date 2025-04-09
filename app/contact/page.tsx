@@ -71,7 +71,7 @@ export default function ContactPage() {
         </div>
       )}
 
-      <main className="bg-black py-32 pl-8 pr-8 rounded-md">
+      <main className="bg-black py-32 pl-8 pr-8">
         <div className="bg-white shadow-lg rounded-lg flex flex-col lg:flex-row">
           {/* Contactformulier */}
           <div className="w-full lg:w-2/3 p-8">

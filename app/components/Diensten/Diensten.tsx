@@ -3,10 +3,11 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // ✅ Import pijlen
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface Dienst {
   id: number;
@@ -38,11 +39,11 @@ const diensten: Dienst[] = [
 
 const OnzeDiensten: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'start', slidesToScroll: 1 }, 
+    { loop: true, align: 'start', slidesToScroll: 1 },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [, setImagesLoaded] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -65,7 +66,7 @@ const OnzeDiensten: React.FC = () => {
     };
 
     emblaApi.on('select', updateButtons);
-    updateButtons(); // Directe update bij eerste load
+    updateButtons();
   }, [emblaApi]);
 
   return (
@@ -74,34 +75,43 @@ const OnzeDiensten: React.FC = () => {
         <h2 className="pb-10 text-3xl font-medium text-gray-800">ONZE DIENSTEN</h2>
       </div>
 
-      {/* Slider Container */}
       <div className="carousel-container overflow-hidden relative">
-        <div className="relative w-full h-full"> {/* ✅ Houdt de pijlen op de juiste positie */}
+        <div className="relative w-full h-full">
           <div className="embla" ref={emblaRef}>
             <div className={`embla__container transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
               {diensten.map((dienst) => (
                 <div key={dienst.id} className="embla__slide w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 px-2">
-                  <Link href={`/${dienst.slug}`}>
-                    <Card className="w-full h-[400px] sm:h-[400px] md:h-[250px] lg:h-[300px] xl:h-[300px] 2xl:h-[689px] flex flex-col relative overflow-hidden">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={dienst.afbeelding}
-                          alt={dienst.titel}
-                          fill
-                          priority
-                          style={{ objectFit: 'cover' }}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 20vw, 33vw"
-                          onLoad={handleImageLoad}
-                        />
-                      </div>
-                      <CardContent className="flex flex-col justify-end flex-grow">
-                        <div>
-                          <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
-                          <p className="text-sm text-gray-500">{dienst.subtitel}</p>
+                  {isLoaded ? (
+                    <Link href={`/${dienst.slug}`}>
+                      <Card className="w-full h-[400px] sm:h-[400px] md:h-[250px] lg:h-[300px] xl:h-[300px] 2xl:h-[689px] flex flex-col relative overflow-hidden">
+                        <div className="relative h-full w-full">
+                          <Image
+                            src={dienst.afbeelding}
+                            alt={dienst.titel}
+                            fill
+                            priority
+                            style={{ objectFit: 'cover' }}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 20vw, 33vw"
+                            onLoad={handleImageLoad}
+                          />
                         </div>
-                      </CardContent>
+                        <CardContent className="flex flex-col justify-end flex-grow">
+                          <div>
+                            <h3 className="text-l mt-5 font-semibold">{dienst.titel}</h3>
+                            <p className="text-sm text-gray-500">{dienst.subtitel}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  ) : (
+                    <Card className="w-full h-[400px] sm:h-[400px] md:h-[250px] lg:h-[300px] xl:h-[300px] 2xl:h-[689px] flex flex-col relative overflow-hidden p-4">
+                      <Skeleton className="w-full h-[70%] mb-4 rounded-lg" />
+                      <div className="flex flex-col justify-end flex-grow space-y-2">
+                        <Skeleton className="h-5 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                      </div>
                     </Card>
-                  </Link>
+                  )}
                 </div>
               ))}
             </div>
@@ -129,8 +139,8 @@ const OnzeDiensten: React.FC = () => {
       </div>
 
       <style jsx global>{`
-            .carousel-container {
-            min-height: 200px!important;
+        .carousel-container {
+          min-height: 200px!important;
         }
         .embla {
           overflow: hidden;

@@ -69,11 +69,7 @@ const reels = [
 export default function Carwrapping() {
   const [showMore, setShowMore] = useState(false);
   const [emblaRef] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      slidesToScroll: 1,
-    },
+    { loop: true, align: 'center', slidesToScroll: 1 },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
@@ -144,40 +140,34 @@ export default function Carwrapping() {
           ],
           site_name: "Wrapmaster",
         }}
-        additionalMetaTags={[
-          {
-            name: 'keywords',
-            content: 'Paint Protection Film, PPF, lakbescherming, steenslagbescherming, UV-bescherming, ppf paint protection film',
-          },
-        ]}
+        additionalMetaTags={[{
+          name: 'keywords',
+          content: 'Paint Protection Film, PPF, lakbescherming, steenslagbescherming, UV-bescherming, ppf paint protection film',
+        }]}
       />
 
-<main className="">
-  {/* Hero Sectie */}
-      <section className="relative h-[100vh] sm:h-100vh">
-  <video
-      src="/video/urus-reel.mp4"
-      autoPlay
-      loop
-      muted
-      className="absolute w-full h-full object-cover opacity-100"
-    ></video>
-    <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 space-y-4">
-      <h1 className="text-2xl md:text-4xl font-bold text-white text-center">
-        PAINT PROTECTION FILM
-      </h1>
-      <Link 
-        href="/diensten"
-        className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
-      >
-        TERUG NAAR DIENSTEN
-      </Link>
-    </div>
-  </section>
+      <main>
+        {/* Hero Video */}
+        <section className="relative h-[100vh] sm:h-[100vh]">
+          <video
+            src="/video/urus-reel.mp4"
+            autoPlay
+            loop
+            muted
+            className="absolute w-full h-full object-cover opacity-100"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 space-y-4">
+            <h1 className="text-2xl md:text-4xl font-bold text-white text-center">PAINT PROTECTION FILM</h1>
+            <Link
+              href="/diensten"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+            >
+              TERUG NAAR DIENSTEN
+            </Link>
+          </div>
+        </section>
 
-
-
-        {/* Text with Image Section */}
+        {/* Info Block */}
         <section className="flex flex-col lg:flex-row py-8 lg:py-16">
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
             <h2 className="text-2xl font-light sm:text-3xl lg:text-4xl mb-4 lg:mb-8">
@@ -192,9 +182,9 @@ export default function Carwrapping() {
                 {showMore ? "Lees minder" : "Lees meer"}
               </button>
             </div>
-            <Link 
+            <Link
               href="/offerte-aanvragen"
-              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
+              className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
             >
               Offerte aanvragen
             </Link>
@@ -213,10 +203,10 @@ export default function Carwrapping() {
           </div>
         </section>
 
+        {/* Slider */}
         <ImageCarousel images={sliderImages} />
 
-
-        {/* Two Images Section */}
+        {/* Two Image Section */}
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[700px]">
@@ -240,7 +230,7 @@ export default function Carwrapping() {
           </div>
         </section>
 
-        {/* Instagram Reels Section */}
+        {/* Reels */}
         <section className="w-full bg-white py-16">
           <h2 className="text-black text-3xl font-bold mb-8 text-center">Bekijk Onze Reels</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4">
@@ -249,7 +239,6 @@ export default function Carwrapping() {
                 key={reel.id}
                 className="relative w-full h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
               >
-                {/* Video */}
                 <video
                   src={reel.video}
                   className="w-full h-full object-cover"
@@ -257,8 +246,7 @@ export default function Carwrapping() {
                   muted
                   autoPlay
                   playsInline
-                ></video>
-                {/* Instagram Reel Overlay */}
+                />
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
                     <Image
@@ -272,50 +260,20 @@ export default function Carwrapping() {
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">
-                        <Image
-                      src="/logos/handtekening-wit.png"
-                      alt="Reels Play Icon"
-                      width={100}
-                      height={20}
-                      className="mr-2"
-                    /></span>
+                      <Image
+                        src="/logos/handtekening-wit.png"
+                        alt="Handtekening"
+                        width={100}
+                        height={20}
+                        className="mr-2"
+                      />
                       <div className="flex space-x-2">
-                        <a
-                          href={socialMedia.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faInstagram} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.tiktok}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faTiktok} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.whatsapp}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faWhatsapp} size="lg" />
-                        </a>
-                        <a
-                          href={socialMedia.facebook}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-gray-400"
-                        >
-                          <FontAwesomeIcon icon={faFacebook} size="lg" />
-                        </a>
+                        {Object.entries(socialMedia).map(([key, url]) => (
+                          <a key={key} href={url} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+                            <FontAwesomeIcon icon={faInstagram} size="lg" />
+                          </a>
+                        ))}
                       </div>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
                     </div>
                   </div>
                 </div>
@@ -324,7 +282,7 @@ export default function Carwrapping() {
           </div>
         </section>
 
-        {/* Wrapmaster Services Section */}
+        {/* Onze Diensten with Skeleton */}
         <section className="py-9">
           <OnzeDiensten />
         </section>
@@ -332,4 +290,3 @@ export default function Carwrapping() {
     </>
   );
 }
-

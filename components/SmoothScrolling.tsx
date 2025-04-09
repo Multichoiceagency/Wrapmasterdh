@@ -15,7 +15,6 @@ const options = {
 const SmoothScrolling = ({ children }: SmoothScrollingProps) => {
   return (
     <ReactLenis root options={options}>
-      {children}
     </ReactLenis>
   );
 };
