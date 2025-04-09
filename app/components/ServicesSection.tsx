@@ -12,7 +12,7 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full flex flex-col items-center h-[10vh]">
+    <section className="w-full flex flex-col items-center">
       {/* Services Container */}
       <div className="w-full flex flex-wrap justify-between items-center text-center border-b border-gray-300 py-4 px-4">
         {services.map((service, index) => (

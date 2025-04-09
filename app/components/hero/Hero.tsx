@@ -65,7 +65,7 @@ const HeroSection: React.FC = () => {
         slidesPerView={1}
         loop={true}
         pagination={{
-          clickable: true,
+          clickable: false,
           el: ".swiper-pagination",
         }}
         autoplay={{

@@ -3,15 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
-import DOMPurify from "dompurify";
+import dynamic from "next/dynamic";
 
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
+// ✅ Dynamisch importeren zonder SSR
+const NextSeoClient = dynamic(() =>
+  import("next-seo").then((mod) => mod.NextSeo), { ssr: false }
 );
 
-// BlogPost type
+// ✅ BlogPost type
 type BlogPost = {
   id: number;
   title: string;
@@ -26,7 +25,7 @@ type BlogPost = {
 async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const res = await fetch("https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed", {
-      next: { revalidate: 3600 }, // Cache de API voor 1 uur
+      next: { revalidate: 3600 }, // 1 uur cache
     });
 
     if (!res.ok) throw new Error("Fout bij ophalen van blogposts");
@@ -102,46 +101,48 @@ export default function BlogPage() {
           {/* 🔹 Laadindicator */}
           {loading && <p className="text-center py-6 text-gray-600">Laden...</p>}
 
-          {/* 🔹 Fallback als er geen posts zijn */}
-          {!loading && blogPosts.length === 0 && <p className="text-center py-6 text-gray-600">Geen blogs gevonden.</p>}
+          {/* 🔹 Geen data fallback */}
+          {!loading && blogPosts.length === 0 && (
+            <p className="text-center py-6 text-gray-600">Geen blogs gevonden.</p>
+          )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {blogPosts.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
-                {/* 📌 Afbeelding of video */}
-                <div className="relative aspect-[16/9] w-full h-64 overflow-hidden">
-                  {post.video_file ? (
-                    <video
-                      src={post.video_file}
-                      autoPlay
-                      loop
-                      muted
-                      className="w-full h-full object-cover"
-                    ></video>
-                  ) : (
-                    <Image
-                      src={post.featured_image}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  )}
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.map((post, index) => (
+              post.slug && (
+                <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
+                  {/* 📌 Afbeelding of video */}
+                  <div className="relative aspect-[16/9] w-full h-64 overflow-hidden rounded-md">
+                    {post.video_file && index === 0 ? (
+                      <video
+                        src={post.video_file}
+                        autoPlay
+                        loop
+                        muted
+                        className="w-full h-full object-cover rounded-md"
+                      />
+                    ) : (
+                      <Image
+                        src={post.featured_image}
+                        alt={post.title || "Blog afbeelding"}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+                      />
+                    )}
+                  </div>
 
-                {/* 📌 Card Content */}
-                <div className="p-3 bg-white rounded-md flex flex-col justify-between h-[200px]">
-                  <h3 className="text-l font-semibold text-gray-800 group-hover:text-primary transition min-h-[50px]">
-                    {post.title}
-                  </h3>
-
-                  {/* 🔹 Veilig excerpt tonen */}
-                  <p className="text-sm text-gray-600 min-h-[50px] line-clamp-3">
-                    {DOMPurify.sanitize(post.excerpt.replace(/(<([^>]+)>)/gi, "").slice(0, 90))}...
-                  </p>
-
-                  <p className="text-sm text-gray-500">{post.date}</p>
-                </div>
-              </Link>
+                  {/* 📌 Content */}
+                  <div className="p-3 bg-white rounded-md flex flex-col justify-between h-[200px]">
+                    <h3 className="text-l font-semibold text-gray-800 group-hover:text-primary transition min-h-[50px]">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 min-h-[50px] line-clamp-3">
+                      {post.excerpt.replace(/(<([^>]+)>)/gi, "").slice(0, 90)}...
+                    </p>
+                    <p className="text-sm text-gray-500">{post.date}</p>
+                  </div>
+                </Link>
+              )
             ))}
           </div>
         </section>

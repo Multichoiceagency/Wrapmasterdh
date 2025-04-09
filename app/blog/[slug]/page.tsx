@@ -1,20 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'; // ✅ Haal params correct op in client components
+import { useParams } from 'next/navigation';
 import { BlogPost } from "@/app/types/blog";
 import Image from "next/image";
 import Link from "next/link";
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?slug=${slug}&_embed`, { next: { revalidate: 3600 } });
   const posts = await res.json();
 
-  if (posts.length === 0) {
-    return null;
-  }
+  if (posts.length === 0) return null;
 
   const post = posts[0];
   return {
@@ -44,10 +40,9 @@ async function getRecentPosts(): Promise<BlogPost[]> {
 }
 
 export default function BlogPostPage() {
-  const params = useParams(); // ✅ Gebruik useParams() in client component
+  const params = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
-  const [emblaRef] = useEmblaCarousel({ loop: true, slidesToScroll: 3, align: 'start' }, [Autoplay()]);
 
   useEffect(() => {
     if (params?.slug) {
@@ -76,6 +71,7 @@ export default function BlogPostPage() {
         </div>
       </section>
 
+      {/* Blog Content */}
       <article className="container mx-auto py-12 px-4">
         <Link href="/blog" className="text-primary font-bold hover:text-red-700 hover:underline mb-4 inline-block">
           &larr; Terug naar Blog
@@ -83,9 +79,9 @@ export default function BlogPostPage() {
         <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
           <div className="md:w-1/2 mb-8 md:mb-0">
             {post.video_file ? (
-              <video src={post.video_file} controls className="w-full h-auto object-cover"></video>
+              <video src={post.video_file} controls className="w-full h-auto object-cover rounded-xl"></video>
             ) : (
-              <div className="relative aspect-[16/9] w-full ">
+              <div className="relative aspect-[16/9] w-full">
                 <Image src={post.featured_image} alt={post.title} fill className="object-cover rounded-xl" />
               </div>
             )}
@@ -103,30 +99,27 @@ export default function BlogPostPage() {
         </div>
       </article>
 
-      {/* Recent Posts Slider */}
+      {/* Recent Posts Grid */}
       <section className="bg-gray-100 py-12 w-full">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold mb-8 text-center">Recente Berichten</h2>
-        </div>
-        <div className="embla overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {recentPosts.map((recentPost) => (
-              <div key={recentPost.id} className="embla__slide flex-[0_0_33.33%] min-w-0 px-4">
-                <Link href={`/blog/${recentPost.slug}`} className="block group">
-                  <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden rounded-md">
-                    <Image
-                      src={recentPost.featured_image}
-                      alt={recentPost.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <h3 className="text-sm font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
-                    {recentPost.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{recentPost.date}</p>
-                </Link>
-              </div>
+              <Link key={recentPost.id} href={`/blog/${recentPost.slug}`} className="block group">
+                <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden rounded-md">
+                  <Image
+                    src={recentPost.featured_image}
+                    alt={recentPost.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="text-sm font-semibold text-gray-800 mb-2 group-hover:text-primary transition">
+                  {recentPost.title}
+                </h3>
+                <p className="text-sm text-gray-600">{recentPost.date}</p>
+              </Link>
             ))}
           </div>
         </div>
