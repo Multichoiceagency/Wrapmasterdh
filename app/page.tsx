@@ -1,51 +1,87 @@
-"use client";
+"use client"
+import { Suspense } from "react"
+import HeroSection from "./components/hero/Hero"
+import ServicesSection from "./components/ServicesSection"
+import dynamic from "next/dynamic"
 
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import ServicesSection from "./components/ServicesSection";
-// SEO dynamisch importeren
-const NextSeoClient = dynamic(() =>
-  import("next-seo").then((mod) => mod.NextSeo),
-  { ssr: false }
-);
+// Components that are likely to be visible in the initial viewport
+// are loaded normally to ensure they appear immediately
 
-// Dynamisch importeren van componenten
-const HeroSection = dynamic(() => import("./components/hero/Hero"));
-const CustomSection = dynamic(() => import("./components/Customsection/CustomSection"));
-const NewsEvents = dynamic(() => import("@/components/newsevents"));
-const Afbeelding = dynamic(() => import("@/components/Afbeelding"));
-const DynamicSection = dynamic(() => import("@/components/DynamicSection"));
-const ProductSlider = dynamic(() => import("@/components/ProductSlider"));
-const OnzeDiensten = dynamic(() => import("./components/Diensten/Diensten"));
-const PrintFolie = dynamic(() => import("@/components/PrintFolie"));
-const NewCustomSection = dynamic(() => import("@/components/NewCustomSection"));
-const ThreeDCarwrapping = dynamic(() => import("@/components/ThreeDCarwrapping"));
-const BoatSection = dynamic(() => import("@/components/BoatSection"));
-const BoatenSlider = dynamic(() => import("@/components/BoatenSlider"));
+// Lazy load components that are likely below the fold
+const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
+
+// Simple loading placeholder component
+const LoadingPlaceholder = () => (
+  <div className="w-full py-16 flex justify-center items-center">
+    <div className="animate-pulse space-y-4 w-full max-w-4xl px-4">
+      <div className="h-8 bg-gray-200 rounded w-3/4 mx-auto"></div>
+      <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="h-40 bg-gray-200 rounded"></div>
+        <div className="h-40 bg-gray-200 rounded"></div>
+        <div className="h-40 bg-gray-200 rounded"></div>
+      </div>
+    </div>
+  </div>
+)
+
+// Lazy load components with appropriate loading placeholders
+const NewsEvents = dynamic(() => import("@/components/newsevents"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const Afbeelding = dynamic(() => import("@/components/Afbeelding"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const DynamicSection = dynamic(() => import("@/components/DynamicSection"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const OnzeDiensten = dynamic(() => import("./components/Diensten/Diensten"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const CustomSection = dynamic(() => import("./components/Customsection/CustomSection"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const ProductSlider = dynamic(() => import("@/components/ProductSlider"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const PrintFolie = dynamic(() => import("@/components/PrintFolie"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const NewCustomSection = dynamic(() => import("@/components/NewCustomSection"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const ThreeDCarwrapping = dynamic(() => import("@/components/ThreeDCarwrapping"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const BoatSection = dynamic(() => import("@/components/BoatSection"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
+
+const BoatenSlider = dynamic(() => import("@/components/BoatenSlider"), {
+  loading: () => <LoadingPlaceholder />,
+  ssr: true,
+})
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Wacht tot alle componentbestanden zijn ingeladen
-    Promise.all([
-      import('./components/hero/Hero'),
-      import('./components/Customsection/CustomSection'),
-      import('@/components/newsevents'),
-      import('@/components/Afbeelding'),
-      import('@/components/DynamicSection'),
-      import('@/components/ProductSlider'),
-      import('./components/Diensten/Diensten'),
-      import('@/components/PrintFolie'),
-      import('@/components/NewCustomSection'),
-      import('@/components/ThreeDCarwrapping'),
-      import('@/components/BoatSection'),
-      import('@/components/BoatenSlider')
-    ]).then(() => {
-      setTimeout(() => setIsLoading(false), 300);
-    });
-  }, []);
-
   return (
     <div className="w-full overflow-x-hidden">
       <NextSeoClient
@@ -81,35 +117,54 @@ export default function Home() {
         ]}
       />
 
-      {isLoading ? (
-        <div className="p-10 flex flex-col space-y-6 animate-pulse">
-          <div className="h-[400px] bg-gray-200 rounded-md" />
-          <div className="h-10 bg-gray-200 rounded-md w-1/2" />
-          <div className="h-32 bg-gray-200 rounded-md" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="h-40 bg-gray-200 rounded-md" />
-            <div className="h-40 bg-gray-200 rounded-md" />
-            <div className="h-40 bg-gray-200 rounded-md" />
-            <div className="h-40 bg-gray-200 rounded-md" />
-          </div>
-        </div>
-      ) : (
-        <>
-          <HeroSection />
-          <ServicesSection />
-          <NewsEvents />
-          <Afbeelding />
-          <DynamicSection />
-          <OnzeDiensten />
-          <CustomSection />
-          <ProductSlider />
-          <PrintFolie />
-          <ThreeDCarwrapping />
-          <NewCustomSection />
-          <BoatenSlider />
-          <BoatSection />
-        </>
-      )}
+      {/* Critical above-the-fold content loaded immediately */}
+      <HeroSection />
+      <ServicesSection />
+
+      {/* Below-the-fold content lazy loaded */}
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <NewsEvents />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <Afbeelding />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <DynamicSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <OnzeDiensten />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <CustomSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <ProductSlider />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <PrintFolie />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <ThreeDCarwrapping />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <NewCustomSection />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <BoatenSlider />
+      </Suspense>
+
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <BoatSection />
+      </Suspense>
     </div>
-  );
+  )
 }

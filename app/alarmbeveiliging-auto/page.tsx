@@ -1,22 +1,35 @@
-'use client';
+"use client"
 
-import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
-import Image from 'next/image';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import type React from "react"
 
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
-);
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import dynamic from "next/dynamic"
+
+const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
+
+// Lazy load accordion content
+const LazyAccordionContent = ({ content }: { content: React.ReactNode }) => {
+  return <div className="px-4 py-3 bg-white">{content}</div>
+}
+
+const DynamicAccordionContent = dynamic(() => Promise.resolve(LazyAccordionContent), {
+  loading: () => (
+    <div className="px-4 py-3 bg-white">
+      <div className="animate-pulse h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+      <div className="animate-pulse h-4 bg-gray-200 rounded w-1/2"></div>
+    </div>
+  ),
+  ssr: false,
+})
 
 // Hero section data
 const dienstData = {
   title: "ALARMBEVEILIGING",
   description: "",
   heroImage: "/enes-website/alarm/proefdruk-alarm-stickers.webp",
-};
+}
 
 // Accordion data
 const klassenData = [
@@ -25,8 +38,9 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een goedgekeurde **SCM startonderbreker** beveiligt uw auto tegen diefstal. Af-fabriek is elke Europese auto voorzien van een startonderbreker, 
-          maar door nieuwe diefstalmethodes is deze niet meer voldoende. Daarom wordt er een **extra startonderbreker met eigen autorisatie** geïnstalleerd.
+          Een goedgekeurde **SCM startonderbreker** beveiligt uw auto tegen diefstal. Af-fabriek is elke Europese auto
+          voorzien van een startonderbreker, maar door nieuwe diefstalmethodes is deze niet meer voldoende. Daarom wordt
+          er een **extra startonderbreker met eigen autorisatie** geïnstalleerd.
         </p>
         <h3 className="mt-4 font-semibold">Voordelen van een SCM startonderbreker:</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -43,7 +57,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          **SCM Klasse Alarmsysteem** (voorheen Klasse 2) bevat een SCM gecertificeerde startonderbreker aangevuld met een alarmsysteem met **inbraakdetectie en alarmering**.
+          **SCM Klasse Alarmsysteem** (voorheen Klasse 2) bevat een SCM gecertificeerde startonderbreker aangevuld met
+          een alarmsysteem met **inbraakdetectie en alarmering**.
         </p>
         <h3 className="mt-4 font-semibold">Wat biedt Klasse 2?</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -60,7 +75,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een **SCM Alarmsysteem 3** biedt **extra beveiliging** met hellingshoekdetectie en een **triple beveiliging** tegen diefstal en sabotage.
+          Een **SCM Alarmsysteem 3** biedt **extra beveiliging** met hellingshoekdetectie en een **triple beveiliging**
+          tegen diefstal en sabotage.
         </p>
         <h3 className="mt-4 font-semibold">Beveiligingsfuncties van Klasse 3:</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -78,7 +94,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          **SCM Klasse Voertuigvolgsysteem** is de nieuwe naam voor **Klasse 4 en 5**, aangevuld met een extra startonderbreker.
+          **SCM Klasse Voertuigvolgsysteem** is de nieuwe naam voor **Klasse 4 en 5**, aangevuld met een extra
+          startonderbreker.
         </p>
         <h3 className="mt-4 font-semibold">Wat biedt een voertuigvolgsysteem?</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -96,7 +113,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          Laat uw alarmsysteem **op tijd keuren**! Als uw alarm ouder is dan **3 jaar**, moet u deze jaarlijks laten keuren om het certificaat geldig te houden.
+          Laat uw alarmsysteem **op tijd keuren**! Als uw alarm ouder is dan **3 jaar**, moet u deze jaarlijks laten
+          keuren om het certificaat geldig te houden.
         </p>
         <h3 className="mt-4 font-semibold">Waarom keuren?</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -112,7 +130,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          Sinds 2020 heeft de **Keyless Protector** CCV / SCM goedkeuring voor het **KE01 keurmerk**. Vanaf 2021 verplichten verzekeraars **extra bescherming tegen relay attacks**.
+          Sinds 2020 heeft de **Keyless Protector** CCV / SCM goedkeuring voor het **KE01 keurmerk**. Vanaf 2021
+          verplichten verzekeraars **extra bescherming tegen relay attacks**.
         </p>
         <h3 className="mt-4 font-semibold">Wat beschermt KE01?</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -128,7 +147,8 @@ const klassenData = [
     content: (
       <>
         <p>
-          Een **peilzender** zorgt ervoor dat uw auto traceerbaar blijft na diefstal. Dit systeem werkt samen met een **meldkamer abonnement**.
+          Een **peilzender** zorgt ervoor dat uw auto traceerbaar blijft na diefstal. Dit systeem werkt samen met een
+          **meldkamer abonnement**.
         </p>
         <h3 className="mt-4 font-semibold">Voordelen van een Peilzender:</h3>
         <ul className="list-disc pl-5 mt-2 space-y-2">
@@ -140,14 +160,14 @@ const klassenData = [
       </>
     ),
   },
-];
+]
 
 export default function AlarmsystemenInstalleren() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+    setOpenIndex(openIndex === index ? null : index)
+  }
 
   return (
     <>
@@ -160,7 +180,7 @@ export default function AlarmsystemenInstalleren() {
         {/* ✅ Hero Section ✅ */}
         <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-50vh">
           <Image
-            src={dienstData.heroImage}
+            src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
             className="object-cover"
@@ -178,7 +198,7 @@ export default function AlarmsystemenInstalleren() {
           </div>
         </section>
 
-        {/* ✅ Accordion Section ✅ */}
+        {/* ✅ Accordion Section with Lazy Loading ✅ */}
         <section className="max-w-4xl mx-auto px-4 py-16">
           <h2 className="text-3xl font-bold mb-6 text-center">Alarmsystemen Klassen</h2>
           <div className="space-y-4">
@@ -192,17 +212,13 @@ export default function AlarmsystemenInstalleren() {
                   {item.title}
                 </button>
 
-                {/* Accordion Content */}
-                {openIndex === index && (
-                  <div className="px-4 py-3 bg-white">
-                    {item.content}
-                  </div>
-                )}
+                {/* Lazy Loaded Accordion Content */}
+                {openIndex === index && <DynamicAccordionContent content={item.content} />}
               </div>
             ))}
           </div>
         </section>
       </main>
     </>
-  );
+  )
 }
