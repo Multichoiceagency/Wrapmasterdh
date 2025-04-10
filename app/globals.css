@@ -1,10 +1,42 @@
+/* External CSS imports - must come first */
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Keep external CSS imports */
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
+/* Pas de standaard body font aan naar DIN */
+body {
+  margin: 0;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased; /* Ensures better font rendering on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* Ensures better font rendering on macOS */
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+
+  .parallax-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+}
 
 @layer base {
   :root {
@@ -33,6 +65,12 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Swiper variables - all set to white */
+    --swiper-theme-color: #ffffff;
+    --swiper-navigation-color: #ffffff;
+    --swiper-navigation-size: 44px;
+    --swiper-pagination-color: #ffffff;
   }
 
   .dark {
@@ -67,37 +105,156 @@
   }
 
   body {
-    margin: 0;
-    line-height: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-    padding-top: env(safe-area-inset-top);
-    @layer bg-background, text-foreground;
+    @apply bg-background text-foreground;
   }
 }
 
 @layer components {
-  /* Swiper navigatie-pijlen */
+  /* Swiper Navigation Buttons */
   .swiper-button-prev,
   .swiper-button-next {
-    color: #ffffff !important; /* Witte pijlen */
-    transition: color 0.3s ease;
+    top: var(--swiper-navigation-top-offset, 50%);
+    width: calc(var(--swiper-navigation-size) / 44 * 27);
+    height: var(--swiper-navigation-size);
+    margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    color: #ffffff; /* White color for navigation arrows */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    /* Additional custom styling */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    padding: 8px;
+    transition: all 0.3s ease;
   }
 
   .swiper-button-prev:hover,
   .swiper-button-next:hover {
-    color: #ff0000 !important; /* Rood bij hover */
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: scale(1.1);
+    color: #ffffff; /* Keep white color on hover */
   }
 
-  /* Swiper paginatie-bullets */
+  .swiper-button-prev {
+    left: 10px;
+    right: auto;
+  }
+
+  .swiper-button-next {
+    right: 10px;
+    left: auto;
+  }
+
+  .swiper-button-prev.swiper-button-disabled,
+  .swiper-button-next.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
+  }
+
+  /* Swiper Pagination (Bullets) */
   .swiper-pagination-bullet {
-    background-color: #fff !important; /* Witte bullets */
-    opacity: 1;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7); /* White bullets with opacity */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    margin: 0 5px;
   }
 
   .swiper-pagination-bullet-active {
-    background-color: #ff0000 !important; /* Rode actieve bullet */
+    background-color: #ffffff; /* Pure white for active bullets */
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  /* Square bullets variation */
+  .square-bullets .swiper-pagination-bullet {
+    border-radius: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .square-bullets .swiper-pagination-bullet-active {
+    background-color: #ffffff;
+  }
+
+  /* Line bullets variation */
+  .line-bullets .swiper-pagination-bullet {
+    width: 20px;
+    height: 3px;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .line-bullets .swiper-pagination-bullet-active {
+    background-color: #ffffff;
+  }
+
+  /* Slick Carousel Bullet Points (if you're using both Swiper and Slick) */
+  .slick-dots li {
+    margin: 0 6px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7); /* White bullets with opacity */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: #ffffff; /* Pure white for active bullets */
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  /* Square bullets variation for Slick */
+  .square-dots .slick-dots li button:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0.7;
+  }
+
+  .square-dots .slick-dots li.slick-active button:before {
+    background-color: #ffffff;
+    opacity: 1;
+  }
+
+  /* Line bullets variation for Slick */
+  .line-dots .slick-dots li {
+    width: 20px;
+    height: 3px;
+    margin: 0 5px;
+  }
+
+  .line-dots .slick-dots li button {
+    width: 20px;
+    height: 3px;
+    padding: 0;
+  }
+
+  .line-dots .slick-dots li button:before {
+    content: "";
+    width: 20px;
+    height: 3px;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0.7;
+  }
+
+  .line-dots .slick-dots li.slick-active button:before {
+    background-color: #ffffff;
     opacity: 1;
   }
 
@@ -121,27 +278,6 @@
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .hide-scrollbar {
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  }
-
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-  }
-
-  .parallax-bg {
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-  }
-}
-
 /* Define animations */
 @keyframes draw {
   to {
@@ -152,7 +288,7 @@
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(226, 17, 17, 0.7);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
   }
 
   70% {
