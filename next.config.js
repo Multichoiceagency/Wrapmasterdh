@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable ESLint checks during build process
   eslint: {
     ignoreDuringBuilds: true,
   },
+  
+  // Image optimization configuration
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -34,19 +37,20 @@ const nextConfig = {
     ],
   },
 
+  // Set cache headers for all routes
   async headers() {
     return [
       {
-        source: "/(.*)", // Alle routes en bestanden
+        source: "/(.*)", // All routes and files
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=604800, must-revalidate", // 7 dagen cache
+            value: "public, max-age=604800, must-revalidate", // 7-day cache
           },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
