@@ -45,12 +45,8 @@ const Header: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    // Simulate loading of header data
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
+    // Set loading to false immediately
+    setLoading(false)
   }, [])
 
   const toggleMenu = () => {
