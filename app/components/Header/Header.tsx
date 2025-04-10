@@ -8,7 +8,6 @@ import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free
 import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 import Link from "next/link"
 import Image from "next/image"
-import { Skeleton } from "@/components/ui/skeleton"
 
 const menuItems = [
   { id: 1, title: "Home", link: "/" },
@@ -32,7 +31,6 @@ const socialMedia = {
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [loading, setLoading] = useState(true)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,11 +40,6 @@ const Header: React.FC = () => {
 
     document.addEventListener("scroll", handleScroll)
     return () => document.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    // Set loading to false immediately
-    setLoading(false)
   }, [])
 
   const toggleMenu = () => {
@@ -70,45 +63,12 @@ const Header: React.FC = () => {
             <a key={key} href={value} target="_blank" rel="noopener noreferrer" aria-label={key}>
               <FontAwesomeIcon
                 icon={icon}
-                className={`text-2xl transition duration-300 text-black ${isScrolled ? "md:text-black" : "md:text-white"} hover:text-red-600 ${
-                  isScrolled ? "text-black" : "text-white"
-                } hover:text-red-600`}
+                className={`text-2xl transition duration-300 ${isScrolled ? "text-black" : "text-white"} hover:text-red-600`}
               />
             </a>
           )
         })}
       </div>
-    )
-  }
-
-  // Loading skeleton for the header using shadcn Skeleton component
-  if (loading) {
-    return (
-      <header
-        className={`fixed top-0 w-full transition-all duration-300 z-50 grid grid-cols-3 items-center py-2 ${
-          isScrolled ? "bg-white shadow-md" : "bg-transparent"
-        }`}
-      >
-        {/* Left: Hamburger menu icon skeleton */}
-        <div className="flex justify-start pl-4">
-          <div className="p-3">
-            <Skeleton className="h-6 w-6" />
-          </div>
-        </div>
-
-        {/* Center: Logo skeleton */}
-        <div className="flex justify-center items-center">
-          <Skeleton className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 w-40" />
-        </div>
-
-        {/* Right: Social media icons skeleton */}
-        <div className="hidden md:flex justify-end space-x-4 pr-4">
-          <Skeleton className="h-6 w-6 rounded-full" />
-          <Skeleton className="h-6 w-6 rounded-full" />
-          <Skeleton className="h-6 w-6 rounded-full" />
-          <Skeleton className="h-6 w-6 rounded-full" />
-        </div>
-      </header>
     )
   }
 
@@ -144,6 +104,7 @@ const Header: React.FC = () => {
               width={200}
               height={150}
               className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 w-auto transition-all duration-300"
+              priority
             />
           </Link>
         </div>
@@ -162,7 +123,7 @@ const Header: React.FC = () => {
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center p-4">
             <Link href="/">
-              <Image src="/logos/logo-zwart.png" alt="Logo zwart" width={250} height={150} className="w-36" />
+              <Image src="/logos/logo-zwart.png" alt="Logo zwart" width={250} height={150} className="w-36" priority />
             </Link>
             <button className="text-2xl focus:outline-none" onClick={toggleMenu} aria-label="Close Menu">
               <FontAwesomeIcon icon={faTimes as IconProp} />
@@ -172,13 +133,25 @@ const Header: React.FC = () => {
           <ul className="flex-grow overflow-y-auto">
             {menuItems.map((item) => (
               <li key={item.id} className="py-2 px-4">
-                <Link
-                  href={item.link}
-                  onClick={toggleMenu}
-                  className="block w-full text-lg font-light hover:text-red-600 hover:font-medium transition-colors duration-200"
-                >
-                  {item.title}
-                </Link>
+                {item.link.startsWith("http") ? (
+                  <a
+                    href={item.link}
+                    onClick={toggleMenu}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-lg font-light hover:text-red-600 hover:font-medium transition-colors duration-200"
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.link}
+                    onClick={toggleMenu}
+                    className="block w-full text-lg font-light hover:text-red-600 hover:font-medium transition-colors duration-200"
+                  >
+                    {item.title}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

@@ -1,22 +1,27 @@
-"use client";
-import { ReactLenis } from "@studio-freight/react-lenis";
-import { ReactNode } from "react";
+"use client"
+
+import type React from "react"
+import { useEffect, type ReactNode } from "react"
 
 interface SmoothScrollingProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
-const options = {
-  lerp: 0.1,
-  duration: 1.9,
-  smoothTouch: true,
-} as any;
+const SmoothScrolling: React.FC<SmoothScrollingProps> = ({ children }) => {
+  useEffect(() => {
+    // Only run on client side
+    if (typeof window === "undefined") return
 
-const SmoothScrolling = ({ children }: SmoothScrollingProps) => {
-  return (
-    <ReactLenis root options={options}>
-    </ReactLenis>
-  );
-};
+    // Apply smooth scrolling
+    document.documentElement.style.scrollBehavior = "smooth"
 
-export default SmoothScrolling;
+    // Cleanup
+    return () => {
+      document.documentElement.style.scrollBehavior = ""
+    }
+  }, [])
+
+  return <>{children}</>
+}
+
+export default SmoothScrolling
