@@ -1,27 +1,23 @@
-'use client';
+"use client"
 
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Link from 'next/link';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import OnzeDiensten from '@/app/components/Diensten/Diensten';
-import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageCarousel from '@/components/ImageCarousel';
+import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import Link from "next/link"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import OnzeDiensten from "@/app/components/Diensten/Diensten"
+import ImageCarousel from "@/components/ImageCarousel"
+import { Skeleton } from "@/components/ui/skeleton"
 
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
-);
+const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
 const socialMedia = {
-  instagram: 'https://www.instagram.com/wrapmasterdh/',
-  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
-  whatsapp: 'https://wa.me/31638718893',
-  facebook: 'https://www.facebook.com/WrapmasterDH',
-};
+  instagram: "https://www.instagram.com/wrapmasterdh/",
+  tiktok: "https://www.tiktok.com/@wrapmasterdh",
+  whatsapp: "https://wa.me/31638718893",
+  facebook: "https://www.facebook.com/WrapmasterDH",
+}
 
 const dienstData = {
   title: "VELGEN POEDERCOATEN",
@@ -30,50 +26,144 @@ const dienstData = {
   contentImage1: "/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (30 of 41)-min.jpg",
   contentImage2: "/enes-website/velgen-poedercoaten/RSQ3-15-min.jpg",
   contentImage3: "/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
-};
+}
 
 const sliderImages = [
   "/enes-website/velgen-poedercoaten/WM-21-min.jpg",
   "/enes-website/velgen-poedercoaten/BlndrAgency_ (21 of 34)-min.jpg",
   "/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (26 of 41)-min.jpg",
   "/enes-website/velgen-poedercoaten/1000019599-min.jpg",
-];
+]
+
+// Skeleton component for the Velgen Poedercoaten page
+function VelgenPoedercoatenSkeleton() {
+  return (
+    <div className="animate-pulse bg-white">
+      {/* Hero Section Skeleton */}
+      <section className="relative h-[100vh] sm:h-[100vh]">
+        <Skeleton className="w-full h-full" />
+        <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="text-left px-4 max-w-4xl">
+            <Skeleton className="h-10 w-64 mx-auto mb-2" />
+            <Skeleton className="h-6 w-full mx-auto mb-6" />
+            <div className="flex justify-center">
+              <Skeleton className="h-10 w-48" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Text with Image Section Skeleton */}
+      <section className="flex flex-col lg:flex-row py-8 lg:py-16">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
+          <Skeleton className="h-12 w-3/4 mb-8" />
+          <div className="space-y-4 mb-8">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+          </div>
+          <Skeleton className="h-10 w-40" />
+        </div>
+        <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+          <Skeleton className="w-full h-[300px] sm:h-[400px] lg:h-[500px]" />
+        </div>
+      </section>
+
+      {/* Carousel Skeleton */}
+      <section className="py-8">
+        <div className="overflow-hidden">
+          <div className="flex space-x-4 px-4">
+            {[1, 2, 3, 4].map((_, index) => (
+              <Skeleton key={index} className="min-w-[280px] h-[200px] rounded-lg" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Two Images Section Skeleton */}
+      <section className="max-w-full mx-auto mt-16 md:mt-44">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Skeleton className="h-[700px] sm:h-[800px]" />
+          <Skeleton className="h-[700px] sm:h-[800px]" />
+        </div>
+      </section>
+
+      {/* Onze Diensten Section Skeleton */}
+      <section className="py-9">
+        <Skeleton className="h-10 w-64 mx-auto mb-8" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+          {[1, 2, 3].map((_, index) => (
+            <Skeleton key={index} className="h-[300px] rounded-lg" />
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
 
 export default function VelgenPoedercoaten() {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
-      align: 'center',
+      align: "center",
       slidesToScroll: 1,
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
-  );
+    [Autoplay({ delay: 3000, stopOnInteraction: false })],
+  )
+
+  // Simulate loading
+  useEffect(() => {
+    // Simulate content loading
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const shortText = (
     <p>
-      Wil je jouw velgen een frisse, stijlvolle uitstraling geven én beschermen tegen slijtage en weersinvloeden? Kies voor velgen poedercoaten bij Wrapmaster! Met onze hoogwaardige poedercoatservice geven we jouw velgen een nieuwe look die jarenlang meegaat. Ons team met jarenlange ervaring garandeert een perfecte afwerking en duurzaamheid.
+      Wil je jouw velgen een frisse, stijlvolle uitstraling geven én beschermen tegen slijtage en weersinvloeden? Kies
+      voor velgen poedercoaten bij Wrapmaster! Met onze hoogwaardige poedercoatservice geven we jouw velgen een nieuwe
+      look die jarenlang meegaat. Ons team met jarenlange ervaring garandeert een perfecte afwerking en duurzaamheid.
     </p>
-  );
+  )
 
   const fullText = (
     <>
       {shortText}
       <h3 className="mt-6 text-xl font-semibold">Wat is Velgen Poedercoaten?</h3>
       <p className="mt-3">
-        Poedercoaten is een proces waarbij een elektrostatische poederlaag op de velgen wordt aangebracht en vervolgens wordt uitgehard in een oven. Het resultaat is een gladde, slijtvaste en weerbestendige coating die veel duurzamer is dan traditionele lak. Bovendien biedt poedercoaten een breed scala aan kleuren en afwerkingen, waardoor je jouw velgen volledig kunt personaliseren.
+        Poedercoaten is een proces waarbij een elektrostatische poederlaag op de velgen wordt aangebracht en vervolgens
+        wordt uitgehard in een oven. Het resultaat is een gladde, slijtvaste en weerbestendige coating die veel
+        duurzamer is dan traditionele lak. Bovendien biedt poedercoaten een breed scala aan kleuren en afwerkingen,
+        waardoor je jouw velgen volledig kunt personaliseren.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Waarom Velgen Poedercoaten?</h3>
       <ul className="list-disc list-inside mt-2">
         <li>Luxe uitstraling: Geef jouw auto een premium look met velgen die perfect passen bij jouw stijl.</li>
         <li>Duurzaamheid: De poedercoating biedt een uitstekende bescherming tegen steenslag, krassen en roest.</li>
-        <li>Kleuropties: Kies uit een breed scala aan kleuren en afwerkingen, zoals metallic, mat, glanzend of satijn.</li>
-        <li>Kostenbesparend: Poedercoaten is een betaalbaar alternatief voor het vervangen van velgen en verlengt hun levensduur aanzienlijk.</li>
-        <li>Milieuvriendelijk: Poedercoating is een milieuvriendelijke optie zonder oplosmiddelen of schadelijke chemicaliën.</li>
+        <li>
+          Kleuropties: Kies uit een breed scala aan kleuren en afwerkingen, zoals metallic, mat, glanzend of satijn.
+        </li>
+        <li>
+          Kostenbesparend: Poedercoaten is een betaalbaar alternatief voor het vervangen van velgen en verlengt hun
+          levensduur aanzienlijk.
+        </li>
+        <li>
+          Milieuvriendelijk: Poedercoating is een milieuvriendelijke optie zonder oplosmiddelen of schadelijke
+          chemicaliën.
+        </li>
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Wrapmaster: Jouw Specialist in Velgen Poedercoaten</h3>
       <p className="mt-3">
-        Bij Wrapmaster beschikken we over de expertise en apparatuur om jouw velgen perfect te poedercoaten. Van grondige voorbereiding tot een hoogwaardige afwerking, ons team met jarenlange ervaring zorgt ervoor dat jouw velgen er weer als nieuw uitzien. Of je nu kiest voor een klassieke kleur of een opvallend design, wij leveren altijd maatwerk dat voldoet aan jouw wensen.
+        Bij Wrapmaster beschikken we over de expertise en apparatuur om jouw velgen perfect te poedercoaten. Van
+        grondige voorbereiding tot een hoogwaardige afwerking, ons team met jarenlange ervaring zorgt ervoor dat jouw
+        velgen er weer als nieuw uitzien. Of je nu kiest voor een klassieke kleur of een opvallend design, wij leveren
+        altijd maatwerk dat voldoet aan jouw wensen.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Onze Velgen Poedercoat Opties</h3>
       <p className="mt-3">
@@ -86,7 +176,9 @@ export default function VelgenPoedercoaten() {
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Waarom Kiezen voor Wrapmaster?</h3>
       <p className="mt-3">
-        Bij Wrapmaster combineren we vakmanschap met hoogwaardige materialen om jou de beste service te bieden. Ons team werkt met precisie en oog voor detail, zodat je altijd tevreden bent met het eindresultaat. Jouw velgen krijgen niet alleen een nieuwe look, maar zijn ook beter beschermd tegen slijtage en de elementen.
+        Bij Wrapmaster combineren we vakmanschap met hoogwaardige materialen om jou de beste service te bieden. Ons team
+        werkt met precisie en oog voor detail, zodat je altijd tevreden bent met het eindresultaat. Jouw velgen krijgen
+        niet alleen een nieuwe look, maar zijn ook beter beschermd tegen slijtage en de elementen.
       </p>
       <h4 className="mt-4 text-lg font-semibold">Voordelen van velgen poedercoaten bij Wrapmaster:</h4>
       <ul className="list-disc list-inside mt-2">
@@ -97,17 +189,36 @@ export default function VelgenPoedercoaten() {
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Onze Werkwijze</h3>
       <ol className="list-decimal list-inside mt-2">
-        <li>Adviesgesprek: We bespreken jouw wensen en adviseren je over de mogelijkheden qua kleuren en afwerkingen.</li>
-        <li>Demontage en voorbereiding: De velgen worden gedemonteerd, gereinigd en straalbehandeld om oude laklagen en onzuiverheden te verwijderen.</li>
-        <li>Poedercoaten: De poedercoating wordt zorgvuldig aangebracht en uitgehard in een oven voor een duurzame afwerking.</li>
-        <li>Controle en montage: Na een strenge kwaliteitscontrole worden de velgen weer gemonteerd en klaargemaakt voor gebruik.</li>
+        <li>
+          Adviesgesprek: We bespreken jouw wensen en adviseren je over de mogelijkheden qua kleuren en afwerkingen.
+        </li>
+        <li>
+          Demontage en voorbereiding: De velgen worden gedemonteerd, gereinigd en straalbehandeld om oude laklagen en
+          onzuiverheden te verwijderen.
+        </li>
+        <li>
+          Poedercoaten: De poedercoating wordt zorgvuldig aangebracht en uitgehard in een oven voor een duurzame
+          afwerking.
+        </li>
+        <li>
+          Controle en montage: Na een strenge kwaliteitscontrole worden de velgen weer gemonteerd en klaargemaakt voor
+          gebruik.
+        </li>
       </ol>
       <h3 className="mt-6 text-xl font-semibold">Geef Jouw Auto een Upgrade met Wrapmaster Velgen Poedercoaten!</h3>
       <p className="mt-3">
-        Zijn jouw velgen toe aan een nieuwe look of extra bescherming? Kies voor velgen poedercoaten bij Wrapmaster en geniet van een professioneel resultaat dat jouw auto laat stralen. Neem vandaag nog contact met ons op voor meer informatie of een vrijblijvende offerte. Samen zorgen we ervoor dat jouw velgen er beter uitzien dan ooit tevoren!
+        Zijn jouw velgen toe aan een nieuwe look of extra bescherming? Kies voor velgen poedercoaten bij Wrapmaster en
+        geniet van een professioneel resultaat dat jouw auto laat stralen. Neem vandaag nog contact met ons op voor meer
+        informatie of een vrijblijvende offerte. Samen zorgen we ervoor dat jouw velgen er beter uitzien dan ooit
+        tevoren!
       </p>
     </>
-  );
+  )
+
+  // Show skeleton while loading
+  if (loading) {
+    return <VelgenPoedercoatenSkeleton />
+  }
 
   return (
     <>
@@ -118,7 +229,8 @@ export default function VelgenPoedercoaten() {
         openGraph={{
           url: "https://wrapmasterdh.nl/velgen-poedercoaten",
           title: "Velgen Poedercoaten bij Wrapmaster - Geef Jouw Auto een Luxe en Duurzame Upgrade",
-          description: "Upgrade je auto met professioneel gepoedercoate velgen van Wrapmaster. Verbeter de look en bescherming van je velgen. Ontdek onze diensten!",
+          description:
+            "Upgrade je auto met professioneel gepoedercoate velgen van Wrapmaster. Verbeter de look en bescherming van je velgen. Ontdek onze diensten!",
           images: [
             {
               url: dienstData.heroImage,
@@ -131,8 +243,8 @@ export default function VelgenPoedercoaten() {
         }}
         additionalMetaTags={[
           {
-            name: 'keywords',
-            content: 'velgen poedercoaten, velgen reperatie, stoeprand schade, velgen coating, auto styling',
+            name: "keywords",
+            content: "velgen poedercoaten, velgen reperatie, stoeprand schade, velgen coating, auto styling",
           },
         ]}
       />
@@ -140,7 +252,7 @@ export default function VelgenPoedercoaten() {
         {/* Hero Section */}
         <section className="relative h-[100vh] sm:h-100vh">
           <Image
-            src={dienstData.heroImage}
+            src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
             className="object-cover"
@@ -150,8 +262,8 @@ export default function VelgenPoedercoaten() {
             <div className="text-left text-white px-4 max-w-4xl">
               <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
-              <div className='flex justify-center'>
-                <Link 
+              <div className="flex justify-center">
+                <Link
                   href="/diensten"
                   className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
                 >
@@ -177,7 +289,7 @@ export default function VelgenPoedercoaten() {
                 {showMore ? "Lees minder" : "Lees meer"}
               </button>
             </div>
-            <Link 
+            <Link
               href="/offerte-aanvragen"
               className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
             >
@@ -187,7 +299,7 @@ export default function VelgenPoedercoaten() {
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Velgen Poedercoaten bij Wrapmaster"
                 fill
                 className="object-cover"
@@ -205,7 +317,7 @@ export default function VelgenPoedercoaten() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[800px]">
               <Image
-                src={dienstData.contentImage3}
+                src={dienstData.contentImage3 || "/placeholder.svg"}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
@@ -214,7 +326,7 @@ export default function VelgenPoedercoaten() {
             </div>
             <div className="relative h-[700px] sm:h-[800px]">
               <Image
-                src={dienstData.contentImage2}
+                src={dienstData.contentImage2 || "/placeholder.svg"}
                 alt="Content Image 2"
                 fill
                 className="object-cover"
@@ -230,6 +342,5 @@ export default function VelgenPoedercoaten() {
         </section>
       </main>
     </>
-  );
+  )
 }
-

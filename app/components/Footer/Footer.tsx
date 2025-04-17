@@ -34,7 +34,6 @@ export default function Footer() {
       items: [
         { title: "CONTACT", href: "/contact", isHeading: true },
         { title: "ALGEMENE VOORWAARDEN", href: "/video/Algemene-Voorwaarden-Wrapmaster-1.pdf", isHeading: false },
-
       ],
       socialIcon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />,
       socialLink: "https://www.youtube.com/@wrapmasterdh/videos"
@@ -118,7 +117,24 @@ export default function Footer() {
         >
          Copyright © by 2025 Wrapmaster - Built by Multichoiceagency
          </Link>
+         <div>
+         <Link 
+          href="/sitemap.xml" 
+          target="_blank" 
+          className="font-semibold hover:text-red-700 pr-3"
+        >
+        Sitemap
+         </Link>
+         <Link 
+          href="/robots.txt" 
+          target="_blank" 
+          className="font-semibold hover:text-red-700"
+        >
+         Robots
+         </Link>
+         </div>
       </div>
+      
     </footer>
   )
 }

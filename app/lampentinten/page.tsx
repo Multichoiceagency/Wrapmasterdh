@@ -1,28 +1,26 @@
-'use client';
+"use client"
 
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Link from 'next/link';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import OnzeDiensten from '@/app/components/Diensten/Diensten';
-import { faInstagram, faTiktok, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageCarousel from '@/components/ImageCarousel';
+import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import Link from "next/link"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import OnzeDiensten from "@/app/components/Diensten/Diensten"
+import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ImageCarousel from "@/components/ImageCarousel"
+import { Skeleton } from "@/components/ui/skeleton"
 
 // Dynamically import NextSeo to disable SSR for it.
-const NextSeoClient = dynamic(
-  () => import('next-seo').then((mod) => mod.NextSeo),
-  { ssr: false }
-);
+const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
 const socialMedia = {
-  instagram: 'https://www.instagram.com/wrapmasterdh/',
-  tiktok: 'https://www.tiktok.com/@wrapmasterdh',
-  whatsapp: 'https://wa.me/31638718893',
-  facebook: 'https://www.facebook.com/WrapmasterDH',
-};
+  instagram: "https://www.instagram.com/wrapmasterdh/",
+  tiktok: "https://www.tiktok.com/@wrapmasterdh",
+  whatsapp: "https://wa.me/31638718893",
+  facebook: "https://www.facebook.com/WrapmasterDH",
+}
 
 const dienstData = {
   title: "LAMPEN TINTEN",
@@ -31,14 +29,14 @@ const dienstData = {
   contentImage1: "/enes-website/lampen-tinten/lampentinten.jpg",
   contentImage2: "/enes-website/lampen-tinten/1000007448.jpg",
   contentImage3: "/enes-website/lampen-tinten/1000007506.jpg",
-};
+}
 
 const sliderImages = [
   "/enes-website/lampen-tinten/DSC00224-2.jpg",
   "/enes-website/lampen-tinten/IMG_0123.JPEG",
   "/enes-website/lampen-tinten/IMG_5457.JPG",
   "/enes-website/lampen-tinten/IMG_0820.jpg",
-];
+]
 
 const reels = [
   {
@@ -53,31 +51,133 @@ const reels = [
     likes: "120k",
     comments: "345",
   },
-];
+]
+
+// Skeleton component for the Lampentinten page
+function LampentintenSkeleton() {
+  return (
+    <div className="animate-pulse bg-white">
+      {/* Hero Section Skeleton */}
+      <section className="relative h-[100vh] sm:h-[100vh]">
+        <Skeleton className="w-full h-full" />
+        <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
+          <div className="text-left px-4 max-w-4xl">
+            <Skeleton className="h-10 w-64 mx-auto mb-2" />
+            <Skeleton className="h-6 w-full mx-auto mb-6" />
+            <div className="flex justify-center">
+              <Skeleton className="h-10 w-48" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Text with Image Section Skeleton */}
+      <section className="flex flex-col lg:flex-row py-8 lg:py-16">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
+          <Skeleton className="h-12 w-3/4 mb-8" />
+          <div className="space-y-4 mb-8">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+          </div>
+          <Skeleton className="h-10 w-40" />
+        </div>
+        <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+          <Skeleton className="w-full h-[300px] sm:h-[400px] lg:h-[500px]" />
+        </div>
+      </section>
+
+      {/* Carousel Skeleton */}
+      <section className="py-8">
+        <div className="overflow-hidden">
+          <div className="flex space-x-4 px-4">
+            {[1, 2, 3, 4].map((_, index) => (
+              <Skeleton key={index} className="min-w-[280px] h-[200px] rounded-lg" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Two Images Section Skeleton */}
+      <section className="max-w-full mx-auto mt-16 md:mt-44">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="relative h-[700px] sm:h-[700px]">
+            <Skeleton className="h-full w-full" />
+            <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 p-2">
+              <Skeleton className="h-8 w-24 mx-auto" />
+            </div>
+          </div>
+          <div className="relative h-[700px] sm:h-[700px]">
+            <Skeleton className="h-full w-full" />
+            <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 p-2">
+              <Skeleton className="h-8 w-24 mx-auto" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Reels Section Skeleton - 2 side by side */}
+      <section className="w-full bg-white py-16">
+        <Skeleton className="h-10 w-64 mx-auto mb-8" />
+        <div className="flex justify-between gap-2 px-4">
+          <Skeleton className="w-screen max-w-[49%] h-[300px] sm:h-[760px] rounded-lg" />
+          <Skeleton className="w-screen max-w-[49%] h-[300px] sm:h-[760px] rounded-lg" />
+        </div>
+      </section>
+
+      {/* Onze Diensten Section Skeleton */}
+      <section className="py-9">
+        <Skeleton className="h-10 w-64 mx-auto mb-8" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+          {[1, 2, 3].map((_, index) => (
+            <Skeleton key={index} className="h-[300px] rounded-lg" />
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
 
 export default function Lampentinten() {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
-      align: 'center',
+      align: "center",
       slidesToScroll: 1,
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
-  );
+    [Autoplay({ delay: 3000, stopOnInteraction: false })],
+  )
+
+  // Simulate loading
+  useEffect(() => {
+    // Simulate content loading
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const shortText = (
     <p>
-      Wil je jouw auto een unieke uitstraling geven? Kies voor lampentinten bij Wrapmaster! Door je koplampen, achterlichten of mistlampen te tinten, geef je jouw voertuig een stoerdere en verfijnde uitstraling, zonder in te leveren op functionaliteit. Onze hoogwaardige tintfolies zijn speciaal ontworpen om je lampen te beschermen én de esthetiek van je auto te verbeteren.
+      Wil je jouw auto een unieke uitstraling geven? Kies voor lampentinten bij Wrapmaster! Door je koplampen,
+      achterlichten of mistlampen te tinten, geef je jouw voertuig een stoerdere en verfijnde uitstraling, zonder in te
+      leveren op functionaliteit. Onze hoogwaardige tintfolies zijn speciaal ontworpen om je lampen te beschermen én de
+      esthetiek van je auto te verbeteren.
     </p>
-  );
+  )
 
   const fullText = (
     <>
       {shortText}
       <h3 className="mt-6 text-xl font-semibold">Wat zijn Lampentinten?</h3>
       <p className="mt-3">
-        Lampentinten zijn speciale folies die worden aangebracht op de verlichting van je auto. Deze folies geven je lampen een donkerdere tint of een unieke kleur, zoals rookgrijs, geel of blauw. Naast de visuele upgrade bieden lampentinten ook extra bescherming tegen krassen, vuil en UV-straling, waardoor je verlichting langer meegaat.
+        Lampentinten zijn speciale folies die worden aangebracht op de verlichting van je auto. Deze folies geven je
+        lampen een donkerdere tint of een unieke kleur, zoals rookgrijs, geel of blauw. Naast de visuele upgrade bieden
+        lampentinten ook extra bescherming tegen krassen, vuil en UV-straling, waardoor je verlichting langer meegaat.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Waarom Kiezen voor Lampentinten?</h3>
       <ul className="list-disc list-inside mt-2">
@@ -88,13 +188,25 @@ export default function Lampentinten() {
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Lampentinten bij Wrapmaster</h3>
       <p className="mt-3">
-        Bij Wrapmaster zijn we gespecialiseerd in het professioneel tinten van lampen. Ons team gebruikt alleen premium tintfolies die veilig zijn voor je verlichting en voldoen aan de wettelijke richtlijnen. Dankzij onze nauwkeurige werkwijze zorgen we voor een naadloze en duurzame afwerking, zodat jouw auto er niet alleen mooi uitziet, maar ook functioneel blijft.
+        Bij Wrapmaster zijn we gespecialiseerd in het professioneel tinten van lampen. Ons team gebruikt alleen premium
+        tintfolies die veilig zijn voor je verlichting en voldoen aan de wettelijke richtlijnen. Dankzij onze
+        nauwkeurige werkwijze zorgen we voor een naadloze en duurzame afwerking, zodat jouw auto er niet alleen mooi
+        uitziet, maar ook functioneel blijft.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Voordelen van Lampentinten bij Wrapmaster</h3>
       <ul className="list-disc list-inside mt-2">
-        <li>Hoogwaardige materialen: Wij werken met folies van topkwaliteit die bestand zijn tegen weersinvloeden en slijtage.</li>
-        <li>Breed scala aan opties: Kies uit diverse tinten, zoals lichtgrijs, donker rookglas, geel of blauw, voor een unieke stijl.</li>
-        <li>Professionele afwerking: Onze tinten worden strak en zonder luchtbellen aangebracht voor een perfect resultaat.</li>
+        <li>
+          Hoogwaardige materialen: Wij werken met folies van topkwaliteit die bestand zijn tegen weersinvloeden en
+          slijtage.
+        </li>
+        <li>
+          Breed scala aan opties: Kies uit diverse tinten, zoals lichtgrijs, donker rookglas, geel of blauw, voor een
+          unieke stijl.
+        </li>
+        <li>
+          Professionele afwerking: Onze tinten worden strak en zonder luchtbellen aangebracht voor een perfect
+          resultaat.
+        </li>
         <li>Lange levensduur: Onze lampentinten blijven jarenlang mooi en beschermen jouw verlichting effectief.</li>
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Welke Lampen Kunnen We Tinten?</h3>
@@ -109,7 +221,9 @@ export default function Lampentinten() {
       </ul>
       <h3 className="mt-6 text-xl font-semibold">Waarom Wrapmaster?</h3>
       <p className="mt-3">
-        Bij Wrapmaster mag je rekenen op vakmanschap, kwaliteit en aandacht voor detail. Ons ervaren team zorgt ervoor dat elke tintfolie perfect wordt aangebracht, zonder dat de functionaliteit van je verlichting wordt aangetast. Met onze focus op kwaliteit garanderen we een eindresultaat dat jouw verwachtingen overtreft.
+        Bij Wrapmaster mag je rekenen op vakmanschap, kwaliteit en aandacht voor detail. Ons ervaren team zorgt ervoor
+        dat elke tintfolie perfect wordt aangebracht, zonder dat de functionaliteit van je verlichting wordt aangetast.
+        Met onze focus op kwaliteit garanderen we een eindresultaat dat jouw verwachtingen overtreft.
       </p>
       <h3 className="mt-6 text-xl font-semibold">Onze Werkwijze</h3>
       <ol className="list-decimal list-inside mt-2">
@@ -120,10 +234,17 @@ export default function Lampentinten() {
       </ol>
       <h3 className="mt-6 text-xl font-semibold">Geef Jouw Auto een Exclusieve Look met Wrapmaster Lampentinten!</h3>
       <p className="mt-3">
-        Wil jij jouw auto onderscheiden van de rest met stijlvolle en functionele lampentinten? Bij Wrapmaster ben je verzekerd van topkwaliteit en een afwerking waar je trots op kunt zijn. Neem vandaag nog contact met ons op voor meer informatie of een vrijblijvende offerte. Samen maken we jouw auto uniek!
+        Wil jij jouw auto onderscheiden van de rest met stijlvolle en functionele lampentinten? Bij Wrapmaster ben je
+        verzekerd van topkwaliteit en een afwerking waar je trots op kunt zijn. Neem vandaag nog contact met ons op voor
+        meer informatie of een vrijblijvende offerte. Samen maken we jouw auto uniek!
       </p>
     </>
-  );
+  )
+
+  // Show skeleton while loading
+  if (loading) {
+    return <LampentintenSkeleton />
+  }
 
   return (
     <>
@@ -134,7 +255,8 @@ export default function Lampentinten() {
         openGraph={{
           url: "https://wrapmasterdh.nl/lampentinten",
           title: "Lampentinten bij Wrapmaster - Geef Jouw Auto een Stoere en Exclusieve Look",
-          description: "Upgrade je auto met professionele lampentinten van Wrapmaster. Verbeter de uitstraling van je koplampen, achterlichten en meer. Ontdek onze diensten!",
+          description:
+            "Upgrade je auto met professionele lampentinten van Wrapmaster. Verbeter de uitstraling van je koplampen, achterlichten en meer. Ontdek onze diensten!",
           images: [
             {
               url: dienstData.heroImage,
@@ -147,16 +269,16 @@ export default function Lampentinten() {
         }}
         additionalMetaTags={[
           {
-            name: 'keywords',
-            content: 'koplampen tinten, lampen tinten, koplampen donker maken, achterlichten tinten, mistlampen tinten',
+            name: "keywords",
+            content: "koplampen tinten, lampen tinten, koplampen donker maken, achterlichten tinten, mistlampen tinten",
           },
         ]}
       />
       <main className="bg-white">
         {/* Hero Section */}
         <section className="relative h-[100vh] sm:h-100vh">
-        <Image
-            src={dienstData.heroImage}
+          <Image
+            src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
             className="object-cover"
@@ -166,8 +288,8 @@ export default function Lampentinten() {
             <div className="text-left text-white px-4 max-w-4xl">
               <h1 className="text-2xl md:text-4xl font-bold mb-2 py-5 text-center">{dienstData.title}</h1>
               <p className="text-base sm:text-xl mb-6 px-16 text-center">{dienstData.description}</p>
-              <div className='flex justify-center'>
-                <Link 
+              <div className="flex justify-center">
+                <Link
                   href="/diensten"
                   className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
                 >
@@ -193,7 +315,7 @@ export default function Lampentinten() {
                 {showMore ? "Lees minder" : "Lees meer"}
               </button>
             </div>
-            <Link 
+            <Link
               href="/offerte-aanvragen"
               className="bg-black text-white px-6 sm:px-8 py-2 sm:py-3 font text-xs sm:text-sm uppercase tracking-wider hover:bg-red-700 transition-colors w-fit"
             >
@@ -203,7 +325,7 @@ export default function Lampentinten() {
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
               <Image
-                src={dienstData.contentImage1}
+                src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Lampentinten bij Wrapmaster"
                 fill
                 className="object-cover"
@@ -255,23 +377,10 @@ export default function Lampentinten() {
                 key={reel.id}
                 className="relative w-screen max-w-[49%] h-[300px] sm:h-[760px] bg-black rounded-lg overflow-hidden"
               >
-                <video
-                  src={reel.video}
-                  className="w-full h-full object-cover"
-                  loop
-                  muted
-                  autoPlay
-                  playsInline
-                ></video>
+                <video src={reel.video} className="w-full h-full object-cover" loop muted autoPlay playsInline></video>
                 <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image
-                      src="/logos/logo-wit.png"
-                      alt="Reels Play Icon"
-                      width={20}
-                      height={20}
-                      className="mr-2"
-                    />
+                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
@@ -334,5 +443,5 @@ export default function Lampentinten() {
         </section>
       </main>
     </>
-  );
+  )
 }

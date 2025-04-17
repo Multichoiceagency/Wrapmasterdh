@@ -1,5 +1,6 @@
 "use client"
-import { useState } from "react"
+
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Skeleton } from "@/components/ui/skeleton"
 import NewCustomSection from "@/components/NewCustomSection"
@@ -40,10 +41,63 @@ const portfolioItems = [
   { id: 35, title: "", featuredImage: "/enes-website/portfolio2/RS6-7.jpg" },
 ]
 
+// Dedicated skeleton component for the PortfolioPage
+function PortfolioPageSkeleton() {
+  return (
+    <main className="bg-white animate-pulse">
+      {/* Hero Section Skeleton */}
+      <section className="relative h-[100vh]">
+        <Skeleton className="w-full h-full" />
+        <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
+          <Skeleton className="h-10 w-48" />
+        </div>
+      </section>
+
+      {/* Portfolio Grid Skeleton */}
+      <section className="container mx-auto py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <div
+              key={index}
+              className={`relative w-full aspect-square md:aspect-auto ${
+                index % 3 === 2 ? "md:col-span-2 md:h-[700px]" : "md:h-[700px]"
+              }`}
+            >
+              <Skeleton className="w-full h-full rounded-lg" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Custom Section Skeleton */}
+      <section className="container mx-auto text-center py-12">
+        <Skeleton className="h-10 w-64 mx-auto mb-8" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+          {[1, 2, 3].map((_, index) => (
+            <Skeleton key={index} className="h-[300px] rounded-lg" />
+          ))}
+        </div>
+      </section>
+    </main>
+  )
+}
+
 export default function PortfolioPage() {
+  // State for initial page loading
+  const [pageLoading, setPageLoading] = useState(true)
+
   // Track loaded images
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({})
   const [heroLoaded, setHeroLoaded] = useState(false)
+
+  // Simulate initial loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPageLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   // Image loading handlers
   const handleHeroLoad = () => setHeroLoaded(true)
@@ -54,6 +108,11 @@ export default function PortfolioPage() {
     }))
   }
 
+  // Show full skeleton while page is loading
+  if (pageLoading) {
+    return <PortfolioPageSkeleton />
+  }
+
   return (
     <main className="bg-white">
       {/* Hero Section */}
@@ -62,11 +121,8 @@ export default function PortfolioPage() {
         <Image
           src="/enes-website/portfolio/brabus24.jpg"
           alt="Wrapmaster Portfolio"
-          width={1920}
-          height={1080}
-          className={`object-cover w-full h-full ${
-            heroLoaded ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-300`}
+          fill
+          className={`object-cover ${heroLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
           priority
           onLoad={handleHeroLoad}
         />
@@ -89,10 +145,9 @@ export default function PortfolioPage() {
               {!loadedImages[index] && <Skeleton className="absolute inset-0 w-full h-full rounded-lg z-10" />}
               <Image
                 src={item.featuredImage || "/placeholder.svg"}
-                alt=""
-                width={800}
-                height={600}
-                className={`object-cover w-full h-full rounded-lg ${
+                alt={item.title || "Portfolio image"}
+                fill
+                className={`object-cover rounded-lg ${
                   loadedImages[index] ? "opacity-100" : "opacity-0"
                 } transition-opacity duration-300`}
                 loading="lazy"

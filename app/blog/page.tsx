@@ -135,6 +135,7 @@ export default function BlogPage() {
             autoPlay
             loop
             muted
+            playsInline
             className="absolute w-full h-full object-cover opacity-100"
           ></video>
           <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
@@ -175,6 +176,7 @@ export default function BlogPage() {
                           autoPlay
                           loop
                           muted
+                          playsInline
                           className="w-full h-full object-cover rounded-md"
                         />
                       ) : (
