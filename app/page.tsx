@@ -22,7 +22,7 @@ const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo
 // Dedicated skeleton component for the Home page
 function HomePageSkeleton() {
   return (
-    <div className="w-full overflow-x-hidden animate-pulse">
+    <div className="w-full overflow-x-hidden">
       {/* Hero Section Skeleton */}
       <section className="relative h-[100vh]">
         <Skeleton className="w-full h-full" />

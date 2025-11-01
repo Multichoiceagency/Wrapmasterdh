@@ -44,7 +44,7 @@ const portfolioItems = [
 // Dedicated skeleton component for the PortfolioPage
 function PortfolioPageSkeleton() {
   return (
-    <main className="bg-white animate-pulse">
+    <main className="bg-white">
       {/* Hero Section Skeleton */}
       <section className="relative h-[100vh]">
         <Skeleton className="w-full h-full" />
