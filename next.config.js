@@ -43,11 +43,22 @@ const nextConfig = {
     ],
   },
 
-  // Set cache headers for all routes
+  // Set cache headers for routes (excluding Next.js chunks)
   async headers() {
     return [
       {
-        source: "/(.*)", // All routes and files
+        // Exclude Next.js internal files from long cache
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year cache for static chunks
+          },
+        ],
+      },
+      {
+        // Apply 7-day cache to other routes (pages, API routes, etc.)
+        source: "/((?!_next).*)",
         headers: [
           {
             key: "Cache-Control",

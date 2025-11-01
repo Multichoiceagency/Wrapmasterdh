@@ -38,7 +38,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className={dmSans.className} suppressHydrationWarning>
-      <GoogleTagManager gtmId="GTM-KHW52J3G" />
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
@@ -52,6 +51,7 @@ export default function RootLayout({
         <Footer />
         <FloatingSocialIcons />
         <WhatsAppFloatingIcon phoneNumber="31638718893" />
+        <GoogleTagManager gtmId="GTM-KHW52J3G" />
       </body>
     </html>
   )
