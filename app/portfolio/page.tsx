@@ -7,38 +7,38 @@ import NewCustomSection from "@/components/NewCustomSection"
 
 // Portfolio items
 const portfolioItems = [
-  { id: 1, title: "", featuredImage: "/enes-website/portfolio/brabus23.jpg" },
-  { id: 2, title: "", featuredImage: "/enes-website/portfolio/brabus12.jpg" },
-  { id: 3, title: "", featuredImage: "/enes-website/portfolio/brabus19.jpg" },
-  { id: 4, title: "", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (6 of 41)-min.jpg" },
-  { id: 5, title: "", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (19 of 41)-min.jpg" },
-  { id: 6, title: "", featuredImage: "/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (32 of 41)-min-min.jpg" },
-  { id: 8, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (4 of 14)-min.jpg" },
-  { id: 9, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (10 of 14)-min.jpg" },
-  { id: 10, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (14 of 14)-min.jpg" },
-  { id: 11, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (1 of 14)-min.jpg" },
-  { id: 12, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (6 of 14)-min.jpg" },
-  { id: 13, title: "", featuredImage: "/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (8 of 14)-min.jpg" },
-  { id: 15, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus5-min.jpg" },
-  { id: 17, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus11-min.jpg" },
-  { id: 18, title: "", featuredImage: "/enes-website/portfolio2/Lamborghini Urus18-min.jpg" },
-  { id: 19, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-4.jpg" },
-  { id: 20, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-17.jpg" },
-  { id: 21, title: "", featuredImage: "/enes-website/ppf/Maasvlakte-9.jpg" },
-  { id: 22, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-7.jpg" },
-  { id: 23, title: "", featuredImage: "/enes-website/portfolio2/RSQ3-28.jpg" },
-  { id: 24, title: "", featuredImage: "/enes-website/portfolio2/WM-8.jpg" },
-  { id: 25, title: "", featuredImage: "/enes-website/portfolio2/WM-25.jpg" },
-  { id: 26, title: "", featuredImage: "/enes-website/portfolio2/WM-28.jpg" },
-  { id: 27, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-9 (2)-min.jpg" },
-  { id: 28, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-10.jpg" },
-  { id: 29, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-16 (2).jpg" },
-  { id: 30, title: "", featuredImage: "/enes-website/portfolio2/Maasvlakte-21.jpg" },
-  { id: 31, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-9.jpg" },
-  { id: 32, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-10.jpg" },
-  { id: 33, title: "", featuredImage: "/enes-website/portfolio2/Project- Ram-18.jpg" },
-  { id: 34, title: "", featuredImage: "/enes-website/portfolio2/RS6-1.jpg" },
-  { id: 35, title: "", featuredImage: "/enes-website/portfolio2/RS6-7.jpg" },
+  { id: 1, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/brabus23.jpg" },
+  { id: 2, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/brabus12.jpg" },
+  { id: 3, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/brabus19.jpg" },
+  { id: 4, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (6 of 41)-min.jpg" },
+  { id: 5, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (19 of 41)-min.jpg" },
+  { id: 6, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio/Mercedez-Benz AMG GT63_DONE_ (32 of 41)-min-min.jpg" },
+  { id: 8, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (4 of 14)-min.jpg" },
+  { id: 9, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (10 of 14)-min.jpg" },
+  { id: 10, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_WRAPMASTER_HURUCAN (14 of 14)-min.jpg" },
+  { id: 11, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (1 of 14)-min.jpg" },
+  { id: 12, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (6 of 14)-min.jpg" },
+  { id: 13, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/BlndrAgency_Wrapmaster_URUS (8 of 14)-min.jpg" },
+  { id: 15, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Lamborghini Urus5-min.jpg" },
+  { id: 17, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Lamborghini Urus11-min.jpg" },
+  { id: 18, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Lamborghini Urus18-min.jpg" },
+  { id: 19, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-4.jpg" },
+  { id: 20, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-17.jpg" },
+  { id: 21, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-9.jpg" },
+  { id: 22, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/RSQ3-7.jpg" },
+  { id: 23, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/RSQ3-28.jpg" },
+  { id: 24, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/WM-8.jpg" },
+  { id: 25, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/WM-25.jpg" },
+  { id: 26, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/WM-28.jpg" },
+  { id: 27, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Maasvlakte-9 (2)-min.jpg" },
+  { id: 28, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Maasvlakte-10.jpg" },
+  { id: 29, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Maasvlakte-16 (2).jpg" },
+  { id: 30, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Maasvlakte-21.jpg" },
+  { id: 31, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Project- Ram-9.jpg" },
+  { id: 32, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Project- Ram-10.jpg" },
+  { id: 33, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/Project- Ram-18.jpg" },
+  { id: 34, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/RS6-1.jpg" },
+  { id: 35, title: "", featuredImage: "http://localhost:3010/uploads/enes-website/portfolio2/RS6-7.jpg" },
 ]
 
 // Dedicated skeleton component for the PortfolioPage
@@ -119,7 +119,7 @@ export default function PortfolioPage() {
       <section className="relative h-[100vh]">
         {!heroLoaded && <Skeleton className="absolute inset-0 w-full h-full z-10" />}
         <Image
-          src="/enes-website/portfolio/brabus24.jpg"
+          src="http://localhost:3010/uploads/enes-website/portfolio/brabus24.jpg"
           alt="Wrapmaster Portfolio"
           fill
           className={`object-cover ${heroLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'; // Import the Button component
 const BentoGrid = () => {
   const gridItems = [
     {
-      image: '/images/carwrapping.jpg',
+      image: 'http://localhost:3010/uploads/images/carwrapping.jpg',
       title: 'Carwrapping',
       description:
         'Geef je voertuig een nieuwe look met gekleurde folie, zonder de originele kleur permanent te veranderen.',
@@ -15,7 +15,7 @@ const BentoGrid = () => {
       large: true, // For larger grid item
     },
     {
-      image: '/images/velgenbescherming.jpg',
+      image: 'http://localhost:3010/uploads/images/velgenbescherming.jpg',
       title: 'Koplampen Tinten',
       description:
         'Geef je verlichting een eigen twist met transparante, matte, satijnen of hoogglanzende folie.',
@@ -24,7 +24,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: '/images/sterrenhemel.png',
+      image: 'http://localhost:3010/uploads/images/sterrenhemel.png',
       title: 'Chrome Delete',
       description:
         'Verwijder chrome onderdelen van je voertuig en geef het een frisse, unieke look met wrapping.',
@@ -33,7 +33,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: '/images/gordelkleur-vervangen.jpg',
+      image: 'http://localhost:3010/uploads/images/gordelkleur-vervangen.jpg',
       title: 'Reclamebelettering',
       description:
         'Presenteer je bedrijf professioneel met opvallende reclamebelettering op voertuigen.',
@@ -42,7 +42,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: '/images/lampen-tinten.png',
+      image: 'http://localhost:3010/uploads/images/lampen-tinten.png',
       title: 'Poetsen & Glascoating',
       description:
         'Bescherm je auto met een coating en maak deze makkelijker te onderhouden voor optimale bescherming.',

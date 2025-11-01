@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "SCOOTER & MOTOR WRAP",
   description: "",
-  heroImage: "/enes-website/memo/29164.jpg",
-  contentImage1: "/enes-website/memo/IMG_2491.JPG",
-  contentImage2: "/enes-website/memo/IMG_7278-min.JPEG",
-  contentImage3: "/enes-website/memo/IMG_2176-min.JPG",
+  heroImage: "http://localhost:3010/uploads/enes-website/memo/29164.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/memo/IMG_2491.JPG",
+  contentImage2: "http://localhost:3010/uploads/enes-website/memo/IMG_7278-min.JPEG",
+  contentImage3: "http://localhost:3010/uploads/enes-website/memo/IMG_2176-min.JPG",
 }
 
 const sliderImages = [
-  "/enes-website/memo/IMG_0247-min.JPG",
-  "/enes-website/memo/1000006100-min (1).jpg",
-  "/enes-website/memo/IMG_2175-min (1).JPG",
-  "/enes-website/memo/jetsky-min (1).JPG",
+  "http://localhost:3010/uploads/enes-website/memo/IMG_0247-min.JPG",
+  "http://localhost:3010/uploads/enes-website/memo/1000006100-min (1).jpg",
+  "http://localhost:3010/uploads/enes-website/memo/IMG_2175-min (1).JPG",
+  "http://localhost:3010/uploads/enes-website/memo/jetsky-min (1).JPG",
 ]
 
 // Skeleton component for the Scooter en Motor Wraps page

@@ -10,6 +10,12 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3010",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
         hostname: "www.website.wrapmasterdh.nl",
         pathname: "/**",

@@ -26,16 +26,16 @@ const dienstData = {
   description:
     "Bescherm je voertuig met Wrapmaster's premium Paint Protection Film (PPF) diensten. Behoud de uitstraling en waarde van je auto.",
   heroImage: "/ppf/lambo-urus.mp4",
-  contentImage1: "/enes-website/ppf/Maasvlakte-8.jpg",
-  contentImage2: "/enes-website/ppf/Maasvlakte-100.jpg",
-  contentImage3: "/enes-website/ppf/WM-47.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-8.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-100.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/ppf/WM-47.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/ppf/Maasvlakte-4.jpg",
-  "/enes-website/ppf/Mercedez-Benz AMG GT63_DONE_ (21 of 41).jpg",
-  "/enes-website/ppf/WM-1.jpg",
-  "/enes-website/ppf/Lamborghini-Urus19.jpg",
+  "http://localhost:3010/uploads/enes-website/ppf/Maasvlakte-4.jpg",
+  "http://localhost:3010/uploads/enes-website/ppf/Mercedez-Benz AMG GT63_DONE_ (21 of 41).jpg",
+  "http://localhost:3010/uploads/enes-website/ppf/WM-1.jpg",
+  "http://localhost:3010/uploads/enes-website/ppf/Lamborghini-Urus19.jpg",
 ]
 
 const reels = [
@@ -348,13 +348,13 @@ export default function Carwrapping() {
                 <video src={reel.video} className="w-full h-full object-cover" loop muted autoPlay playsInline />
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <Image
-                        src="/logos/handtekening-wit.png"
+                        src="http://localhost:3010/uploads/logos/handtekening-wit.png"
                         alt="Handtekening"
                         width={100}
                         height={20}

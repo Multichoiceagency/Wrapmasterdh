@@ -24,17 +24,17 @@ const socialMedia = {
 const dienstData = {
   title: "GORDELS IN KLEUR",
   description: "",
-  heroImage: "/enes-website/gordelkleur/IMG_0496.JPG",
-  contentImage1: "/enes-website/gordelkleur/IMG_2475.jpg",
-  contentImage2: "/enes-website/gordelkleur/RSQ3-6.jpg",
-  contentImage3: "/enes-website/memo/IMG_5363.JPG",
+  heroImage: "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_0496.JPG",
+  contentImage1: "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_2475.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/gordelkleur/RSQ3-6.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/memo/IMG_5363.JPG",
 }
 
 const sliderImages = [
-  "/enes-website/gordelkleur/IMG_2067.JPG",
-  "/enes-website/gordelkleur/IMG_1932.JPG",
-  "/enes-website/gordelkleur/IMG_1750.JPG",
-  "/enes-website/gordelkleur/IMG_1985.JPG",
+  "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_2067.JPG",
+  "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_1932.JPG",
+  "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_1750.JPG",
+  "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_1985.JPG",
 ]
 
 const reels = [
@@ -375,14 +375,14 @@ export default function GordelsVervangen() {
                 {/* Instagram Reel Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="/logos/handtekening-wit.png"
+                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}

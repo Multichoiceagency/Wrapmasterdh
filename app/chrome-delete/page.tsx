@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "CHROME DELETE",
   description: "",
-  heroImage: "/enes-website/OSMAN/q3/DSC05363.jpg",
-  contentImage1: "/enes-website/chrome-delete/mercedes.jpg",
-  contentImage2: "/enes-website/chrome-delete/bmw.jpg",
-  contentImage3: "/enes-website/chrome-delete/FOTO-1-2.jpeg",
+  heroImage: "http://localhost:3010/uploads/enes-website/OSMAN/q3/DSC05363.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/chrome-delete/mercedes.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/chrome-delete/bmw.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/chrome-delete/FOTO-1-2.jpeg",
 }
 
 const sliderImages = [
-  "/enes-website/memo/DSC04799.jpeg",
-  "/enes-website/memo/1000010430.jpg",
-  "/enes-website/chrome-delete/IMG_1903.JPG",
-  "/enes-website/OSMAN/idbuzz/DSC05899.jpg",
+  "http://localhost:3010/uploads/enes-website/memo/DSC04799.jpeg",
+  "http://localhost:3010/uploads/enes-website/memo/1000010430.jpg",
+  "http://localhost:3010/uploads/enes-website/chrome-delete/IMG_1903.JPG",
+  "http://localhost:3010/uploads/enes-website/OSMAN/idbuzz/DSC05899.jpg",
 ]
 
 // Skeleton component for the Chrome Delete page

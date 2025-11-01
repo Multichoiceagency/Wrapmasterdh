@@ -24,17 +24,17 @@ const socialMedia = {
 const dienstData = {
   title: "ALLOYGATOR",
   description: "",
-  heroImage: "/enes-website/Alloygator/78415338_2707704222583229_8578045637193367552_o.jpg",
-  contentImage1: "/enes-website/Alloygator/AG-17-e1539160979388-min.jpg",
-  contentImage2: "/enes-website/Alloygator/AG-19-e1539165703298.jpg",
-  contentImage3: "/enes-website/Alloygator/Ontwerp zonder titel (1).png",
+  heroImage: "http://localhost:3010/uploads/enes-website/Alloygator/78415338_2707704222583229_8578045637193367552_o.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/Alloygator/AG-17-e1539160979388-min.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/Alloygator/AG-19-e1539165703298.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/Alloygator/Ontwerp zonder titel (1).png",
 }
 
 const sliderImages = [
-  "/enes-website/Alloygator/tesla.jpg",
-  "/enes-website/Alloygator/Mini_Excusive-Black (1).jpg",
-  "/enes-website/Alloygator/lamborghini.jpg",
-  "/enes-website/Alloygator/Ontwerp zonder titel (1).png",
+  "http://localhost:3010/uploads/enes-website/Alloygator/tesla.jpg",
+  "http://localhost:3010/uploads/enes-website/Alloygator/Mini_Excusive-Black (1).jpg",
+  "http://localhost:3010/uploads/enes-website/Alloygator/lamborghini.jpg",
+  "http://localhost:3010/uploads/enes-website/Alloygator/Ontwerp zonder titel (1).png",
 ]
 
 const reels = [
@@ -368,14 +368,14 @@ export default function AlloyGatorBescherming() {
                 {/* Instagram Reel Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="/logos/handtekening-wit.png"
+                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}

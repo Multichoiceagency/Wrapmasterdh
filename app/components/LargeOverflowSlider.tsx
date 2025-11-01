@@ -10,11 +10,11 @@ import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 const LargeOverflowSlider = () => {
   const carImages = [
     {
-      src: '/images/brabus1.png', // Add your image paths
+      src: 'http://localhost:3010/uploads/images/brabus1.png', // Add your image paths
       alt: 'Car Image 1',
     },
     {
-      src: '/images/brabus2.png', // Add your image paths
+      src: 'http://localhost:3010/uploads/images/brabus2.png', // Add your image paths
       alt: 'Car Image 2',
     },
     {

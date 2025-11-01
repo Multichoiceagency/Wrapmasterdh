@@ -21,7 +21,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Wrapmaster - Specialisten in Car wrapping",
   description: "Hoogwaardige car wrapping en PPF diensten in Den Haag",
-  icons: "/favicon.ico",
+  icons: "http://localhost:3010/uploads/favicon.ico",
   openGraph: {
     title: "Wrapmaster - Specialisten in Car Wrapping",
     description:

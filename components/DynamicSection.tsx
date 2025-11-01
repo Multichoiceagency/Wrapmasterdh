@@ -39,7 +39,7 @@ export default function BodykitInstallatieSection() {
       <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
         <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
           <Image
-            src="/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg"
+            src="http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg"
             alt="Professionele Bodykit Installatie"
             fill
             className="object-cover object-center transform lg:transform-none scale-x-[-1] lg:scale-x-100"

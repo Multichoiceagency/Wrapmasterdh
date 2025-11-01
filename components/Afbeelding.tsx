@@ -27,7 +27,7 @@ function HeroSection() {
         }`}
       >
         <Image
-          src="/enes-website/auto-wrappen/g-wagon/brabus-nardo-grey-motorkap.jpg"
+          src="http://localhost:3010/uploads/enes-website/auto-wrappen/g-wagon/brabus-nardo-grey-motorkap.jpg"
           alt="Full-screen banner"
           fill
           style={{

@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "RECLAME EN DESIGN",
   description: "",
-  heroImage: "/enes-website/reclame/_GLA5938.jpg",
-  contentImage1: "/enes-website/reclame/IMG_0605.JPEG",
-  contentImage2: "/enes-website/reclame/gardenlux.JPG",
-  contentImage3: "/enes-website/reclame/1F530CAE-FE9D-4B41-8508-4D07EEFE481E.jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/reclame/_GLA5938.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/reclame/IMG_0605.JPEG",
+  contentImage2: "http://localhost:3010/uploads/enes-website/reclame/gardenlux.JPG",
+  contentImage3: "http://localhost:3010/uploads/enes-website/reclame/1F530CAE-FE9D-4B41-8508-4D07EEFE481E.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/reclame/claiomhof (8).JPG",
-  "/enes-website/reclame/claiomhof (5).JPG",
-  "/enes-website/reclame/_GLA5951.jpg",
-  "/enes-website/reclame/44E4B936-2821-49A3-86E3-2564F1868B55.jpg",
+  "http://localhost:3010/uploads/enes-website/reclame/claiomhof (8).JPG",
+  "http://localhost:3010/uploads/enes-website/reclame/claiomhof (5).JPG",
+  "http://localhost:3010/uploads/enes-website/reclame/_GLA5951.jpg",
+  "http://localhost:3010/uploads/enes-website/reclame/44E4B936-2821-49A3-86E3-2564F1868B55.jpg",
 ]
 
 // Skeleton component for the Reclame en Design Wraps page

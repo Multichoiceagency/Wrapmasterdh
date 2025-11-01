@@ -15,7 +15,7 @@ interface AudiRs6 {
 const banner: AudiRs6 = {
   id: 1,
   title: "",
-  featured_image: "/enes-website/wrapfolie/RS6-1.jpg",
+  featured_image: "http://localhost:3010/uploads/enes-website/wrapfolie/RS6-1.jpg",
   button_text: "Carwrapping",
   button_link: "/carwrapping"
 };

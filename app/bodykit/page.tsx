@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "BODYKIT MONTAGE",
   description: "",
-  heroImage: "/enes-website/bodykit/eng_pl_Set-of-Splitters-Mercedes-AMG-GT-C-C190-Facelift-22294_20.jpg",
-  contentImage1: "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg",
-  contentImage2: "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_17.jpg",
-  contentImage3: "/enes-website/bodykit/eng_pl_Set-of-Splitters-V-3-BMW-1-M-Pack-F70-22415_11.jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Mercedes-AMG-GT-C-C190-Facelift-22294_20.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_17.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-V-3-BMW-1-M-Pack-F70-22415_11.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/bodykit/eng_pl_Rear-Splitter-with-vertical-bars-Mercedes-AMG-GT-C-C190-Facelift-22292_3.jpg",
-  "/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_10.jpg",
-  "/enes-website/bodykit/eng_pl_Set-of-Splitters-Land-Rover-Range-Rover-Sport-Mk2-22478_1.jpg",
-  "/enes-website/bodykit/eng_pl_Set-of-Splitters-V-2-Volkswagen-Golf-GTI-Clubsport-Mk8-Facelift-22345_10.jpg",
+  "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Rear-Splitter-with-vertical-bars-Mercedes-AMG-GT-C-C190-Facelift-22292_3.jpg",
+  "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_10.jpg",
+  "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Land-Rover-Range-Rover-Sport-Mk2-22478_1.jpg",
+  "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-V-2-Volkswagen-Golf-GTI-Clubsport-Mk8-Facelift-22345_10.jpg",
 ]
 
 // Skeleton component for the Bodykit Montage page

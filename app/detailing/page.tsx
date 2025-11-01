@@ -24,17 +24,17 @@ const socialMedia = {
 const dienstData = {
   title: "DETAILING",
   description: "",
-  heroImage: "/enes-website/detailing/20211216_141527.jpg",
-  contentImage1: "/enes-website/detailing/Lamborghini Urus11.jpg",
-  contentImage2: "/enes-website/detailing/WM-8.jpg",
-  contentImage3: "/enes-website/detailing/Lamborghini Urus7.jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/detailing/20211216_141527.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/detailing/Lamborghini Urus11.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/detailing/WM-8.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/detailing/Lamborghini Urus7.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/detailing/BlndrAgency_ (5 of 34).jpg",
-  "/enes-website/detailing/RSQ3-8.jpg",
-  "/enes-website/detailing/Mercedez-Benz AMG GT63_DONE_ (3 of 41).jpg",
-  "/enes-website/detailing/Maasvlakte-18.jpg",
+  "http://localhost:3010/uploads/enes-website/detailing/BlndrAgency_ (5 of 34).jpg",
+  "http://localhost:3010/uploads/enes-website/detailing/RSQ3-8.jpg",
+  "http://localhost:3010/uploads/enes-website/detailing/Mercedez-Benz AMG GT63_DONE_ (3 of 41).jpg",
+  "http://localhost:3010/uploads/enes-website/detailing/Maasvlakte-18.jpg",
 ]
 
 const reels = [
@@ -383,14 +383,14 @@ export default function AutoDetailing() {
                 {/* Instagram Reel Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="/logos/handtekening-wit.png"
+                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}

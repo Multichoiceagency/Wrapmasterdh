@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "RAMEN TINTEN",
   description: "Ontdek onze professionele ramentint services!",
-  heroImage: "/enes-website/ramentint/35423.jpg",
-  contentImage1: "/enes-website/ramentint/RSQ3-ramentint.jpg",
-  contentImage2: "/enes-website/ramentint/174585ba-079e-4bc9-a934-3397441542e3.jpg",
-  contentImage3: "/enes-website/ramentint/IMG_2906.JPG",
+  heroImage: "http://localhost:3010/uploads/enes-website/ramentint/35423.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/ramentint/RSQ3-ramentint.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/ramentint/174585ba-079e-4bc9-a934-3397441542e3.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/ramentint/IMG_2906.JPG",
 }
 
 const sliderImages = [
-  "/enes-website/ramentint/41144.jpg",
-  "/enes-website/ramentint/47458.jpg",
-  "/enes-website/ramentint/47254.jpg",
-  "/enes-website/ramentint/43106.jpg",
+  "http://localhost:3010/uploads/enes-website/ramentint/41144.jpg",
+  "http://localhost:3010/uploads/enes-website/ramentint/47458.jpg",
+  "http://localhost:3010/uploads/enes-website/ramentint/47254.jpg",
+  "http://localhost:3010/uploads/enes-website/ramentint/43106.jpg",
 ]
 
 // Skeleton component for the Ramentinten page

@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "REMKLAUWEN IN KLEUR",
   description: "",
-  heroImage: "/enes-website/remklauwen/RS6-8.jpg",
-  contentImage1: "/enes-website/remklauwen/1000017877.jpg",
-  contentImage2: "/enes-website/remklauwen/WrapMaster Black Range Rover (6 of 13).jpg",
-  contentImage3: "/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/remklauwen/RS6-8.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/remklauwen/1000017877.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/remklauwen/WrapMaster Black Range Rover (6 of 13).jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/remklauwen/BlndrAgency_ (20 of 34).jpg",
 }
 
 const sliderImages = [
-  "/enes-website/remklauwen/1000018243.jpg",
-  "/enes-website/remklauwen/IMG_2540.JPG",
-  "/enes-website/remklauwen/IMG_2288.jpg",
-  "/enes-website/remklauwen/1000017877.jpg",
+  "http://localhost:3010/uploads/enes-website/remklauwen/1000018243.jpg",
+  "http://localhost:3010/uploads/enes-website/remklauwen/IMG_2540.JPG",
+  "http://localhost:3010/uploads/enes-website/remklauwen/IMG_2288.jpg",
+  "http://localhost:3010/uploads/enes-website/remklauwen/1000017877.jpg",
 ]
 
 // Skeleton component for the Remklauwen Kleuren page

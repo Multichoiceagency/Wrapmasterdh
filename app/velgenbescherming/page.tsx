@@ -26,7 +26,7 @@ export default function VelgenbeschermingDiensten() {
             {/* 3M Logo */}
             <div className="flex justify-center">
               <Image
-                src="/images/3m-wrap.png"
+                src="http://localhost:3010/uploads/images/3m-wrap.png"
                 alt="3M Logo"
                 width={120}
                 height={60}
@@ -36,7 +36,7 @@ export default function VelgenbeschermingDiensten() {
             {/* Avery Dennison Logo */}
             <div className="flex justify-center">
               <Image
-                src="/images/avery-logo.png"
+                src="http://localhost:3010/uploads/images/avery-logo.png"
                 alt="Avery Dennison Logo"
                 width={300}
                 height={60}
@@ -46,7 +46,7 @@ export default function VelgenbeschermingDiensten() {
             {/* Xpel Logo */}
             <div className="flex justify-center">
               <Image
-                src="/images/xpel-logo.jpg"
+                src="http://localhost:3010/uploads/images/xpel-logo.jpg"
                 alt="Xpel Logo"
                 width={300}
                 height={60}
@@ -91,7 +91,7 @@ export default function VelgenbeschermingDiensten() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
+                src="http://localhost:3010/uploads/images/audi-s3-hexis-blue.jpeg"
                 alt="Voorbeeld van Velgenbescherming"
                 width={800}
                 height={600}
@@ -144,7 +144,7 @@ export default function VelgenbeschermingDiensten() {
             </div>
             <div className="order-1 lg:order-2">
               <Image
-                src="/images/audi-s3-hexis-blue.jpeg"
+                src="http://localhost:3010/uploads/images/audi-s3-hexis-blue.jpeg"
                 alt="Voorbeeld van Velgenbescherming"
                 width={800}
                 height={600}
@@ -228,7 +228,7 @@ export default function VelgenbeschermingDiensten() {
               </li>
             </ul>
             <Image
-              src="/images/brabus1.png"
+              src="http://localhost:3010/uploads/images/brabus1.png"
               alt="Voordelen van Velgenbescherming"
               width={1920}
               height={1080}
@@ -247,7 +247,7 @@ export default function VelgenbeschermingDiensten() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <Image
-                src="/images/poetsen-glascoating.jpeg"
+                src="http://localhost:3010/uploads/images/poetsen-glascoating.jpeg"
                 alt="Onderhoud van Velgenbescherming"
                 width={600}
                 height={400}

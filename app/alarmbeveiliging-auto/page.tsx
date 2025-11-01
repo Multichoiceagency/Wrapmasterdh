@@ -28,7 +28,7 @@ const DynamicAccordionContent = dynamic(() => Promise.resolve(LazyAccordionConte
 const dienstData = {
   title: "ALARMBEVEILIGING",
   description: "",
-  heroImage: "/enes-website/alarm/proefdruk-alarm-stickers.webp",
+  heroImage: "http://localhost:3010/uploads/enes-website/alarm/proefdruk-alarm-stickers.webp",
 }
 
 // Accordion data

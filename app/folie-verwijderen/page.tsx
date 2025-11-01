@@ -21,15 +21,15 @@ const socialMedia = {
 const dienstData = {
   title: "FOLIE VERWIJDEREN",
   description: "",
-  heroImage: "/enes-website/wrapfolie/GLA_4446-scaled.jpg",
-  contentImage1: "/enes-website/wrapfolie/GLA_4446-scaled.jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/wrapfolie/GLA_4446-scaled.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/wrapfolie/GLA_4446-scaled.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
-  "/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
+  "http://localhost:3010/uploads/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_2.png",
+  "http://localhost:3010/uploads/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_6.jpg",
+  "http://localhost:3010/uploads/enes-website/memo-map/bodykit/eng_pl_Front-Splitter-Lamborghini-Huracan-EVO-AWD-15430_8.jpg",
+  "http://localhost:3010/uploads/enes-website/memo-map/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-BMW-M3-G80-Sedan-20264_5.jpg",
 ]
 
 const reels = [

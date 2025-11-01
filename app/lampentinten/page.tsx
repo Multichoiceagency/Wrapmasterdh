@@ -25,17 +25,17 @@ const socialMedia = {
 const dienstData = {
   title: "LAMPEN TINTEN",
   description: "",
-  heroImage: "/enes-website/lampen-tinten/1000008429.jpg",
-  contentImage1: "/enes-website/lampen-tinten/lampentinten.jpg",
-  contentImage2: "/enes-website/lampen-tinten/1000007448.jpg",
-  contentImage3: "/enes-website/lampen-tinten/1000007506.jpg",
+  heroImage: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000008429.jpg",
+  contentImage1: "http://localhost:3010/uploads/enes-website/lampen-tinten/lampentinten.jpg",
+  contentImage2: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000007448.jpg",
+  contentImage3: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000007506.jpg",
 }
 
 const sliderImages = [
-  "/enes-website/lampen-tinten/DSC00224-2.jpg",
-  "/enes-website/lampen-tinten/IMG_0123.JPEG",
-  "/enes-website/lampen-tinten/IMG_5457.JPG",
-  "/enes-website/lampen-tinten/IMG_0820.jpg",
+  "http://localhost:3010/uploads/enes-website/lampen-tinten/DSC00224-2.jpg",
+  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_0123.JPEG",
+  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_5457.JPG",
+  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_0820.jpg",
 ]
 
 const reels = [
@@ -380,14 +380,14 @@ export default function Lampentinten() {
                 <video src={reel.video} className="w-full h-full object-cover" loop muted autoPlay playsInline></video>
                 <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="/logos/handtekening-wit.png"
+                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}
