@@ -41,3 +41,4 @@ public/video
 /dist/_next/static/chunks
 /dist/_next/static
 /dist
+env.local
