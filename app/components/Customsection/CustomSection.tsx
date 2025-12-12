@@ -39,7 +39,7 @@ const customSlides: CustomSlide[] = [
     id: 3,
     titel: "BRABUS G800 NARDO GREY",
     subtitel: "",
-    foto: "/video/brabus-g800-video.mp4",
+    foto: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/brabus-g800-video.mp4",
     slug: "youtube",
     link: "https://www.youtube.com/shorts/eajMeJ5aJ64",
     isVideo: true,

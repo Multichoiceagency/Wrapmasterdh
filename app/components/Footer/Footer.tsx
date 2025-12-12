@@ -33,7 +33,7 @@ export default function Footer() {
     {
       items: [
         { title: "CONTACT", href: "/contact", isHeading: true },
-        { title: "ALGEMENE VOORWAARDEN", href: "/video/Algemene-Voorwaarden-Wrapmaster-1.pdf", isHeading: false },
+        { title: "ALGEMENE VOORWAARDEN", href: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/Algemene-Voorwaarden-Wrapmaster-1.pdf", isHeading: false },
       ],
       socialIcon: <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />,
       socialLink: "https://www.youtube.com/@wrapmasterdh/videos"

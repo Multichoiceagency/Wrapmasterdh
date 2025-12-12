@@ -35,25 +35,25 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-rsq8.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/audi-rsq8.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-rsq8.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-rsq8.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-rsq8.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/audi-rsq8.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-rsq8.mp4",
     likes: "78.9k",
     comments: "230",
   },

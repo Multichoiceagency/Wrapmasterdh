@@ -41,13 +41,13 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/IMG_1975.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/IMG_1975.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/S6 Lampen tinten - ontchroming V2.MP4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/S6 Lampen tinten - ontchroming V2.MP4",
     likes: "120k",
     comments: "345",
   },

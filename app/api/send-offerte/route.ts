@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { uploadToS3, isS3Configured, getS3PublicUrl } from "@/lib/s3"
 
 export async function POST(req: Request) {
   try {
@@ -22,6 +23,8 @@ export async function POST(req: Request) {
     // 📌 Bestanden ophalen
     const uploadedFiles = formData.getAll("uploadedFiles") as File[]
     const attachments: any[] = []
+    const s3FileLinks: string[] = [] // Store S3 links for email
+    const useS3 = isS3Configured()
 
     for (const file of uploadedFiles) {
       if (file.size > 10 * 1024 * 1024) {
@@ -29,10 +32,32 @@ export async function POST(req: Request) {
       }
 
       const buffer = Buffer.from(await file.arrayBuffer())
-      attachments.push({
-        filename: file.name,
-        content: buffer,
-      })
+
+      if (useS3) {
+        // Upload to S3/Garage storage
+        try {
+          const { url, key } = await uploadToS3(
+            buffer,
+            file.name,
+            file.type,
+            `offerte-aanvragen/${kenteken || "geen-kenteken"}`
+          )
+          s3FileLinks.push(`<a href="${url}">${file.name}</a>`)
+        } catch (s3Error) {
+          console.error("S3 upload failed, falling back to email attachment:", s3Error)
+          // Fallback to email attachment if S3 fails
+          attachments.push({
+            filename: file.name,
+            content: buffer,
+          })
+        }
+      } else {
+        // No S3 configured, use email attachments
+        attachments.push({
+          filename: file.name,
+          content: buffer,
+        })
+      }
     }
 
     // 📌 Nodemailer Configureren
@@ -47,6 +72,10 @@ export async function POST(req: Request) {
     })
 
     // 📌 E-mailinhoud
+    const fileLinksHtml = s3FileLinks.length > 0
+      ? `<p><strong>Geüploade bestanden:</strong><br>${s3FileLinks.join("<br>")}</p>`
+      : ""
+
     const emailContent = `
       <h2>Offerte aanvraag Wrapmaster</h2>
       <p><strong>Naam:</strong> ${naam}</p>
@@ -58,6 +87,7 @@ export async function POST(req: Request) {
       <p><strong>Huidige Kleur:</strong> ${huidigeKleur || "N/A"}</p>
       <p><strong>Gewenste Kleur:</strong> ${gewensteKleur || "N/A"}</p>
       <p><strong>Bericht:</strong> ${bericht || "Geen bericht toegevoegd."}</p>
+      ${fileLinksHtml}
     `
 
     // 🔹 **Verstuur e-mail naar de klant**

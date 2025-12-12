@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import HeroSection from "./components/hero/Hero"
-import CustomSection from "./components/Customsection/CustomSection"
 import ServicesSection from "./components/ServicesSection"
 import NewsEvents from "@/components/newsevents"
 import Afbeelding from "@/components/Afbeelding"
@@ -263,7 +262,6 @@ export default function Home() {
       <Afbeelding />
       <DynamicSection />
       <OnzeDiensten />
-      <CustomSection />
       <ProductSlider />
       <PrintFolie />
       <ThreeDCarwrapping />

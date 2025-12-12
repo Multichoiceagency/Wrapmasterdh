@@ -18,7 +18,6 @@ const menuItems = [
   { id: 6, title: "Wallpaper", link: "/wallpaper" },
   { id: 7, title: "Samenwerking", link: "/samenwerking" },
   { id: 8, title: "Contact", link: "/contact" },
-  { id: 9, title: "6×6 Rental", link: "https://www.6x6rental.nl" },
 ]
 
 const socialMedia = {

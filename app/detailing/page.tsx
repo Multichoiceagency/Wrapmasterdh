@@ -40,25 +40,25 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/BLACK FERARRI normal 25-12.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/BLACK FERARRI normal 25-12.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/G WAGON 50FPS_1.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/G WAGON 50FPS_1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/PORSCHE FINAL 2.MP4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/PORSCHE FINAL 2.MP4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/SWIPE V2 - @wrapmaster.MP4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/SWIPE V2 - @wrapmaster.MP4",
     likes: "78.9k",
     comments: "230",
   },

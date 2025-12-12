@@ -40,19 +40,19 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/AMBIENT LIGHT 31-05.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/AMBIENT LIGHT 31-05.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/Eljero Elia-_1.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/Eljero Elia-_1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/copy_C55A7052-93D9-4EC9-ACC3-8EB7513E2BB5.mov",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/copy_C55A7052-93D9-4EC9-ACC3-8EB7513E2BB5.mov",
     likes: "120k",
     comments: "345",
   },

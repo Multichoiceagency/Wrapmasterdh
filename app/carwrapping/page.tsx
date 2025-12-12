@@ -23,7 +23,7 @@ const socialMedia = {
 
 const dienstData = {
   title: "CARWRAPPING",
-  heroVideo: "/video/BLACK FERARRI CLASSIC 25-12.mp4",
+  heroVideo: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/BLACK FERARRI CLASSIC 25-12.mp4",
   contentImage1: "http://localhost:3010/uploads/enes-website/auto-wrappen/rs6/RS6-10.jpg",
   contentImage2: "http://localhost:3010/uploads/enes-website/auto-wrappen/g-wagon/Brabus g800 Nardo grey  (17 of 24).jpg",
   contentImage3: "http://localhost:3010/uploads/enes-website/auto-wrappen/elia/BlndrAgency_ (25 of 34).jpg",
@@ -39,25 +39,25 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/audi-rsq8.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-rsq8.mp4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/YELLOW FERARRI VERSIE 1.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/YELLOW FERARRI VERSIE 1.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/BLACK FERARRI normal 25-12.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/BLACK FERARRI normal 25-12.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/Eljero Elia-_1.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/Eljero Elia-_1.mp4",
     likes: "78.9k",
     comments: "230",
   },

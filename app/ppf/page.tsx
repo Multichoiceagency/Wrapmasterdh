@@ -41,25 +41,25 @@ const sliderImages = [
 const reels = [
   {
     id: 1,
-    video: "/video/Mercedes-Benz AMG GT 63 Polish & PPF  V3 VIDEO.MP4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/Mercedes-Benz AMG GT 63 Polish & PPF  V3 VIDEO.MP4",
     likes: "65.2k",
     comments: "195",
   },
   {
     id: 2,
-    video: "/video/Wrapmaster Hurucan extended  VIDEO.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/Wrapmaster Hurucan extended  VIDEO.mp4",
     likes: "120k",
     comments: "345",
   },
   {
     id: 3,
-    video: "/video/audi-a4.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/audi-a4.mp4",
     likes: "45.6k",
     comments: "89",
   },
   {
     id: 4,
-    video: "/video/aventador.mp4",
+    video: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/aventador.mp4",
     likes: "78.9k",
     comments: "230",
   },
@@ -258,7 +258,7 @@ export default function Carwrapping() {
         {/* Hero Video */}
         <section className="relative h-[100vh] sm:h-[100vh]">
           <video
-            src="/video/urus-reel.mp4"
+            src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/urus-reel.mp4"
             autoPlay
             loop
             muted

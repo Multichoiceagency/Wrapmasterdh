@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -32,8 +32,13 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "components/MultiFileDropzone.jsx", "components/MultiFileDropzone.js", "app/api/convert-to-webp/route.js", "app/api/send-offerte"  ],
+    ".next/types/**/*.ts",
+    "components/MultiFileDropzone.jsx",
+    "components/MultiFileDropzone.js",
+    "app/api/convert-to-webp/route.js",
+    "app/api/send-offerte",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

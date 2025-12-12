@@ -131,7 +131,7 @@ export default function BlogPage() {
         {/* 🔥 Hero Sectie met video */}
         <section className="relative h-[70vh]">
           <video
-            src="/enes-website/auto-wrappen/urus-khaki/urus.mp4"
+            src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/urus-khaki/urus.mp4"
             autoPlay
             loop
             muted

@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable ESLint checks during build process
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  
+  // Enable standalone output for Docker/Coolify deployment
+  output: "standalone",
+
   // Image optimization configuration
   images: {
     formats: ["image/avif", "image/webp"],
@@ -38,6 +36,23 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "wrapmasterdh-production.up.railway.app",
+        pathname: "/**",
+      },
+      // Supabase Storage (cloud)
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        pathname: "/**",
+      },
+      // Self-hosted Supabase on Coolify (sslip.io)
+      {
+        protocol: "http",
+        hostname: "*.sslip.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.sslip.io",
         pathname: "/**",
       },
     ],

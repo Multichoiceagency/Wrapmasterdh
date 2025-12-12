@@ -25,7 +25,7 @@ interface HeroSlide {
 const slides: HeroSlide[] = [
   {
     id: 1,
-    videoFile: "/video/black-ferrari.mp4",
+    videoFile: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/black-ferrari.mp4",
     heroTitle: "SPECIALIST IN CAR CUSTOMIZING",
     buttonText: "BEKIJK ONZE DIENSTEN",
     buttonLink: "/diensten",

@@ -16,7 +16,7 @@ export default function OverOnsPage() {
               loop
               muted
               playsInline
-              src="/video/carwrapping.mp4" // Ensure this video path is correct
+              src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/carwrapping.mp4" // Ensure this video path is correct
             ></video>
             <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center text-white px-4">
               <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font tracking-widest">
