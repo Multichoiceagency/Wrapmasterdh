@@ -76,13 +76,13 @@ export async function POST(req: Request) {
       )
     }
 
-    // Check for duplicate submission (using Redis cache)
+    // Check for duplicate submission (using Redis cache) - 60 second cooldown
     const submissionKey = CacheKeys.submission("offerte", email)
     try {
       const recentSubmission = await cacheGet<boolean>(submissionKey)
       if (recentSubmission) {
         return NextResponse.json(
-          { success: false, message: "Je hebt recent al een aanvraag verstuurd. Probeer het later opnieuw." },
+          { success: false, message: "Je hebt al een aanvraag verstuurd. Wacht 1 minuut voordat je opnieuw probeert." },
           { status: 429 }
         )
       }
@@ -153,9 +153,9 @@ export async function POST(req: Request) {
       console.warn("Database save error:", dbError)
     }
 
-    // Mark submission in cache (prevent duplicates for 5 minutes)
+    // Mark submission in cache (prevent duplicates for 60 seconds)
     try {
-      await cacheSet(submissionKey, true, 300)
+      await cacheSet(submissionKey, true, 60)
     } catch {
       // Redis not available, skip
     }
