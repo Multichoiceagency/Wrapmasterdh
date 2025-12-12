@@ -292,23 +292,29 @@ export async function POST(req: Request) {
       minute: "2-digit",
     })
 
-    const pdfBuffer = await generateOffertePDF({
-      naam,
-      email,
-      telefoonnummer,
-      bedrijfsnaam,
-      kenteken,
-      bouwjaar,
-      huidigeKleur,
-      gewensteKleur,
-      bericht,
-      datum,
-      fileUrls: s3FileUrls,
-    })
+    let pdfBuffer: Buffer | null = null
+    try {
+      pdfBuffer = await generateOffertePDF({
+        naam,
+        email,
+        telefoonnummer,
+        bedrijfsnaam,
+        kenteken,
+        bouwjaar,
+        huidigeKleur,
+        gewensteKleur,
+        bericht,
+        datum,
+        fileUrls: s3FileUrls,
+      })
+    } catch (pdfError) {
+      console.error("PDF generation failed:", pdfError)
+      // Continue without PDF - email is more important
+    }
 
     // Configure nodemailer
-    const port = Number(process.env.SMTP_PORT)
-    const isSecure = port === 465
+    const port = Number(process.env.SMTP_PORT) || 587
+    const isSecure = port === 465 // true for 465 (SSL), false for 587 (STARTTLS)
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -320,7 +326,9 @@ export async function POST(req: Request) {
       },
       tls: {
         rejectUnauthorized: false,
+        ciphers: "SSLv3",
       },
+      requireTLS: !isSecure, // Require STARTTLS for port 587
     })
 
     // Branded admin email content
@@ -644,15 +652,15 @@ export async function POST(req: Request) {
       attachments,
     })
 
-    // Send branded email to admin with PDF
-    const adminAttachments = [
-      ...attachments,
-      {
+    // Send branded email to admin with PDF (if generated)
+    const adminAttachments = [...attachments]
+    if (pdfBuffer) {
+      adminAttachments.push({
         filename: `Offerte-Aanvraag-${kenteken || naam.replace(/\s+/g, "-")}-${new Date().toISOString().split("T")[0]}.pdf`,
         content: pdfBuffer,
         contentType: "application/pdf",
-      },
-    ]
+      })
+    }
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
