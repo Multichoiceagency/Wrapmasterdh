@@ -7,12 +7,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pas de standaard body font aan naar DIN */
+/* DM Sans font van Google CDN */
 body {
   margin: 0;
+  font-family: 'DM Sans', sans-serif;
   line-height: normal;
-  -webkit-font-smoothing: antialiased; /* Ensures better font rendering on WebKit browsers */
-  -moz-osx-font-smoothing: grayscale; /* Ensures better font rendering on macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   padding-top: env(safe-area-inset-top);
 }

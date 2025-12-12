@@ -11,11 +11,6 @@ export default function TeamPage() {
             image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ons-team/ufuk.jpg"
           },
           {
-            name: "Cinar",
-            role: "Workshop manager",
-            image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ons-team/mehmet.jpg"
-          },
-          {
             name: "Enes",
             role: "Marketing & Sales",
             image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ons-team/enes.jpg"

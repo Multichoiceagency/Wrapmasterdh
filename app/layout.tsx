@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { DM_Sans } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
@@ -11,12 +10,6 @@ import FloatingSocialIcons from "@/components/FloatingSocialIcons"
 import ScrollToTop from "@/components/ScrollToTop"
 import SmoothScrolling from "@/components/SmoothScrolling"
 import { GoogleTagManager } from "@next/third-parties/google"
-
-const dmSans = DM_Sans({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   title: "Wrapmaster - Specialisten in Car wrapping",
@@ -37,9 +30,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="nl" className={dmSans.className} suppressHydrationWarning>
+    <html lang="nl" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className="min-h-screen bg-background text-foreground" suppressHydrationWarning>
         <Header />
