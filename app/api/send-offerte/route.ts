@@ -76,18 +76,15 @@ export async function POST(req: Request) {
       )
     }
 
-    // Check for duplicate submission (using Redis cache) - 60 second cooldown
+    // Check for duplicate submission (using Redis cache) - 30 second cooldown
+    // Only check if Redis is available
     const submissionKey = CacheKeys.submission("offerte", email)
-    try {
-      const recentSubmission = await cacheGet<boolean>(submissionKey)
-      if (recentSubmission) {
-        return NextResponse.json(
-          { success: false, message: "Je hebt al een aanvraag verstuurd. Wacht 1 minuut voordat je opnieuw probeert." },
-          { status: 429 }
-        )
-      }
-    } catch {
-      // Redis not available, skip duplicate check
+    const recentSubmission = await cacheGet<boolean>(submissionKey)
+    if (recentSubmission) {
+      return NextResponse.json(
+        { success: false, message: "Je hebt al een aanvraag verstuurd. Wacht 30 seconden voordat je opnieuw probeert." },
+        { status: 429 }
+      )
     }
 
     // Process file uploads
@@ -153,12 +150,8 @@ export async function POST(req: Request) {
       console.warn("Database save error:", dbError)
     }
 
-    // Mark submission in cache (prevent duplicates for 60 seconds)
-    try {
-      await cacheSet(submissionKey, true, 60)
-    } catch {
-      // Redis not available, skip
-    }
+    // Mark submission in cache (prevent duplicates for 30 seconds)
+    await cacheSet(submissionKey, true, 30)
 
     // Configure nodemailer
     const port = Number(process.env.SMTP_PORT)

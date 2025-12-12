@@ -187,8 +187,12 @@ export default function OfferteAanvragen() {
       }
     } catch (error) {
       console.error("Error submitting form:", error)
-      if (error instanceof Error && error.name === "AbortError") {
-        setErrorMessage("Verzending duurde te lang. Controleer je internetverbinding en probeer opnieuw.")
+      if (error instanceof Error) {
+        if (error.name === "AbortError") {
+          setErrorMessage("Verzending duurde te lang. Controleer je internetverbinding en probeer opnieuw.")
+        } else {
+          setErrorMessage(error.message || "Er is een fout opgetreden. Probeer het later opnieuw.")
+        }
       } else {
         setErrorMessage("Er is een fout opgetreden. Probeer het later opnieuw.")
       }
