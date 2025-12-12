@@ -1,4 +1,4 @@
-import { getSupabaseClient } from "./s3"
+import { getSupabaseClient, isS3Configured } from "./s3"
 
 /**
  * Database operations for form submissions
@@ -34,7 +34,17 @@ export interface ContactSubmission {
  */
 export async function saveOfferteSubmission(data: OfferteSubmission): Promise<{ success: boolean; id?: string; error?: string }> {
   try {
+    // Check if Supabase is configured
+    if (!isS3Configured()) {
+      console.warn("Supabase is not configured, skipping database save")
+      return { success: false, error: "Database not configured" }
+    }
+    
     const supabase = getSupabaseClient()
+    
+    if (!supabase) {
+      return { success: false, error: "Database not configured" }
+    }
 
     const { data: result, error } = await supabase
       .from("offerte_submissions")
@@ -73,7 +83,17 @@ export async function saveOfferteSubmission(data: OfferteSubmission): Promise<{ 
  */
 export async function saveContactSubmission(data: ContactSubmission): Promise<{ success: boolean; id?: string; error?: string }> {
   try {
+    // Check if Supabase is configured
+    if (!isS3Configured()) {
+      console.warn("Supabase is not configured, skipping database save")
+      return { success: false, error: "Database not configured" }
+    }
+    
     const supabase = getSupabaseClient()
+    
+    if (!supabase) {
+      return { success: false, error: "Database not configured" }
+    }
 
     const { data: result, error } = await supabase
       .from("contact_submissions")
@@ -106,7 +126,16 @@ export async function saveContactSubmission(data: ContactSubmission): Promise<{ 
  */
 export async function isDatabaseConfigured(): Promise<boolean> {
   try {
+    if (!isS3Configured()) {
+      return false
+    }
+    
     const supabase = getSupabaseClient()
+    
+    if (!supabase) {
+      return false
+    }
+    
     // Simple health check - try to access the tables
     const { error } = await supabase.from("offerte_submissions").select("id").limit(1)
     return !error

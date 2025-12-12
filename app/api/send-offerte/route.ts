@@ -178,6 +178,19 @@ async function generateOffertePDF(data: {
 
 export async function POST(req: Request) {
   try {
+    // Check SMTP configuration first
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+      console.error("SMTP configuration missing:", {
+        host: !!process.env.SMTP_HOST,
+        user: !!process.env.SMTP_USER,
+        password: !!process.env.SMTP_PASSWORD,
+      })
+      return NextResponse.json(
+        { success: false, message: "E-mail configuratie ontbreekt. Neem contact op via telefoon." },
+        { status: 500 }
+      )
+    }
+
     // Get IP and user agent for tracking
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
     const userAgent = req.headers.get("user-agent") || "unknown"
@@ -653,6 +666,26 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, message: "E-mails verzonden met bijlagen!" })
   } catch (error) {
     console.error("Fout bij verzenden van e-mails:", error)
-    return NextResponse.json({ success: false, message: "Er is een fout opgetreden." }, { status: 500 })
+    
+    // Provide more detailed error message for debugging
+    let errorMessage = "Er is een fout opgetreden bij het verzenden."
+    
+    if (error instanceof Error) {
+      // Check for common SMTP errors
+      if (error.message.includes("ECONNREFUSED")) {
+        errorMessage = "Kan geen verbinding maken met de e-mailserver."
+      } else if (error.message.includes("EAUTH") || error.message.includes("535") || error.message.includes("authentication")) {
+        errorMessage = "E-mail authenticatie mislukt. Controleer SMTP instellingen."
+      } else if (error.message.includes("ETIMEDOUT")) {
+        errorMessage = "Timeout bij verbinden met e-mailserver."
+      } else if (error.message.includes("self signed certificate")) {
+        errorMessage = "SSL certificaat probleem met e-mailserver."
+      } else {
+        // Log the full error for debugging but show generic message to user
+        console.error("Full error details:", error.message)
+      }
+    }
+    
+    return NextResponse.json({ success: false, message: errorMessage }, { status: 500 })
   }
 }

@@ -16,15 +16,16 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js"
 let supabaseClient: SupabaseClient | null = null
 
 // Get or create Supabase client for server-side operations
-export function getSupabaseClient(): SupabaseClient {
+// Returns null if Supabase is not configured
+export function getSupabaseClient(): SupabaseClient | null {
+  if (!isS3Configured()) {
+    return null
+  }
+  
   if (!supabaseClient) {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
     // Use service role key for server-side, fallback to anon key
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error("Supabase configuration is missing. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY")
-    }
+    const supabaseKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)!
 
     supabaseClient = createClient(supabaseUrl, supabaseKey, {
       auth: {
@@ -61,6 +62,11 @@ export async function uploadToS3(
   folder: string = "uploads"
 ): Promise<{ url: string; key: string }> {
   const supabase = getSupabaseClient()
+  
+  if (!supabase) {
+    throw new Error("Supabase is not configured")
+  }
+  
   const uniqueFileName = generateUniqueFileName(fileName)
   const key = folder ? `${folder}/${uniqueFileName}` : uniqueFileName
 
@@ -89,6 +95,11 @@ export async function getPresignedUploadUrl(
   expiresIn: number = 3600
 ): Promise<{ uploadUrl: string; key: string; publicUrl: string }> {
   const supabase = getSupabaseClient()
+  
+  if (!supabase) {
+    throw new Error("Supabase is not configured")
+  }
+  
   const uniqueFileName = generateUniqueFileName(fileName)
   const key = folder ? `${folder}/${uniqueFileName}` : uniqueFileName
 
@@ -116,6 +127,10 @@ export async function getPresignedDownloadUrl(
 ): Promise<string> {
   const supabase = getSupabaseClient()
 
+  if (!supabase) {
+    throw new Error("Supabase is not configured")
+  }
+
   const { data, error } = await supabase.storage
     .from(STORAGE_BUCKET)
     .createSignedUrl(key, expiresIn)
@@ -130,6 +145,10 @@ export async function getPresignedDownloadUrl(
 // Delete a file from Supabase Storage
 export async function deleteFromS3(key: string): Promise<void> {
   const supabase = getSupabaseClient()
+
+  if (!supabase) {
+    throw new Error("Supabase is not configured")
+  }
 
   const { error } = await supabase.storage
     .from(STORAGE_BUCKET)
@@ -151,6 +170,10 @@ export async function listFilesInFolder(
   maxKeys: number = 100
 ): Promise<{ key: string; size: number; lastModified: Date }[]> {
   const supabase = getSupabaseClient()
+
+  if (!supabase) {
+    throw new Error("Supabase is not configured")
+  }
 
   const { data, error } = await supabase.storage
     .from(STORAGE_BUCKET)
