@@ -24,12 +24,13 @@ export function getRedisClient(): Redis {
     const redisUrl = process.env.REDIS_URL
 
     if (redisUrl) {
-      // Use connection URL
+      // Use connection URL - parse and create with options
+      const isTls = redisUrl.startsWith("rediss://")
       redisClient = new Redis(redisUrl, {
         maxRetriesPerRequest: 3,
-        retryDelayOnFailover: 100,
         lazyConnect: true,
-        tls: redisUrl.startsWith("rediss://") ? {} : undefined,
+        tls: isTls ? { rejectUnauthorized: false } : undefined,
+        retryStrategy: (times) => Math.min(times * 100, 3000),
       })
     } else {
       // Use individual settings
@@ -47,10 +48,10 @@ export function getRedisClient(): Redis {
         port,
         username,
         password,
-        tls: {}, // Enable TLS for secure connection
+        tls: { rejectUnauthorized: false },
         maxRetriesPerRequest: 3,
-        retryDelayOnFailover: 100,
         lazyConnect: true,
+        retryStrategy: (times) => Math.min(times * 100, 3000),
       })
     }
 
