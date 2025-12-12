@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { saveContactSubmission } from "@/lib/db"
-import { checkRateLimit, CacheKeys, cacheGet, cacheSet } from "@/lib/redis"
 
-// Fallback in-memory rate limiting (when Redis is not available)
+// In-memory rate limiting
 const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
 const RATE_LIMIT_WINDOW = 60000 // 1 minute
 const MAX_REQUESTS = 3 // Max 3 requests per minute per IP
 
-function fallbackRateLimit(ip: string): boolean {
+function checkRateLimit(ip: string): boolean {
   const now = Date.now()
   const record = rateLimitMap.get(ip)
 
@@ -34,17 +33,8 @@ export async function POST(req: Request) {
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
     const userAgent = req.headers.get("user-agent") || "unknown"
 
-    // Rate limit check using Redis (with fallback)
-    let isLimited = false
-    try {
-      const rateLimit = await checkRateLimit(CacheKeys.rateLimit(ip), MAX_REQUESTS, 60)
-      isLimited = !rateLimit.allowed
-    } catch {
-      // Redis not available, use fallback
-      isLimited = fallbackRateLimit(ip)
-    }
-
-    if (isLimited) {
+    // Rate limit check
+    if (checkRateLimit(ip)) {
       return NextResponse.json(
         { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
         { status: 429 }
@@ -84,20 +74,6 @@ export async function POST(req: Request) {
       )
     }
 
-    // Check for duplicate submission (using Redis cache)
-    const submissionKey = CacheKeys.submission("contact", formData.email)
-    try {
-      const recentSubmission = await cacheGet<boolean>(submissionKey)
-      if (recentSubmission) {
-        return NextResponse.json(
-          { success: false, message: "Je hebt recent al een bericht verstuurd. Probeer het later opnieuw." },
-          { status: 429 }
-        )
-      }
-    } catch {
-      // Redis not available, skip duplicate check
-    }
-
     // Save to database (don't fail if this fails)
     try {
       const dbResult = await saveContactSubmission({
@@ -114,13 +90,6 @@ export async function POST(req: Request) {
       }
     } catch (dbError) {
       console.warn("Database save error:", dbError)
-    }
-
-    // Mark submission in cache (prevent duplicates for 5 minutes)
-    try {
-      await cacheSet(submissionKey, true, 300)
-    } catch {
-      // Redis not available, skip
     }
 
     // Configure SMTP transporter

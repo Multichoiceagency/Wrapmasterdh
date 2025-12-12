@@ -2,14 +2,13 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { uploadToS3, isS3Configured } from "@/lib/s3"
 import { saveOfferteSubmission } from "@/lib/db"
-import { checkRateLimit, CacheKeys, cacheGet, cacheSet } from "@/lib/redis"
 
-// Fallback in-memory rate limiting (when Redis is not available)
+// In-memory rate limiting
 const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
 const RATE_LIMIT_WINDOW = 60000 // 1 minute
 const MAX_REQUESTS = 5 // Max 5 requests per minute per IP
 
-function fallbackRateLimit(ip: string): boolean {
+function checkRateLimit(ip: string): boolean {
   const now = Date.now()
   const record = rateLimitMap.get(ip)
 
@@ -35,17 +34,8 @@ export async function POST(req: Request) {
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
     const userAgent = req.headers.get("user-agent") || "unknown"
 
-    // Rate limit check using Redis (with fallback)
-    let isLimited = false
-    try {
-      const rateLimit = await checkRateLimit(CacheKeys.rateLimit(ip), MAX_REQUESTS, 60)
-      isLimited = !rateLimit.allowed
-    } catch {
-      // Redis not available, use fallback
-      isLimited = fallbackRateLimit(ip)
-    }
-
-    if (isLimited) {
+    // Rate limit check
+    if (checkRateLimit(ip)) {
       return NextResponse.json(
         { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
         { status: 429 }
@@ -73,17 +63,6 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { success: false, message: "Naam en e-mailadres zijn verplicht." },
         { status: 400 }
-      )
-    }
-
-    // Check for duplicate submission (using Redis cache) - 30 second cooldown
-    // Only check if Redis is available
-    const submissionKey = CacheKeys.submission("offerte", email)
-    const recentSubmission = await cacheGet<boolean>(submissionKey)
-    if (recentSubmission) {
-      return NextResponse.json(
-        { success: false, message: "Je hebt al een aanvraag verstuurd. Wacht 30 seconden voordat je opnieuw probeert." },
-        { status: 429 }
       )
     }
 
@@ -149,9 +128,6 @@ export async function POST(req: Request) {
     } catch (dbError) {
       console.warn("Database save error:", dbError)
     }
-
-    // Mark submission in cache (prevent duplicates for 30 seconds)
-    await cacheSet(submissionKey, true, 30)
 
     // Configure nodemailer
     const port = Number(process.env.SMTP_PORT)

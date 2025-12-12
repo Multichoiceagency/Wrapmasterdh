@@ -24,7 +24,8 @@
       "Bash(npm uninstall:*)",
       "Bash(curl:*)",
       "Bash(node scripts/test-smtp.js:*)",
-      "Bash(node scripts/optimize-image-loading.js:*)"
+      "Bash(node scripts/optimize-image-loading.js:*)",
+      "Bash(node scripts/fix-skeleton-animations.js:*)"
     ],
     "deny": [],
     "ask": []
