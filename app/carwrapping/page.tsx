@@ -259,7 +259,6 @@ export default function Carwrapping() {
                 alt="Content Image 1"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
             <div className="relative h-[700px] sm:h-[800px]">
@@ -268,7 +267,6 @@ export default function Carwrapping() {
                 alt="Content Image 2"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>

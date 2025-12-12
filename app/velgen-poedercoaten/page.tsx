@@ -304,7 +304,6 @@ export default function VelgenPoedercoaten() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -321,7 +320,6 @@ export default function VelgenPoedercoaten() {
                 alt="Content Image 1"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
             <div className="relative h-[700px] sm:h-[800px]">
@@ -330,7 +328,6 @@ export default function VelgenPoedercoaten() {
                 alt="Content Image 2"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>

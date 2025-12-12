@@ -329,7 +329,6 @@ export default function GordelsVervangen() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -346,7 +345,6 @@ export default function GordelsVervangen() {
                 alt="Content Image 1"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
             <div className="relative h-[700px] sm:h-[700px]">
@@ -355,7 +353,6 @@ export default function GordelsVervangen() {
                 alt="Content Image 2"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>

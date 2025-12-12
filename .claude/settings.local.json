@@ -1,7 +1,30 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx next build:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(node scripts/upload-to-supabase.js:*)",
+      "Bash(node scripts/create-bucket.js:*)",
+      "Bash(node scripts/test-bucket.js:*)",
+      "Bash(node scripts/upload-to-minio.js:*)",
+      "Bash(node scripts/update-urls.js:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nMigrate assets to MinIO storage and add Docker support\n\n- Upload 979 files (3.4GB) from /public to MinIO storage\n- Update asset URLs in codebase to use MinIO CDN\n- Add MinIO upload and URL update scripts\n- Add Docker and docker-compose configuration for Coolify deployment\n- Add S3 client library for runtime file uploads\n- Update Next.js config for sslip.io image domains\n- Upgrade dependencies including Next.js\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd Nixpacks config and update for Coolify deployment\n\n- Add nixpacks.toml for Coolify/Nixpacks deployment\n- Add coolify.barosy.nl domain to Next.js image config\n- Update .env.example with MinIO storage variables\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(node -e:*)",
+      "Bash(node scripts/convert-all-urls-to-minio.js:*)",
+      "Bash(npm show:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(curl:*)",
+      "Bash(node scripts/test-smtp.js:*)",
+      "Bash(node scripts/optimize-image-loading.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -325,7 +325,6 @@ export default function SterrenhemelInbouwen() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -342,7 +341,6 @@ export default function SterrenhemelInbouwen() {
                 alt="Content Image 1"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>

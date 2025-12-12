@@ -291,7 +291,6 @@ export default function ScooterEnMotorWraps() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -308,7 +307,6 @@ export default function ScooterEnMotorWraps() {
                 alt="Content Image 1"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
             <div className="relative aspect-[4/3]">
@@ -317,7 +315,6 @@ export default function ScooterEnMotorWraps() {
                 alt="Content Image 2"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>

@@ -88,7 +88,6 @@ const NewCustomSection = () => {
             fill
             style={{ objectFit: 'cover' }}
             sizes="100vw"
-            priority
           />
           {/* Overlay text on image */}
           <div className="absolute inset-0 flex flex-col justify-start items-start text-left bg-black bg-opacity-30 p-6 md:p-12">

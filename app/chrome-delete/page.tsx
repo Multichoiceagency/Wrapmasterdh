@@ -253,7 +253,6 @@ export default function ChromeDelete() {
                   contentImagesLoaded[0] ? "opacity-100" : "opacity-0"
                 }`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -282,7 +281,6 @@ export default function ChromeDelete() {
                   className={`object-cover transition-opacity duration-700 ${
                     contentImagesLoaded[idx + 1] ? "opacity-100" : "opacity-0"
                   }`}
-                  priority
                 />
               </div>
             ))}

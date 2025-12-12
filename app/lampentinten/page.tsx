@@ -330,7 +330,6 @@ export default function Lampentinten() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
             </div>
           </div>
@@ -347,7 +346,6 @@ export default function Lampentinten() {
                 alt="Content Image 1"
                 fill
                 className="object-cover object-top"
-                priority
               />
               <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
                 Before
@@ -359,7 +357,6 @@ export default function Lampentinten() {
                 alt="Content Image 2"
                 fill
                 className="object-cover object-top"
-                priority
               />
               <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
                 After
