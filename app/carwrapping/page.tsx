@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageCarousel from "@/components/ImageCarousel"
 import dynamic from "next/dynamic"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
+import { OptimizedVideoEager } from "@/components/ui/optimized-video"
 
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
@@ -190,7 +192,7 @@ export default function Carwrapping() {
       <main className="bg-white">
         {/* ✅ Hero Video */}
         <section className="relative h-[100vh] sm:h-[100vh]">
-          <video
+          <OptimizedVideoEager
             src={dienstData.heroVideo}
             autoPlay
             loop
@@ -237,12 +239,12 @@ export default function Carwrapping() {
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
-              <Image
+              <OptimizedImageEager
                 src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Carwrapping bij Wrapmaster"
                 fill
                 className="object-cover"
-                priority
+                spinnerSize="lg"
               />
             </div>
           </div>
@@ -254,19 +256,21 @@ export default function Carwrapping() {
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[800px]">
-              <Image
+              <OptimizedImage
                 src={dienstData.contentImage3 || "/placeholder.svg"}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
+                spinnerSize="lg"
               />
             </div>
             <div className="relative h-[700px] sm:h-[800px]">
-              <Image
+              <OptimizedImage
                 src={dienstData.contentImage2 || "/placeholder.svg"}
                 alt="Content Image 2"
                 fill
                 className="object-cover"
+                spinnerSize="lg"
               />
             </div>
           </div>

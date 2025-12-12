@@ -9,6 +9,7 @@ import Autoplay from "embla-carousel-autoplay"
 import OnzeDiensten from "@/app/components/Diensten/Diensten"
 import ImageCarousel from "@/components/ImageCarousel"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
 
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
@@ -96,6 +97,8 @@ function RamentintenSkeleton() {
 export default function Ramentinten() {
   const [showMore, setShowMore] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [heroLoaded, setHeroLoaded] = useState(false)
+  const [contentImageLoaded, setContentImageLoaded] = useState(false)
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -158,11 +161,13 @@ export default function Ramentinten() {
       <main className="bg-white">
         {/* Hero Section */}
         <section className="relative h-[100vh] sm:h-100vh">
+          {!heroLoaded && <Skeleton className="absolute w-full h-full z-10" />}
           <Image
             src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
-            className="object-cover"
+            onLoad={() => setHeroLoaded(true)}
+            className={`object-cover transition-opacity duration-700 ${heroLoaded ? "opacity-100" : "opacity-0"}`}
             priority
           />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
@@ -205,11 +210,13 @@ export default function Ramentinten() {
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+              {!contentImageLoaded && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Ramentinten bij Wrapmaster"
                 fill
-                className="object-cover"
+                onLoad={() => setContentImageLoaded(true)}
+                className={`object-cover transition-opacity duration-700 ${contentImageLoaded ? "opacity-100" : "opacity-0"}`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

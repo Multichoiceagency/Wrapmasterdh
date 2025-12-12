@@ -11,6 +11,8 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageCarousel from "@/components/ImageCarousel"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
+import { OptimizedVideoEager } from "@/components/ui/optimized-video"
 
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
@@ -257,13 +259,13 @@ export default function Carwrapping() {
       <main>
         {/* Hero Video */}
         <section className="relative h-[100vh] sm:h-[100vh]">
-          <video
+          <OptimizedVideoEager
             src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/video/urus-reel.mp4"
             autoPlay
             loop
             muted
             playsInline
-            className="absolute w-full h-full object-cover opacity-100"
+            className="absolute w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 space-y-4">
             <h1 className="text-2xl md:text-4xl font-bold text-white text-center">PAINT PROTECTION FILM</h1>
@@ -300,13 +302,13 @@ export default function Carwrapping() {
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
-              <Image
+              <OptimizedImageEager
                 src={dienstData.contentImage3 || "/placeholder.svg"}
                 alt="Paint Protection Film bij Wrapmaster"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+                spinnerSize="lg"
               />
             </div>
           </div>
@@ -319,19 +321,21 @@ export default function Carwrapping() {
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[700px]">
-              <Image
+              <OptimizedImage
                 src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Content Image 1"
                 fill
                 className="object-cover"
+                spinnerSize="lg"
               />
             </div>
             <div className="relative h-[700px] sm:h-[700px]">
-              <Image
+              <OptimizedImage
                 src={dienstData.contentImage2 || "/placeholder.svg"}
                 alt="Content Image 2"
                 fill
                 className="object-cover"
+                spinnerSize="lg"
               />
             </div>
           </div>

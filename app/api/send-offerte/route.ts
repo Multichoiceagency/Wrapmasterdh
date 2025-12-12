@@ -3,6 +3,7 @@ import nodemailer from "nodemailer"
 import PDFDocument from "pdfkit"
 import { uploadToS3, isS3Configured } from "@/lib/s3"
 import { saveOfferteSubmission } from "@/lib/db"
+import { verifyRecaptcha } from "@/lib/recaptcha"
 
 // Generate PDF for offerte aanvraag
 async function generateOffertePDF(data: {
@@ -219,6 +220,23 @@ export async function POST(req: Request) {
       )
     }
 
+    // Verify reCAPTCHA
+    const recaptchaToken = getString(formData.get("recaptchaToken"))
+    if (recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken)
+      if (!recaptchaResult.success) {
+        return NextResponse.json(
+          { success: false, message: recaptchaResult.error || "reCAPTCHA verificatie mislukt" },
+          { status: 400 }
+        )
+      }
+    } else if (process.env.NODE_ENV === "production") {
+      return NextResponse.json(
+        { success: false, message: "reCAPTCHA verificatie is verplicht" },
+        { status: 400 }
+      )
+    }
+
     // Process file uploads
     const uploadedFiles = formData.getAll("uploadedFiles") as File[]
     const attachments: { filename: string; content: Buffer }[] = []
@@ -363,7 +381,7 @@ export async function POST(req: Request) {
         <!-- Alert Banner -->
         <tr>
           <td style="background-color: #DC2626; padding: 15px 30px; text-align: center;">
-            <p style="margin: 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">🚗 Nieuwe Offerte Aanvraag</p>
+            <p style="margin: 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">Nieuwe Offerte Aanvraag</p>
           </td>
         </tr>
 
@@ -561,7 +579,7 @@ export async function POST(req: Request) {
             <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #1F2937; border-radius: 12px;">
               <tr>
                 <td style="padding: 25px;">
-                  <h3 style="margin: 0 0 15px 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">🚗 Jouw aanvraag</h3>
+                  <h3 style="margin: 0 0 15px 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">Jouw aanvraag</h3>
                   <table width="100%" cellspacing="0" cellpadding="5">
                     ${kenteken ? `
                     <tr>
@@ -663,7 +681,7 @@ export async function POST(req: Request) {
       from: process.env.SMTP_FROM,
       to: process.env.SMTP_TO,
       replyTo: email,
-      subject: `🚗 Offerte Aanvraag: ${naam}${kenteken ? ` - ${kenteken.toUpperCase()}` : ""}`,
+      subject: `Offerte Aanvraag: ${naam}${kenteken ? ` - ${kenteken.toUpperCase()}` : ""}`,
       html: adminEmailContent,
       attachments: adminAttachments,
     })

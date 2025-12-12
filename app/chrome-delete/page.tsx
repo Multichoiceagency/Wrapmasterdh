@@ -9,6 +9,7 @@ import Autoplay from "embla-carousel-autoplay"
 import OnzeDiensten from "@/app/components/Diensten/Diensten"
 import ImageCarousel from "@/components/ImageCarousel"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
 
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 

@@ -11,6 +11,7 @@ import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageCarousel from "@/components/ImageCarousel"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
 
 // Dynamically import NextSeo to disable SSR for it.
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
@@ -142,6 +143,8 @@ function LampentintenSkeleton() {
 export default function Lampentinten() {
   const [showMore, setShowMore] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [heroLoaded, setHeroLoaded] = useState(false)
+  const [contentImagesLoaded, setContentImagesLoaded] = useState([false, false, false])
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -277,11 +280,13 @@ export default function Lampentinten() {
       <main className="bg-white">
         {/* Hero Section */}
         <section className="relative h-[100vh] sm:h-100vh">
+          {!heroLoaded && <Skeleton className="absolute w-full h-full z-10" />}
           <Image
             src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
-            className="object-cover"
+            onLoad={() => setHeroLoaded(true)}
+            className={`object-cover transition-opacity duration-700 ${heroLoaded ? "opacity-100" : "opacity-0"}`}
             priority
           />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
@@ -324,11 +329,19 @@ export default function Lampentinten() {
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+              {!contentImagesLoaded[0] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Lampentinten bij Wrapmaster"
                 fill
-                className="object-cover"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[0] = true
+                    return newState
+                  })
+                }
+                className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[0] ? "opacity-100" : "opacity-0"}`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -341,22 +354,38 @@ export default function Lampentinten() {
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[700px]">
+              {!contentImagesLoaded[1] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage2 || "/placeholder.svg"}
                 alt="Content Image 1"
                 fill
-                className="object-cover object-top"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[1] = true
+                    return newState
+                  })
+                }
+                className={`object-cover object-top transition-opacity duration-700 ${contentImagesLoaded[1] ? "opacity-100" : "opacity-0"}`}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
                 Before
               </div>
             </div>
             <div className="relative h-[700px] sm:h-[700px]">
+              {!contentImagesLoaded[2] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage3 || "/placeholder.svg"}
                 alt="Content Image 2"
                 fill
-                className="object-cover object-top"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[2] = true
+                    return newState
+                  })
+                }
+                className={`object-cover object-top transition-opacity duration-700 ${contentImagesLoaded[2] ? "opacity-100" : "opacity-0"}`}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 text-white p-2 text-xl font-semibold text-center">
                 After

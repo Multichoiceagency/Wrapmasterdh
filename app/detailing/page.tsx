@@ -11,6 +11,7 @@ import { faInstagram, faTiktok, faWhatsapp, faFacebook } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageCarousel from "@/components/ImageCarousel"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage, OptimizedImageEager } from "@/components/ui/optimized-image"
 
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
 
@@ -144,6 +145,8 @@ function AutoDetailingSkeleton() {
 export default function AutoDetailing() {
   const [showMore, setShowMore] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [heroLoaded, setHeroLoaded] = useState(false)
+  const [contentImagesLoaded, setContentImagesLoaded] = useState([false, false, false])
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -287,11 +290,13 @@ export default function AutoDetailing() {
       <main className="bg-white">
         {/* Hero Section */}
         <section className="relative h-[100vh] sm:h-100vh">
+          {!heroLoaded && <Skeleton className="absolute w-full h-full z-10" />}
           <Image
             src={dienstData.heroImage || "/placeholder.svg"}
             alt={dienstData.title}
             fill
-            className="object-cover"
+            onLoad={() => setHeroLoaded(true)}
+            className={`object-cover transition-opacity duration-700 ${heroLoaded ? "opacity-100" : "opacity-0"}`}
             priority
           />
           <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
@@ -334,11 +339,19 @@ export default function AutoDetailing() {
           </div>
           <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+              {!contentImagesLoaded[0] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage1 || "/placeholder.svg"}
                 alt="Auto Detailing bij Wrapmaster"
                 fill
-                className="object-cover"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[0] = true
+                    return newState
+                  })
+                }
+                className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[0] ? "opacity-100" : "opacity-0"}`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -351,19 +364,35 @@ export default function AutoDetailing() {
         <section className="max-w-full mx-auto mt-16 md:mt-44">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative h-[700px] sm:h-[700px]">
+              {!contentImagesLoaded[1] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage2 || "/placeholder.svg"}
                 alt="Content Image 1"
                 fill
-                className="object-cover"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[1] = true
+                    return newState
+                  })
+                }
+                className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[1] ? "opacity-100" : "opacity-0"}`}
               />
             </div>
             <div className="relative h-[700px] sm:h-[700px]">
+              {!contentImagesLoaded[2] && <Skeleton className="absolute w-full h-full" />}
               <Image
                 src={dienstData.contentImage3 || "/placeholder.svg"}
                 alt="Content Image 2"
                 fill
-                className="object-cover"
+                onLoad={() =>
+                  setContentImagesLoaded((prev) => {
+                    const newState = [...prev]
+                    newState[2] = true
+                    return newState
+                  })
+                }
+                className={`object-cover transition-opacity duration-700 ${contentImagesLoaded[2] ? "opacity-100" : "opacity-0"}`}
               />
             </div>
           </div>
