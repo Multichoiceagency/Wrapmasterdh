@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage } from "@/components/ui/optimized-image"
+import { OptimizedVideo } from "@/components/ui/optimized-video"
 
 interface NewsPost {
   id: number
@@ -138,28 +139,21 @@ export default function NewsEvents() {
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   {post.video_file ? (
-                    <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
-                      <source src={post.video_file} type="video/mp4" />
-                      <Image
-                        src={post.featured_image || "/placeholder.svg?height=300&width=400"}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </video>
+                    <OptimizedVideo
+                      src={post.video_file}
+                      poster={post.featured_image}
+                      className="w-full h-full"
+                      spinnerSize="md"
+                    />
                   ) : (
-                    <Image
+                    <OptimizedImage
                       src={post.featured_image || "/placeholder.svg?height=300&width=400"}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      onError={(e) => {
-                        // Fallback to placeholder if image fails to load
-                        const target = e.target as HTMLImageElement
-                        target.src = "/placeholder.svg?height=300&width=400"
-                      }}
+                      spinnerSize="sm"
+                      fallbackSrc="/placeholder.svg?height=300&width=400"
                     />
                   )}
                 </div>

@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef, useCallback, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules"
 import type { Swiper as SwiperType } from "swiper"
+import { cn } from "@/lib/utils"
 
 // Import Swiper styles
 import "swiper/css"
@@ -35,6 +36,7 @@ const slides: HeroSlide[] = [
 export default function HeroSection() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const swiperRef = useRef<SwiperType | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   // Initialize video refs array
   useEffect(() => {
@@ -106,13 +108,24 @@ export default function HeroSection() {
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
             <div className="relative w-full h-full">
+              {/* Loading spinner overlay */}
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black z-20">
+                  <div className="w-14 h-14 border-4 border-white/30 border-t-red-600 rounded-full animate-spin" />
+                </div>
+              )}
               <video
                 ref={setVideoRef(index)}
-                className="w-full h-full object-cover"
+                className={cn(
+                  "w-full h-full object-cover transition-opacity duration-500",
+                  isLoading ? "opacity-0" : "opacity-100"
+                )}
                 playsInline
                 loop
                 muted
                 preload="auto"
+                onCanPlay={() => setIsLoading(false)}
+                onLoadedData={() => setIsLoading(false)}
               >
                 <source src={slide.videoFile} type="video/mp4" />
                 Your browser does not support the video tag.

@@ -96,11 +96,10 @@ export async function POST(req: Request) {
     </head>
     <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F3F4F6;">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF;">
-        <!-- Header -->
+        <!-- Header with Logo -->
         <tr>
           <td style="background-color: #1F2937; padding: 30px; text-align: center;">
-            <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: 2px;">WRAPMASTER</h1>
-            <p style="margin: 5px 0 0 0; color: #DC2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Premium Car Wrapping & Detailing</p>
+            <img src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png" alt="Wrapmaster" width="180" style="margin-bottom: 10px;">
           </td>
         </tr>
 
@@ -204,11 +203,10 @@ export async function POST(req: Request) {
     </head>
     <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F3F4F6;">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF;">
-        <!-- Header -->
+        <!-- Header with Logo -->
         <tr>
           <td style="background-color: #1F2937; padding: 30px; text-align: center;">
-            <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: 2px;">WRAPMASTER</h1>
-            <p style="margin: 5px 0 0 0; color: #DC2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Premium Car Wrapping & Detailing</p>
+            <img src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png" alt="Wrapmaster" width="180" style="margin-bottom: 10px;">
           </td>
         </tr>
 
@@ -292,7 +290,6 @@ export async function POST(req: Request) {
             <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 12px;">
               <tr>
                 <td style="padding: 25px; text-align: center;">
-                  <p style="margin: 0 0 10px 0; color: #1F2937; font-size: 14px; font-weight: 600;">📍 Bezoek onze showroom</p>
                   <p style="margin: 0 0 5px 0; color: #6B7280; font-size: 13px;">Westvlietweg 72-L, 2495 AA Den Haag</p>
                   <p style="margin: 0; color: #6B7280; font-size: 13px;">
                     <a href="tel:0702250721" style="color: #DC2626; text-decoration: none;">070 225 0721</a>
@@ -319,7 +316,7 @@ export async function POST(req: Request) {
         <!-- Footer -->
         <tr>
           <td style="background-color: #1F2937; padding: 25px 30px; text-align: center;">
-            <img src="https://wrapmasterdh.nl/_next/image?url=%2Flogos%2Fhandtekening-wit.png&w=256&q=75" alt="Wrapmaster" width="120" style="margin-bottom: 15px;">
+            <img src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png" alt="Wrapmaster" width="140" style="margin-bottom: 15px;">
             <p style="margin: 0 0 5px 0; color: #9CA3AF; font-size: 11px;">© ${new Date().getFullYear()} Wrapmaster Den Haag. Alle rechten voorbehouden.</p>
             <p style="margin: 0; color: #6B7280; font-size: 10px;">KvK: 68374232 | BTW: NL002332891B92</p>
           </td>

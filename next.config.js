@@ -10,6 +10,12 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year cache for optimized images
+    // Optimize quality for faster loading (default is 75)
+    quality: 80,
+    // Disable blur placeholder generation at build time for faster builds
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "http",
@@ -77,22 +83,72 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Exclude Next.js internal files from long cache
+        // Next.js static chunks - 1 year immutable cache
         source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable", // 1 year cache for static chunks
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
-        // Apply 7-day cache to other routes (pages, API routes, etc.)
-        source: "/((?!_next).*)",
+        // Optimized images from Next.js - 1 year cache
+        source: "/_next/image/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=604800, must-revalidate", // 7-day cache
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Video files - aggressive caching
+        source: "/:path*.mp4",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // WebM video files
+        source: "/:path*.webm",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Image files - aggressive caching
+        source: "/:path*.(jpg|jpeg|png|gif|webp|avif|svg|ico)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Font files - aggressive caching
+        source: "/:path*.(woff|woff2|ttf|otf|eot)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Other routes - 7 day cache with revalidation
+        source: "/((?!_next|api).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
           },
         ],
       },

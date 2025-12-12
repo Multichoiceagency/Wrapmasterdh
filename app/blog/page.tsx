@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import dynamic from "next/dynamic"
 import { Skeleton } from "@/components/ui/skeleton"
+import { OptimizedImage } from "@/components/ui/optimized-image"
+import { OptimizedVideoEager, OptimizedVideo } from "@/components/ui/optimized-video"
 
 // ✅ Dynamisch importeren zonder SSR
 const NextSeoClient = dynamic(() => import("next-seo").then((mod) => mod.NextSeo), { ssr: false })
@@ -130,15 +131,12 @@ export default function BlogPage() {
       <main className="bg-white">
         {/* 🔥 Hero Sectie met video */}
         <section className="relative h-[70vh]">
-          <video
+          <OptimizedVideoEager
             src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/urus-khaki/urus.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute w-full h-full object-cover opacity-100"
-          ></video>
-          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4">
+            poster="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/carwrapping/urus-khaki/URUS-export.jpg"
+            className="absolute w-full h-full"
+          />
+          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pb-4 z-20">
             <h1 className="text-2xl md:text-4xl font-medium text-white text-center">WRAPMASTER BLOG</h1>
           </div>
         </section>
@@ -171,21 +169,19 @@ export default function BlogPage() {
                     {/* 📌 Afbeelding of video */}
                     <div className="relative aspect-[16/9] w-full h-64 overflow-hidden rounded-md">
                       {post.video_file && index === 0 ? (
-                        <video
+                        <OptimizedVideo
                           src={post.video_file}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover rounded-md"
+                          poster={post.featured_image}
+                          className="rounded-md"
                         />
                       ) : (
-                        <Image
+                        <OptimizedImage
                           src={post.featured_image || "/placeholder.svg"}
                           alt={post.title || "Blog afbeelding"}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+                          spinnerSize="sm"
                         />
                       )}
                     </div>
