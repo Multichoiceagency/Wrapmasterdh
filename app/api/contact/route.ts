@@ -1,44 +1,188 @@
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { NextResponse } from "next/server"
+import nodemailer from "nodemailer"
+import { saveContactSubmission } from "@/lib/db"
+import { checkRateLimit, CacheKeys, cacheGet, cacheSet } from "@/lib/redis"
+
+// Fallback in-memory rate limiting (when Redis is not available)
+const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
+const RATE_LIMIT_WINDOW = 60000 // 1 minute
+const MAX_REQUESTS = 3 // Max 3 requests per minute per IP
+
+function fallbackRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const record = rateLimitMap.get(ip)
+
+  if (!record) {
+    rateLimitMap.set(ip, { count: 1, lastRequest: now })
+    return false
+  }
+
+  if (now - record.lastRequest > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { count: 1, lastRequest: now })
+    return false
+  }
+
+  record.count++
+  record.lastRequest = now
+
+  return record.count > MAX_REQUESTS
+}
 
 export async function POST(req: Request) {
   try {
-    const formData = await req.json();
+    // Get IP and user agent for tracking
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
+    const userAgent = req.headers.get("user-agent") || "unknown"
 
-    // Maak een transporter aan met jouw SMTP-instellingen
+    // Rate limit check using Redis (with fallback)
+    let isLimited = false
+    try {
+      const rateLimit = await checkRateLimit(CacheKeys.rateLimit(ip), MAX_REQUESTS, 60)
+      isLimited = !rateLimit.allowed
+    } catch {
+      // Redis not available, use fallback
+      isLimited = fallbackRateLimit(ip)
+    }
+
+    if (isLimited) {
+      return NextResponse.json(
+        { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
+        { status: 429 }
+      )
+    }
+
+    const formData = await req.json()
+
+    // Honeypot check - if 'website' field is filled, it's a bot
+    if (formData.website) {
+      // Pretend success to confuse bots
+      return NextResponse.json({ success: true, message: "Bericht verzonden!" }, { status: 200 })
+    }
+
+    // Time check - if form was submitted too fast (< 2 seconds), likely a bot
+    if (formData.formLoadTime) {
+      const timeSinceLoad = Date.now() - formData.formLoadTime
+      if (timeSinceLoad < 2000) {
+        return NextResponse.json({ success: true, message: "Bericht verzonden!" }, { status: 200 })
+      }
+    }
+
+    // Validate required fields
+    if (!formData.naam || !formData.email || !formData.bericht) {
+      return NextResponse.json(
+        { success: false, message: "Vul alle verplichte velden in." },
+        { status: 400 }
+      )
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      return NextResponse.json(
+        { success: false, message: "Vul een geldig e-mailadres in." },
+        { status: 400 }
+      )
+    }
+
+    // Check for duplicate submission (using Redis cache)
+    const submissionKey = CacheKeys.submission("contact", formData.email)
+    try {
+      const recentSubmission = await cacheGet<boolean>(submissionKey)
+      if (recentSubmission) {
+        return NextResponse.json(
+          { success: false, message: "Je hebt recent al een bericht verstuurd. Probeer het later opnieuw." },
+          { status: 429 }
+        )
+      }
+    } catch {
+      // Redis not available, skip duplicate check
+    }
+
+    // Save to database (don't fail if this fails)
+    try {
+      const dbResult = await saveContactSubmission({
+        naam: formData.naam,
+        email: formData.email,
+        telefoonnummer: formData.telefoonnummer,
+        bericht: formData.bericht,
+        ip_address: ip,
+        user_agent: userAgent,
+      })
+
+      if (!dbResult.success) {
+        console.warn("Failed to save contact to database:", dbResult.error)
+      }
+    } catch (dbError) {
+      console.warn("Database save error:", dbError)
+    }
+
+    // Mark submission in cache (prevent duplicates for 5 minutes)
+    try {
+      await cacheSet(submissionKey, true, 300)
+    } catch {
+      // Redis not available, skip
+    }
+
+    // Configure SMTP transporter
+    const port = Number(process.env.SMTP_PORT)
+    const isSecure = port === 465 // true for 465 (SSL), false for 587 (STARTTLS)
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
+      port: port,
+      secure: isSecure,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     })
 
-    // Stel de e-mailinhoud samen met de formuliergegevens
+    // Email content
     const emailContent = `
       <h2>Nieuwe Contact Aanvraag</h2>
       <p><strong>Naam:</strong> ${formData.naam}</p>
       <p><strong>Email:</strong> ${formData.email}</p>
-      <p><strong>Telefoonnummer:</strong> ${formData.telefoonnummer}</p>
-      <p><strong>Bericht:</strong> ${formData.bericht || "Geen bericht toegevoegd."}</p>
-    `;
+      <p><strong>Telefoonnummer:</strong> ${formData.telefoonnummer || "Niet opgegeven"}</p>
+      <p><strong>Bericht:</strong></p>
+      <p>${formData.bericht.replace(/\n/g, "<br>")}</p>
+    `
 
-    // Verstuur de e-mail
+    // Send email to admin
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: process.env.SMTP_TO,
-      subject: "Nieuwe Contact Aanvraag",
+      replyTo: formData.email,
+      subject: "Nieuwe Contact Aanvraag - Wrapmaster",
       html: emailContent,
-    });
+    })
 
-    return NextResponse.json({ message: "Uw bericht is succesvol verzonden!" }, { status: 200 });
+    // Send confirmation email to customer
+    await transporter.sendMail({
+      from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
+      to: formData.email,
+      replyTo: process.env.SMTP_TO,
+      subject: "Bedankt voor je bericht - Wrapmaster",
+      html: `
+        <p>Beste ${formData.naam},</p>
+        <p>Bedankt voor je bericht. We hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op.</p>
+        <p>Met vriendelijke groet,<br>Team Wrapmaster</p>
+        <p>
+          T: <a href="tel:0702250721">070 225 0721</a><br>
+          E: <a href="mailto:info@wrapmasterdh.nl">info@wrapmasterdh.nl</a><br>
+          W: <a href="https://www.wrapmasterdh.nl">www.wrapmasterdh.nl</a>
+        </p>
+      `,
+    })
+
+    return NextResponse.json({ success: true, message: "Bericht succesvol verzonden!" }, { status: 200 })
   } catch (error) {
-    console.error("Failed to send email:", error);
+    console.error("Failed to send email:", error)
     return NextResponse.json(
-      { message: `Failed to send email: ${error instanceof Error ? error.message : "Unknown error"}` },
+      { success: false, message: "Er is een fout opgetreden bij het verzenden." },
       { status: 500 }
-    );
+    )
   }
 }

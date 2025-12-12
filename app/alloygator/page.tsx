@@ -67,7 +67,7 @@ const reels = [
 // Skeleton component for the AlloyGator Bescherming page
 function AlloyGatorBeschermingSkeleton() {
   return (
-    <div className="animate-pulse bg-white">
+    <div className="bg-white min-h-screen">
       {/* Hero Section Skeleton */}
       <section className="relative h-[50vh] sm:h-screen">
         <Skeleton className="w-full h-full" />

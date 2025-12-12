@@ -1,17 +1,65 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
-import { uploadToS3, isS3Configured, getS3PublicUrl } from "@/lib/s3"
+import { uploadToS3, isS3Configured } from "@/lib/s3"
+import { saveOfferteSubmission } from "@/lib/db"
+import { checkRateLimit, CacheKeys, cacheGet, cacheSet } from "@/lib/redis"
+
+// Fallback in-memory rate limiting (when Redis is not available)
+const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
+const RATE_LIMIT_WINDOW = 60000 // 1 minute
+const MAX_REQUESTS = 5 // Max 5 requests per minute per IP
+
+function fallbackRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const record = rateLimitMap.get(ip)
+
+  if (!record) {
+    rateLimitMap.set(ip, { count: 1, lastRequest: now })
+    return false
+  }
+
+  if (now - record.lastRequest > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { count: 1, lastRequest: now })
+    return false
+  }
+
+  record.count++
+  record.lastRequest = now
+
+  return record.count > MAX_REQUESTS
+}
 
 export async function POST(req: Request) {
   try {
+    // Get IP and user agent for tracking
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
+    const userAgent = req.headers.get("user-agent") || "unknown"
+
+    // Rate limit check using Redis (with fallback)
+    let isLimited = false
+    try {
+      const rateLimit = await checkRateLimit(CacheKeys.rateLimit(ip), MAX_REQUESTS, 60)
+      isLimited = !rateLimit.allowed
+    } catch {
+      // Redis not available, use fallback
+      isLimited = fallbackRateLimit(ip)
+    }
+
+    if (isLimited) {
+      return NextResponse.json(
+        { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
+        { status: 429 }
+      )
+    }
+
     const formData = await req.formData()
 
-    // ✅ Helper-functie om alleen strings op te halen
+    // Helper function to get strings only
     const getString = (value: FormDataEntryValue | null) => (typeof value === "string" ? value : "")
 
-    // 📌 Klantinformatie ophalen
+    // Get form data
     const naam = getString(formData.get("naam"))
-    const email = getString(formData.get("email")) // ✅ Klant e-mail gebruiken voor reply-to
+    const email = getString(formData.get("email"))
     const telefoonnummer = getString(formData.get("telefoonnummer"))
     const bedrijfsnaam = getString(formData.get("bedrijfsnaam"))
     const kenteken = getString(formData.get("kenteken"))
@@ -20,39 +68,60 @@ export async function POST(req: Request) {
     const gewensteKleur = getString(formData.get("gewensteKleur"))
     const bericht = getString(formData.get("bericht"))
 
-    // 📌 Bestanden ophalen
+    // Validate required fields
+    if (!naam || !email) {
+      return NextResponse.json(
+        { success: false, message: "Naam en e-mailadres zijn verplicht." },
+        { status: 400 }
+      )
+    }
+
+    // Check for duplicate submission (using Redis cache)
+    const submissionKey = CacheKeys.submission("offerte", email)
+    try {
+      const recentSubmission = await cacheGet<boolean>(submissionKey)
+      if (recentSubmission) {
+        return NextResponse.json(
+          { success: false, message: "Je hebt recent al een aanvraag verstuurd. Probeer het later opnieuw." },
+          { status: 429 }
+        )
+      }
+    } catch {
+      // Redis not available, skip duplicate check
+    }
+
+    // Process file uploads
     const uploadedFiles = formData.getAll("uploadedFiles") as File[]
-    const attachments: any[] = []
-    const s3FileLinks: string[] = [] // Store S3 links for email
+    const attachments: { filename: string; content: Buffer }[] = []
+    const s3FileLinks: string[] = []
+    const s3FileUrls: string[] = [] // For database storage
     const useS3 = isS3Configured()
 
     for (const file of uploadedFiles) {
       if (file.size > 10 * 1024 * 1024) {
-        return NextResponse.json({ error: "Bestanden mogen maximaal 10MB zijn." }, { status: 400 })
+        return NextResponse.json({ success: false, message: "Bestanden mogen maximaal 10MB zijn." }, { status: 400 })
       }
 
       const buffer = Buffer.from(await file.arrayBuffer())
 
       if (useS3) {
-        // Upload to S3/Garage storage
         try {
-          const { url, key } = await uploadToS3(
+          const { url } = await uploadToS3(
             buffer,
             file.name,
             file.type,
             `offerte-aanvragen/${kenteken || "geen-kenteken"}`
           )
           s3FileLinks.push(`<a href="${url}">${file.name}</a>`)
+          s3FileUrls.push(url)
         } catch (s3Error) {
           console.error("S3 upload failed, falling back to email attachment:", s3Error)
-          // Fallback to email attachment if S3 fails
           attachments.push({
             filename: file.name,
             content: buffer,
           })
         }
       } else {
-        // No S3 configured, use email attachments
         attachments.push({
           filename: file.name,
           content: buffer,
@@ -60,9 +129,40 @@ export async function POST(req: Request) {
       }
     }
 
-    // 📌 Nodemailer Configureren
+    // Save to database (don't fail if this fails)
+    try {
+      const dbResult = await saveOfferteSubmission({
+        naam,
+        email,
+        telefoonnummer,
+        bedrijfsnaam,
+        kenteken,
+        bouwjaar,
+        huidige_kleur: huidigeKleur,
+        gewenste_kleur: gewensteKleur,
+        bericht,
+        bijlagen: s3FileUrls,
+        ip_address: ip,
+        user_agent: userAgent,
+      })
+
+      if (!dbResult.success) {
+        console.warn("Failed to save to database:", dbResult.error)
+      }
+    } catch (dbError) {
+      console.warn("Database save error:", dbError)
+    }
+
+    // Mark submission in cache (prevent duplicates for 5 minutes)
+    try {
+      await cacheSet(submissionKey, true, 300)
+    } catch {
+      // Redis not available, skip
+    }
+
+    // Configure nodemailer
     const port = Number(process.env.SMTP_PORT)
-    const isSecure = port === 465 // true for 465 (SSL), false for 587 (STARTTLS)
+    const isSecure = port === 465
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -77,7 +177,7 @@ export async function POST(req: Request) {
       },
     })
 
-    // 📌 E-mailinhoud
+    // Email content
     const fileLinksHtml = s3FileLinks.length > 0
       ? `<p><strong>Geüploade bestanden:</strong><br>${s3FileLinks.join("<br>")}</p>`
       : ""
@@ -96,11 +196,11 @@ export async function POST(req: Request) {
       ${fileLinksHtml}
     `
 
-    // 🔹 **Verstuur e-mail naar de klant**
+    // Send confirmation email to customer
     await transporter.sendMail({
       from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
       to: email,
-      replyTo: process.env.SMTP_TO, // ✅ Reply gaat naar jouw admin e-mail
+      replyTo: process.env.SMTP_TO,
       subject: "Offerte Aanvraag Wrapmaster",
       html: `<p>Beste ${naam},</p>
               <p>Bedankt voor je aanvraag.</p>
@@ -129,11 +229,11 @@ export async function POST(req: Request) {
       attachments,
     })
 
-    // 🔹 **Verstuur e-mail naar de admin**
+    // Send email to admin
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
-      to: process.env.SMTP_TO, // Admin e-mail uit .env
-      replyTo: email, // ✅ Reply gaat nu naar de klant!
+      to: process.env.SMTP_TO,
+      replyTo: email,
       subject: "Offerte aanvraag Wrapmaster",
       html: emailContent,
       attachments,

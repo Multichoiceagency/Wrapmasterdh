@@ -26,8 +26,8 @@ const dienstData = {
   description: "",
   heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (18 of 41).jpg",
   contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/ambient-light.jpg",
-  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/detailing/BlndrAgency_Wrapmaster_URUS (13 of 14).jpg",
-  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/detailing/BlndrAgency_Wrapmaster_URUS (14 of 14).jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (14 of 41).jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
 }
 
 const sliderImages = [
@@ -58,20 +58,18 @@ const reels = [
   },
 ]
 
-// Skeleton component for the Ambient Lighting page
+// Skeleton component for the Ambient Lighting page (no push animation)
 function AmbientLightingSkeleton() {
   return (
-    <div className="animate-pulse bg-white">
+    <div className="bg-white min-h-screen">
       {/* Hero Section Skeleton */}
-      <section className="relative h-[100vh] sm:h-[100vh]">
+      <section className="relative h-screen">
         <Skeleton className="w-full h-full" />
         <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20">
-          <div className="text-left px-4 max-w-4xl">
-            <Skeleton className="h-10 w-64 mx-auto mb-2" />
-            <Skeleton className="h-6 w-full mx-auto mb-6" />
-            <div className="flex justify-center">
-              <Skeleton className="h-10 w-48" />
-            </div>
+          <div className="text-center px-4 max-w-4xl">
+            <Skeleton className="h-10 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-80 mx-auto mb-6" />
+            <Skeleton className="h-12 w-48 mx-auto" />
           </div>
         </div>
       </section>
@@ -79,36 +77,34 @@ function AmbientLightingSkeleton() {
       {/* Text with Image Section Skeleton */}
       <section className="flex flex-col lg:flex-row py-8 lg:py-16">
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-8 lg:px-16 mb-8 lg:mb-0">
-          <Skeleton className="h-12 w-3/4 mb-8" />
-          <div className="space-y-4 mb-8">
+          <Skeleton className="h-10 w-3/4 mb-8" />
+          <div className="space-y-3 mb-8">
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-3/4" />
           </div>
-          <Skeleton className="h-10 w-40" />
+          <Skeleton className="h-12 w-40" />
         </div>
-        <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+        <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0 px-4 lg:px-0">
           <Skeleton className="w-full h-[300px] sm:h-[400px] lg:h-[500px]" />
         </div>
       </section>
 
       {/* Image Carousel Skeleton */}
-      <section className="py-8">
-        <div className="overflow-hidden">
-          <div className="flex space-x-4 px-4">
-            {[1, 2, 3, 4].map((_, index) => (
-              <Skeleton key={index} className="min-w-[280px] h-[200px] rounded-lg" />
-            ))}
-          </div>
+      <section className="py-8 overflow-hidden">
+        <div className="flex gap-4 px-4">
+          {[1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} className="flex-shrink-0 w-[280px] h-[200px] rounded-lg" />
+          ))}
         </div>
       </section>
 
       {/* Two Images Section Skeleton */}
-      <section className="max-w-full mx-auto mt-16 md:mt-44">
+      <section className="max-w-full mx-auto mt-16 md:mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Skeleton className="h-[700px] sm:h-[800px]" />
-          <Skeleton className="h-[700px] sm:h-[800px]" />
+          <Skeleton className="h-[500px] sm:h-[700px]" />
+          <Skeleton className="h-[500px] sm:h-[700px]" />
         </div>
       </section>
 
@@ -116,18 +112,18 @@ function AmbientLightingSkeleton() {
       <section className="w-full bg-white py-16">
         <Skeleton className="h-10 w-64 mx-auto mb-8" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4">
-          {[1, 2, 3].map((_, index) => (
-            <Skeleton key={index} className="h-[760px] rounded-lg" />
+          {[1, 2, 3].map((i) => (
+            <Skeleton key={i} className="h-[400px] sm:h-[600px] rounded-lg" />
           ))}
         </div>
       </section>
 
-      {/* Wrapmaster Services Section Skeleton */}
-      <section className="py-9">
+      {/* Diensten Section Skeleton */}
+      <section className="py-9 px-4">
         <Skeleton className="h-10 w-64 mx-auto mb-8" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
-          {[1, 2, 3].map((_, index) => (
-            <Skeleton key={index} className="h-[300px] rounded-lg" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[1, 2, 3].map((i) => (
+            <Skeleton key={i} className="h-[280px] rounded-lg" />
           ))}
         </div>
       </section>

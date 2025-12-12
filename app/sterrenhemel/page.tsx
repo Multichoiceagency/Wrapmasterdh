@@ -67,7 +67,7 @@ const reels = [
 // Skeleton component for the Sterrenhemel Inbouwen page
 function SterrenhemelInbouwenSkeleton() {
   return (
-    <div className="animate-pulse bg-white">
+    <div className="bg-white min-h-screen">
       {/* Hero Section Skeleton */}
       <section className="relative h-[100vh] sm:h-[100vh]">
         <Skeleton className="w-full h-full" />

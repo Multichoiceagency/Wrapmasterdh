@@ -56,7 +56,7 @@ const reels = [
 // Skeleton component for the Lampentinten page
 function LampentintenSkeleton() {
   return (
-    <div className="animate-pulse bg-white">
+    <div className="bg-white min-h-screen">
       {/* Hero Section Skeleton */}
       <section className="relative h-[100vh] sm:h-[100vh]">
         <Skeleton className="w-full h-full" />
