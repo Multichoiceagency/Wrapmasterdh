@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "SCOOTER & MOTOR WRAP",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/memo/29164.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/memo/IMG_2491.JPG",
-  contentImage2: "http://localhost:3010/uploads/enes-website/memo/IMG_7278-min.JPEG",
-  contentImage3: "http://localhost:3010/uploads/enes-website/memo/IMG_2176-min.JPG",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/29164.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/IMG_2491.JPG",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/IMG_7278-min.JPEG",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/IMG_2176-min.JPG",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/memo/IMG_0247-min.JPG",
-  "http://localhost:3010/uploads/enes-website/memo/1000006100-min (1).jpg",
-  "http://localhost:3010/uploads/enes-website/memo/IMG_2175-min (1).JPG",
-  "http://localhost:3010/uploads/enes-website/memo/jetsky-min (1).JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/IMG_0247-min.JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/1000006100-min (1).jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/IMG_2175-min (1).JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/jetsky-min (1).JPG",
 ]
 
 // Skeleton component for the Scooter en Motor Wraps page

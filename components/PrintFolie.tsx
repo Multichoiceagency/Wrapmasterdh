@@ -15,7 +15,7 @@ interface Banner {
 const banner: Banner = {
   id: 1,
   title: "3D Carwrapping",
-  featured_image: "http://localhost:3010/uploads/enes-website/design/Changer_12.png",
+  featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/design/Changer_12.png",
   button_text: "Visualiseer jouw voertuig",
   button_link: "/reclame-en-design"
 };

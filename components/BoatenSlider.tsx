@@ -13,12 +13,12 @@ interface BoatDesign {
 }
 
 const boatDesigns: BoatDesign[] = [
-  { id: 1, afbeelding: "http://localhost:3010/uploads/enes-website/auto-wrappen/range/rangerover.jpg" },
-  { id: 2, afbeelding: "http://localhost:3010/uploads/enes-website/OSMAN/idbuzz/DSC06265.jpg" },
-  { id: 3, afbeelding: "http://localhost:3010/uploads/enes-website/auto-wrappen/urus-khaki/urus1.jpg" },
-  { id: 4, afbeelding: "http://localhost:3010/uploads/enes-website/auto-wrappen/rsq3/RSQ3-23.jpg" },
-  { id: 5, afbeelding: "http://localhost:3010/uploads/enes-website/auto-wrappen/ferrari/1.jpg" },
-  { id: 6, afbeelding: "http://localhost:3010/uploads/enes-website/auto-wrappen/g-wagon/Brabus.jpg" },
+  { id: 1, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/range/rangerover.jpg" },
+  { id: 2, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/OSMAN/idbuzz/DSC06265.jpg" },
+  { id: 3, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/urus-khaki/urus1.jpg" },
+  { id: 4, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/rsq3/RSQ3-23.jpg" },
+  { id: 5, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/ferrari/1.jpg" },
+  { id: 6, afbeelding: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/auto-wrappen/g-wagon/Brabus.jpg" },
 ];
 
 const BoatSlider: React.FC = () => {

@@ -17,6 +17,6 @@ export async function getWallpapers(): Promise<Wallpaper[]> {
     .map((fileName) => ({
       id: fileName.replace(/\.[^/.]+$/, ""),
       title: fileName.replace(/\.[^/.]+$/, "").split("-").join(" "),
-      imagePath: `/wallpapers/${fileName}`,
+      imagePath: `https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/wallpapers/${fileName}`,
     }))
 }

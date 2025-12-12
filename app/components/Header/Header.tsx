@@ -98,7 +98,7 @@ const Header: React.FC = () => {
         <div className="flex justify-center items-center">
           <Link href="/">
             <Image
-              src={isScrolled ? "http://localhost:3010/uploads/logos/handtekening-zwart.png" : "http://localhost:3010/uploads/logos/handtekening-wit.png"}
+              src={isScrolled ? "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-zwart.png" : "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png"}
               alt="wrapmaster logo"
               width={200}
               height={150}
@@ -122,7 +122,7 @@ const Header: React.FC = () => {
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center p-4">
             <Link href="/">
-              <Image src="http://localhost:3010/uploads/logos/logo-zwart.png" alt="Logo zwart" width={250} height={150} className="w-36" priority />
+              <Image src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/logo-zwart.png" alt="Logo zwart" width={250} height={150} className="w-36" priority />
             </Link>
             <button className="text-2xl focus:outline-none" onClick={toggleMenu} aria-label="Close Menu">
               <FontAwesomeIcon icon={faTimes as IconProp} />

@@ -117,7 +117,7 @@ export default function BlogPage() {
             "Ontdek de nieuwste trends, projecten en expertise in autofolie en voertuigaanpassingen op de Wrapmaster blog.",
           images: [
             {
-              url: "/enes-website/carwrapping/urus-khaki/URUS-export.jpg",
+              url: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/carwrapping/urus-khaki/URUS-export.jpg",
               width: 1200,
               height: 630,
               alt: "Wrapmaster Blog Hero Image",

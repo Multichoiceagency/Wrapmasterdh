@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'; // Import the Button component
 const BentoGrid = () => {
   const gridItems = [
     {
-      image: 'http://localhost:3010/uploads/images/carwrapping.jpg',
+      image: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/carwrapping.jpg',
       title: 'Carwrapping',
       description:
         'Geef je voertuig een nieuwe look met gekleurde folie, zonder de originele kleur permanent te veranderen.',
@@ -15,7 +15,7 @@ const BentoGrid = () => {
       large: true, // For larger grid item
     },
     {
-      image: 'http://localhost:3010/uploads/images/velgenbescherming.jpg',
+      image: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/velgenbescherming.jpg',
       title: 'Koplampen Tinten',
       description:
         'Geef je verlichting een eigen twist met transparante, matte, satijnen of hoogglanzende folie.',
@@ -24,7 +24,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: 'http://localhost:3010/uploads/images/sterrenhemel.png',
+      image: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/sterrenhemel.png',
       title: 'Chrome Delete',
       description:
         'Verwijder chrome onderdelen van je voertuig en geef het een frisse, unieke look met wrapping.',
@@ -33,7 +33,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: 'http://localhost:3010/uploads/images/gordelkleur-vervangen.jpg',
+      image: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/gordelkleur-vervangen.jpg',
       title: 'Reclamebelettering',
       description:
         'Presenteer je bedrijf professioneel met opvallende reclamebelettering op voertuigen.',
@@ -42,7 +42,7 @@ const BentoGrid = () => {
       large: false,
     },
     {
-      image: 'http://localhost:3010/uploads/images/lampen-tinten.png',
+      image: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/lampen-tinten.png',
       title: 'Poetsen & Glascoating',
       description:
         'Bescherm je auto met een coating en maak deze makkelijker te onderhouden voor optimale bescherming.',

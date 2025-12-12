@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "RAMEN TINTEN",
   description: "Ontdek onze professionele ramentint services!",
-  heroImage: "http://localhost:3010/uploads/enes-website/ramentint/35423.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/ramentint/RSQ3-ramentint.jpg",
-  contentImage2: "http://localhost:3010/uploads/enes-website/ramentint/174585ba-079e-4bc9-a934-3397441542e3.jpg",
-  contentImage3: "http://localhost:3010/uploads/enes-website/ramentint/IMG_2906.JPG",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/35423.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/RSQ3-ramentint.jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/174585ba-079e-4bc9-a934-3397441542e3.jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/IMG_2906.JPG",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/ramentint/41144.jpg",
-  "http://localhost:3010/uploads/enes-website/ramentint/47458.jpg",
-  "http://localhost:3010/uploads/enes-website/ramentint/47254.jpg",
-  "http://localhost:3010/uploads/enes-website/ramentint/43106.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/41144.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/47458.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/47254.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ramentint/43106.jpg",
 ]
 
 // Skeleton component for the Ramentinten page

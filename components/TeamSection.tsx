@@ -21,7 +21,7 @@ export default function TeamSection({ bannerImage, teamMembers }: TeamSectionPro
       {/* ✅ Banner Image (i.p.v. video) */}
       <div className="relative h-[90vh] min-h-[300px] w-full mb-16">
         <Image 
-          src="http://localhost:3010/uploads/enes-website/ons-team/strength-people-hands-success-meeting.jpg"
+          src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ons-team/strength-people-hands-success-meeting.jpg"
           alt="Team Banner"
           fill
           className="object-cover"

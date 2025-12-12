@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "VELGEN POEDERCOATEN",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (30 of 41)-min.jpg",
-  contentImage2: "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/RSQ3-15-min.jpg",
-  contentImage3: "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (30 of 41)-min.jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/RSQ3-15-min.jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/Maasvlakte-12.jpg",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/WM-21-min.jpg",
-  "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/BlndrAgency_ (21 of 34)-min.jpg",
-  "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (26 of 41)-min.jpg",
-  "http://localhost:3010/uploads/enes-website/velgen-poedercoaten/1000019599-min.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/WM-21-min.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/BlndrAgency_ (21 of 34)-min.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/Mercedez-Benz AMG GT63_DONE_ (26 of 41)-min.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/velgen-poedercoaten/1000019599-min.jpg",
 ]
 
 // Skeleton component for the Velgen Poedercoaten page

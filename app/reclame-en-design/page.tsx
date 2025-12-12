@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "RECLAME EN DESIGN",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/reclame/_GLA5938.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/reclame/IMG_0605.JPEG",
-  contentImage2: "http://localhost:3010/uploads/enes-website/reclame/gardenlux.JPG",
-  contentImage3: "http://localhost:3010/uploads/enes-website/reclame/1F530CAE-FE9D-4B41-8508-4D07EEFE481E.jpg",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/_GLA5938.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/IMG_0605.JPEG",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/gardenlux.JPG",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/1F530CAE-FE9D-4B41-8508-4D07EEFE481E.jpg",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/reclame/claiomhof (8).JPG",
-  "http://localhost:3010/uploads/enes-website/reclame/claiomhof (5).JPG",
-  "http://localhost:3010/uploads/enes-website/reclame/_GLA5951.jpg",
-  "http://localhost:3010/uploads/enes-website/reclame/44E4B936-2821-49A3-86E3-2564F1868B55.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/claiomhof (8).JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/claiomhof (5).JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/_GLA5951.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/reclame/44E4B936-2821-49A3-86E3-2564F1868B55.jpg",
 ]
 
 // Skeleton component for the Reclame en Design Wraps page

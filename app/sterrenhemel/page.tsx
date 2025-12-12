@@ -24,17 +24,17 @@ const socialMedia = {
 const dienstData = {
   title: "STERRENHEMEL",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/ambient-light/ram.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
-  contentImage2: "http://localhost:3010/uploads/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
-  contentImage3: "http://localhost:3010/uploads/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/ram.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
-  "http://localhost:3010/uploads/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
-  "http://localhost:3010/uploads/enes-website/ambient-light/ram2.jpg",
-  "http://localhost:3010/uploads/enes-website/gordelkleur/IMG_0488.JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/Mercedez-Benz AMG GT63_DONE_ (16 of 41).jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/BlndrAgency_ (32 of 34).jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/ambient-light/ram2.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/gordelkleur/IMG_0488.JPG",
 ]
 
 const reels = [
@@ -362,14 +362,14 @@ export default function SterrenhemelInbouwen() {
                 {/* Instagram Reel Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
+                          src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}

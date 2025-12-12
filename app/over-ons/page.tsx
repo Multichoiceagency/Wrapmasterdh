@@ -31,7 +31,7 @@ export default function OverOnsPage() {
 
         {/* Hero Sectie */}
         <div className="container mx-auto px-4 lg:px-16">
-        <div className="bg-cover bg-center relative h-80 rounded-lg mb-12" style={{ backgroundImage: "url('/images/company-banner.jpg')" }}>
+        <div className="bg-cover bg-center relative h-80 rounded-lg mb-12" style={{ backgroundImage: "url('https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/company-banner.jpg')" }}>
           <div className="absolute inset-0 bg-black opacity-60 rounded-lg"></div>
           <div className="relative z-10 flex flex-col justify-center items-center h-full">
             <h1 className="text-4xl lg:text-5xl font text-white">Over Ons</h1>
@@ -55,7 +55,7 @@ export default function OverOnsPage() {
           </p>
 
           <Image
-            src="/images/team-working.jpg"
+            src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/team-working.jpg"
             alt="Wrapmaster Team"
             width={1200}
             height={800}

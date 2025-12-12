@@ -15,47 +15,47 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Mercedes-AMG-GT-C-C190-Facelift-22294_20.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-Mercedes-AMG-GT-C-C190-Facelift-22294_20.jpg"
   },
   {
     id: 2,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-V-3-BMW-1-M-Pack-F70-22415_11.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-V-3-BMW-1-M-Pack-F70-22415_11.jpg"
   },
   {
     id: 3,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_9.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_9.jpg"
   },
   {
     id: 4,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-V-2-Volkswagen-Golf-GTI-Clubsport-Mk8-Facelift-22345_10.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-V-2-Volkswagen-Golf-GTI-Clubsport-Mk8-Facelift-22345_10.jpg"
   },
   {
     id: 5,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Abarth-500e-22477_14 (1).jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-Abarth-500e-22477_14 (1).jpg"
   },
   {
     id: 6,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Land-Rover-Range-Rover-Sport-Mk2-22478_1.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-Land-Rover-Range-Rover-Sport-Mk2-22478_1.jpg"
   },
   {
     id: 7,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Audi-S8-D5-Facelift-22231_8.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-Audi-S8-D5-Facelift-22231_8.jpg"
   },
   {
     id: 8,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Prepreg-Carbon-Fiber-Splitters-Audi-RS6-C8-22437_16.jpg"
   },
   {
     id: 9,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-BMW-X4-M-Pack-G02-Facelift-22372_22.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-BMW-X4-M-Pack-G02-Facelift-22372_22.jpg"
   },
   {
     id: 10,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Rear-Splitter-with-vertical-bars-Mercedes-AMG-GT-C-C190-Facelift-22292_3.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Rear-Splitter-with-vertical-bars-Mercedes-AMG-GT-C-C190-Facelift-22292_3.jpg"
   },
   {
     id: 11,
-    featured_image: "http://localhost:3010/uploads/enes-website/bodykit/eng_pl_Set-of-Splitters-Audi-RS5-Sportback-F5-22136_7.jpg"
+    featured_image: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/bodykit/eng_pl_Set-of-Splitters-Audi-RS5-Sportback-F5-22136_7.jpg"
   },
 ];
 

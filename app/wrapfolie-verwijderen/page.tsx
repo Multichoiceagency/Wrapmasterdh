@@ -26,7 +26,7 @@ export default function WrapfolieVerwijderenDiensten() {
             {/* 3M Logo */}
             <div className="flex justify-center">
               <Image
-                src="http://localhost:3010/uploads/images/3m-wrap.png"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/3m-wrap.png"
                 alt="3M Logo"
                 width={120}
                 height={60}
@@ -36,7 +36,7 @@ export default function WrapfolieVerwijderenDiensten() {
             {/* Avery Dennison Logo */}
             <div className="flex justify-center">
               <Image
-                src="http://localhost:3010/uploads/images/avery-logo.png"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/avery-logo.png"
                 alt="Avery Dennison Logo"
                 width={300}
                 height={60}
@@ -46,7 +46,7 @@ export default function WrapfolieVerwijderenDiensten() {
             {/* Xpel Logo */}
             <div className="flex justify-center">
               <Image
-                src="http://localhost:3010/uploads/images/xpel-logo.jpg"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/xpel-logo.jpg"
                 alt="Xpel Logo"
                 width={300}
                 height={60}
@@ -91,7 +91,7 @@ export default function WrapfolieVerwijderenDiensten() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <Image
-                src="http://localhost:3010/uploads/images/audi-s3-hexis-blue.jpeg"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/audi-s3-hexis-blue.jpeg"
                 alt="Voorbeeld van Wrapfolie Verwijderen"
                 width={800}
                 height={600}
@@ -144,7 +144,7 @@ export default function WrapfolieVerwijderenDiensten() {
             </div>
             <div className="order-1 lg:order-2">
               <Image
-                src="http://localhost:3010/uploads/images/audi-s3-hexis-blue.jpeg"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/audi-s3-hexis-blue.jpeg"
                 alt="Voorbeeld van Wrapfolie Verwijderen"
                 width={800}
                 height={600}
@@ -228,7 +228,7 @@ export default function WrapfolieVerwijderenDiensten() {
               </li>
             </ul>
             <Image
-              src="http://localhost:3010/uploads/images/brabus1.png"
+              src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/brabus1.png"
               alt="Voordelen van Wrapfolie Verwijderen"
               width={1920}
               height={1080}
@@ -247,7 +247,7 @@ export default function WrapfolieVerwijderenDiensten() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <Image
-                src="http://localhost:3010/uploads/images/poetsen-glascoating.jpeg"
+                src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/poetsen-glascoating.jpeg"
                 alt="Onderhoud na Verwijdering van Wrapfolie"
                 width={600}
                 height={400}

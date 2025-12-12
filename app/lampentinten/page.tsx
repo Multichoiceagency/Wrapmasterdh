@@ -25,17 +25,17 @@ const socialMedia = {
 const dienstData = {
   title: "LAMPEN TINTEN",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000008429.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/lampen-tinten/lampentinten.jpg",
-  contentImage2: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000007448.jpg",
-  contentImage3: "http://localhost:3010/uploads/enes-website/lampen-tinten/1000007506.jpg",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/1000008429.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/lampentinten.jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/1000007448.jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/1000007506.jpg",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/lampen-tinten/DSC00224-2.jpg",
-  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_0123.JPEG",
-  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_5457.JPG",
-  "http://localhost:3010/uploads/enes-website/lampen-tinten/IMG_0820.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/DSC00224-2.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/IMG_0123.JPEG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/IMG_5457.JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/lampen-tinten/IMG_0820.jpg",
 ]
 
 const reels = [
@@ -380,14 +380,14 @@ export default function Lampentinten() {
                 <video src={reel.video} className="w-full h-full object-cover" loop muted autoPlay playsInline></video>
                 <div className="absolute inset-0 flex flex-col justify-between p-4 bg-black bg-opacity-40">
                   <div className="flex items-center text-white text-sm font-semibold">
-                    <Image src="http://localhost:3010/uploads/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
+                    <Image src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/logo-wit.png" alt="Reels Play Icon" width={20} height={20} className="mr-2" />
                     Reels
                   </div>
                   <div className="text-white space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm">
                         <Image
-                          src="http://localhost:3010/uploads/logos/handtekening-wit.png"
+                          src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/logos/handtekening-wit.png"
                           alt="Reels Play Icon"
                           width={100}
                           height={20}

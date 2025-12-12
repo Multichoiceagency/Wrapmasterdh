@@ -85,7 +85,7 @@ export default function WallpaperGallery({ wallpapers }: { wallpapers: Wallpaper
         {/* Achtergrondafbeelding met skeleton fallback */}
         {!heroImageLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
         <Image
-          src="http://localhost:3010/uploads/wallpapers/Maasvlakte-1.jpg"
+          src="https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/wallpapers/Maasvlakte-1.jpg"
           alt="Wallpapers Hero"
           fill
           className={`object-cover transition-opacity duration-300 ${heroImageLoaded ? "opacity-100" : "opacity-0"}`}

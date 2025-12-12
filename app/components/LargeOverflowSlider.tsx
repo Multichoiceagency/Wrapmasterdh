@@ -10,15 +10,15 @@ import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 const LargeOverflowSlider = () => {
   const carImages = [
     {
-      src: 'http://localhost:3010/uploads/images/brabus1.png', // Add your image paths
+      src: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/brabus1.png', // Add your image paths
       alt: 'Car Image 1',
     },
     {
-      src: 'http://localhost:3010/uploads/images/brabus2.png', // Add your image paths
+      src: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/brabus2.png', // Add your image paths
       alt: 'Car Image 2',
     },
     {
-      src: '/images/brabus3.png', // Add your image paths
+      src: 'https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/images/brabus3.png', // Add your image paths
       alt: 'Car Image 3',
     },
   ];

@@ -22,17 +22,17 @@ const socialMedia = {
 const dienstData = {
   title: "CHROME DELETE",
   description: "",
-  heroImage: "http://localhost:3010/uploads/enes-website/OSMAN/q3/DSC05363.jpg",
-  contentImage1: "http://localhost:3010/uploads/enes-website/chrome-delete/mercedes.jpg",
-  contentImage2: "http://localhost:3010/uploads/enes-website/chrome-delete/bmw.jpg",
-  contentImage3: "http://localhost:3010/uploads/enes-website/chrome-delete/FOTO-1-2.jpeg",
+  heroImage: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/OSMAN/q3/DSC05363.jpg",
+  contentImage1: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/chrome-delete/mercedes.jpg",
+  contentImage2: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/chrome-delete/bmw.jpg",
+  contentImage3: "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/chrome-delete/FOTO-1-2.jpeg",
 }
 
 const sliderImages = [
-  "http://localhost:3010/uploads/enes-website/memo/DSC04799.jpeg",
-  "http://localhost:3010/uploads/enes-website/memo/1000010430.jpg",
-  "http://localhost:3010/uploads/enes-website/chrome-delete/IMG_1903.JPG",
-  "http://localhost:3010/uploads/enes-website/OSMAN/idbuzz/DSC05899.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/DSC04799.jpeg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/memo/1000010430.jpg",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/chrome-delete/IMG_1903.JPG",
+  "https://minio-bwc0g844occs44gc8k08os04.135.181.47.19.sslip.io/wrapmaster/enes-website/OSMAN/idbuzz/DSC05899.jpg",
 ]
 
 // Skeleton component for the Chrome Delete page
