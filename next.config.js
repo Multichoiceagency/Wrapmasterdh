@@ -55,6 +55,17 @@ const nextConfig = {
         hostname: "*.sslip.io",
         pathname: "/**",
       },
+      // Coolify deployment domain
+      {
+        protocol: "https",
+        hostname: "coolify.barosy.nl",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.barosy.nl",
+        pathname: "/**",
+      },
     ],
   },
 
