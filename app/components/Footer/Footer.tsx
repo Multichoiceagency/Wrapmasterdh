@@ -109,30 +109,39 @@ export default function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="w-full text-center py-4 px-20 text-sm text-white bg-black">
-        <Link 
-          href="https://multichoiceagency.nl/" 
-          target="_blank" 
-          className="font-semibold hover:text-red-700"
-        >
-         Copyright © by 2025 Wrapmaster - Built by Multichoiceagency
-         </Link>
-         <div>
-         <Link 
-          href="/sitemap.xml" 
-          target="_blank" 
-          className="font-semibold hover:text-red-700 pr-3"
-        >
-        Sitemap
-         </Link>
-         <Link 
-          href="/robots.txt" 
-          target="_blank" 
-          className="font-semibold hover:text-red-700"
-        >
-         Robots
-         </Link>
-         </div>
+      <div className="w-full text-center py-6 px-6 md:px-20 text-sm text-gray-400 bg-black border-t border-gray-800">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+          <span>© {new Date().getFullYear()} Wrapmaster Den Haag. Alle rechten voorbehouden.</span>
+          <span className="hidden md:inline text-gray-600">|</span>
+          <span>
+            Powered by{" "}
+            <Link 
+              href="https://multichoiceagency.nl/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-red-500 hover:text-red-400 font-medium transition-colors"
+            >
+              Multichoiceagency
+            </Link>
+          </span>
+        </div>
+        <div className="flex items-center justify-center gap-4 mt-3 text-xs text-gray-500">
+          <Link 
+            href="/sitemap.xml" 
+            target="_blank" 
+            className="hover:text-white transition-colors"
+          >
+            Sitemap
+          </Link>
+          <span className="text-gray-700">·</span>
+          <Link 
+            href="/robots.txt" 
+            target="_blank" 
+            className="hover:text-white transition-colors"
+          >
+            Robots
+          </Link>
+        </div>
       </div>
       
     </footer>
