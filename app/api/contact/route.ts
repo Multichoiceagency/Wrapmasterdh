@@ -2,44 +2,11 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { saveContactSubmission } from "@/lib/db"
 
-// In-memory rate limiting
-const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
-const RATE_LIMIT_WINDOW = 60000 // 1 minute
-const MAX_REQUESTS = 3 // Max 3 requests per minute per IP
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const record = rateLimitMap.get(ip)
-
-  if (!record) {
-    rateLimitMap.set(ip, { count: 1, lastRequest: now })
-    return false
-  }
-
-  if (now - record.lastRequest > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(ip, { count: 1, lastRequest: now })
-    return false
-  }
-
-  record.count++
-  record.lastRequest = now
-
-  return record.count > MAX_REQUESTS
-}
-
 export async function POST(req: Request) {
   try {
     // Get IP and user agent for tracking
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
     const userAgent = req.headers.get("user-agent") || "unknown"
-
-    // Rate limit check
-    if (checkRateLimit(ip)) {
-      return NextResponse.json(
-        { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
-        { status: 429 }
-      )
-    }
 
     const formData = await req.json()
 
@@ -109,14 +76,257 @@ export async function POST(req: Request) {
       },
     })
 
-    // Email content
-    const emailContent = `
-      <h2>Nieuwe Contact Aanvraag</h2>
-      <p><strong>Naam:</strong> ${formData.naam}</p>
-      <p><strong>Email:</strong> ${formData.email}</p>
-      <p><strong>Telefoonnummer:</strong> ${formData.telefoonnummer || "Niet opgegeven"}</p>
-      <p><strong>Bericht:</strong></p>
-      <p>${formData.bericht.replace(/\n/g, "<br>")}</p>
+    // Date for emails
+    const datum = new Date().toLocaleDateString("nl-NL", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+
+    // Branded admin email content
+    const adminEmailContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F3F4F6;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF;">
+        <!-- Header -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 30px; text-align: center;">
+            <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: 2px;">WRAPMASTER</h1>
+            <p style="margin: 5px 0 0 0; color: #DC2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Premium Car Wrapping & Detailing</p>
+          </td>
+        </tr>
+
+        <!-- Alert Banner -->
+        <tr>
+          <td style="background-color: #3B82F6; padding: 15px 30px; text-align: center;">
+            <p style="margin: 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">💬 Nieuw Contact Bericht</p>
+          </td>
+        </tr>
+
+        <!-- Date -->
+        <tr>
+          <td style="padding: 20px 30px 10px 30px;">
+            <p style="margin: 0; color: #6B7280; font-size: 12px;">Ontvangen op: ${datum}</p>
+          </td>
+        </tr>
+
+        <!-- Contact Info -->
+        <tr>
+          <td style="padding: 10px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 8px; border-left: 4px solid #DC2626;">
+              <tr>
+                <td style="padding: 20px;">
+                  <h2 style="margin: 0 0 15px 0; color: #1F2937; font-size: 16px; font-weight: 600;">👤 Contactgegevens</h2>
+                  <table width="100%" cellspacing="0" cellpadding="5">
+                    <tr>
+                      <td width="120" style="color: #6B7280; font-size: 14px;">Naam:</td>
+                      <td style="color: #1F2937; font-size: 14px; font-weight: 600;">${formData.naam}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #6B7280; font-size: 14px;">E-mail:</td>
+                      <td style="color: #1F2937; font-size: 14px;"><a href="mailto:${formData.email}" style="color: #DC2626; text-decoration: none;">${formData.email}</a></td>
+                    </tr>
+                    <tr>
+                      <td style="color: #6B7280; font-size: 14px;">Telefoon:</td>
+                      <td style="color: #1F2937; font-size: 14px;"><a href="tel:${formData.telefoonnummer}" style="color: #DC2626; text-decoration: none;">${formData.telefoonnummer || "Niet opgegeven"}</a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Message -->
+        <tr>
+          <td style="padding: 10px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #FEF3C7; border-radius: 8px;">
+              <tr>
+                <td style="padding: 20px;">
+                  <h2 style="margin: 0 0 10px 0; color: #1F2937; font-size: 16px; font-weight: 600;">💬 Bericht</h2>
+                  <p style="margin: 0; color: #1F2937; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${formData.bericht}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Action Buttons -->
+        <tr>
+          <td style="padding: 20px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="center">
+                  <a href="mailto:${formData.email}?subject=Re: Contact Aanvraag Wrapmaster"
+                     style="display: inline-block; background-color: #DC2626; color: #FFFFFF; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+                    ✉️ Beantwoord Bericht
+                  </a>
+                  ${formData.telefoonnummer ? `
+                  <a href="tel:${formData.telefoonnummer}"
+                     style="display: inline-block; background-color: #1F2937; color: #FFFFFF; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; margin-left: 10px;">
+                    📞 Bel Klant
+                  </a>
+                  ` : ""}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 20px 30px; text-align: center;">
+            <p style="margin: 0 0 5px 0; color: #9CA3AF; font-size: 12px;">Wrapmaster Den Haag</p>
+            <p style="margin: 0 0 5px 0; color: #9CA3AF; font-size: 12px;">Westvlietweg 72-L, 2495 AA Den Haag</p>
+            <p style="margin: 0; color: #6B7280; font-size: 11px;">Deze e-mail is automatisch gegenereerd</p>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+    `
+
+    // Branded customer confirmation email
+    const customerEmailContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F3F4F6;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF;">
+        <!-- Header -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 30px; text-align: center;">
+            <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: 2px;">WRAPMASTER</h1>
+            <p style="margin: 5px 0 0 0; color: #DC2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Premium Car Wrapping & Detailing</p>
+          </td>
+        </tr>
+
+        <!-- Success Banner -->
+        <tr>
+          <td style="background-color: #10B981; padding: 20px 30px; text-align: center;">
+            <p style="margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 600;">✓ Bericht Ontvangen!</p>
+          </td>
+        </tr>
+
+        <!-- Main Content -->
+        <tr>
+          <td style="padding: 40px 30px;">
+            <h2 style="margin: 0 0 20px 0; color: #1F2937; font-size: 22px;">Beste ${formData.naam},</h2>
+
+            <p style="margin: 0 0 20px 0; color: #4B5563; font-size: 15px; line-height: 1.7;">
+              Bedankt voor je bericht! We hebben je vraag in goede orde ontvangen en ons team bekijkt het zo snel mogelijk.
+            </p>
+
+            <p style="margin: 0 0 25px 0; color: #4B5563; font-size: 15px; line-height: 1.7;">
+              We reageren meestal binnen <strong style="color: #DC2626;">24 uur</strong> op werkdagen.
+            </p>
+
+            <!-- What's Next Box -->
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 12px; border-left: 4px solid #DC2626;">
+              <tr>
+                <td style="padding: 25px;">
+                  <h3 style="margin: 0 0 15px 0; color: #1F2937; font-size: 16px; font-weight: 600;">📋 Wat kun je verwachten?</h3>
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">1.</span> We lezen je bericht zorgvuldig
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">2.</span> We bereiden een passend antwoord voor
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">3.</span> We nemen contact met je op via e-mail of telefoon
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Your Message Summary -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #1F2937; border-radius: 12px;">
+              <tr>
+                <td style="padding: 25px;">
+                  <h3 style="margin: 0 0 15px 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">💬 Jouw bericht</h3>
+                  <p style="margin: 0; color: #D1D5DB; font-size: 13px; line-height: 1.6; white-space: pre-wrap;">${formData.bericht.length > 200 ? formData.bericht.substring(0, 200) + "..." : formData.bericht}</p>
+                  <p style="margin: 15px 0 0 0; color: #9CA3AF; font-size: 12px;">Verzonden op: ${datum}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- CTA Button -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px; text-align: center;">
+            <p style="margin: 0 0 15px 0; color: #6B7280; font-size: 14px;">Dringend? Neem direct contact op!</p>
+            <a href="https://wa.me/31638718893"
+               style="display: inline-block; background-color: #25D366; color: #FFFFFF; padding: 14px 35px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px;">
+              💬 WhatsApp Ons
+            </a>
+          </td>
+        </tr>
+
+        <!-- Contact Info -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 12px;">
+              <tr>
+                <td style="padding: 25px; text-align: center;">
+                  <p style="margin: 0 0 10px 0; color: #1F2937; font-size: 14px; font-weight: 600;">📍 Bezoek onze showroom</p>
+                  <p style="margin: 0 0 5px 0; color: #6B7280; font-size: 13px;">Westvlietweg 72-L, 2495 AA Den Haag</p>
+                  <p style="margin: 0; color: #6B7280; font-size: 13px;">
+                    <a href="tel:0702250721" style="color: #DC2626; text-decoration: none;">070 225 0721</a>
+                    &nbsp;|&nbsp;
+                    <a href="mailto:info@wrapmasterdh.nl" style="color: #DC2626; text-decoration: none;">info@wrapmasterdh.nl</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Social Media -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px; text-align: center;">
+            <p style="margin: 0 0 15px 0; color: #6B7280; font-size: 13px;">Volg ons voor inspiratie</p>
+            <a href="https://www.instagram.com/wrapmasterdh/" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">Instagram</a>
+            <a href="https://www.facebook.com/WrapmasterDH" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">Facebook</a>
+            <a href="https://www.tiktok.com/@wrapmasterdh" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">TikTok</a>
+            <a href="https://www.youtube.com/@wrapmasterdh/videos" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">YouTube</a>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 25px 30px; text-align: center;">
+            <img src="https://wrapmasterdh.nl/_next/image?url=%2Flogos%2Fhandtekening-wit.png&w=256&q=75" alt="Wrapmaster" width="120" style="margin-bottom: 15px;">
+            <p style="margin: 0 0 5px 0; color: #9CA3AF; font-size: 11px;">© ${new Date().getFullYear()} Wrapmaster Den Haag. Alle rechten voorbehouden.</p>
+            <p style="margin: 0; color: #6B7280; font-size: 10px;">KvK: 68374232 | BTW: NL002332891B92</p>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
     `
 
     // Send email to admin
@@ -124,8 +334,8 @@ export async function POST(req: Request) {
       from: process.env.SMTP_FROM,
       to: process.env.SMTP_TO,
       replyTo: formData.email,
-      subject: "Nieuwe Contact Aanvraag - Wrapmaster",
-      html: emailContent,
+      subject: `💬 Contact Bericht: ${formData.naam}`,
+      html: adminEmailContent,
     })
 
     // Send confirmation email to customer
@@ -133,17 +343,8 @@ export async function POST(req: Request) {
       from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
       to: formData.email,
       replyTo: process.env.SMTP_TO,
-      subject: "Bedankt voor je bericht - Wrapmaster",
-      html: `
-        <p>Beste ${formData.naam},</p>
-        <p>Bedankt voor je bericht. We hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op.</p>
-        <p>Met vriendelijke groet,<br>Team Wrapmaster</p>
-        <p>
-          T: <a href="tel:0702250721">070 225 0721</a><br>
-          E: <a href="mailto:info@wrapmasterdh.nl">info@wrapmasterdh.nl</a><br>
-          W: <a href="https://www.wrapmasterdh.nl">www.wrapmasterdh.nl</a>
-        </p>
-      `,
+      subject: "✓ Bericht Ontvangen - Wrapmaster",
+      html: customerEmailContent,
     })
 
     return NextResponse.json({ success: true, message: "Bericht succesvol verzonden!" }, { status: 200 })

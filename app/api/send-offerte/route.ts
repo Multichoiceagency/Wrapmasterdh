@@ -4,31 +4,6 @@ import PDFDocument from "pdfkit"
 import { uploadToS3, isS3Configured } from "@/lib/s3"
 import { saveOfferteSubmission } from "@/lib/db"
 
-// In-memory rate limiting
-const rateLimitMap = new Map<string, { count: number; lastRequest: number }>()
-const RATE_LIMIT_WINDOW = 60000 // 1 minute
-const MAX_REQUESTS = 5 // Max 5 requests per minute per IP
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const record = rateLimitMap.get(ip)
-
-  if (!record) {
-    rateLimitMap.set(ip, { count: 1, lastRequest: now })
-    return false
-  }
-
-  if (now - record.lastRequest > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(ip, { count: 1, lastRequest: now })
-    return false
-  }
-
-  record.count++
-  record.lastRequest = now
-
-  return record.count > MAX_REQUESTS
-}
-
 // Generate PDF for offerte aanvraag
 async function generateOffertePDF(data: {
   naam: string
@@ -206,14 +181,6 @@ export async function POST(req: Request) {
     // Get IP and user agent for tracking
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown"
     const userAgent = req.headers.get("user-agent") || "unknown"
-
-    // Rate limit check
-    if (checkRateLimit(ip)) {
-      return NextResponse.json(
-        { success: false, message: "Te veel aanvragen. Probeer het later opnieuw." },
-        { status: 429 }
-      )
-    }
 
     const formData = await req.formData()
 
@@ -503,36 +470,164 @@ export async function POST(req: Request) {
     </html>
     `
 
+    // Branded customer confirmation email
+    const customerEmailContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F3F4F6;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #FFFFFF;">
+        <!-- Header -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 30px; text-align: center;">
+            <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 700; letter-spacing: 2px;">WRAPMASTER</h1>
+            <p style="margin: 5px 0 0 0; color: #DC2626; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Premium Car Wrapping & Detailing</p>
+          </td>
+        </tr>
+
+        <!-- Success Banner -->
+        <tr>
+          <td style="background-color: #10B981; padding: 20px 30px; text-align: center;">
+            <p style="margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 600;">✓ Aanvraag Ontvangen!</p>
+          </td>
+        </tr>
+
+        <!-- Main Content -->
+        <tr>
+          <td style="padding: 40px 30px;">
+            <h2 style="margin: 0 0 20px 0; color: #1F2937; font-size: 22px;">Beste ${naam},</h2>
+
+            <p style="margin: 0 0 20px 0; color: #4B5563; font-size: 15px; line-height: 1.7;">
+              Bedankt voor je offerte aanvraag! We hebben je verzoek in goede orde ontvangen en ons team gaat er direct mee aan de slag.
+            </p>
+
+            <p style="margin: 0 0 25px 0; color: #4B5563; font-size: 15px; line-height: 1.7;">
+              Je ontvangt binnen <strong style="color: #DC2626;">24 uur</strong> een persoonlijke offerte van ons.
+            </p>
+
+            <!-- What's Next Box -->
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 12px; border-left: 4px solid #DC2626;">
+              <tr>
+                <td style="padding: 25px;">
+                  <h3 style="margin: 0 0 15px 0; color: #1F2937; font-size: 16px; font-weight: 600;">📋 Wat kun je verwachten?</h3>
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">1.</span> We bekijken je aanvraag zorgvuldig
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">2.</span> We stellen een passende offerte op
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #4B5563; font-size: 14px;">
+                        <span style="color: #10B981; font-weight: bold;">3.</span> We nemen contact met je op voor details
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Your Request Summary -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #1F2937; border-radius: 12px;">
+              <tr>
+                <td style="padding: 25px;">
+                  <h3 style="margin: 0 0 15px 0; color: #FFFFFF; font-size: 16px; font-weight: 600;">🚗 Jouw aanvraag</h3>
+                  <table width="100%" cellspacing="0" cellpadding="5">
+                    ${kenteken ? `
+                    <tr>
+                      <td width="120" style="color: #9CA3AF; font-size: 13px;">Kenteken:</td>
+                      <td style="color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase;">${kenteken}</td>
+                    </tr>
+                    ` : ""}
+                    ${gewensteKleur ? `
+                    <tr>
+                      <td style="color: #9CA3AF; font-size: 13px;">Gewenste kleur:</td>
+                      <td style="color: #DC2626; font-size: 13px; font-weight: 600;">${gewensteKleur}</td>
+                    </tr>
+                    ` : ""}
+                    <tr>
+                      <td style="color: #9CA3AF; font-size: 13px;">Aanvraagdatum:</td>
+                      <td style="color: #FFFFFF; font-size: 13px;">${datum}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- CTA Button -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px; text-align: center;">
+            <p style="margin: 0 0 15px 0; color: #6B7280; font-size: 14px;">Vragen? Neem gerust contact met ons op!</p>
+            <a href="https://wa.me/31638718893"
+               style="display: inline-block; background-color: #25D366; color: #FFFFFF; padding: 14px 35px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px;">
+              💬 WhatsApp Ons
+            </a>
+          </td>
+        </tr>
+
+        <!-- Contact Info -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #F9FAFB; border-radius: 12px;">
+              <tr>
+                <td style="padding: 25px; text-align: center;">
+                  <p style="margin: 0 0 10px 0; color: #1F2937; font-size: 14px; font-weight: 600;">📍 Bezoek onze showroom</p>
+                  <p style="margin: 0 0 5px 0; color: #6B7280; font-size: 13px;">Westvlietweg 72-L, 2495 AA Den Haag</p>
+                  <p style="margin: 0; color: #6B7280; font-size: 13px;">
+                    <a href="tel:0702250721" style="color: #DC2626; text-decoration: none;">070 225 0721</a>
+                    &nbsp;|&nbsp;
+                    <a href="mailto:info@wrapmasterdh.nl" style="color: #DC2626; text-decoration: none;">info@wrapmasterdh.nl</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Social Media -->
+        <tr>
+          <td style="padding: 0 30px 30px 30px; text-align: center;">
+            <p style="margin: 0 0 15px 0; color: #6B7280; font-size: 13px;">Volg ons voor inspiratie</p>
+            <a href="https://www.instagram.com/wrapmasterdh/" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">Instagram</a>
+            <a href="https://www.facebook.com/WrapmasterDH" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">Facebook</a>
+            <a href="https://www.tiktok.com/@wrapmasterdh" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">TikTok</a>
+            <a href="https://www.youtube.com/@wrapmasterdh/videos" style="display: inline-block; margin: 0 8px; color: #1F2937; text-decoration: none; font-size: 13px; font-weight: 500;">YouTube</a>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background-color: #1F2937; padding: 25px 30px; text-align: center;">
+            <img src="https://wrapmasterdh.nl/_next/image?url=%2Flogos%2Fhandtekening-wit.png&w=256&q=75" alt="Wrapmaster" width="120" style="margin-bottom: 15px;">
+            <p style="margin: 0 0 5px 0; color: #9CA3AF; font-size: 11px;">© ${new Date().getFullYear()} Wrapmaster Den Haag. Alle rechten voorbehouden.</p>
+            <p style="margin: 0; color: #6B7280; font-size: 10px;">KvK: 68374232 | BTW: NL002332891B92</p>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+    `
+
     // Send confirmation email to customer
     await transporter.sendMail({
       from: `"Wrapmaster" <${process.env.SMTP_FROM}>`,
       to: email,
       replyTo: process.env.SMTP_TO,
-      subject: "Offerte Aanvraag Wrapmaster",
-      html: `<p>Beste ${naam},</p>
-              <p>Bedankt voor je aanvraag.</p>
-              <p>Ons team bekijkt je aanvraag zorgvuldig en neemt direct contact met u op.</p>
-            Met vriendelijke groet,<br>
-            Team Wrapmaster<br>
-          </p>
-            <p>
-              T: <a href="tel:0702250721" style="color: #333; text-decoration: none;">070 225 0721</a><br>
-              M: <a href="tel:+31638718893" style="color: #333; text-decoration: none;">+31 6 38718893</a><br>
-              E: <a href="mailto:info@wrapmasterdh.nl" style="color: #333; text-decoration: none;">info@wrapmasterdh.nl</a><br>
-              W: <a href="https://www.wrapmasterdh.nl" style="color: #333; text-decoration: none;">www.wrapmasterdh.nl</a><br>
-            </p>
-
-            <!-- Social media links inline -->
-            <p>
-              <a href="https://www.instagram.com/wrapmasterdh/" style="color: #333; text-decoration: none;">Instagram</a>&nbsp;|&nbsp;
-              <a href="https://www.facebook.com/WrapmasterDH" style="color: #333; text-decoration: none;">Facebook</a>&nbsp;|&nbsp;
-              <a href="https://www.tiktok.com/@wrapmasterdh" style="color: #333; text-decoration: none;">TikTok</a>&nbsp;|&nbsp;
-              <a href="https://www.youtube.com/@wrapmasterdh/videos" style="color: #333; text-decoration: none;">YouTube</a>
-            </p>
-          <!-- Website logo -->
-          <p style="margin-top: 20px;">
-            <img src="https://wrapmasterdh.nl/_next/image?url=%2Flogos%2Fhandtekening-zwart.png&w=256&q=75" alt="Wrapmaster Logo" width="150" height="50" style="vertical-align: middle;">
-          </p>`,
+      subject: "✓ Offerte Aanvraag Ontvangen - Wrapmaster",
+      html: customerEmailContent,
       attachments,
     })
 

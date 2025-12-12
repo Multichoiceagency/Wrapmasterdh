@@ -25,7 +25,9 @@
       "Bash(curl:*)",
       "Bash(node scripts/test-smtp.js:*)",
       "Bash(node scripts/optimize-image-loading.js:*)",
-      "Bash(node scripts/fix-skeleton-animations.js:*)"
+      "Bash(node scripts/fix-skeleton-animations.js:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
