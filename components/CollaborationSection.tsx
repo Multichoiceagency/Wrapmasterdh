@@ -29,7 +29,9 @@ export default function CollaborationSection({ heroImage, brands, partners }: Co
           alt="Samenwerking Hero"
           fill
           className="object-cover"
-          priority={true} // Hero image loads with priority
+          sizes="100vw"
+          priority={true}
+          unoptimized
         />
         <div className="absolute inset-0 bg-black/50 flex items-end p-6 justify-center">
           <h1 className="text-4xl md:text-4xl font-light text-white">SAMENWERKING</h1>
@@ -67,7 +69,9 @@ export default function CollaborationSection({ heroImage, brands, partners }: Co
                     alt={brand.name}
                     fill
                     className="object-contain"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
                     loading="lazy"
+                    unoptimized
                   />
                 </div>
               </SwiperSlide>
@@ -113,7 +117,9 @@ export default function CollaborationSection({ heroImage, brands, partners }: Co
                     alt={partner.name}
                     fill
                     className="object-contain"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
                     loading="lazy"
+                    unoptimized
                   />
                 </div>
               </SwiperSlide>
