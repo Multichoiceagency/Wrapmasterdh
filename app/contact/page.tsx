@@ -119,7 +119,7 @@ export default function ContactPage() {
   // Success state
   if (submitStatus === "success") {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20">
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -146,7 +146,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black pt-32 pb-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
