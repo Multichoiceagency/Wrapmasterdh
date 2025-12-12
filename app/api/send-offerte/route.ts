@@ -653,7 +653,7 @@ export async function POST(req: Request) {
     })
 
     // Send branded email to admin with PDF (if generated)
-    const adminAttachments = [...attachments]
+    const adminAttachments: { filename: string; content: Buffer; contentType?: string }[] = [...attachments]
     if (pdfBuffer) {
       adminAttachments.push({
         filename: `Offerte-Aanvraag-${kenteken || naam.replace(/\s+/g, "-")}-${new Date().toISOString().split("T")[0]}.pdf`,
