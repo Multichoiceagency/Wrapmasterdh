@@ -17,51 +17,54 @@ import Redis from "ioredis"
  */
 
 let redisClient: Redis | null = null
+let redisAvailable: boolean | null = null
+
+// Check if Redis is configured
+function isRedisUrlConfigured(): boolean {
+  const redisUrl = process.env.REDIS_URL
+  return !!redisUrl && redisUrl !== "rediss://default:your-redis-password@your-redis-host:6380/0"
+}
 
 // Get or create Redis client (singleton pattern)
-export function getRedisClient(): Redis {
+export function getRedisClient(): Redis | null {
+  // Skip if Redis URL is not configured
+  if (!isRedisUrlConfigured()) {
+    return null
+  }
+
   if (!redisClient) {
-    const redisUrl = process.env.REDIS_URL
+    const redisUrl = process.env.REDIS_URL!
+    const isTls = redisUrl.startsWith("rediss://")
 
-    if (redisUrl) {
-      // Use connection URL - parse and create with options
-      const isTls = redisUrl.startsWith("rediss://")
-      redisClient = new Redis(redisUrl, {
-        maxRetriesPerRequest: 3,
-        lazyConnect: true,
-        tls: isTls ? { rejectUnauthorized: false } : undefined,
-        retryStrategy: (times) => Math.min(times * 100, 3000),
-      })
-    } else {
-      // Use individual settings
-      const host = process.env.REDIS_HOST
-      const port = parseInt(process.env.REDIS_PORT || "6380", 10)
-      const password = process.env.REDIS_PASSWORD
-      const username = process.env.REDIS_USERNAME || "default"
-
-      if (!host || !password) {
-        throw new Error("Redis configuration is missing. Set REDIS_URL or REDIS_HOST and REDIS_PASSWORD")
-      }
-
-      redisClient = new Redis({
-        host,
-        port,
-        username,
-        password,
-        tls: { rejectUnauthorized: false },
-        maxRetriesPerRequest: 3,
-        lazyConnect: true,
-        retryStrategy: (times) => Math.min(times * 100, 3000),
-      })
-    }
+    redisClient = new Redis(redisUrl, {
+      maxRetriesPerRequest: 1, // Don't retry too many times
+      connectTimeout: 3000, // 3 second connection timeout
+      commandTimeout: 2000, // 2 second command timeout
+      lazyConnect: true,
+      enableOfflineQueue: false, // Don't queue commands when disconnected
+      tls: isTls ? { rejectUnauthorized: false } : undefined,
+      retryStrategy: (times) => {
+        if (times > 2) {
+          redisAvailable = false
+          return null // Stop retrying after 2 attempts
+        }
+        return Math.min(times * 100, 1000)
+      },
+    })
 
     // Error handling
     redisClient.on("error", (err) => {
       console.error("Redis connection error:", err.message)
+      redisAvailable = false
     })
 
     redisClient.on("connect", () => {
       console.log("Redis connected successfully")
+      redisAvailable = true
+    })
+
+    redisClient.on("close", () => {
+      redisAvailable = false
     })
   }
 
@@ -71,13 +74,25 @@ export function getRedisClient(): Redis {
 // Default cache TTL in seconds (1 hour)
 const DEFAULT_TTL = 3600
 
+// Helper to add timeout to promises
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error("Redis operation timeout")), ms)
+    ),
+  ])
+}
+
 /**
  * Get a value from cache
  */
 export async function cacheGet<T>(key: string): Promise<T | null> {
+  const redis = getRedisClient()
+  if (!redis || redisAvailable === false) return null
+
   try {
-    const redis = getRedisClient()
-    const value = await redis.get(key)
+    const value = await withTimeout(redis.get(key), 2000)
 
     if (value) {
       return JSON.parse(value) as T
@@ -94,9 +109,11 @@ export async function cacheGet<T>(key: string): Promise<T | null> {
  * Set a value in cache with optional TTL
  */
 export async function cacheSet(key: string, value: unknown, ttlSeconds: number = DEFAULT_TTL): Promise<boolean> {
+  const redis = getRedisClient()
+  if (!redis || redisAvailable === false) return false
+
   try {
-    const redis = getRedisClient()
-    await redis.setex(key, ttlSeconds, JSON.stringify(value))
+    await withTimeout(redis.setex(key, ttlSeconds, JSON.stringify(value)), 2000)
     return true
   } catch (error) {
     console.error("Redis SET error:", error)
@@ -108,9 +125,11 @@ export async function cacheSet(key: string, value: unknown, ttlSeconds: number =
  * Delete a value from cache
  */
 export async function cacheDelete(key: string): Promise<boolean> {
+  const redis = getRedisClient()
+  if (!redis || redisAvailable === false) return false
+
   try {
-    const redis = getRedisClient()
-    await redis.del(key)
+    await withTimeout(redis.del(key), 2000)
     return true
   } catch (error) {
     console.error("Redis DELETE error:", error)
@@ -122,12 +141,14 @@ export async function cacheDelete(key: string): Promise<boolean> {
  * Delete all keys matching a pattern
  */
 export async function cacheDeletePattern(pattern: string): Promise<number> {
+  const redis = getRedisClient()
+  if (!redis || redisAvailable === false) return 0
+
   try {
-    const redis = getRedisClient()
-    const keys = await redis.keys(pattern)
+    const keys = await withTimeout(redis.keys(pattern), 2000)
 
     if (keys.length > 0) {
-      await redis.del(...keys)
+      await withTimeout(redis.del(...keys), 2000)
     }
 
     return keys.length
@@ -166,11 +187,15 @@ export async function cacheGetOrSet<T>(
  * Check if Redis is configured and accessible
  */
 export async function isRedisConfigured(): Promise<boolean> {
+  const redis = getRedisClient()
+  if (!redis) return false
+
   try {
-    const redis = getRedisClient()
-    await redis.ping()
+    await withTimeout(redis.ping(), 2000)
+    redisAvailable = true
     return true
   } catch {
+    redisAvailable = false
     return false
   }
 }
@@ -201,22 +226,27 @@ export async function checkRateLimit(
   maxRequests: number,
   windowSeconds: number
 ): Promise<{ allowed: boolean; remaining: number; resetIn: number }> {
+  const redis = getRedisClient()
+  if (!redis || redisAvailable === false) {
+    // Redis not available, allow the request
+    return { allowed: true, remaining: maxRequests, resetIn: windowSeconds }
+  }
+
   try {
-    const redis = getRedisClient()
     const now = Date.now()
     const windowKey = `${key}:${Math.floor(now / (windowSeconds * 1000))}`
 
-    // Increment counter
-    const count = await redis.incr(windowKey)
+    // Increment counter with timeout
+    const count = await withTimeout(redis.incr(windowKey), 2000)
 
     // Set expiry on first request
     if (count === 1) {
-      await redis.expire(windowKey, windowSeconds)
+      await withTimeout(redis.expire(windowKey, windowSeconds), 2000)
     }
 
     const allowed = count <= maxRequests
     const remaining = Math.max(0, maxRequests - count)
-    const ttl = await redis.ttl(windowKey)
+    const ttl = await withTimeout(redis.ttl(windowKey), 2000)
     const resetIn = ttl > 0 ? ttl : windowSeconds
 
     return { allowed, remaining, resetIn }
@@ -232,7 +262,12 @@ export async function checkRateLimit(
  */
 export async function closeRedisConnection(): Promise<void> {
   if (redisClient) {
-    await redisClient.quit()
+    try {
+      await redisClient.quit()
+    } catch {
+      // Ignore errors on close
+    }
     redisClient = null
+    redisAvailable = null
   }
 }
