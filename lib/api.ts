@@ -32,7 +32,7 @@ function formatGoogleDriveUrl(url: string): string {
 
 export const getHeroSlides = cache(async (): Promise<HeroSlide[]> => {
   const response = await fetch(
-    'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/hero-slide?_embed',
+    `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/hero-slide?_embed`,
     { next: { revalidate: 3600 } } // Revalidate every hour
   );
   const data = await response.json();
@@ -49,7 +49,7 @@ export const getHeroSlides = cache(async (): Promise<HeroSlide[]> => {
 
 export const getDienstCards = cache(async (): Promise<DienstCard[]> => {
   const response = await fetch(
-    'https://www.website.wrapmasterdh.nl/wp-json/wp/v2/diensten-pagina?_embed&per_page=100',
+    `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/diensten-pagina?_embed&per_page=100`,
     { next: { revalidate: 3600 } } // Revalidate every hour
   );
   const data = await response.json();

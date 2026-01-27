@@ -23,9 +23,9 @@ type BlogPost = {
 
 // ✅ API-functie om blogposts op te halen
 async function getBlogPosts(): Promise<BlogPost[]> {
+  const WP_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL
   try {
-    // Remove the Next.js cache option since this is client-side
-    const res = await fetch("https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed")
+    const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?_embed`)
 
     if (!res.ok) throw new Error("Fout bij ophalen van blogposts")
 
@@ -36,8 +36,8 @@ async function getBlogPosts(): Promise<BlogPost[]> {
       title: post.title?.rendered || "Geen titel",
       date: new Date(post.date).toLocaleDateString("nl-NL"),
       featured_image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg",
-      video_file: post.scf?.video_file || "",
-      excerpt: post.scf?.custom_excerpt || post.excerpt?.rendered || "Geen samenvatting beschikbaar.",
+      video_file: post.acf?.video_file || "",
+      excerpt: post.acf?.custom_excerpt || post.excerpt?.rendered || "Geen samenvatting beschikbaar.",
       slug: post.slug,
     }))
   } catch (error) {

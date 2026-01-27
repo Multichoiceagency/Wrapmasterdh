@@ -27,6 +27,16 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "wordpress-ywswgkcs00k0c4wsoc8k0o04.135.181.47.19.sslip.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "wordpress-ywswgkcs00k0c4wsoc8k0o04.135.181.47.19.sslip.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "drive.google.com",
         pathname: "/uc",
       },

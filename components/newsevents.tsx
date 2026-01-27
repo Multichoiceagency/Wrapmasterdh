@@ -22,11 +22,12 @@ export default function NewsEvents() {
   const [error, setError] = useState<string | null>(null)
   const [visibleCount, setVisibleCount] = useState(3)
 
+  const WP_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL
+
   useEffect(() => {
     const fetchNewsPosts = async () => {
       try {
-        // Remove the Next.js cache option since this is client-side
-        const response = await fetch("https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed")
+        const response = await fetch(`${WP_URL}/wp-json/wp/v2/posts?_embed`)
 
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
@@ -40,7 +41,7 @@ export default function NewsEvents() {
             post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.svg?height=300&width=400"
 
           // Parse the excerpt to remove HTML tags
-          const rawExcerpt = post.scf?.custom_excerpt || post.excerpt?.rendered || ""
+          const rawExcerpt = post.acf?.custom_excerpt || post.excerpt?.rendered || ""
           const cleanExcerpt = rawExcerpt.replace(/<[^>]*>/g, "")
 
           return {
@@ -52,7 +53,7 @@ export default function NewsEvents() {
               day: "numeric",
             }),
             featured_image: featuredImage,
-            video_file: post.scf?.video_file || "",
+            video_file: post.acf?.video_file || "",
             excerpt: cleanExcerpt,
             slug: post.slug || `post-${post.id}`,
           }

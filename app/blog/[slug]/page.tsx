@@ -7,10 +7,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { Skeleton } from "@/components/ui/skeleton"
 
+const WP_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL
+
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    // Remove the Next.js cache option since this is client-side
-    const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?slug=${slug}&_embed`)
+    const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?slug=${slug}&_embed`)
 
     if (!res.ok) {
       throw new Error(`Failed to fetch post: ${res.status}`)
@@ -26,8 +27,8 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
       title: post.title.rendered || "Geen titel",
       date: new Date(post.date).toLocaleDateString("nl-NL"),
       featured_image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg",
-      video_file: post.scf?.video_file || "",
-      excerpt: post.scf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
+      video_file: post.acf?.video_file || "",
+      excerpt: post.acf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
       content: post.content.rendered || "Geen inhoud beschikbaar.",
       slug: post.slug,
     }
@@ -39,8 +40,7 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
 async function getRecentPosts(): Promise<BlogPost[]> {
   try {
-    // Remove the Next.js cache option since this is client-side
-    const res = await fetch(`https://www.website.wrapmasterdh.nl/wp-json/wp/v2/nieuws?_embed&per_page=6`)
+    const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?_embed&per_page=6`)
 
     if (!res.ok) {
       throw new Error(`Failed to fetch recent posts: ${res.status}`)
@@ -53,7 +53,7 @@ async function getRecentPosts(): Promise<BlogPost[]> {
       title: post.title.rendered || "Geen titel",
       date: new Date(post.date).toLocaleDateString("nl-NL"),
       featured_image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.jpg",
-      excerpt: post.scf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
+      excerpt: post.acf?.custom_excerpt || post.excerpt.rendered || "Geen samenvatting beschikbaar.",
       slug: post.slug,
     }))
   } catch (error) {
