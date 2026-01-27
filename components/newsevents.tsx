@@ -38,7 +38,7 @@ export default function NewsEvents() {
         const formattedPosts = data.map((post: any) => {
           // Safely access nested properties
           const featuredImage =
-            post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.svg?height=300&width=400"
+            post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/placeholder.svg"
 
           // Parse the excerpt to remove HTML tags
           const rawExcerpt = post.acf?.custom_excerpt || post.excerpt?.rendered || ""
@@ -148,13 +148,13 @@ export default function NewsEvents() {
                     />
                   ) : (
                     <OptimizedImage
-                      src={post.featured_image || "/placeholder.svg?height=300&width=400"}
+                      src={post.featured_image || "/placeholder.svg"}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       spinnerSize="sm"
-                      fallbackSrc="/placeholder.svg?height=300&width=400"
+                      fallbackSrc="/placeholder.svg"
                     />
                   )}
                 </div>
