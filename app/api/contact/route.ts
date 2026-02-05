@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { saveContactSubmission } from "@/lib/db"
-import { verifyRecaptcha } from "@/lib/recaptcha"
 
 export async function POST(req: Request) {
   try {
@@ -38,22 +37,6 @@ export async function POST(req: Request) {
     if (!emailRegex.test(formData.email)) {
       return NextResponse.json(
         { success: false, message: "Vul een geldig e-mailadres in." },
-        { status: 400 }
-      )
-    }
-
-    // Verify reCAPTCHA
-    if (formData.recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken)
-      if (!recaptchaResult.success) {
-        return NextResponse.json(
-          { success: false, message: recaptchaResult.error || "reCAPTCHA verificatie mislukt" },
-          { status: 400 }
-        )
-      }
-    } else if (process.env.NODE_ENV === "production") {
-      return NextResponse.json(
-        { success: false, message: "reCAPTCHA verificatie is verplicht" },
         { status: 400 }
       )
     }

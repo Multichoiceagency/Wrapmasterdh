@@ -3,7 +3,6 @@
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Check, ChevronRight, ChevronLeft, Upload, X, Car, User, Mail, Phone, Building, Palette, MessageSquare, FileImage, Loader2 } from "lucide-react"
-import ReCAPTCHA from "react-google-recaptcha"
 
 // Stap configuratie
 const steps = [
@@ -34,9 +33,7 @@ export default function OfferteAanvragen() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   // Timestamp voor rate limiting (wordt gezet bij laden van pagina)
   const [formLoadTime] = useState(Date.now())
@@ -98,10 +95,6 @@ export default function OfferteAanvragen() {
           setErrorMessage("Je moet akkoord gaan met het privacybeleid")
           return false
         }
-        if (!recaptchaToken) {
-          setErrorMessage("Bevestig dat je geen robot bent")
-          return false
-        }
         return true
       default:
         return true
@@ -155,11 +148,6 @@ export default function OfferteAanvragen() {
         submitData.append(key, String(value))
       })
 
-      // Add reCAPTCHA token
-      if (recaptchaToken) {
-        submitData.append("recaptchaToken", recaptchaToken)
-      }
-
       uploadedFiles.forEach((file) => {
         submitData.append("uploadedFiles", file)
       })
@@ -194,8 +182,6 @@ export default function OfferteAanvragen() {
           website: "",
         })
         setUploadedFiles([])
-        setRecaptchaToken(null)
-        recaptchaRef.current?.reset()
       } else {
         throw new Error(data.message || "Verzending mislukt")
       }
@@ -534,16 +520,6 @@ export default function OfferteAanvragen() {
               </span>
             </label>
 
-            {/* reCAPTCHA */}
-            <div className="flex justify-center mt-4">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                onChange={(token) => setRecaptchaToken(token)}
-                onExpired={() => setRecaptchaToken(null)}
-                hl="nl"
-              />
-            </div>
           </motion.div>
         )
 

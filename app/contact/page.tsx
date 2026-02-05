@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { User, Mail, Phone, MessageSquare, Check, Loader2 } from "lucide-react"
-import ReCAPTCHA from "react-google-recaptcha"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,8 +18,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   // Timestamp voor spam detectie
   const [formLoadTime] = useState(Date.now())
@@ -51,11 +48,6 @@ export default function ContactPage() {
 
     if (!formData.privacyCheck) {
       setErrorMessage("Je moet akkoord gaan met het privacybeleid om door te gaan.")
-      return
-    }
-
-    if (!recaptchaToken) {
-      setErrorMessage("Bevestig dat je geen robot bent")
       return
     }
 
@@ -90,7 +82,6 @@ export default function ContactPage() {
         body: JSON.stringify({
           ...cleanFormData,
           formLoadTime,
-          recaptchaToken,
         }),
         signal: controller.signal,
       })
@@ -109,8 +100,6 @@ export default function ContactPage() {
           privacyCheck: false,
           website: "",
         })
-        setRecaptchaToken(null)
-        recaptchaRef.current?.reset()
       } else {
         throw new Error(data.message || "Verzending mislukt")
       }
@@ -277,17 +266,6 @@ export default function ContactPage() {
                     *
                   </span>
                 </label>
-
-                {/* reCAPTCHA */}
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                    onChange={(token) => setRecaptchaToken(token)}
-                    onExpired={() => setRecaptchaToken(null)}
-                    hl="nl"
-                  />
-                </div>
 
                 {/* Error message */}
                 <AnimatePresence>

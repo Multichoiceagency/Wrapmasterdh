@@ -3,7 +3,6 @@ import nodemailer from "nodemailer"
 import PDFDocument from "pdfkit"
 import { uploadToS3, isS3Configured } from "@/lib/s3"
 import { saveOfferteSubmission } from "@/lib/db"
-import { verifyRecaptcha } from "@/lib/recaptcha"
 
 // Generate PDF for offerte aanvraag
 async function generateOffertePDF(data: {
@@ -216,23 +215,6 @@ export async function POST(req: Request) {
     if (!naam || !email) {
       return NextResponse.json(
         { success: false, message: "Naam en e-mailadres zijn verplicht." },
-        { status: 400 }
-      )
-    }
-
-    // Verify reCAPTCHA
-    const recaptchaToken = getString(formData.get("recaptchaToken"))
-    if (recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(recaptchaToken)
-      if (!recaptchaResult.success) {
-        return NextResponse.json(
-          { success: false, message: recaptchaResult.error || "reCAPTCHA verificatie mislukt" },
-          { status: 400 }
-        )
-      }
-    } else if (process.env.NODE_ENV === "production") {
-      return NextResponse.json(
-        { success: false, message: "reCAPTCHA verificatie is verplicht" },
         { status: 400 }
       )
     }
