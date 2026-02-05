@@ -37,11 +37,29 @@ export async function verifyRecaptcha(token: string): Promise<{ success: boolean
 
     const data: RecaptchaResponse = await response.json()
 
+    // Log detailed response for debugging
+    console.log("reCAPTCHA verification response:", JSON.stringify(data, null, 2))
+
     if (data.success) {
+      console.log("✓ reCAPTCHA verification successful")
       return { success: true }
     } else {
-      console.error("reCAPTCHA verification failed:", data["error-codes"])
-      return { success: false, error: "reCAPTCHA verificatie mislukt" }
+      const errorCodes = data["error-codes"] || []
+      console.error("✗ reCAPTCHA verification failed")
+      console.error("   Error codes:", errorCodes)
+      console.error("   Token preview:", token.substring(0, 20) + "...")
+      console.error("   Secret key preview:", secretKey.substring(0, 10) + "...")
+
+      // Provide more specific error messages
+      if (errorCodes.includes("invalid-input-secret")) {
+        return { success: false, error: "reCAPTCHA secret key is ongeldig - controleer je .env" }
+      } else if (errorCodes.includes("timeout-or-duplicate")) {
+        return { success: false, error: "reCAPTCHA token verlopen of al gebruikt" }
+      } else if (errorCodes[0]?.includes("deleted")) {
+        return { success: false, error: "reCAPTCHA project is verwijderd - maak nieuwe keys aan" }
+      }
+
+      return { success: false, error: "reCAPTCHA verificatie mislukt: " + errorCodes.join(", ") }
     }
   } catch (error) {
     console.error("reCAPTCHA verification error:", error)
