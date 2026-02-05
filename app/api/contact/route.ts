@@ -42,15 +42,16 @@ export async function POST(req: Request) {
       )
     }
 
-    // Verify reCAPTCHA
+    // Verify reCAPTCHA Enterprise
     if (formData.recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken)
+      const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken, "CONTACT")
       if (!recaptchaResult.success) {
         return NextResponse.json(
           { success: false, message: recaptchaResult.error || "reCAPTCHA verificatie mislukt" },
           { status: 400 }
         )
       }
+      console.log(`Contact form reCAPTCHA score: ${recaptchaResult.score}`)
     } else if (process.env.NODE_ENV === "production") {
       return NextResponse.json(
         { success: false, message: "reCAPTCHA verificatie is verplicht" },

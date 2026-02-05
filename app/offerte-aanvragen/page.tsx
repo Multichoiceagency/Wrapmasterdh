@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Check, ChevronRight, ChevronLeft, Upload, X, Car, User, Mail, Phone, Building, Palette, MessageSquare, FileImage, Loader2 } from "lucide-react"
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCaptcha from "@/components/ReCaptcha"
 
 // Stap configuratie
 const steps = [
@@ -36,7 +36,7 @@ export default function OfferteAanvragen() {
   const [errorMessage, setErrorMessage] = useState("")
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const recaptchaRef = useRef<{ reset: () => void; execute: () => void; getValue: () => string | null }>(null)
 
   // Timestamp voor rate limiting (wordt gezet bij laden van pagina)
   const [formLoadTime] = useState(Date.now())
@@ -534,14 +534,13 @@ export default function OfferteAanvragen() {
               </span>
             </label>
 
-            {/* reCAPTCHA */}
+            {/* reCAPTCHA Enterprise */}
             <div className="flex justify-center mt-4">
-              <ReCAPTCHA
+              <ReCaptcha
                 ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                action="OFFERTE"
                 onChange={(token) => setRecaptchaToken(token)}
                 onExpired={() => setRecaptchaToken(null)}
-                hl="nl"
               />
             </div>
           </motion.div>

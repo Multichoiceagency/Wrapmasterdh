@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { User, Mail, Phone, MessageSquare, Check, Loader2 } from "lucide-react"
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCaptcha from "@/components/ReCaptcha"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const recaptchaRef = useRef<{ reset: () => void; execute: () => void; getValue: () => string | null }>(null)
 
   // Timestamp voor spam detectie
   const [formLoadTime] = useState(Date.now())
@@ -278,14 +278,13 @@ export default function ContactPage() {
                   </span>
                 </label>
 
-                {/* reCAPTCHA */}
+                {/* reCAPTCHA Enterprise */}
                 <div className="flex justify-center">
-                  <ReCAPTCHA
+                  <ReCaptcha
                     ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                    action="CONTACT"
                     onChange={(token) => setRecaptchaToken(token)}
                     onExpired={() => setRecaptchaToken(null)}
-                    hl="nl"
                   />
                 </div>
 
