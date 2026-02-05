@@ -27,7 +27,10 @@
       "Bash(node scripts/optimize-image-loading.js:*)",
       "Bash(node scripts/fix-skeleton-animations.js:*)",
       "Bash(npx tsc:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "WebFetch(domain:wordpress-ywswgkcs00k0c4wsoc8k0o04.135.181.47.19.sslip.io)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(node scripts/test-recaptcha.js:*)"
     ],
     "deny": [],
     "ask": []

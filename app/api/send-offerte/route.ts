@@ -220,17 +220,16 @@ export async function POST(req: Request) {
       )
     }
 
-    // Verify reCAPTCHA Enterprise
+    // Verify reCAPTCHA
     const recaptchaToken = getString(formData.get("recaptchaToken"))
     if (recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(recaptchaToken, "OFFERTE")
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken)
       if (!recaptchaResult.success) {
         return NextResponse.json(
           { success: false, message: recaptchaResult.error || "reCAPTCHA verificatie mislukt" },
           { status: 400 }
         )
       }
-      console.log(`Offerte form reCAPTCHA score: ${recaptchaResult.score}`)
     } else if (process.env.NODE_ENV === "production") {
       return NextResponse.json(
         { success: false, message: "reCAPTCHA verificatie is verplicht" },
