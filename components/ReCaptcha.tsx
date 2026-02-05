@@ -57,7 +57,6 @@ const ReCaptcha = forwardRef<ReCaptchaHandle, ReCaptchaProps>(
           try {
             widgetIdRef.current = window.grecaptcha.enterprise.render(containerRef.current, {
               sitekey: siteKey,
-              action: action,
               callback: (token: string) => {
                 onChange(token)
               },
@@ -91,7 +90,6 @@ const ReCaptcha = forwardRef<ReCaptchaHandle, ReCaptchaProps>(
         try {
           widgetIdRef.current = window.grecaptcha.enterprise.render(containerRef.current, {
             sitekey: siteKey,
-            action: action,
             callback: onChange,
             "expired-callback": () => {
               onChange(null)
@@ -117,7 +115,7 @@ const ReCaptcha = forwardRef<ReCaptchaHandle, ReCaptchaProps>(
           }
         }
       }
-    }, [siteKey, onChange, onExpired, onError, action])
+    }, [siteKey, onChange, onExpired, onError])
 
     if (!siteKey) {
       return null
@@ -140,7 +138,6 @@ declare global {
           container: HTMLElement,
           options: {
             sitekey: string
-            action?: string
             callback: (token: string) => void
             "expired-callback"?: () => void
             "error-callback"?: () => void
